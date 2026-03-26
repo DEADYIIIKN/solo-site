@@ -166,45 +166,52 @@ function DesktopHero1024() {
 
 function DesktopHero1440() {
   return (
-    <div className="relative hidden h-[686px] min-[1440px]:block">
-      <div className="absolute left-0 top-[70px]">
+    <div className="relative hidden h-[728px] min-[1440px]:block">
+      <div className="absolute left-0 top-20">
         <h1 className="m-0 font-[family-name:var(--font-family-display)] text-white">
-          <span className="block text-[86px] font-normal italic leading-[0.9] tracking-[-0.04em]">
+          <span className="block text-[90px] font-normal italic leading-[0.9] tracking-[-0.04em]">
             {firstScreenContent.titleTop}
           </span>
         </h1>
       </div>
 
-      <div className="absolute left-[218px] top-[146px] w-[780px]">
+      <div className="absolute left-[127px] top-[161px] w-[933px]">
         <h1 className="m-0 font-[family-name:var(--font-family-display)] text-white">
-          <span className="block text-[84px] font-bold leading-[0.9] tracking-[-0.04em]">
+          <span className="block text-[90px] font-bold leading-[0.9] tracking-[-0.04em]">
             {firstScreenContent.titleBottom}
           </span>
         </h1>
       </div>
 
-      <p className="absolute left-[714px] top-[90px] max-w-[392px] text-[18px] font-normal leading-[1.2] text-white">
+      <p className="absolute left-[537px] top-[111px] w-[407px] text-[17px] font-normal leading-[1.2] text-white">
         {firstScreenContent.subtitle}
       </p>
 
-      <div className="absolute left-[628px] top-[294px] size-[210px]">
+      <div className="absolute left-[640px] top-[294px] size-[210px]">
         <HeroCircleButton />
       </div>
 
-      <div className="absolute bottom-[34px] right-0 h-[204px] w-[363px] overflow-hidden rounded-[20px]">
+      <div className="absolute left-[780px] top-[434px] h-[214px] w-[380px] overflow-hidden rounded-[12px]">
         <Image
           alt=""
           className="object-cover"
           fill
-          sizes="363px"
+          sizes="380px"
           priority
           src={firstScreenAssets.heroImage}
         />
       </div>
 
-      <div className="absolute bottom-[38px] left-0">
-        <HeroGeoBlock />
-      </div>
+      <img
+        alt=""
+        className="absolute left-[-22px] top-[602px] h-14 w-14"
+        height={56}
+        src={firstScreenAssets.geoMark}
+        width={56}
+      />
+      <p className="absolute left-[22px] top-[621px] text-[24px] font-bold leading-[1.2] text-white">
+        {firstScreenContent.geoLabel}
+      </p>
     </div>
   );
 }

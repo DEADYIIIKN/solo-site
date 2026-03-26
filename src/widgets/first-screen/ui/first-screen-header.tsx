@@ -119,7 +119,7 @@ export function FirstScreenHeader() {
               aria-label="Основная навигация"
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             >
-              <ul className="flex items-center gap-9 text-[17px] font-normal leading-[1.2] text-[var(--color-text-on-dark)]">
+              <ul className="flex items-center gap-6 text-[14px] font-medium leading-[1.2] text-[var(--color-text-on-dark)]">
                 {firstScreenNavItems.map((item) => (
                   <li key={item}>
                     <a
@@ -133,7 +133,7 @@ export function FirstScreenHeader() {
               </ul>
             </nav>
 
-            <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-5">
+            <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-4">
               <a
                 className="whitespace-nowrap text-[17px] font-semibold leading-[1.2] text-[var(--color-text-on-dark)]"
                 href="tel:+79689731168"
@@ -142,7 +142,7 @@ export function FirstScreenHeader() {
                 {firstScreenContent.phone}
               </a>
               <button
-                className="rounded-[50px] bg-[var(--color-accent)] px-8 py-[19px] text-[17px] font-semibold leading-[1] text-white transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:bg-[var(--color-accent-strong)]"
+                className="rounded-[50px] bg-[var(--color-accent)] px-5 pb-[17px] pt-[15px] text-[14px] font-semibold leading-[1.2] text-white transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:bg-[var(--color-accent-strong)]"
                 type="button"
               >
                 {firstScreenContent.cta}

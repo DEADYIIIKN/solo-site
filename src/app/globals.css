@@ -335,25 +335,37 @@ body > div:first-child {
 }
 
 @media (min-width: 1440px) {
+  .first-screen-grid {
+    opacity: 0.08;
+    background-position: top left;
+    background-repeat: repeat;
+    background-size: 778px 416px;
+  }
+
   .first-screen-glow--left {
-    left: -18px;
-    bottom: 34px;
-    width: 238px;
-    height: 238px;
+    left: -64px;
+    bottom: 90px;
+    width: 320px;
+    height: 320px;
+    background: rgba(255, 92, 0, 0.18);
+    filter: blur(90px);
   }
 
   .first-screen-glow--center {
-    left: 58%;
-    top: 360px;
-    width: 232px;
-    height: 232px;
+    left: 55.5%;
+    top: 314px;
+    width: 248px;
+    height: 248px;
+    background: rgba(255, 92, 0, 0.18);
   }
 
   .first-screen-glow--cta {
-    left: 54%;
-    top: 342px;
-    width: 240px;
-    height: 240px;
+    left: 54.8%;
+    top: 332px;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 92, 0, 0.12);
+    filter: blur(96px);
   }
 }
 
