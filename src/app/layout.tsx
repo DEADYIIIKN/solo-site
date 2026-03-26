@@ -54,7 +54,10 @@ const montserrat = localFont({
 
 export const metadata: Metadata = {
   title: siteConfig.name,
-  description: siteConfig.description
+  description: siteConfig.description,
+  icons: {
+    icon: "/assets/figma/7408-navbar-360/logo.svg"
+  }
 };
 
 export default function RootLayout({

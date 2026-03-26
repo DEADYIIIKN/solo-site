@@ -149,11 +149,11 @@ function DesktopHero1024() {
       <div className="absolute left-[564px] top-[374px] h-[214px] w-[380px] overflow-hidden rounded-[20px]">
         <Image
           alt=""
-          className="h-full w-full object-cover"
-          height={214}
+          className="object-cover"
+          fill
+          sizes="380px"
           priority
           src={firstScreenAssets.heroImage}
-          width={380}
         />
       </div>
 
@@ -194,11 +194,11 @@ function DesktopHero1440() {
       <div className="absolute bottom-[34px] right-0 h-[204px] w-[363px] overflow-hidden rounded-[20px]">
         <Image
           alt=""
-          className="h-full w-full object-cover"
-          height={204}
+          className="object-cover"
+          fill
+          sizes="363px"
           priority
           src={firstScreenAssets.heroImage}
-          width={363}
         />
       </div>
 
