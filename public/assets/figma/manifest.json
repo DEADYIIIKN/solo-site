@@ -8,30 +8,13 @@
   "summary": {
     "designContextFiles": 249,
     "uniqueReferencedAssets": 129,
-    "copiedAssets": 129,
-    "missingAssets": 0
+    "copiedAssets": 91,
+    "missingAssets": 0,
+    "packageAssets": 91,
+    "blogAssets": 0,
+    "siteAssets": 91
   },
   "assets": [
-    {
-      "assetRef": "00e9eea1-02e0-43ae-8702-f751dad6a429",
-      "assetId": "00e9eea1-02e0-43ae-8702-f751dad6a429",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7822-blog-footer-channel-cta-1440/group318.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/00e9eea1-02e0-43ae-8702-f751dad6a429.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/00e9eea1-02e0-43ae-8702-f751dad6a429"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7822-blog-footer-channel-cta-1440.tsx.md",
-        "variable": "imgGroup318"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7822-blog-footer-channel-cta-1440.tsx.md",
-          "variable": "imgGroup318"
-        }
-      ]
-    },
     {
       "assetRef": "0138c191-edb7-451a-b1ea-c46f9591cd03",
       "assetId": "0138c191-edb7-451a-b1ea-c46f9591cd03",
@@ -53,26 +36,6 @@
       ]
     },
     {
-      "assetRef": "09b57edd-0d4f-430d-94ce-b4c8210ae9c6",
-      "assetId": "09b57edd-0d4f-430d-94ce-b4c8210ae9c6",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7481-blog-story-part-1-480/ellipse135.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/09b57edd-0d4f-430d-94ce-b4c8210ae9c6.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/09b57edd-0d4f-430d-94ce-b4c8210ae9c6"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
-        "variable": "imgEllipse135"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
-          "variable": "imgEllipse135"
-        }
-      ]
-    },
-    {
       "assetRef": "0b00f4d1-57b3-4d59-a9c4-e1a7e5362e43",
       "assetId": "0b00f4d1-57b3-4d59-a9c4-e1a7e5362e43",
       "ext": ".svg",
@@ -89,66 +52,6 @@
         {
           "designContextFile": "783-9015-cta-button-1024.tsx.md",
           "variable": "imgVector"
-        }
-      ]
-    },
-    {
-      "assetRef": "1094a8ee-bd63-419f-a92e-7183e5823df6",
-      "assetId": "1094a8ee-bd63-419f-a92e-7183e5823df6",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7481-blog-story-part-1-480/image.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/1094a8ee-bd63-419f-a92e-7183e5823df6.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/1094a8ee-bd63-419f-a92e-7183e5823df6"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
-        "variable": "imgImage"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
-          "variable": "imgImage"
-        }
-      ]
-    },
-    {
-      "assetRef": "1380cb38-eedc-42a6-852c-902e224df3b5",
-      "assetId": "1380cb38-eedc-42a6-852c-902e224df3b5",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7495-blog-story-part-2-480/rectangle33.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/1380cb38-eedc-42a6-852c-902e224df3b5.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/1380cb38-eedc-42a6-852c-902e224df3b5"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7495-blog-story-part-2-480.tsx.md",
-        "variable": "imgRectangle33"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7495-blog-story-part-2-480.tsx.md",
-          "variable": "imgRectangle33"
-        }
-      ]
-    },
-    {
-      "assetRef": "14539ef2-1081-4851-9c21-a2f458debd06",
-      "assetId": "14539ef2-1081-4851-9c21-a2f458debd06",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/ellipse112.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/14539ef2-1081-4851-9c21-a2f458debd06.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/14539ef2-1081-4851-9c21-a2f458debd06"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgEllipse112"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgEllipse112"
         }
       ]
     },
@@ -297,26 +200,6 @@
       ]
     },
     {
-      "assetRef": "230de01e-a124-4278-b5f4-dee886f92b7e",
-      "assetId": "230de01e-a124-4278-b5f4-dee886f92b7e",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7495-blog-story-part-2-480/ellipse135.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/230de01e-a124-4278-b5f4-dee886f92b7e.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/230de01e-a124-4278-b5f4-dee886f92b7e"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7495-blog-story-part-2-480.tsx.md",
-        "variable": "imgEllipse135"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7495-blog-story-part-2-480.tsx.md",
-          "variable": "imgEllipse135"
-        }
-      ]
-    },
-    {
       "assetRef": "259d8bdc-b059-4a5d-a81f-61091992e71d",
       "assetId": "259d8bdc-b059-4a5d-a81f-61091992e71d",
       "ext": ".svg",
@@ -437,26 +320,6 @@
         {
           "designContextFile": "783-7263-case-modal-vertical-1440.tsx.md",
           "variable": "imgVectorStroke"
-        }
-      ]
-    },
-    {
-      "assetRef": "2d6fa63f-da43-4c03-bce0-5ae213b89cb4",
-      "assetId": "2d6fa63f-da43-4c03-bce0-5ae213b89cb4",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7412-blog-news-section-480/telegram-cloud-document252627272500332767172.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/2d6fa63f-da43-4c03-bce0-5ae213b89cb4.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/2d6fa63f-da43-4c03-bce0-5ae213b89cb4"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7412-blog-news-section-480.tsx.md",
-        "variable": "imgTelegramCloudDocument252627272500332767172"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7412-blog-news-section-480.tsx.md",
-          "variable": "imgTelegramCloudDocument252627272500332767172"
         }
       ]
     },
@@ -585,66 +448,6 @@
       ]
     },
     {
-      "assetRef": "4636a7e4-b762-4509-9ac2-5e185d81d819",
-      "assetId": "4636a7e4-b762-4509-9ac2-5e185d81d819",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/telegram-cloud-document252627272500332760000.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/4636a7e4-b762-4509-9ac2-5e185d81d819.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/4636a7e4-b762-4509-9ac2-5e185d81d819"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgTelegramCloudDocument252627272500332760000"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgTelegramCloudDocument252627272500332760000"
-        }
-      ]
-    },
-    {
-      "assetRef": "463aade7-05a4-461d-a74e-6e17bd9e14c5",
-      "assetId": "463aade7-05a4-461d-a74e-6e17bd9e14c5",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/group318.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/463aade7-05a4-461d-a74e-6e17bd9e14c5.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/463aade7-05a4-461d-a74e-6e17bd9e14c5"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgGroup318"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgGroup318"
-        }
-      ]
-    },
-    {
-      "assetRef": "46600563-14a3-452e-a2aa-cd8cd50bf1a4",
-      "assetId": "46600563-14a3-452e-a2aa-cd8cd50bf1a4",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/vector.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/46600563-14a3-452e-a2aa-cd8cd50bf1a4.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/46600563-14a3-452e-a2aa-cd8cd50bf1a4"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgVector"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgVector"
-        }
-      ]
-    },
-    {
       "assetRef": "4a3ad6a8-1acf-46e1-adce-4f220b26fa55",
       "assetId": "4a3ad6a8-1acf-46e1-adce-4f220b26fa55",
       "ext": ".jpg",
@@ -701,46 +504,6 @@
         {
           "designContextFile": "783-8981-navbar-logo-block-1024.tsx.md",
           "variable": "imgGroup1381"
-        }
-      ]
-    },
-    {
-      "assetRef": "5526041c-5f8b-496c-a3d8-e211aa80cbcc",
-      "assetId": "5526041c-5f8b-496c-a3d8-e211aa80cbcc",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/vector2.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/5526041c-5f8b-496c-a3d8-e211aa80cbcc.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/5526041c-5f8b-496c-a3d8-e211aa80cbcc"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-        "variable": "imgVector2"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-          "variable": "imgVector2"
-        }
-      ]
-    },
-    {
-      "assetRef": "55ab4a0a-0ec1-4ff0-bf51-f8a3aa2bed26",
-      "assetId": "55ab4a0a-0ec1-4ff0-bf51-f8a3aa2bed26",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/vector.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/55ab4a0a-0ec1-4ff0-bf51-f8a3aa2bed26.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/55ab4a0a-0ec1-4ff0-bf51-f8a3aa2bed26"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-        "variable": "imgVector"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-          "variable": "imgVector"
         }
       ]
     },
@@ -857,26 +620,6 @@
       ]
     },
     {
-      "assetRef": "594c8c62-7908-4db7-ba71-497f783c724c",
-      "assetId": "594c8c62-7908-4db7-ba71-497f783c724c",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/asset.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/594c8c62-7908-4db7-ba71-497f783c724c.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/594c8c62-7908-4db7-ba71-497f783c724c"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "img"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "img"
-        }
-      ]
-    },
-    {
       "assetRef": "59ec4655a0cfe2d7e46507ab61af76f91f9777da.svg",
       "assetId": "59ec4655a0cfe2d7e46507ab61af76f91f9777da",
       "ext": ".svg",
@@ -961,26 +704,6 @@
       ]
     },
     {
-      "assetRef": "6069283b-6bf1-4f6a-935c-d1dd8f2f154a",
-      "assetId": "6069283b-6bf1-4f6a-935c-d1dd8f2f154a",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/rectangle38.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/6069283b-6bf1-4f6a-935c-d1dd8f2f154a.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/6069283b-6bf1-4f6a-935c-d1dd8f2f154a"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgRectangle38"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgRectangle38"
-        }
-      ]
-    },
-    {
       "assetRef": "64a682bd-dff5-480a-b657-f8ad62adffea",
       "assetId": "64a682bd-dff5-480a-b657-f8ad62adffea",
       "ext": ".svg",
@@ -1029,26 +752,6 @@
       ]
     },
     {
-      "assetRef": "6dd36565-d5d7-4128-a9d0-8a218ccbeb8a",
-      "assetId": "6dd36565-d5d7-4128-a9d0-8a218ccbeb8a",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/telegram-cloud-document252627272500332767172.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/6dd36565-d5d7-4128-a9d0-8a218ccbeb8a.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/6dd36565-d5d7-4128-a9d0-8a218ccbeb8a"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgTelegramCloudDocument252627272500332767172"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgTelegramCloudDocument252627272500332767172"
-        }
-      ]
-    },
-    {
       "assetRef": "6f67a3eb-200f-4640-bc15-f9433ff37be4",
       "assetId": "6f67a3eb-200f-4640-bc15-f9433ff37be4",
       "ext": ".svg",
@@ -1065,26 +768,6 @@
         {
           "designContextFile": "783-8999-floating-button-1024.tsx.md",
           "variable": "imgEllipse111"
-        }
-      ]
-    },
-    {
-      "assetRef": "6fcd409c-60d1-44c7-868f-68f372640569",
-      "assetId": "6fcd409c-60d1-44c7-868f-68f372640569",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7502-blog-story-result-480/ellipse135.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/6fcd409c-60d1-44c7-868f-68f372640569.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/6fcd409c-60d1-44c7-868f-68f372640569"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7502-blog-story-result-480.tsx.md",
-        "variable": "imgEllipse135"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7502-blog-story-result-480.tsx.md",
-          "variable": "imgEllipse135"
         }
       ]
     },
@@ -1165,26 +848,6 @@
         {
           "designContextFile": "783-7246-case-modal-ad-header-1440.tsx.md",
           "variable": "imgFrame873"
-        }
-      ]
-    },
-    {
-      "assetRef": "73b0057f-8a78-4dec-8dd7-c17b75c632de",
-      "assetId": "73b0057f-8a78-4dec-8dd7-c17b75c632de",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/vector1.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/73b0057f-8a78-4dec-8dd7-c17b75c632de.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/73b0057f-8a78-4dec-8dd7-c17b75c632de"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgVector1"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgVector1"
         }
       ]
     },
@@ -1281,126 +944,6 @@
       ]
     },
     {
-      "assetRef": "81bc94a2-a3a9-4a0e-950e-d601293fee7d",
-      "assetId": "81bc94a2-a3a9-4a0e-950e-d601293fee7d",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/icon-arrow-left.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/81bc94a2-a3a9-4a0e-950e-d601293fee7d.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/81bc94a2-a3a9-4a0e-950e-d601293fee7d"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgIconArrowLeft"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgIconArrowLeft"
-        }
-      ]
-    },
-    {
-      "assetRef": "84669ff0-cc66-4a01-8b4f-c12dc397d492",
-      "assetId": "84669ff0-cc66-4a01-8b4f-c12dc397d492",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/ellipse135.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/84669ff0-cc66-4a01-8b4f-c12dc397d492.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/84669ff0-cc66-4a01-8b4f-c12dc397d492"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgEllipse135"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgEllipse135"
-        }
-      ]
-    },
-    {
-      "assetRef": "84a2ef72-a30c-45bd-99b4-78a3d61302f2",
-      "assetId": "84a2ef72-a30c-45bd-99b4-78a3d61302f2",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/image.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/84a2ef72-a30c-45bd-99b4-78a3d61302f2.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/84a2ef72-a30c-45bd-99b4-78a3d61302f2"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgImage"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgImage"
-        }
-      ]
-    },
-    {
-      "assetRef": "850e1a39-d23a-4d9d-bdb8-a20740e859cb",
-      "assetId": "850e1a39-d23a-4d9d-bdb8-a20740e859cb",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/group306.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/850e1a39-d23a-4d9d-bdb8-a20740e859cb.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/850e1a39-d23a-4d9d-bdb8-a20740e859cb"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgGroup306"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgGroup306"
-        }
-      ]
-    },
-    {
-      "assetRef": "88629227-b00f-4077-9765-c42d738ee18f",
-      "assetId": "88629227-b00f-4077-9765-c42d738ee18f",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7444-blog-footer-channel-cta-480/group318.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/88629227-b00f-4077-9765-c42d738ee18f.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/88629227-b00f-4077-9765-c42d738ee18f"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7444-blog-footer-channel-cta-480.tsx.md",
-        "variable": "imgGroup318"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7444-blog-footer-channel-cta-480.tsx.md",
-          "variable": "imgGroup318"
-        }
-      ]
-    },
-    {
-      "assetRef": "894e665b-8994-4b34-8f41-5e17175ba774",
-      "assetId": "894e665b-8994-4b34-8f41-5e17175ba774",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/group1382.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/894e665b-8994-4b34-8f41-5e17175ba774.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/894e665b-8994-4b34-8f41-5e17175ba774"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgGroup1382"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgGroup1382"
-        }
-      ]
-    },
-    {
       "assetRef": "8d11dab9-b903-47b0-a2a5-ffb997fc5567",
       "assetId": "8d11dab9-b903-47b0-a2a5-ffb997fc5567",
       "ext": ".svg",
@@ -1437,26 +980,6 @@
         {
           "designContextFile": "783-11947-business-goals-768.tsx.md",
           "variable": "imgRectangle75"
-        }
-      ]
-    },
-    {
-      "assetRef": "945ec0e4-f375-4547-a434-5aef4cee3bbb",
-      "assetId": "945ec0e4-f375-4547-a434-5aef4cee3bbb",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/ellipse110.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/945ec0e4-f375-4547-a434-5aef4cee3bbb.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/945ec0e4-f375-4547-a434-5aef4cee3bbb"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgEllipse110"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgEllipse110"
         }
       ]
     },
@@ -1681,26 +1204,6 @@
       ]
     },
     {
-      "assetRef": "a4eec2f4-1fd9-4a9f-b20e-9acc92a534e9",
-      "assetId": "a4eec2f4-1fd9-4a9f-b20e-9acc92a534e9",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/icon-arrow-right.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/a4eec2f4-1fd9-4a9f-b20e-9acc92a534e9.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/a4eec2f4-1fd9-4a9f-b20e-9acc92a534e9"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgIconArrowRight"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgIconArrowRight"
-        }
-      ]
-    },
-    {
       "assetRef": "a589e55e-9aee-4d11-bf0e-05a6896a0af8",
       "assetId": "a589e55e-9aee-4d11-bf0e-05a6896a0af8",
       "ext": ".jpg",
@@ -1797,26 +1300,6 @@
         {
           "designContextFile": "783-9015-cta-button-1024.tsx.md",
           "variable": "imgEllipse111"
-        }
-      ]
-    },
-    {
-      "assetRef": "b45426d2-83f8-48fd-a9ff-a51b9a39c8e3",
-      "assetId": "b45426d2-83f8-48fd-a9ff-a51b9a39c8e3",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/vector3.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b45426d2-83f8-48fd-a9ff-a51b9a39c8e3.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/b45426d2-83f8-48fd-a9ff-a51b9a39c8e3"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-        "variable": "imgVector3"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-          "variable": "imgVector3"
         }
       ]
     },
@@ -1921,26 +1404,6 @@
       ]
     },
     {
-      "assetRef": "b8775c4f-b7ad-44a0-b003-fe474823d57f",
-      "assetId": "b8775c4f-b7ad-44a0-b003-fe474823d57f",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/group318.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b8775c4f-b7ad-44a0-b003-fe474823d57f.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/b8775c4f-b7ad-44a0-b003-fe474823d57f"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-        "variable": "imgGroup318"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-          "variable": "imgGroup318"
-        }
-      ]
-    },
-    {
       "assetRef": "bc0ae7c7-5d22-4d8a-816d-e6b8ee06013c",
       "assetId": "bc0ae7c7-5d22-4d8a-816d-e6b8ee06013c",
       "ext": ".svg",
@@ -2037,26 +1500,6 @@
       ]
     },
     {
-      "assetRef": "c361c21c-10a5-4fcd-8a89-d45c354f3e6a",
-      "assetId": "c361c21c-10a5-4fcd-8a89-d45c354f3e6a",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7412-blog-news-section-480/telegram-cloud-document252627272500332760000.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/c361c21c-10a5-4fcd-8a89-d45c354f3e6a.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/c361c21c-10a5-4fcd-8a89-d45c354f3e6a"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7412-blog-news-section-480.tsx.md",
-        "variable": "imgTelegramCloudDocument252627272500332760000"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7412-blog-news-section-480.tsx.md",
-          "variable": "imgTelegramCloudDocument252627272500332760000"
-        }
-      ]
-    },
-    {
       "assetRef": "c7d311db-09d7-4564-b6bd-018526ef8968",
       "assetId": "c7d311db-09d7-4564-b6bd-018526ef8968",
       "ext": ".svg",
@@ -2073,46 +1516,6 @@
         {
           "designContextFile": "783-7123-case-modal-vertical-content-360.tsx.md",
           "variable": "imgGroup126"
-        }
-      ]
-    },
-    {
-      "assetRef": "c8607221-d3c3-4474-b963-0c271b6d88d4",
-      "assetId": "c8607221-d3c3-4474-b963-0c271b6d88d4",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/asset.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/c8607221-d3c3-4474-b963-0c271b6d88d4.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/c8607221-d3c3-4474-b963-0c271b6d88d4"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-        "variable": "img"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-          "variable": "img"
-        }
-      ]
-    },
-    {
-      "assetRef": "c9192d4b-a581-425e-b1c3-df319485b9c3",
-      "assetId": "c9192d4b-a581-425e-b1c3-df319485b9c3",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/ellipse111.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/c9192d4b-a581-425e-b1c3-df319485b9c3.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/c9192d4b-a581-425e-b1c3-df319485b9c3"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgEllipse111"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgEllipse111"
         }
       ]
     },
@@ -2157,26 +1560,6 @@
       ]
     },
     {
-      "assetRef": "cc371e71-17b6-484c-8b86-85463c5c701f",
-      "assetId": "cc371e71-17b6-484c-8b86-85463c5c701f",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7412-blog-news-section-480/icon-arrow-right.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/cc371e71-17b6-484c-8b86-85463c5c701f.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/cc371e71-17b6-484c-8b86-85463c5c701f"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7412-blog-news-section-480.tsx.md",
-        "variable": "imgIconArrowRight"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7412-blog-news-section-480.tsx.md",
-          "variable": "imgIconArrowRight"
-        }
-      ]
-    },
-    {
       "assetRef": "cd93c5d7-cd3e-48c7-87fe-1e173dc5bd79",
       "assetId": "cd93c5d7-cd3e-48c7-87fe-1e173dc5bd79",
       "ext": ".png",
@@ -2193,26 +1576,6 @@
         {
           "designContextFile": "783-7098-case-modal-ad-media-360.tsx.md",
           "variable": "imgFrame873"
-        }
-      ]
-    },
-    {
-      "assetRef": "ce032651-5a78-4349-b2b8-84656917fadc",
-      "assetId": "ce032651-5a78-4349-b2b8-84656917fadc",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7481-blog-story-part-1-480/rectangle33.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/ce032651-5a78-4349-b2b8-84656917fadc.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/ce032651-5a78-4349-b2b8-84656917fadc"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
-        "variable": "imgRectangle33"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
-          "variable": "imgRectangle33"
         }
       ]
     },
@@ -2281,26 +1644,6 @@
       ]
     },
     {
-      "assetRef": "d1e93c67-a1bf-4030-97d4-1a454e0b7096",
-      "assetId": "d1e93c67-a1bf-4030-97d4-1a454e0b7096",
-      "ext": ".png",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/rectangle173.png",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/d1e93c67-a1bf-4030-97d4-1a454e0b7096.png",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/d1e93c67-a1bf-4030-97d4-1a454e0b7096"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgRectangle173"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgRectangle173"
-        }
-      ]
-    },
-    {
       "assetRef": "d4ea8150730af7ac973f80484be15b3d67414f2d.png",
       "assetId": "d4ea8150730af7ac973f80484be15b3d67414f2d",
       "ext": ".png",
@@ -2357,26 +1700,6 @@
         {
           "designContextFile": "783-8967-what-we-do-card-social-media-1024.tsx.md",
           "variable": "imgRectangle74"
-        }
-      ]
-    },
-    {
-      "assetRef": "dc2e6bdb-ddb8-4962-9dd4-b2e984d62e39",
-      "assetId": "dc2e6bdb-ddb8-4962-9dd4-b2e984d62e39",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7782-blog-page-1440/group1381.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/dc2e6bdb-ddb8-4962-9dd4-b2e984d62e39.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/dc2e6bdb-ddb8-4962-9dd4-b2e984d62e39"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7782-blog-page-1440.tsx.md",
-        "variable": "imgGroup1381"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7782-blog-page-1440.tsx.md",
-          "variable": "imgGroup1381"
         }
       ]
     },
@@ -2509,26 +1832,6 @@
       ]
     },
     {
-      "assetRef": "e79104fd-8d1c-4f7b-9588-438ad7ce8ba9",
-      "assetId": "e79104fd-8d1c-4f7b-9588-438ad7ce8ba9",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7412-blog-news-section-480/icon-arrow-left.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/e79104fd-8d1c-4f7b-9588-438ad7ce8ba9.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/e79104fd-8d1c-4f7b-9588-438ad7ce8ba9"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7412-blog-news-section-480.tsx.md",
-        "variable": "imgIconArrowLeft"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7412-blog-news-section-480.tsx.md",
-          "variable": "imgIconArrowLeft"
-        }
-      ]
-    },
-    {
       "assetRef": "e8cf667ecaa5fa59cf468e4298fc4e7f758e943e.svg",
       "assetId": "e8cf667ecaa5fa59cf468e4298fc4e7f758e943e",
       "ext": ".svg",
@@ -2577,26 +1880,6 @@
         {
           "designContextFile": "783-7120-case-modal-vertical-media-360.tsx.md",
           "variable": "imgSubtract"
-        }
-      ]
-    },
-    {
-      "assetRef": "ec513860-025f-461b-9eb2-609802086c6d",
-      "assetId": "ec513860-025f-461b-9eb2-609802086c6d",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/vector1.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/ec513860-025f-461b-9eb2-609802086c6d.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/ec513860-025f-461b-9eb2-609802086c6d"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-        "variable": "imgVector1"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
-          "variable": "imgVector1"
         }
       ]
     },
@@ -2701,26 +1984,6 @@
       ]
     },
     {
-      "assetRef": "f67de21e-c11c-4806-8448-833aa34a219e",
-      "assetId": "f67de21e-c11c-4806-8448-833aa34a219e",
-      "ext": ".svg",
-      "localProjectPath": "public/assets/figma/7804-blog-footer-logo-1440/group1381.svg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/f67de21e-c11c-4806-8448-833aa34a219e.svg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/f67de21e-c11c-4806-8448-833aa34a219e"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7804-blog-footer-logo-1440.tsx.md",
-        "variable": "imgGroup1381"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7804-blog-footer-logo-1440.tsx.md",
-          "variable": "imgGroup1381"
-        }
-      ]
-    },
-    {
       "assetRef": "f6e49cf1-6315-4c48-9d87-d1c8a686b61f",
       "assetId": "f6e49cf1-6315-4c48-9d87-d1c8a686b61f",
       "ext": ".svg",
@@ -2761,26 +2024,6 @@
       ]
     },
     {
-      "assetRef": "fd5e17b7-6d3a-46c9-ab2a-71e83727da72",
-      "assetId": "fd5e17b7-6d3a-46c9-ab2a-71e83727da72",
-      "ext": ".jpg",
-      "localProjectPath": "public/assets/figma/7481-blog-story-part-1-480/rectangle29.jpg",
-      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/fd5e17b7-6d3a-46c9-ab2a-71e83727da72.jpg",
-      "originalUrls": [
-        "https://www.figma.com/api/mcp/asset/fd5e17b7-6d3a-46c9-ab2a-71e83727da72"
-      ],
-      "canonicalFrom": {
-        "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
-        "variable": "imgRectangle29"
-      },
-      "usedIn": [
-        {
-          "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
-          "variable": "imgRectangle29"
-        }
-      ]
-    },
-    {
       "assetRef": "feb3436b-7cd4-4b59-8f09-d77c493b6689",
       "assetId": "feb3436b-7cd4-4b59-8f09-d77c493b6689",
       "ext": ".svg",
@@ -2801,5 +2044,6 @@
       ]
     }
   ],
-  "missingAssets": []
+  "missingAssets": [],
+  "scope": "site"
 }
