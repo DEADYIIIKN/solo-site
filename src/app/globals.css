@@ -344,7 +344,7 @@ body > div:first-child {
 
   .first-screen-glow--left {
     left: -72px;
-    top: 436px;
+    top: 404px;
     width: 288px;
     height: 288px;
     background: rgba(255, 92, 0, 0.2);
@@ -353,7 +353,7 @@ body > div:first-child {
 
   .first-screen-glow--center {
     left: 56.2%;
-    top: 302px;
+    top: 270px;
     width: 232px;
     height: 232px;
     background: rgba(255, 92, 0, 0.16);
@@ -361,7 +361,7 @@ body > div:first-child {
 
   .first-screen-glow--cta {
     left: 55.3%;
-    top: 318px;
+    top: 286px;
     width: 272px;
     height: 272px;
     background: rgba(255, 92, 0, 0.12);

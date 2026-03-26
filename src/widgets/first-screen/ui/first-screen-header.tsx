@@ -46,7 +46,7 @@ function MenuButton() {
 
 export function FirstScreenHeader() {
   return (
-    <header className="relative z-20">
+    <header className="relative z-20 min-[1440px]:absolute min-[1440px]:inset-x-0 min-[1440px]:top-0">
       <div className="container-base">
         <div className="flex min-h-[56px] items-end justify-between py-4 min-[480px]:min-h-[60px] min-[480px]:py-6 min-[768px]:min-h-[64px] min-[768px]:py-0 min-[1024px]:hidden">
           <div className="flex min-w-0 flex-1 items-center justify-between min-[1024px]:hidden">
