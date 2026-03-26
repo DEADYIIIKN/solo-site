@@ -258,11 +258,11 @@ body > div:first-child {
 }
 
 .first-screen-grid {
-  opacity: 0.28;
+  opacity: 0.18;
   background-image: var(--first-screen-grid-image);
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 
 .first-screen-glow {
@@ -272,11 +272,11 @@ body > div:first-child {
 }
 
 .first-screen-glow--left {
-  left: -104px;
-  bottom: 28px;
-  width: 272px;
-  height: 272px;
-  background: rgba(255, 92, 0, 0.34);
+  left: -72px;
+  bottom: 34px;
+  width: 232px;
+  height: 232px;
+  background: rgba(255, 92, 0, 0.22);
 }
 
 .first-screen-glow--center {
@@ -284,7 +284,7 @@ body > div:first-child {
   top: 338px;
   width: 220px;
   height: 220px;
-  background: rgba(255, 92, 0, 0.18);
+  background: rgba(255, 92, 0, 0.12);
   transform: translateX(-50%);
 }
 
@@ -293,12 +293,12 @@ body > div:first-child {
   top: 250px;
   width: 250px;
   height: 250px;
-  background: rgba(255, 92, 0, 0.16);
+  background: rgba(255, 92, 0, 0.12);
 }
 
 @media (min-width: 768px) {
   .first-screen-glow--left {
-    left: -58px;
+    left: -44px;
     bottom: 14px;
     width: 240px;
     height: 240px;
@@ -312,52 +312,48 @@ body > div:first-child {
 }
 
 @media (min-width: 1024px) {
-  .first-screen-grid {
-    background-position: top left;
-  }
-
   .first-screen-glow--left {
-    left: -48px;
-    bottom: 0;
-    width: 230px;
-    height: 230px;
+    left: -18px;
+    bottom: 12px;
+    width: 210px;
+    height: 210px;
     filter: blur(84px);
   }
 
   .first-screen-glow--center {
-    left: 63%;
-    top: 262px;
+    left: 60%;
+    top: 286px;
     width: 210px;
     height: 210px;
     transform: none;
   }
 
   .first-screen-glow--cta {
-    left: 57%;
-    top: 214px;
+    left: 55%;
+    top: 246px;
   }
 }
 
 @media (min-width: 1440px) {
   .first-screen-glow--left {
-    left: -30px;
-    bottom: 20px;
-    width: 270px;
-    height: 270px;
+    left: -18px;
+    bottom: 34px;
+    width: 238px;
+    height: 238px;
   }
 
   .first-screen-glow--center {
-    left: 61%;
-    top: 308px;
-    width: 250px;
-    height: 250px;
+    left: 58%;
+    top: 360px;
+    width: 232px;
+    height: 232px;
   }
 
   .first-screen-glow--cta {
-    left: 56%;
-    top: 244px;
-    width: 280px;
-    height: 280px;
+    left: 54%;
+    top: 342px;
+    width: 240px;
+    height: 240px;
   }
 }
 

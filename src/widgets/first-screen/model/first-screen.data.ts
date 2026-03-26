@@ -2,8 +2,8 @@ export const firstScreenNavItems = [
   "об агентстве",
   "кейсы",
   "услуги",
-  "Новости",
-  "Контакты"
+  "новости",
+  "контакты"
 ] as const;
 
 export const firstScreenContent = {

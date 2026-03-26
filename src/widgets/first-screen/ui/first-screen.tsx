@@ -7,7 +7,7 @@ import { FirstScreenHero } from "@/widgets/first-screen/ui/first-screen-hero";
 export function FirstScreen() {
   return (
     <section
-      className="relative overflow-hidden bg-[var(--color-base-black)]"
+      className="relative min-h-screen overflow-hidden bg-[var(--color-base-black)]"
       style={
         {
           ["--first-screen-grid-image" as string]: `url("${firstScreenAssets.backgroundGrid}")`
