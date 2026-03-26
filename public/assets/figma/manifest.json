@@ -1,0 +1,2805 @@
+{
+  "source": {
+    "figmaFileKey": "vYrJwqKYJ8DT7X2IGXgl2Q",
+    "rootNodeId": "783:7092",
+    "exportRoot": "/Users/a_savinkov/Documents/Сайт СОЛО/Сайт СОЛО/figma-export",
+    "generatedAt": "2026-03-26T13:04:17.245Z"
+  },
+  "summary": {
+    "designContextFiles": 249,
+    "uniqueReferencedAssets": 129,
+    "copiedAssets": 129,
+    "missingAssets": 0
+  },
+  "assets": [
+    {
+      "assetRef": "00e9eea1-02e0-43ae-8702-f751dad6a429",
+      "assetId": "00e9eea1-02e0-43ae-8702-f751dad6a429",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7822-blog-footer-channel-cta-1440/group318.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/00e9eea1-02e0-43ae-8702-f751dad6a429.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/00e9eea1-02e0-43ae-8702-f751dad6a429"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7822-blog-footer-channel-cta-1440.tsx.md",
+        "variable": "imgGroup318"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7822-blog-footer-channel-cta-1440.tsx.md",
+          "variable": "imgGroup318"
+        }
+      ]
+    },
+    {
+      "assetRef": "0138c191-edb7-451a-b1ea-c46f9591cd03",
+      "assetId": "0138c191-edb7-451a-b1ea-c46f9591cd03",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/8999-floating-button-1024/ellipse110.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/0138c191-edb7-451a-b1ea-c46f9591cd03.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/0138c191-edb7-451a-b1ea-c46f9591cd03"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8999-floating-button-1024.tsx.md",
+        "variable": "imgEllipse110"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8999-floating-button-1024.tsx.md",
+          "variable": "imgEllipse110"
+        }
+      ]
+    },
+    {
+      "assetRef": "09b57edd-0d4f-430d-94ce-b4c8210ae9c6",
+      "assetId": "09b57edd-0d4f-430d-94ce-b4c8210ae9c6",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7481-blog-story-part-1-480/ellipse135.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/09b57edd-0d4f-430d-94ce-b4c8210ae9c6.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/09b57edd-0d4f-430d-94ce-b4c8210ae9c6"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
+        "variable": "imgEllipse135"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
+          "variable": "imgEllipse135"
+        }
+      ]
+    },
+    {
+      "assetRef": "0b00f4d1-57b3-4d59-a9c4-e1a7e5362e43",
+      "assetId": "0b00f4d1-57b3-4d59-a9c4-e1a7e5362e43",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/9015-cta-button-1024/vector.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/0b00f4d1-57b3-4d59-a9c4-e1a7e5362e43.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/0b00f4d1-57b3-4d59-a9c4-e1a7e5362e43"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9015-cta-button-1024.tsx.md",
+        "variable": "imgVector"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9015-cta-button-1024.tsx.md",
+          "variable": "imgVector"
+        }
+      ]
+    },
+    {
+      "assetRef": "1094a8ee-bd63-419f-a92e-7183e5823df6",
+      "assetId": "1094a8ee-bd63-419f-a92e-7183e5823df6",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7481-blog-story-part-1-480/image.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/1094a8ee-bd63-419f-a92e-7183e5823df6.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/1094a8ee-bd63-419f-a92e-7183e5823df6"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "1380cb38-eedc-42a6-852c-902e224df3b5",
+      "assetId": "1380cb38-eedc-42a6-852c-902e224df3b5",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7495-blog-story-part-2-480/rectangle33.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/1380cb38-eedc-42a6-852c-902e224df3b5.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/1380cb38-eedc-42a6-852c-902e224df3b5"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7495-blog-story-part-2-480.tsx.md",
+        "variable": "imgRectangle33"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7495-blog-story-part-2-480.tsx.md",
+          "variable": "imgRectangle33"
+        }
+      ]
+    },
+    {
+      "assetRef": "14539ef2-1081-4851-9c21-a2f458debd06",
+      "assetId": "14539ef2-1081-4851-9c21-a2f458debd06",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/ellipse112.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/14539ef2-1081-4851-9c21-a2f458debd06.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/14539ef2-1081-4851-9c21-a2f458debd06"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgEllipse112"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgEllipse112"
+        }
+      ]
+    },
+    {
+      "assetRef": "15cbaeb3890788d312deace47f54e8b816bd30be.svg",
+      "assetId": "15cbaeb3890788d312deace47f54e8b816bd30be",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/11985-navbar-768/group349.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/15cbaeb3890788d312deace47f54e8b816bd30be.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/15cbaeb3890788d312deace47f54e8b816bd30be.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11985-navbar-768.tsx.md",
+        "variable": "imgGroup349"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11985-navbar-768.tsx.md",
+          "variable": "imgGroup349"
+        },
+        {
+          "designContextFile": "783-11995-icon-menu-768.tsx.md",
+          "variable": "imgGroup349"
+        }
+      ]
+    },
+    {
+      "assetRef": "17b297d2-159e-42a5-bd22-fc165d693661",
+      "assetId": "17b297d2-159e-42a5-bd22-fc165d693661",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/8977-what-we-do-card-production-media-1024/image.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/17b297d2-159e-42a5-bd22-fc165d693661.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/17b297d2-159e-42a5-bd22-fc165d693661"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8977-what-we-do-card-production-media-1024.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8977-what-we-do-card-production-media-1024.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "1a9d3e81ea58bfc810398caddcac2a6df6c96cb0.svg",
+      "assetId": "1a9d3e81ea58bfc810398caddcac2a6df6c96cb0",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/12037-loading-1440/group1381.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/1a9d3e81ea58bfc810398caddcac2a6df6c96cb0.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/1a9d3e81ea58bfc810398caddcac2a6df6c96cb0.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12037-loading-1440.tsx.md",
+        "variable": "imgGroup1381"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-12037-loading-1440.tsx.md",
+          "variable": "imgGroup1381"
+        }
+      ]
+    },
+    {
+      "assetRef": "206c37e0747b2326472d5b1f2cad84db2915fdad.png",
+      "assetId": "206c37e0747b2326472d5b1f2cad84db2915fdad",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/12011-card-vertical-case-768/rectangle74.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/206c37e0747b2326472d5b1f2cad84db2915fdad.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/206c37e0747b2326472d5b1f2cad84db2915fdad.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12011-card-vertical-case-768.tsx.md",
+        "variable": "imgRectangle74"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgRectangle74"
+        },
+        {
+          "designContextFile": "783-12011-card-vertical-case-768.tsx.md",
+          "variable": "imgRectangle74"
+        },
+        {
+          "designContextFile": "783-7115-case-modal-vertical-360.tsx.md",
+          "variable": "imgFrame868"
+        },
+        {
+          "designContextFile": "783-7165-case-modal-vertical-480.tsx.md",
+          "variable": "imgFrame868"
+        },
+        {
+          "designContextFile": "783-7214-case-modal-vertical-768.tsx.md",
+          "variable": "imgFrame868"
+        },
+        {
+          "designContextFile": "783-7263-case-modal-vertical-1440.tsx.md",
+          "variable": "imgFrame868"
+        }
+      ]
+    },
+    {
+      "assetRef": "211200dc-c5c2-46ed-999b-eb2efe4fcaf1",
+      "assetId": "211200dc-c5c2-46ed-999b-eb2efe4fcaf1",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/8607-section-title-philosophy-1024/ellipse135.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/211200dc-c5c2-46ed-999b-eb2efe4fcaf1.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/211200dc-c5c2-46ed-999b-eb2efe4fcaf1"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8607-section-title-philosophy-1024.tsx.md",
+        "variable": "imgEllipse135"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8607-section-title-philosophy-1024.tsx.md",
+          "variable": "imgEllipse135"
+        }
+      ]
+    },
+    {
+      "assetRef": "229f80b54a0e0e041c2a51a2524de0105be42f28.png",
+      "assetId": "229f80b54a0e0e041c2a51a2524de0105be42f28",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/11972-showreel-768/02-showreel.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/229f80b54a0e0e041c2a51a2524de0105be42f28.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/229f80b54a0e0e041c2a51a2524de0105be42f28.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11972-showreel-768.tsx.md",
+        "variable": "img02Showreel"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11972-showreel-768.tsx.md",
+          "variable": "img02Showreel"
+        }
+      ]
+    },
+    {
+      "assetRef": "230de01e-a124-4278-b5f4-dee886f92b7e",
+      "assetId": "230de01e-a124-4278-b5f4-dee886f92b7e",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7495-blog-story-part-2-480/ellipse135.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/230de01e-a124-4278-b5f4-dee886f92b7e.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/230de01e-a124-4278-b5f4-dee886f92b7e"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7495-blog-story-part-2-480.tsx.md",
+        "variable": "imgEllipse135"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7495-blog-story-part-2-480.tsx.md",
+          "variable": "imgEllipse135"
+        }
+      ]
+    },
+    {
+      "assetRef": "259d8bdc-b059-4a5d-a81f-61091992e71d",
+      "assetId": "259d8bdc-b059-4a5d-a81f-61091992e71d",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/8608-section-title-clients-1024/ellipse135.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/259d8bdc-b059-4a5d-a81f-61091992e71d.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/259d8bdc-b059-4a5d-a81f-61091992e71d"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8608-section-title-clients-1024.tsx.md",
+        "variable": "imgEllipse135"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8608-section-title-clients-1024.tsx.md",
+          "variable": "imgEllipse135"
+        }
+      ]
+    },
+    {
+      "assetRef": "29c92e1ccd0062f204b92fc78e9888cae4dcf77e.png",
+      "assetId": "29c92e1ccd0062f204b92fc78e9888cae4dcf77e",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/10106-background-grid/rectangle173.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/29c92e1ccd0062f204b92fc78e9888cae4dcf77e.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/29c92e1ccd0062f204b92fc78e9888cae4dcf77e.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-10106-background-grid-shared.tsx.md",
+        "variable": "imgRectangle173"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-10106-background-grid-shared.tsx.md",
+          "variable": "imgRectangle173"
+        },
+        {
+          "designContextFile": "783-11973-hero-768.tsx.md",
+          "variable": "imgRectangle173"
+        },
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgRectangle173"
+        },
+        {
+          "designContextFile": "783-7093-case-modal-ad-360.tsx.md",
+          "variable": "imgRectangle173"
+        },
+        {
+          "designContextFile": "783-7115-case-modal-vertical-360.tsx.md",
+          "variable": "imgRectangle173"
+        },
+        {
+          "designContextFile": "783-7143-case-modal-ad-480.tsx.md",
+          "variable": "imgRectangle173"
+        },
+        {
+          "designContextFile": "783-7165-case-modal-vertical-480.tsx.md",
+          "variable": "imgRectangle173"
+        },
+        {
+          "designContextFile": "783-7192-case-modal-ad-768.tsx.md",
+          "variable": "imgRectangle173"
+        },
+        {
+          "designContextFile": "783-7214-case-modal-vertical-768.tsx.md",
+          "variable": "imgRectangle173"
+        }
+      ]
+    },
+    {
+      "assetRef": "2b3af2c3054e7527a24dfd329963585742dd4111.svg",
+      "assetId": "2b3af2c3054e7527a24dfd329963585742dd4111",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/10056-icon-close/vector-stroke.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/2b3af2c3054e7527a24dfd329963585742dd4111.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/2b3af2c3054e7527a24dfd329963585742dd4111.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-10056-icon-close-shared.tsx.md",
+        "variable": "imgVectorStroke"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-10056-icon-close-shared.tsx.md",
+          "variable": "imgVectorStroke"
+        },
+        {
+          "designContextFile": "783-7093-case-modal-ad-360.tsx.md",
+          "variable": "imgVectorStroke"
+        },
+        {
+          "designContextFile": "783-7115-case-modal-vertical-360.tsx.md",
+          "variable": "imgVectorStroke"
+        },
+        {
+          "designContextFile": "783-7143-case-modal-ad-480.tsx.md",
+          "variable": "imgVectorStroke"
+        },
+        {
+          "designContextFile": "783-7165-case-modal-vertical-480.tsx.md",
+          "variable": "imgVectorStroke"
+        },
+        {
+          "designContextFile": "783-7192-case-modal-ad-768.tsx.md",
+          "variable": "imgVectorStroke"
+        },
+        {
+          "designContextFile": "783-7214-case-modal-vertical-768.tsx.md",
+          "variable": "imgVectorStroke"
+        },
+        {
+          "designContextFile": "783-7241-case-modal-ad-1440.tsx.md",
+          "variable": "imgVectorStroke"
+        },
+        {
+          "designContextFile": "783-7263-case-modal-vertical-1440.tsx.md",
+          "variable": "imgVectorStroke"
+        }
+      ]
+    },
+    {
+      "assetRef": "2d6fa63f-da43-4c03-bce0-5ae213b89cb4",
+      "assetId": "2d6fa63f-da43-4c03-bce0-5ae213b89cb4",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7412-blog-news-section-480/telegram-cloud-document252627272500332767172.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/2d6fa63f-da43-4c03-bce0-5ae213b89cb4.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/2d6fa63f-da43-4c03-bce0-5ae213b89cb4"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7412-blog-news-section-480.tsx.md",
+        "variable": "imgTelegramCloudDocument252627272500332767172"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7412-blog-news-section-480.tsx.md",
+          "variable": "imgTelegramCloudDocument252627272500332767172"
+        }
+      ]
+    },
+    {
+      "assetRef": "2dd9511b5aaba015aff3caede47abbbe8a14e812.svg",
+      "assetId": "2dd9511b5aaba015aff3caede47abbbe8a14e812",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/10005-cta-button/ellipse110.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/2dd9511b5aaba015aff3caede47abbbe8a14e812.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/2dd9511b5aaba015aff3caede47abbbe8a14e812.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-10005-cta-button-shared.tsx.md",
+        "variable": "imgEllipse110"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-10005-cta-button-shared.tsx.md",
+          "variable": "imgEllipse110"
+        },
+        {
+          "designContextFile": "783-11973-hero-768.tsx.md",
+          "variable": "imgEllipse110"
+        }
+      ]
+    },
+    {
+      "assetRef": "2df0750155a0af0f27e4fd01e294c9d2401858b3.svg",
+      "assetId": "2df0750155a0af0f27e4fd01e294c9d2401858b3",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7214-case-modal-vertical-768/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/2df0750155a0af0f27e4fd01e294c9d2401858b3.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/2df0750155a0af0f27e4fd01e294c9d2401858b3.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7214-case-modal-vertical-768.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7214-case-modal-vertical-768.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "30dc5e1c-988f-4b0c-ac55-f8deda4de5d6",
+      "assetId": "30dc5e1c-988f-4b0c-ac55-f8deda4de5d6",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/11872-benefit-card-team-432/image.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/30dc5e1c-988f-4b0c-ac55-f8deda4de5d6.png",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/30dc5e1c-988f-4b0c-ac55-f8deda4de5d6"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11872-benefit-card-team-432.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11872-benefit-card-team-432.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "32202faa-26e2-4662-87fa-84d44d4b3cfb",
+      "assetId": "32202faa-26e2-4662-87fa-84d44d4b3cfb",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7170-case-modal-vertical-media-480/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/32202faa-26e2-4662-87fa-84d44d4b3cfb.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/32202faa-26e2-4662-87fa-84d44d4b3cfb"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7170-case-modal-vertical-media-480.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7170-case-modal-vertical-media-480.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "3f6f93bc-37d0-4df9-8eaf-154302332486",
+      "assetId": "3f6f93bc-37d0-4df9-8eaf-154302332486",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7219-case-modal-vertical-media-768/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/3f6f93bc-37d0-4df9-8eaf-154302332486.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/3f6f93bc-37d0-4df9-8eaf-154302332486"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7219-case-modal-vertical-media-768.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7219-case-modal-vertical-media-768.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "42e14e40e64e454d4518bb9434a45d024898c3c4.svg",
+      "assetId": "42e14e40e64e454d4518bb9434a45d024898c3c4",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/11973-hero-768/group315.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/42e14e40e64e454d4518bb9434a45d024898c3c4.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/42e14e40e64e454d4518bb9434a45d024898c3c4.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11973-hero-768.tsx.md",
+        "variable": "imgGroup315"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11973-hero-768.tsx.md",
+          "variable": "imgGroup315"
+        }
+      ]
+    },
+    {
+      "assetRef": "4636a7e4-b762-4509-9ac2-5e185d81d819",
+      "assetId": "4636a7e4-b762-4509-9ac2-5e185d81d819",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/telegram-cloud-document252627272500332760000.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/4636a7e4-b762-4509-9ac2-5e185d81d819.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/4636a7e4-b762-4509-9ac2-5e185d81d819"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgTelegramCloudDocument252627272500332760000"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgTelegramCloudDocument252627272500332760000"
+        }
+      ]
+    },
+    {
+      "assetRef": "463aade7-05a4-461d-a74e-6e17bd9e14c5",
+      "assetId": "463aade7-05a4-461d-a74e-6e17bd9e14c5",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/group318.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/463aade7-05a4-461d-a74e-6e17bd9e14c5.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/463aade7-05a4-461d-a74e-6e17bd9e14c5"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgGroup318"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgGroup318"
+        }
+      ]
+    },
+    {
+      "assetRef": "46600563-14a3-452e-a2aa-cd8cd50bf1a4",
+      "assetId": "46600563-14a3-452e-a2aa-cd8cd50bf1a4",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/vector.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/46600563-14a3-452e-a2aa-cd8cd50bf1a4.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/46600563-14a3-452e-a2aa-cd8cd50bf1a4"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgVector"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgVector"
+        }
+      ]
+    },
+    {
+      "assetRef": "4a3ad6a8-1acf-46e1-adce-4f220b26fa55",
+      "assetId": "4a3ad6a8-1acf-46e1-adce-4f220b26fa55",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7219-case-modal-vertical-media-768/frame868.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/4a3ad6a8-1acf-46e1-adce-4f220b26fa55.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/4a3ad6a8-1acf-46e1-adce-4f220b26fa55"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7219-case-modal-vertical-media-768.tsx.md",
+        "variable": "imgFrame868"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7219-case-modal-vertical-media-768.tsx.md",
+          "variable": "imgFrame868"
+        }
+      ]
+    },
+    {
+      "assetRef": "4b2035a7-c2b1-49e6-bef8-db449fa3dcdc",
+      "assetId": "4b2035a7-c2b1-49e6-bef8-db449fa3dcdc",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/8963-what-we-do-card-social-1024/rectangle74.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/4b2035a7-c2b1-49e6-bef8-db449fa3dcdc.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/4b2035a7-c2b1-49e6-bef8-db449fa3dcdc"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8963-what-we-do-card-social-1024.tsx.md",
+        "variable": "imgRectangle74"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8963-what-we-do-card-social-1024.tsx.md",
+          "variable": "imgRectangle74"
+        }
+      ]
+    },
+    {
+      "assetRef": "4ca92c33-589e-4639-a359-574c19e80c46",
+      "assetId": "4ca92c33-589e-4639-a359-574c19e80c46",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/8981-navbar-logo-block-1024/group1381.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/4ca92c33-589e-4639-a359-574c19e80c46.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/4ca92c33-589e-4639-a359-574c19e80c46"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8981-navbar-logo-block-1024.tsx.md",
+        "variable": "imgGroup1381"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8981-navbar-logo-block-1024.tsx.md",
+          "variable": "imgGroup1381"
+        }
+      ]
+    },
+    {
+      "assetRef": "5526041c-5f8b-496c-a3d8-e211aa80cbcc",
+      "assetId": "5526041c-5f8b-496c-a3d8-e211aa80cbcc",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/vector2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/5526041c-5f8b-496c-a3d8-e211aa80cbcc.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/5526041c-5f8b-496c-a3d8-e211aa80cbcc"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+        "variable": "imgVector2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+          "variable": "imgVector2"
+        }
+      ]
+    },
+    {
+      "assetRef": "55ab4a0a-0ec1-4ff0-bf51-f8a3aa2bed26",
+      "assetId": "55ab4a0a-0ec1-4ff0-bf51-f8a3aa2bed26",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/vector.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/55ab4a0a-0ec1-4ff0-bf51-f8a3aa2bed26.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/55ab4a0a-0ec1-4ff0-bf51-f8a3aa2bed26"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+        "variable": "imgVector"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+          "variable": "imgVector"
+        }
+      ]
+    },
+    {
+      "assetRef": "55c63f4a070deec3d55120c8349f0ffa8dce6dc3.png",
+      "assetId": "55c63f4a070deec3d55120c8349f0ffa8dce6dc3",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/12029-card-ad-case-768/image21.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/55c63f4a070deec3d55120c8349f0ffa8dce6dc3.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/55c63f4a070deec3d55120c8349f0ffa8dce6dc3.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12029-card-ad-case-768.tsx.md",
+        "variable": "imgImage21"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgImage21"
+        },
+        {
+          "designContextFile": "783-12029-card-ad-case-768.tsx.md",
+          "variable": "imgImage21"
+        },
+        {
+          "designContextFile": "783-7093-case-modal-ad-360.tsx.md",
+          "variable": "imgFrame873"
+        },
+        {
+          "designContextFile": "783-7143-case-modal-ad-480.tsx.md",
+          "variable": "imgFrame873"
+        },
+        {
+          "designContextFile": "783-7192-case-modal-ad-768.tsx.md",
+          "variable": "imgFrame873"
+        },
+        {
+          "designContextFile": "783-7241-case-modal-ad-1440.tsx.md",
+          "variable": "imgFrame873"
+        }
+      ]
+    },
+    {
+      "assetRef": "564c70e4-9832-40f1-94d3-cb16b40c6c32",
+      "assetId": "564c70e4-9832-40f1-94d3-cb16b40c6c32",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7120-case-modal-vertical-media-360/frame868.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/564c70e4-9832-40f1-94d3-cb16b40c6c32.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/564c70e4-9832-40f1-94d3-cb16b40c6c32"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7120-case-modal-vertical-media-360.tsx.md",
+        "variable": "imgFrame868"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7120-case-modal-vertical-media-360.tsx.md",
+          "variable": "imgFrame868"
+        }
+      ]
+    },
+    {
+      "assetRef": "57f74887254e442c37f308e4e7fbba0886fc21f4.svg",
+      "assetId": "57f74887254e442c37f308e4e7fbba0886fc21f4",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7093-case-modal-ad-360/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/57f74887254e442c37f308e4e7fbba0886fc21f4.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/57f74887254e442c37f308e4e7fbba0886fc21f4.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7093-case-modal-ad-360.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7093-case-modal-ad-360.tsx.md",
+          "variable": "imgSubtract"
+        },
+        {
+          "designContextFile": "783-7115-case-modal-vertical-360.tsx.md",
+          "variable": "imgSubtract"
+        },
+        {
+          "designContextFile": "783-7143-case-modal-ad-480.tsx.md",
+          "variable": "imgSubtract"
+        },
+        {
+          "designContextFile": "783-7165-case-modal-vertical-480.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "58251679-18c3-4461-94fe-8a7fcf0bc08f",
+      "assetId": "58251679-18c3-4461-94fe-8a7fcf0bc08f",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/8972-what-we-do-card-image-1024/rectangle78.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/58251679-18c3-4461-94fe-8a7fcf0bc08f.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/58251679-18c3-4461-94fe-8a7fcf0bc08f"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8972-what-we-do-card-image-1024.tsx.md",
+        "variable": "imgRectangle78"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8972-what-we-do-card-image-1024.tsx.md",
+          "variable": "imgRectangle78"
+        }
+      ]
+    },
+    {
+      "assetRef": "594c8c62-7908-4db7-ba71-497f783c724c",
+      "assetId": "594c8c62-7908-4db7-ba71-497f783c724c",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/asset.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/594c8c62-7908-4db7-ba71-497f783c724c.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/594c8c62-7908-4db7-ba71-497f783c724c"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "img"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "img"
+        }
+      ]
+    },
+    {
+      "assetRef": "59ec4655a0cfe2d7e46507ab61af76f91f9777da.svg",
+      "assetId": "59ec4655a0cfe2d7e46507ab61af76f91f9777da",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/10005-cta-button/ellipse112.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/59ec4655a0cfe2d7e46507ab61af76f91f9777da.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/59ec4655a0cfe2d7e46507ab61af76f91f9777da.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-10005-cta-button-shared.tsx.md",
+        "variable": "imgEllipse112"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-10005-cta-button-shared.tsx.md",
+          "variable": "imgEllipse112"
+        },
+        {
+          "designContextFile": "783-11973-hero-768.tsx.md",
+          "variable": "imgEllipse112"
+        }
+      ]
+    },
+    {
+      "assetRef": "5c92e144-a89c-49be-a51f-9696120a604a",
+      "assetId": "5c92e144-a89c-49be-a51f-9696120a604a",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/7148-case-modal-ad-media-480/frame873.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/5c92e144-a89c-49be-a51f-9696120a604a.png",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/5c92e144-a89c-49be-a51f-9696120a604a"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7148-case-modal-ad-media-480.tsx.md",
+        "variable": "imgFrame873"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7148-case-modal-ad-media-480.tsx.md",
+          "variable": "imgFrame873"
+        }
+      ]
+    },
+    {
+      "assetRef": "5f8034aa-c724-4ef0-a053-54a5b2dd951c",
+      "assetId": "5f8034aa-c724-4ef0-a053-54a5b2dd951c",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7098-case-modal-ad-media-360/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/5f8034aa-c724-4ef0-a053-54a5b2dd951c.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/5f8034aa-c724-4ef0-a053-54a5b2dd951c"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7098-case-modal-ad-media-360.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7098-case-modal-ad-media-360.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "5fd6367b-7fb3-424f-8996-d06eb190ea2c",
+      "assetId": "5fd6367b-7fb3-424f-8996-d06eb190ea2c",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/8973-what-we-do-card-image-media-1024/rectangle78.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/5fd6367b-7fb3-424f-8996-d06eb190ea2c.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/5fd6367b-7fb3-424f-8996-d06eb190ea2c"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8973-what-we-do-card-image-media-1024.tsx.md",
+        "variable": "imgRectangle78"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8973-what-we-do-card-image-media-1024.tsx.md",
+          "variable": "imgRectangle78"
+        }
+      ]
+    },
+    {
+      "assetRef": "6069283b-6bf1-4f6a-935c-d1dd8f2f154a",
+      "assetId": "6069283b-6bf1-4f6a-935c-d1dd8f2f154a",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/rectangle38.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/6069283b-6bf1-4f6a-935c-d1dd8f2f154a.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/6069283b-6bf1-4f6a-935c-d1dd8f2f154a"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgRectangle38"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgRectangle38"
+        }
+      ]
+    },
+    {
+      "assetRef": "64a682bd-dff5-480a-b657-f8ad62adffea",
+      "assetId": "64a682bd-dff5-480a-b657-f8ad62adffea",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7219-case-modal-vertical-media-768/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/64a682bd-dff5-480a-b657-f8ad62adffea.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/64a682bd-dff5-480a-b657-f8ad62adffea"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7219-case-modal-vertical-media-768.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7219-case-modal-vertical-media-768.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "6a9c2028a8edac020d01a2f844e47609ede4e64f.svg",
+      "assetId": "6a9c2028a8edac020d01a2f844e47609ede4e64f",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/12004-title-cases-768/ellipse135.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/6a9c2028a8edac020d01a2f844e47609ede4e64f.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/6a9c2028a8edac020d01a2f844e47609ede4e64f.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12004-title-cases-768.tsx.md",
+        "variable": "imgEllipse135"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11947-business-goals-768.tsx.md",
+          "variable": "imgEllipse135"
+        },
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgEllipse135"
+        },
+        {
+          "designContextFile": "783-12004-title-cases-768.tsx.md",
+          "variable": "imgEllipse135"
+        }
+      ]
+    },
+    {
+      "assetRef": "6dd36565-d5d7-4128-a9d0-8a218ccbeb8a",
+      "assetId": "6dd36565-d5d7-4128-a9d0-8a218ccbeb8a",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/telegram-cloud-document252627272500332767172.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/6dd36565-d5d7-4128-a9d0-8a218ccbeb8a.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/6dd36565-d5d7-4128-a9d0-8a218ccbeb8a"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgTelegramCloudDocument252627272500332767172"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgTelegramCloudDocument252627272500332767172"
+        }
+      ]
+    },
+    {
+      "assetRef": "6f67a3eb-200f-4640-bc15-f9433ff37be4",
+      "assetId": "6f67a3eb-200f-4640-bc15-f9433ff37be4",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/8999-floating-button-1024/ellipse111.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/6f67a3eb-200f-4640-bc15-f9433ff37be4.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/6f67a3eb-200f-4640-bc15-f9433ff37be4"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8999-floating-button-1024.tsx.md",
+        "variable": "imgEllipse111"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8999-floating-button-1024.tsx.md",
+          "variable": "imgEllipse111"
+        }
+      ]
+    },
+    {
+      "assetRef": "6fcd409c-60d1-44c7-868f-68f372640569",
+      "assetId": "6fcd409c-60d1-44c7-868f-68f372640569",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7502-blog-story-result-480/ellipse135.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/6fcd409c-60d1-44c7-868f-68f372640569.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/6fcd409c-60d1-44c7-868f-68f372640569"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7502-blog-story-result-480.tsx.md",
+        "variable": "imgEllipse135"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7502-blog-story-result-480.tsx.md",
+          "variable": "imgEllipse135"
+        }
+      ]
+    },
+    {
+      "assetRef": "700d94c4-5270-417f-91cc-9033e24c4ccf",
+      "assetId": "700d94c4-5270-417f-91cc-9033e24c4ccf",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/9044-footer-article-accessory-media-1440/telegram-cloud-document252627272500332767172.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/700d94c4-5270-417f-91cc-9033e24c4ccf.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/700d94c4-5270-417f-91cc-9033e24c4ccf"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9044-footer-article-accessory-media-1440.tsx.md",
+        "variable": "imgTelegramCloudDocument252627272500332767172"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9044-footer-article-accessory-media-1440.tsx.md",
+          "variable": "imgTelegramCloudDocument252627272500332767172"
+        }
+      ]
+    },
+    {
+      "assetRef": "70b0a4df-9c66-47d0-b825-1a54805e608d",
+      "assetId": "70b0a4df-9c66-47d0-b825-1a54805e608d",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7172-case-modal-vertical-content-480/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/70b0a4df-9c66-47d0-b825-1a54805e608d.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/70b0a4df-9c66-47d0-b825-1a54805e608d"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7172-case-modal-vertical-content-480.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7172-case-modal-vertical-content-480.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "715e2905-4b68-43b8-b149-bbb2f1c99556",
+      "assetId": "715e2905-4b68-43b8-b149-bbb2f1c99556",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7170-case-modal-vertical-media-480/frame868.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/715e2905-4b68-43b8-b149-bbb2f1c99556.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/715e2905-4b68-43b8-b149-bbb2f1c99556"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7170-case-modal-vertical-media-480.tsx.md",
+        "variable": "imgFrame868"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7170-case-modal-vertical-media-480.tsx.md",
+          "variable": "imgFrame868"
+        }
+      ]
+    },
+    {
+      "assetRef": "71cb7607-55cd-40ce-a95b-1c14bf546d3e",
+      "assetId": "71cb7607-55cd-40ce-a95b-1c14bf546d3e",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/7246-case-modal-ad-header-1440/frame873.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/71cb7607-55cd-40ce-a95b-1c14bf546d3e.png",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/71cb7607-55cd-40ce-a95b-1c14bf546d3e"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7246-case-modal-ad-header-1440.tsx.md",
+        "variable": "imgFrame873"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7246-case-modal-ad-header-1440.tsx.md",
+          "variable": "imgFrame873"
+        }
+      ]
+    },
+    {
+      "assetRef": "73b0057f-8a78-4dec-8dd7-c17b75c632de",
+      "assetId": "73b0057f-8a78-4dec-8dd7-c17b75c632de",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/vector1.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/73b0057f-8a78-4dec-8dd7-c17b75c632de.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/73b0057f-8a78-4dec-8dd7-c17b75c632de"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgVector1"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgVector1"
+        }
+      ]
+    },
+    {
+      "assetRef": "73db9d1a880cb2defe425167fc0bf0a31ad577d0.svg",
+      "assetId": "73db9d1a880cb2defe425167fc0bf0a31ad577d0",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/12009-arrow/icon-arrow-left.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/73db9d1a880cb2defe425167fc0bf0a31ad577d0.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/73db9d1a880cb2defe425167fc0bf0a31ad577d0.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12009-arrow-shared.tsx.md",
+        "variable": "imgIconArrowLeft"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11947-business-goals-768.tsx.md",
+          "variable": "imgIconArrowLeft"
+        },
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgIconArrowLeft"
+        },
+        {
+          "designContextFile": "783-12009-arrow-shared.tsx.md",
+          "variable": "imgIconArrowLeft"
+        }
+      ]
+    },
+    {
+      "assetRef": "75ecea414750b01a3ad14da44d9aad00ff4fa18f.svg",
+      "assetId": "75ecea414750b01a3ad14da44d9aad00ff4fa18f",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/10005-cta-button/vector.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/75ecea414750b01a3ad14da44d9aad00ff4fa18f.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/75ecea414750b01a3ad14da44d9aad00ff4fa18f.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-10005-cta-button-shared.tsx.md",
+        "variable": "imgVector"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-10005-cta-button-shared.tsx.md",
+          "variable": "imgVector"
+        },
+        {
+          "designContextFile": "783-11973-hero-768.tsx.md",
+          "variable": "imgVector"
+        }
+      ]
+    },
+    {
+      "assetRef": "7af6828e-e8b3-45e7-acd1-36953d82048d",
+      "assetId": "7af6828e-e8b3-45e7-acd1-36953d82048d",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/9048-footer-article-brief-media-1440/rectangle38.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/7af6828e-e8b3-45e7-acd1-36953d82048d.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/7af6828e-e8b3-45e7-acd1-36953d82048d"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9048-footer-article-brief-media-1440.tsx.md",
+        "variable": "imgRectangle38"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9048-footer-article-brief-media-1440.tsx.md",
+          "variable": "imgRectangle38"
+        }
+      ]
+    },
+    {
+      "assetRef": "7e2a0f65-298d-48d9-bc48-50fd1b8ccd46",
+      "assetId": "7e2a0f65-298d-48d9-bc48-50fd1b8ccd46",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7268-case-modal-vertical-media-1440/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/7e2a0f65-298d-48d9-bc48-50fd1b8ccd46.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/7e2a0f65-298d-48d9-bc48-50fd1b8ccd46"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7268-case-modal-vertical-media-1440.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7268-case-modal-vertical-media-1440.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "81bc94a2-a3a9-4a0e-950e-d601293fee7d",
+      "assetId": "81bc94a2-a3a9-4a0e-950e-d601293fee7d",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/icon-arrow-left.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/81bc94a2-a3a9-4a0e-950e-d601293fee7d.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/81bc94a2-a3a9-4a0e-950e-d601293fee7d"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgIconArrowLeft"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgIconArrowLeft"
+        }
+      ]
+    },
+    {
+      "assetRef": "84669ff0-cc66-4a01-8b4f-c12dc397d492",
+      "assetId": "84669ff0-cc66-4a01-8b4f-c12dc397d492",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/ellipse135.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/84669ff0-cc66-4a01-8b4f-c12dc397d492.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/84669ff0-cc66-4a01-8b4f-c12dc397d492"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgEllipse135"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgEllipse135"
+        }
+      ]
+    },
+    {
+      "assetRef": "84a2ef72-a30c-45bd-99b4-78a3d61302f2",
+      "assetId": "84a2ef72-a30c-45bd-99b4-78a3d61302f2",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/image.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/84a2ef72-a30c-45bd-99b4-78a3d61302f2.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/84a2ef72-a30c-45bd-99b4-78a3d61302f2"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "850e1a39-d23a-4d9d-bdb8-a20740e859cb",
+      "assetId": "850e1a39-d23a-4d9d-bdb8-a20740e859cb",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/group306.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/850e1a39-d23a-4d9d-bdb8-a20740e859cb.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/850e1a39-d23a-4d9d-bdb8-a20740e859cb"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgGroup306"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgGroup306"
+        }
+      ]
+    },
+    {
+      "assetRef": "88629227-b00f-4077-9765-c42d738ee18f",
+      "assetId": "88629227-b00f-4077-9765-c42d738ee18f",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7444-blog-footer-channel-cta-480/group318.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/88629227-b00f-4077-9765-c42d738ee18f.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/88629227-b00f-4077-9765-c42d738ee18f"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7444-blog-footer-channel-cta-480.tsx.md",
+        "variable": "imgGroup318"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7444-blog-footer-channel-cta-480.tsx.md",
+          "variable": "imgGroup318"
+        }
+      ]
+    },
+    {
+      "assetRef": "894e665b-8994-4b34-8f41-5e17175ba774",
+      "assetId": "894e665b-8994-4b34-8f41-5e17175ba774",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/group1382.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/894e665b-8994-4b34-8f41-5e17175ba774.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/894e665b-8994-4b34-8f41-5e17175ba774"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgGroup1382"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgGroup1382"
+        }
+      ]
+    },
+    {
+      "assetRef": "8d11dab9-b903-47b0-a2a5-ffb997fc5567",
+      "assetId": "8d11dab9-b903-47b0-a2a5-ffb997fc5567",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/9015-cta-button-1024/ellipse110.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/8d11dab9-b903-47b0-a2a5-ffb997fc5567.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/8d11dab9-b903-47b0-a2a5-ffb997fc5567"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9015-cta-button-1024.tsx.md",
+        "variable": "imgEllipse110"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9015-cta-button-1024.tsx.md",
+          "variable": "imgEllipse110"
+        }
+      ]
+    },
+    {
+      "assetRef": "90ccf89192f90cf93f9b72bed8c57813df8d29ad.png",
+      "assetId": "90ccf89192f90cf93f9b72bed8c57813df8d29ad",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/11947-business-goals-768/rectangle75.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/90ccf89192f90cf93f9b72bed8c57813df8d29ad.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/90ccf89192f90cf93f9b72bed8c57813df8d29ad.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11947-business-goals-768.tsx.md",
+        "variable": "imgRectangle75"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11947-business-goals-768.tsx.md",
+          "variable": "imgRectangle75"
+        }
+      ]
+    },
+    {
+      "assetRef": "945ec0e4-f375-4547-a434-5aef4cee3bbb",
+      "assetId": "945ec0e4-f375-4547-a434-5aef4cee3bbb",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/ellipse110.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/945ec0e4-f375-4547-a434-5aef4cee3bbb.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/945ec0e4-f375-4547-a434-5aef4cee3bbb"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgEllipse110"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgEllipse110"
+        }
+      ]
+    },
+    {
+      "assetRef": "97a93473-8858-4f79-8bbc-305349087ac9",
+      "assetId": "97a93473-8858-4f79-8bbc-305349087ac9",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/9043-footer-article-accessory-card-1440/telegram-cloud-document252627272500332767172.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/97a93473-8858-4f79-8bbc-305349087ac9.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/97a93473-8858-4f79-8bbc-305349087ac9"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9043-footer-article-accessory-card-1440.tsx.md",
+        "variable": "imgTelegramCloudDocument252627272500332767172"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9043-footer-article-accessory-card-1440.tsx.md",
+          "variable": "imgTelegramCloudDocument252627272500332767172"
+        }
+      ]
+    },
+    {
+      "assetRef": "9a5ac66b-4dc2-4b86-a43a-ab5eacfd599c",
+      "assetId": "9a5ac66b-4dc2-4b86-a43a-ab5eacfd599c",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/9015-cta-button-1024/ellipse112.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/9a5ac66b-4dc2-4b86-a43a-ab5eacfd599c.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/9a5ac66b-4dc2-4b86-a43a-ab5eacfd599c"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9015-cta-button-1024.tsx.md",
+        "variable": "imgEllipse112"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9015-cta-button-1024.tsx.md",
+          "variable": "imgEllipse112"
+        }
+      ]
+    },
+    {
+      "assetRef": "9a6a420e-bf2f-4193-82b7-1dee1e9404a1",
+      "assetId": "9a6a420e-bf2f-4193-82b7-1dee1e9404a1",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/9274-arrow-1440/icon-arrow-left.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/9a6a420e-bf2f-4193-82b7-1dee1e9404a1.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/9a6a420e-bf2f-4193-82b7-1dee1e9404a1"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9274-arrow-1440.tsx.md",
+        "variable": "imgIconArrowLeft"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9274-arrow-1440.tsx.md",
+          "variable": "imgIconArrowLeft"
+        }
+      ]
+    },
+    {
+      "assetRef": "9ae4eb27-ebf5-4fb5-b8af-dafe1500f607",
+      "assetId": "9ae4eb27-ebf5-4fb5-b8af-dafe1500f607",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/9274-arrow-1440/icon-arrow-right.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/9ae4eb27-ebf5-4fb5-b8af-dafe1500f607.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/9ae4eb27-ebf5-4fb5-b8af-dafe1500f607"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9274-arrow-1440.tsx.md",
+        "variable": "imgIconArrowRight"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9274-arrow-1440.tsx.md",
+          "variable": "imgIconArrowRight"
+        }
+      ]
+    },
+    {
+      "assetRef": "9becd422-2a26-4279-a9ff-8b2c6ad4e06d",
+      "assetId": "9becd422-2a26-4279-a9ff-8b2c6ad4e06d",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7197-case-modal-ad-header-768/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/9becd422-2a26-4279-a9ff-8b2c6ad4e06d.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/9becd422-2a26-4279-a9ff-8b2c6ad4e06d"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7197-case-modal-ad-header-768.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7197-case-modal-ad-header-768.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "9d9ae9b3-4b7b-4f71-9db0-f00e2318f703",
+      "assetId": "9d9ae9b3-4b7b-4f71-9db0-f00e2318f703",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/8969-what-we-do-card-traffic-image-1024/image.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/9d9ae9b3-4b7b-4f71-9db0-f00e2318f703.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/9d9ae9b3-4b7b-4f71-9db0-f00e2318f703"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8969-what-we-do-card-traffic-image-1024.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8969-what-we-do-card-traffic-image-1024.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "9e04787ba3dff1d0a11c0acc6348300c4268c564.png",
+      "assetId": "9e04787ba3dff1d0a11c0acc6348300c4268c564",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/12001-cases-768/image22.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/9e04787ba3dff1d0a11c0acc6348300c4268c564.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/9e04787ba3dff1d0a11c0acc6348300c4268c564.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12001-cases-768.tsx.md",
+        "variable": "imgImage22"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgImage22"
+        }
+      ]
+    },
+    {
+      "assetRef": "9ebc81ee-26fe-4c36-a2a0-fd48f2a8bd56",
+      "assetId": "9ebc81ee-26fe-4c36-a2a0-fd48f2a8bd56",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7148-case-modal-ad-media-480/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/9ebc81ee-26fe-4c36-a2a0-fd48f2a8bd56.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/9ebc81ee-26fe-4c36-a2a0-fd48f2a8bd56"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7148-case-modal-ad-media-480.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7148-case-modal-ad-media-480.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "a11aa5cd08c5a57ef084b5e6fd6ea6d09d0c738e.svg",
+      "assetId": "a11aa5cd08c5a57ef084b5e6fd6ea6d09d0c738e",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/12011-card-vertical-case-768/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/a11aa5cd08c5a57ef084b5e6fd6ea6d09d0c738e.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/a11aa5cd08c5a57ef084b5e6fd6ea6d09d0c738e.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12011-card-vertical-case-768.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgGroup126"
+        },
+        {
+          "designContextFile": "783-12011-card-vertical-case-768.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "a1f35d4b3c5167bd4bbaec8bbac4631145152372.svg",
+      "assetId": "a1f35d4b3c5167bd4bbaec8bbac4631145152372",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7255-play-button/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/a1f35d4b3c5167bd4bbaec8bbac4631145152372.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/a1f35d4b3c5167bd4bbaec8bbac4631145152372.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7255-play-button-shared.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7192-case-modal-ad-768.tsx.md",
+          "variable": "imgSubtract"
+        },
+        {
+          "designContextFile": "783-7214-case-modal-vertical-768.tsx.md",
+          "variable": "imgSubtract"
+        },
+        {
+          "designContextFile": "783-7241-case-modal-ad-1440.tsx.md",
+          "variable": "imgSubtract"
+        },
+        {
+          "designContextFile": "783-7255-play-button-shared.tsx.md",
+          "variable": "imgSubtract"
+        },
+        {
+          "designContextFile": "783-7263-case-modal-vertical-1440.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "a4eec2f4-1fd9-4a9f-b20e-9acc92a534e9",
+      "assetId": "a4eec2f4-1fd9-4a9f-b20e-9acc92a534e9",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/icon-arrow-right.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/a4eec2f4-1fd9-4a9f-b20e-9acc92a534e9.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/a4eec2f4-1fd9-4a9f-b20e-9acc92a534e9"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgIconArrowRight"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgIconArrowRight"
+        }
+      ]
+    },
+    {
+      "assetRef": "a589e55e-9aee-4d11-bf0e-05a6896a0af8",
+      "assetId": "a589e55e-9aee-4d11-bf0e-05a6896a0af8",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7268-case-modal-vertical-media-1440/frame868.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/a589e55e-9aee-4d11-bf0e-05a6896a0af8.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/a589e55e-9aee-4d11-bf0e-05a6896a0af8"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7268-case-modal-vertical-media-1440.tsx.md",
+        "variable": "imgFrame868"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7268-case-modal-vertical-media-1440.tsx.md",
+          "variable": "imgFrame868"
+        }
+      ]
+    },
+    {
+      "assetRef": "a6aaa24e-54be-4559-a7cc-3e4fb278b2ad",
+      "assetId": "a6aaa24e-54be-4559-a7cc-3e4fb278b2ad",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7268-case-modal-vertical-media-1440/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/a6aaa24e-54be-4559-a7cc-3e4fb278b2ad.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/a6aaa24e-54be-4559-a7cc-3e4fb278b2ad"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7268-case-modal-vertical-media-1440.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7268-case-modal-vertical-media-1440.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "a74a205b-09c4-4366-a470-aee66a2ae96f",
+      "assetId": "a74a205b-09c4-4366-a470-aee66a2ae96f",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/8976-what-we-do-card-production-1024/image.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/a74a205b-09c4-4366-a470-aee66a2ae96f.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/a74a205b-09c4-4366-a470-aee66a2ae96f"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8976-what-we-do-card-production-1024.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8976-what-we-do-card-production-1024.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "a8d68f12-a514-4a59-bcad-e4a8234f6006",
+      "assetId": "a8d68f12-a514-4a59-bcad-e4a8234f6006",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/8982-navbar-logo-media-1024/group1381.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/a8d68f12-a514-4a59-bcad-e4a8234f6006.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/a8d68f12-a514-4a59-bcad-e4a8234f6006"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8982-navbar-logo-media-1024.tsx.md",
+        "variable": "imgGroup1381"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8982-navbar-logo-media-1024.tsx.md",
+          "variable": "imgGroup1381"
+        }
+      ]
+    },
+    {
+      "assetRef": "af40003c-15e1-4180-a5d6-943d49446693",
+      "assetId": "af40003c-15e1-4180-a5d6-943d49446693",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/9015-cta-button-1024/ellipse111.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/af40003c-15e1-4180-a5d6-943d49446693.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/af40003c-15e1-4180-a5d6-943d49446693"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9015-cta-button-1024.tsx.md",
+        "variable": "imgEllipse111"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9015-cta-button-1024.tsx.md",
+          "variable": "imgEllipse111"
+        }
+      ]
+    },
+    {
+      "assetRef": "b45426d2-83f8-48fd-a9ff-a51b9a39c8e3",
+      "assetId": "b45426d2-83f8-48fd-a9ff-a51b9a39c8e3",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/vector3.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b45426d2-83f8-48fd-a9ff-a51b9a39c8e3.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/b45426d2-83f8-48fd-a9ff-a51b9a39c8e3"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+        "variable": "imgVector3"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+          "variable": "imgVector3"
+        }
+      ]
+    },
+    {
+      "assetRef": "b485f7e1f7aaea1f95b29d9767390bd0a1f793b3.png",
+      "assetId": "b485f7e1f7aaea1f95b29d9767390bd0a1f793b3",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/12001-cases-768/rectangle75.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b485f7e1f7aaea1f95b29d9767390bd0a1f793b3.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/b485f7e1f7aaea1f95b29d9767390bd0a1f793b3.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12001-cases-768.tsx.md",
+        "variable": "imgRectangle75"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgRectangle75"
+        }
+      ]
+    },
+    {
+      "assetRef": "b513ad77-9f39-432e-93be-526bedebf299",
+      "assetId": "b513ad77-9f39-432e-93be-526bedebf299",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/8999-floating-button-1024/ellipse112.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b513ad77-9f39-432e-93be-526bedebf299.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/b513ad77-9f39-432e-93be-526bedebf299"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8999-floating-button-1024.tsx.md",
+        "variable": "imgEllipse112"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8999-floating-button-1024.tsx.md",
+          "variable": "imgEllipse112"
+        }
+      ]
+    },
+    {
+      "assetRef": "b5c73c4c7a780f7240d6d8e97e712c271ad15826.svg",
+      "assetId": "b5c73c4c7a780f7240d6d8e97e712c271ad15826",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7165-case-modal-vertical-480/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b5c73c4c7a780f7240d6d8e97e712c271ad15826.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/b5c73c4c7a780f7240d6d8e97e712c271ad15826.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7165-case-modal-vertical-480.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7165-case-modal-vertical-480.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "b5e90262-5665-4113-8708-02596bb7a0ef",
+      "assetId": "b5e90262-5665-4113-8708-02596bb7a0ef",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7148-case-modal-ad-media-480/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b5e90262-5665-4113-8708-02596bb7a0ef.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/b5e90262-5665-4113-8708-02596bb7a0ef"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7148-case-modal-ad-media-480.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7148-case-modal-ad-media-480.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "b8158c48-1735-4d1d-accc-c5901bfe2f8f",
+      "assetId": "b8158c48-1735-4d1d-accc-c5901bfe2f8f",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/9050-footer-article-branding-card-1440/image.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b8158c48-1735-4d1d-accc-c5901bfe2f8f.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/b8158c48-1735-4d1d-accc-c5901bfe2f8f"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9050-footer-article-branding-card-1440.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9050-footer-article-branding-card-1440.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "b8775c4f-b7ad-44a0-b003-fe474823d57f",
+      "assetId": "b8775c4f-b7ad-44a0-b003-fe474823d57f",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/group318.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/b8775c4f-b7ad-44a0-b003-fe474823d57f.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/b8775c4f-b7ad-44a0-b003-fe474823d57f"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+        "variable": "imgGroup318"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+          "variable": "imgGroup318"
+        }
+      ]
+    },
+    {
+      "assetRef": "bc0ae7c7-5d22-4d8a-816d-e6b8ee06013c",
+      "assetId": "bc0ae7c7-5d22-4d8a-816d-e6b8ee06013c",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7221-case-modal-vertical-content-768/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/bc0ae7c7-5d22-4d8a-816d-e6b8ee06013c.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/bc0ae7c7-5d22-4d8a-816d-e6b8ee06013c"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7221-case-modal-vertical-content-768.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7221-case-modal-vertical-content-768.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "bdf78a14c8134bcc47b51eceb8f3e5be21baa788.svg",
+      "assetId": "bdf78a14c8134bcc47b51eceb8f3e5be21baa788",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/11985-navbar-768/group1381.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/bdf78a14c8134bcc47b51eceb8f3e5be21baa788.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/bdf78a14c8134bcc47b51eceb8f3e5be21baa788.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11985-navbar-768.tsx.md",
+        "variable": "imgGroup1381"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11985-navbar-768.tsx.md",
+          "variable": "imgGroup1381"
+        }
+      ]
+    },
+    {
+      "assetRef": "be30d0c0a17f92c5b9ccedcfc9329f962946cd80.png",
+      "assetId": "be30d0c0a17f92c5b9ccedcfc9329f962946cd80",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/11947-business-goals-768/rectangle78.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/be30d0c0a17f92c5b9ccedcfc9329f962946cd80.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/be30d0c0a17f92c5b9ccedcfc9329f962946cd80.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11947-business-goals-768.tsx.md",
+        "variable": "imgRectangle78"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11947-business-goals-768.tsx.md",
+          "variable": "imgRectangle78"
+        }
+      ]
+    },
+    {
+      "assetRef": "bf1802147ca1b703f713c925bbe296a0270ba5e0.svg",
+      "assetId": "bf1802147ca1b703f713c925bbe296a0270ba5e0",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7255-play-button/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/bf1802147ca1b703f713c925bbe296a0270ba5e0.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/bf1802147ca1b703f713c925bbe296a0270ba5e0.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7255-play-button-shared.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7192-case-modal-ad-768.tsx.md",
+          "variable": "imgEllipse2"
+        },
+        {
+          "designContextFile": "783-7214-case-modal-vertical-768.tsx.md",
+          "variable": "imgEllipse2"
+        },
+        {
+          "designContextFile": "783-7241-case-modal-ad-1440.tsx.md",
+          "variable": "imgEllipse2"
+        },
+        {
+          "designContextFile": "783-7255-play-button-shared.tsx.md",
+          "variable": "imgEllipse2"
+        },
+        {
+          "designContextFile": "783-7263-case-modal-vertical-1440.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "c361c21c-10a5-4fcd-8a89-d45c354f3e6a",
+      "assetId": "c361c21c-10a5-4fcd-8a89-d45c354f3e6a",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7412-blog-news-section-480/telegram-cloud-document252627272500332760000.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/c361c21c-10a5-4fcd-8a89-d45c354f3e6a.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/c361c21c-10a5-4fcd-8a89-d45c354f3e6a"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7412-blog-news-section-480.tsx.md",
+        "variable": "imgTelegramCloudDocument252627272500332760000"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7412-blog-news-section-480.tsx.md",
+          "variable": "imgTelegramCloudDocument252627272500332760000"
+        }
+      ]
+    },
+    {
+      "assetRef": "c7d311db-09d7-4564-b6bd-018526ef8968",
+      "assetId": "c7d311db-09d7-4564-b6bd-018526ef8968",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7123-case-modal-vertical-content-360/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/c7d311db-09d7-4564-b6bd-018526ef8968.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/c7d311db-09d7-4564-b6bd-018526ef8968"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7123-case-modal-vertical-content-360.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7123-case-modal-vertical-content-360.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "c8607221-d3c3-4474-b963-0c271b6d88d4",
+      "assetId": "c8607221-d3c3-4474-b963-0c271b6d88d4",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/asset.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/c8607221-d3c3-4474-b963-0c271b6d88d4.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/c8607221-d3c3-4474-b963-0c271b6d88d4"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+        "variable": "img"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+          "variable": "img"
+        }
+      ]
+    },
+    {
+      "assetRef": "c9192d4b-a581-425e-b1c3-df319485b9c3",
+      "assetId": "c9192d4b-a581-425e-b1c3-df319485b9c3",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/ellipse111.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/c9192d4b-a581-425e-b1c3-df319485b9c3.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/c9192d4b-a581-425e-b1c3-df319485b9c3"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgEllipse111"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgEllipse111"
+        }
+      ]
+    },
+    {
+      "assetRef": "c9feab0c121eca49ef4bd996ce5b7ee2f2a085f3.png",
+      "assetId": "c9feab0c121eca49ef4bd996ce5b7ee2f2a085f3",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/11947-business-goals-768/image.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/c9feab0c121eca49ef4bd996ce5b7ee2f2a085f3.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/c9feab0c121eca49ef4bd996ce5b7ee2f2a085f3.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11947-business-goals-768.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11947-business-goals-768.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "cac3095e-0d0e-4537-928f-a2d70a481866",
+      "assetId": "cac3095e-0d0e-4537-928f-a2d70a481866",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/9212-vertical-video-package-badge-1440/ellipse113.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/cac3095e-0d0e-4537-928f-a2d70a481866.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/cac3095e-0d0e-4537-928f-a2d70a481866"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9212-vertical-video-package-badge-1440.tsx.md",
+        "variable": "imgEllipse113"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9212-vertical-video-package-badge-1440.tsx.md",
+          "variable": "imgEllipse113"
+        }
+      ]
+    },
+    {
+      "assetRef": "cc371e71-17b6-484c-8b86-85463c5c701f",
+      "assetId": "cc371e71-17b6-484c-8b86-85463c5c701f",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7412-blog-news-section-480/icon-arrow-right.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/cc371e71-17b6-484c-8b86-85463c5c701f.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/cc371e71-17b6-484c-8b86-85463c5c701f"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7412-blog-news-section-480.tsx.md",
+        "variable": "imgIconArrowRight"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7412-blog-news-section-480.tsx.md",
+          "variable": "imgIconArrowRight"
+        }
+      ]
+    },
+    {
+      "assetRef": "cd93c5d7-cd3e-48c7-87fe-1e173dc5bd79",
+      "assetId": "cd93c5d7-cd3e-48c7-87fe-1e173dc5bd79",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/7098-case-modal-ad-media-360/frame873.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/cd93c5d7-cd3e-48c7-87fe-1e173dc5bd79.png",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/cd93c5d7-cd3e-48c7-87fe-1e173dc5bd79"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7098-case-modal-ad-media-360.tsx.md",
+        "variable": "imgFrame873"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7098-case-modal-ad-media-360.tsx.md",
+          "variable": "imgFrame873"
+        }
+      ]
+    },
+    {
+      "assetRef": "ce032651-5a78-4349-b2b8-84656917fadc",
+      "assetId": "ce032651-5a78-4349-b2b8-84656917fadc",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7481-blog-story-part-1-480/rectangle33.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/ce032651-5a78-4349-b2b8-84656917fadc.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/ce032651-5a78-4349-b2b8-84656917fadc"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
+        "variable": "imgRectangle33"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
+          "variable": "imgRectangle33"
+        }
+      ]
+    },
+    {
+      "assetRef": "ce2ef516-7925-48d0-8abc-90c668a304ab",
+      "assetId": "ce2ef516-7925-48d0-8abc-90c668a304ab",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7197-case-modal-ad-header-768/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/ce2ef516-7925-48d0-8abc-90c668a304ab.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/ce2ef516-7925-48d0-8abc-90c668a304ab"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7197-case-modal-ad-header-768.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7197-case-modal-ad-header-768.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "cfa3291de95cc2eec6fa13a2e679521e041a4e6e.svg",
+      "assetId": "cfa3291de95cc2eec6fa13a2e679521e041a4e6e",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/10005-cta-button/ellipse111.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/cfa3291de95cc2eec6fa13a2e679521e041a4e6e.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/cfa3291de95cc2eec6fa13a2e679521e041a4e6e.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-10005-cta-button-shared.tsx.md",
+        "variable": "imgEllipse111"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-10005-cta-button-shared.tsx.md",
+          "variable": "imgEllipse111"
+        },
+        {
+          "designContextFile": "783-11973-hero-768.tsx.md",
+          "variable": "imgEllipse111"
+        }
+      ]
+    },
+    {
+      "assetRef": "d0f6ae87336761d4f1ceec15a5d81324d0395dd0.svg",
+      "assetId": "d0f6ae87336761d4f1ceec15a5d81324d0395dd0",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7263-case-modal-vertical-1440/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/d0f6ae87336761d4f1ceec15a5d81324d0395dd0.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/d0f6ae87336761d4f1ceec15a5d81324d0395dd0.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7263-case-modal-vertical-1440.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7263-case-modal-vertical-1440.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "d1e93c67-a1bf-4030-97d4-1a454e0b7096",
+      "assetId": "d1e93c67-a1bf-4030-97d4-1a454e0b7096",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/rectangle173.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/d1e93c67-a1bf-4030-97d4-1a454e0b7096.png",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/d1e93c67-a1bf-4030-97d4-1a454e0b7096"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgRectangle173"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgRectangle173"
+        }
+      ]
+    },
+    {
+      "assetRef": "d4ea8150730af7ac973f80484be15b3d67414f2d.png",
+      "assetId": "d4ea8150730af7ac973f80484be15b3d67414f2d",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/12001-cases-768/rectangle76.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/d4ea8150730af7ac973f80484be15b3d67414f2d.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/d4ea8150730af7ac973f80484be15b3d67414f2d.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12001-cases-768.tsx.md",
+        "variable": "imgRectangle76"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgRectangle76"
+        }
+      ]
+    },
+    {
+      "assetRef": "d866623f-b48c-4789-a0ae-132c59fa4403",
+      "assetId": "d866623f-b48c-4789-a0ae-132c59fa4403",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7246-case-modal-ad-header-1440/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/d866623f-b48c-4789-a0ae-132c59fa4403.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/d866623f-b48c-4789-a0ae-132c59fa4403"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7246-case-modal-ad-header-1440.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7246-case-modal-ad-header-1440.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "dc227e28-f360-404d-bc6c-e5c9bdf6cc16",
+      "assetId": "dc227e28-f360-404d-bc6c-e5c9bdf6cc16",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/8967-what-we-do-card-social-media-1024/rectangle74.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/dc227e28-f360-404d-bc6c-e5c9bdf6cc16.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/dc227e28-f360-404d-bc6c-e5c9bdf6cc16"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8967-what-we-do-card-social-media-1024.tsx.md",
+        "variable": "imgRectangle74"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8967-what-we-do-card-social-media-1024.tsx.md",
+          "variable": "imgRectangle74"
+        }
+      ]
+    },
+    {
+      "assetRef": "dc2e6bdb-ddb8-4962-9dd4-b2e984d62e39",
+      "assetId": "dc2e6bdb-ddb8-4962-9dd4-b2e984d62e39",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7782-blog-page-1440/group1381.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/dc2e6bdb-ddb8-4962-9dd4-b2e984d62e39.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/dc2e6bdb-ddb8-4962-9dd4-b2e984d62e39"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7782-blog-page-1440.tsx.md",
+        "variable": "imgGroup1381"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7782-blog-page-1440.tsx.md",
+          "variable": "imgGroup1381"
+        }
+      ]
+    },
+    {
+      "assetRef": "dd0d0e09-f39a-4839-bdee-2352165347fb",
+      "assetId": "dd0d0e09-f39a-4839-bdee-2352165347fb",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/9052-footer-article-branding-media-1440/image.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/dd0d0e09-f39a-4839-bdee-2352165347fb.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/dd0d0e09-f39a-4839-bdee-2352165347fb"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9052-footer-article-branding-media-1440.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9052-footer-article-branding-media-1440.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "dd491a78-5970-428c-9c20-748003421abb",
+      "assetId": "dd491a78-5970-428c-9c20-748003421abb",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/9047-footer-article-brief-card-1440/rectangle38.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/dd491a78-5970-428c-9c20-748003421abb.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/dd491a78-5970-428c-9c20-748003421abb"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9047-footer-article-brief-card-1440.tsx.md",
+        "variable": "imgRectangle38"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9047-footer-article-brief-card-1440.tsx.md",
+          "variable": "imgRectangle38"
+        }
+      ]
+    },
+    {
+      "assetRef": "e2384373-f20f-4f7f-a2e2-22f6e1f8efa1",
+      "assetId": "e2384373-f20f-4f7f-a2e2-22f6e1f8efa1",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/8968-what-we-do-card-traffic-1024/image.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/e2384373-f20f-4f7f-a2e2-22f6e1f8efa1.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/e2384373-f20f-4f7f-a2e2-22f6e1f8efa1"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8968-what-we-do-card-traffic-1024.tsx.md",
+        "variable": "imgImage"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8968-what-we-do-card-traffic-1024.tsx.md",
+          "variable": "imgImage"
+        }
+      ]
+    },
+    {
+      "assetRef": "e25e5045ebe40018c7e18d59e878c536e89a4e36.svg",
+      "assetId": "e25e5045ebe40018c7e18d59e878c536e89a4e36",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/12009-arrow/icon-arrow-right.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/e25e5045ebe40018c7e18d59e878c536e89a4e36.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/e25e5045ebe40018c7e18d59e878c536e89a4e36.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-12009-arrow-shared.tsx.md",
+        "variable": "imgIconArrowRight"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11947-business-goals-768.tsx.md",
+          "variable": "imgIconArrowRight"
+        },
+        {
+          "designContextFile": "783-12001-cases-768.tsx.md",
+          "variable": "imgIconArrowRight"
+        },
+        {
+          "designContextFile": "783-12009-arrow-shared.tsx.md",
+          "variable": "imgIconArrowRight"
+        }
+      ]
+    },
+    {
+      "assetRef": "e2fb1031-1b3b-462c-8487-bc0718b30bfe",
+      "assetId": "e2fb1031-1b3b-462c-8487-bc0718b30bfe",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7270-case-modal-vertical-content-1440/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/e2fb1031-1b3b-462c-8487-bc0718b30bfe.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/e2fb1031-1b3b-462c-8487-bc0718b30bfe"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7270-case-modal-vertical-content-1440.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7270-case-modal-vertical-content-1440.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "e3e12878-5a36-4042-98b1-2b3e765866ec",
+      "assetId": "e3e12878-5a36-4042-98b1-2b3e765866ec",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/9212-vertical-video-package-badge-1440/ellipse110.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/e3e12878-5a36-4042-98b1-2b3e765866ec.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/e3e12878-5a36-4042-98b1-2b3e765866ec"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-9212-vertical-video-package-badge-1440.tsx.md",
+        "variable": "imgEllipse110"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-9212-vertical-video-package-badge-1440.tsx.md",
+          "variable": "imgEllipse110"
+        }
+      ]
+    },
+    {
+      "assetRef": "e79104fd-8d1c-4f7b-9588-438ad7ce8ba9",
+      "assetId": "e79104fd-8d1c-4f7b-9588-438ad7ce8ba9",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7412-blog-news-section-480/icon-arrow-left.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/e79104fd-8d1c-4f7b-9588-438ad7ce8ba9.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/e79104fd-8d1c-4f7b-9588-438ad7ce8ba9"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7412-blog-news-section-480.tsx.md",
+        "variable": "imgIconArrowLeft"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7412-blog-news-section-480.tsx.md",
+          "variable": "imgIconArrowLeft"
+        }
+      ]
+    },
+    {
+      "assetRef": "e8cf667ecaa5fa59cf468e4298fc4e7f758e943e.svg",
+      "assetId": "e8cf667ecaa5fa59cf468e4298fc4e7f758e943e",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7093-case-modal-ad-360/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/e8cf667ecaa5fa59cf468e4298fc4e7f758e943e.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/e8cf667ecaa5fa59cf468e4298fc4e7f758e943e.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7093-case-modal-ad-360.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7093-case-modal-ad-360.tsx.md",
+          "variable": "imgEllipse2"
+        },
+        {
+          "designContextFile": "783-7115-case-modal-vertical-360.tsx.md",
+          "variable": "imgEllipse2"
+        },
+        {
+          "designContextFile": "783-7143-case-modal-ad-480.tsx.md",
+          "variable": "imgEllipse2"
+        },
+        {
+          "designContextFile": "783-7165-case-modal-vertical-480.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "e9e3f3cb-b122-4d67-b5b0-8a7509504b04",
+      "assetId": "e9e3f3cb-b122-4d67-b5b0-8a7509504b04",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7120-case-modal-vertical-media-360/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/e9e3f3cb-b122-4d67-b5b0-8a7509504b04.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/e9e3f3cb-b122-4d67-b5b0-8a7509504b04"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7120-case-modal-vertical-media-360.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7120-case-modal-vertical-media-360.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "ec513860-025f-461b-9eb2-609802086c6d",
+      "assetId": "ec513860-025f-461b-9eb2-609802086c6d",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7425-blog-footer-bottom-480/vector1.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/ec513860-025f-461b-9eb2-609802086c6d.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/ec513860-025f-461b-9eb2-609802086c6d"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+        "variable": "imgVector1"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7425-blog-footer-bottom-480.tsx.md",
+          "variable": "imgVector1"
+        }
+      ]
+    },
+    {
+      "assetRef": "ed4088c0-a8a8-434a-b6db-2456984dc670",
+      "assetId": "ed4088c0-a8a8-434a-b6db-2456984dc670",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/8999-floating-button-1024/vector.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/ed4088c0-a8a8-434a-b6db-2456984dc670.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/ed4088c0-a8a8-434a-b6db-2456984dc670"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-8999-floating-button-1024.tsx.md",
+        "variable": "imgVector"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-8999-floating-button-1024.tsx.md",
+          "variable": "imgVector"
+        }
+      ]
+    },
+    {
+      "assetRef": "ef0ac290-576c-4b6c-b1c7-5a8963d6163c",
+      "assetId": "ef0ac290-576c-4b6c-b1c7-5a8963d6163c",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7246-case-modal-ad-header-1440/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/ef0ac290-576c-4b6c-b1c7-5a8963d6163c.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/ef0ac290-576c-4b6c-b1c7-5a8963d6163c"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7246-case-modal-ad-header-1440.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7246-case-modal-ad-header-1440.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "f322dde39493dfe53672235ee30833ce161c6103.png",
+      "assetId": "f322dde39493dfe53672235ee30833ce161c6103",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/11947-business-goals-768/rectangle74.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/f322dde39493dfe53672235ee30833ce161c6103.png",
+      "originalUrls": [
+        "http://localhost:3845/assets/f322dde39493dfe53672235ee30833ce161c6103.png"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-11947-business-goals-768.tsx.md",
+        "variable": "imgRectangle74"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-11947-business-goals-768.tsx.md",
+          "variable": "imgRectangle74"
+        }
+      ]
+    },
+    {
+      "assetRef": "f4f3db20-6937-4fd5-bc0c-9fc6d22ee746",
+      "assetId": "f4f3db20-6937-4fd5-bc0c-9fc6d22ee746",
+      "ext": ".png",
+      "localProjectPath": "public/assets/figma/7197-case-modal-ad-header-768/frame873.png",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/f4f3db20-6937-4fd5-bc0c-9fc6d22ee746.png",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/f4f3db20-6937-4fd5-bc0c-9fc6d22ee746"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7197-case-modal-ad-header-768.tsx.md",
+        "variable": "imgFrame873"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7197-case-modal-ad-header-768.tsx.md",
+          "variable": "imgFrame873"
+        }
+      ]
+    },
+    {
+      "assetRef": "f6733535-aef1-4acd-8696-b95b5095aa4f",
+      "assetId": "f6733535-aef1-4acd-8696-b95b5095aa4f",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7120-case-modal-vertical-media-360/ellipse2.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/f6733535-aef1-4acd-8696-b95b5095aa4f.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/f6733535-aef1-4acd-8696-b95b5095aa4f"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7120-case-modal-vertical-media-360.tsx.md",
+        "variable": "imgEllipse2"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7120-case-modal-vertical-media-360.tsx.md",
+          "variable": "imgEllipse2"
+        }
+      ]
+    },
+    {
+      "assetRef": "f67de21e-c11c-4806-8448-833aa34a219e",
+      "assetId": "f67de21e-c11c-4806-8448-833aa34a219e",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7804-blog-footer-logo-1440/group1381.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/f67de21e-c11c-4806-8448-833aa34a219e.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/f67de21e-c11c-4806-8448-833aa34a219e"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7804-blog-footer-logo-1440.tsx.md",
+        "variable": "imgGroup1381"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7804-blog-footer-logo-1440.tsx.md",
+          "variable": "imgGroup1381"
+        }
+      ]
+    },
+    {
+      "assetRef": "f6e49cf1-6315-4c48-9d87-d1c8a686b61f",
+      "assetId": "f6e49cf1-6315-4c48-9d87-d1c8a686b61f",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7098-case-modal-ad-media-360/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/f6e49cf1-6315-4c48-9d87-d1c8a686b61f.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/f6e49cf1-6315-4c48-9d87-d1c8a686b61f"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7098-case-modal-ad-media-360.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7098-case-modal-ad-media-360.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    },
+    {
+      "assetRef": "fba3c9867807da510b1b0ee2fc58f7d93aff0fae.svg",
+      "assetId": "fba3c9867807da510b1b0ee2fc58f7d93aff0fae",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7115-case-modal-vertical-360/group126.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/fba3c9867807da510b1b0ee2fc58f7d93aff0fae.svg",
+      "originalUrls": [
+        "http://localhost:3845/assets/fba3c9867807da510b1b0ee2fc58f7d93aff0fae.svg"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7115-case-modal-vertical-360.tsx.md",
+        "variable": "imgGroup126"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7115-case-modal-vertical-360.tsx.md",
+          "variable": "imgGroup126"
+        }
+      ]
+    },
+    {
+      "assetRef": "fd5e17b7-6d3a-46c9-ab2a-71e83727da72",
+      "assetId": "fd5e17b7-6d3a-46c9-ab2a-71e83727da72",
+      "ext": ".jpg",
+      "localProjectPath": "public/assets/figma/7481-blog-story-part-1-480/rectangle29.jpg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/fd5e17b7-6d3a-46c9-ab2a-71e83727da72.jpg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/fd5e17b7-6d3a-46c9-ab2a-71e83727da72"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
+        "variable": "imgRectangle29"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7481-blog-story-part-1-480.tsx.md",
+          "variable": "imgRectangle29"
+        }
+      ]
+    },
+    {
+      "assetRef": "feb3436b-7cd4-4b59-8f09-d77c493b6689",
+      "assetId": "feb3436b-7cd4-4b59-8f09-d77c493b6689",
+      "ext": ".svg",
+      "localProjectPath": "public/assets/figma/7170-case-modal-vertical-media-480/subtract.svg",
+      "sourceExportPath": "../../../Сайт СОЛО/Сайт СОЛО/figma-export/assets/feb3436b-7cd4-4b59-8f09-d77c493b6689.svg",
+      "originalUrls": [
+        "https://www.figma.com/api/mcp/asset/feb3436b-7cd4-4b59-8f09-d77c493b6689"
+      ],
+      "canonicalFrom": {
+        "designContextFile": "783-7170-case-modal-vertical-media-480.tsx.md",
+        "variable": "imgSubtract"
+      },
+      "usedIn": [
+        {
+          "designContextFile": "783-7170-case-modal-vertical-media-480.tsx.md",
+          "variable": "imgSubtract"
+        }
+      ]
+    }
+  ],
+  "missingAssets": []
+}
