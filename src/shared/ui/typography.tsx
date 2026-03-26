@@ -7,7 +7,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/shared/lib/utils";
 
-const headingVariants = cva("font-[family-name:var(--font-family-display)] font-bold lowercase", {
+const headingVariants = cva("font-[family-name:var(--font-family-display)] font-bold", {
   variants: {
     level: {
       hero: "text-[44px] leading-[var(--leading-tightest)] tracking-[var(--tracking-tight)] md:text-[80px] xl:text-[120px]",
@@ -21,11 +21,17 @@ const headingVariants = cva("font-[family-name:var(--font-family-display)] font-
       subtle: "text-[var(--color-text-muted)]",
       inverse: "text-[var(--color-text-on-dark)]",
       accent: "text-[var(--color-accent)]"
+    },
+    transform: {
+      none: "",
+      lowercase: "lowercase",
+      uppercase: "uppercase"
     }
   },
   defaultVariants: {
     level: "section",
-    tone: "default"
+    tone: "default",
+    transform: "none"
   }
 });
 
@@ -77,10 +83,14 @@ export function Heading({
   className,
   level,
   tone,
+  transform,
   ...props
 }: HeadingProps) {
   return (
-    <Component className={cn(headingVariants({ level, tone }), className)} {...props}>
+    <Component
+      className={cn(headingVariants({ level, tone, transform }), className)}
+      {...props}
+    >
       {accent ? <span className="font-normal italic">{accent}</span> : null}
       {accent && children ? " " : null}
       {children}
