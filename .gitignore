@@ -6,3 +6,5 @@ coverage
 *.log
 *.tsbuildinfo
 pnpm-lock.yaml
+output
+public/assets/figma/9010-hero-geo-block-1024/geo-mark.png
