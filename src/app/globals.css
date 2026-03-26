@@ -343,29 +343,29 @@ body > div:first-child {
   }
 
   .first-screen-glow--left {
-    left: -64px;
-    bottom: 90px;
-    width: 320px;
-    height: 320px;
-    background: rgba(255, 92, 0, 0.18);
-    filter: blur(90px);
+    left: -72px;
+    top: 436px;
+    width: 288px;
+    height: 288px;
+    background: rgba(255, 92, 0, 0.2);
+    filter: blur(92px);
   }
 
   .first-screen-glow--center {
-    left: 55.5%;
-    top: 314px;
-    width: 248px;
-    height: 248px;
-    background: rgba(255, 92, 0, 0.18);
+    left: 56.2%;
+    top: 302px;
+    width: 232px;
+    height: 232px;
+    background: rgba(255, 92, 0, 0.16);
   }
 
   .first-screen-glow--cta {
-    left: 54.8%;
-    top: 332px;
-    width: 300px;
-    height: 300px;
+    left: 55.3%;
+    top: 318px;
+    width: 272px;
+    height: 272px;
     background: rgba(255, 92, 0, 0.12);
-    filter: blur(96px);
+    filter: blur(94px);
   }
 }
 

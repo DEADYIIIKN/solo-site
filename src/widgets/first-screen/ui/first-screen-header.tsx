@@ -110,14 +110,14 @@ export function FirstScreenHeader() {
         </div>
 
         <div className="hidden min-[1440px]:block">
-          <div className="relative mx-auto h-[82px] w-[1160px] py-5">
-            <div className="absolute left-0 top-1/2 -translate-y-1/2">
+          <div className="mx-auto flex w-[1160px] items-center justify-between px-10 py-5">
+            <div className="w-[283px] shrink-0">
               <MobileLogo />
             </div>
 
             <nav
               aria-label="Основная навигация"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="shrink-0"
             >
               <ul className="flex items-center gap-6 text-[14px] font-medium leading-[1.2] text-[var(--color-text-on-dark)]">
                 {firstScreenNavItems.map((item) => (
@@ -133,7 +133,7 @@ export function FirstScreenHeader() {
               </ul>
             </nav>
 
-            <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-4">
+            <div className="flex shrink-0 items-center gap-4">
               <a
                 className="whitespace-nowrap text-[17px] font-semibold leading-[1.2] text-[var(--color-text-on-dark)]"
                 href="tel:+79689731168"
