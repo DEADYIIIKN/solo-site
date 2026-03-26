@@ -19,8 +19,16 @@ export const firstScreenContent = {
 
 export const firstScreenAssets = {
   backgroundGrid: "/assets/figma/10106-background-grid/rectangle173.png",
-  logo: "/assets/figma/11985-navbar-768/group1381.svg",
-  menu768: "/assets/figma/11985-navbar-768/group349.svg",
+  navbar: {
+    logo360: "/assets/figma/7408-navbar-360/logo.svg",
+    logo480: "/assets/figma/7529-navbar-480/logo.svg",
+    logo768: "/assets/figma/11985-navbar-768/group1381.svg",
+    logo1024: "/assets/figma/7764-navbar-1024/logo.svg",
+    logo1440: "/assets/figma/7893-navbar-1440/logo.svg",
+    menu360: "/assets/figma/7408-navbar-360/menu.svg",
+    menu480: "/assets/figma/7529-navbar-480/menu.svg",
+    menu768: "/assets/figma/11985-navbar-768/group349.svg"
+  },
   ctaOuter: "/assets/figma/10005-cta-button/ellipse112.svg",
   ctaGlow: "/assets/figma/10005-cta-button/ellipse110.svg",
   ctaDotRing: "/assets/figma/10005-cta-button/ellipse111.svg",

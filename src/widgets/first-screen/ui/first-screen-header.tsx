@@ -8,13 +8,43 @@ import {
 
 function MobileLogo() {
   return (
-    <img
-      alt="СОЛО"
-      className="block h-auto w-[108px] min-[480px]:w-[124px] min-[768px]:w-[136px]"
-      height={24}
-      src={firstScreenAssets.logo}
-      width={136}
-    />
+    <>
+      <img
+        alt="СОЛО"
+        className="block h-auto w-[113px] min-[480px]:hidden"
+        height={20}
+        src={firstScreenAssets.navbar.logo360}
+        width={113}
+      />
+      <img
+        alt="СОЛО"
+        className="hidden h-auto w-[124px] min-[480px]:block min-[768px]:hidden"
+        height={22}
+        src={firstScreenAssets.navbar.logo480}
+        width={124}
+      />
+      <img
+        alt="СОЛО"
+        className="hidden h-auto w-[136px] min-[768px]:block min-[1024px]:hidden"
+        height={24}
+        src={firstScreenAssets.navbar.logo768}
+        width={136}
+      />
+      <img
+        alt="СОЛО"
+        className="hidden h-auto w-[136px] min-[1024px]:block min-[1440px]:hidden"
+        height={24}
+        src={firstScreenAssets.navbar.logo1024}
+        width={136}
+      />
+      <img
+        alt="СОЛО"
+        className="hidden h-auto w-[136px] min-[1440px]:block"
+        height={24}
+        src={firstScreenAssets.navbar.logo1440}
+        width={136}
+      />
+    </>
   );
 }
 
@@ -27,9 +57,23 @@ function MenuButton() {
     >
       <img
         alt=""
-        className="block h-auto w-5 min-[768px]:w-6"
+        className="block h-auto w-5 min-[480px]:hidden"
+        height={20}
+        src={firstScreenAssets.navbar.menu360}
+        width={20}
+      />
+      <img
+        alt=""
+        className="hidden h-auto w-5 min-[480px]:block min-[768px]:hidden"
+        height={20}
+        src={firstScreenAssets.navbar.menu480}
+        width={20}
+      />
+      <img
+        alt=""
+        className="hidden h-auto w-6 min-[768px]:block"
         height={24}
-        src={firstScreenAssets.menu768}
+        src={firstScreenAssets.navbar.menu768}
         width={24}
       />
     </button>

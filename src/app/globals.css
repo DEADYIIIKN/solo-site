@@ -259,7 +259,7 @@ body > div:first-child {
 
 .first-screen-grid {
   opacity: 0.28;
-  background-image: url("/assets/figma/10106-background-grid/rectangle173.png");
+  background-image: var(--first-screen-grid-image);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: 100% 100%;
