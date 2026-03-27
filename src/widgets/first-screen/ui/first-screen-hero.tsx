@@ -121,7 +121,7 @@ function TabletHero() {
 
 function DesktopHero1024() {
   return (
-    <div className="relative hidden h-[628px] min-[1024px]:block min-[1440px]:hidden">
+    <div className="relative hidden h-[700px] min-[1024px]:block min-[1440px]:hidden">
       <div className="absolute left-0 top-[68px]">
         <h1 className="m-0 font-[family-name:var(--font-family-display)] text-white">
           <span className="block text-[70px] font-normal italic leading-[0.9] tracking-[-0.04em]">

@@ -46,7 +46,7 @@ function MenuButton() {
 
 export function FirstScreenHeader() {
   return (
-    <header className="relative z-20 min-[1440px]:absolute min-[1440px]:inset-x-0 min-[1440px]:top-0">
+    <header className="absolute inset-x-0 top-0 z-20">
       <div className="container-base">
         <div className="flex min-h-[56px] items-end justify-between py-4 min-[480px]:min-h-[60px] min-[480px]:py-6 min-[768px]:min-h-[64px] min-[768px]:py-0 min-[1024px]:hidden">
           <div className="flex min-w-0 flex-1 items-center justify-between min-[1024px]:hidden">
@@ -110,15 +110,12 @@ export function FirstScreenHeader() {
         </div>
 
         <div className="hidden min-[1440px]:block">
-          <div className="mx-auto flex w-[1160px] items-center justify-between px-10 py-5">
+          <div className="mx-auto flex h-[82px] w-[1160px] items-center justify-between">
             <div className="w-[283px] shrink-0">
               <MobileLogo />
             </div>
 
-            <nav
-              aria-label="Основная навигация"
-              className="shrink-0"
-            >
+            <nav aria-label="Основная навигация" className="shrink-0">
               <ul className="flex items-center gap-6 text-[14px] font-medium leading-[1.2] text-[var(--color-text-on-dark)]">
                 {firstScreenNavItems.map((item) => (
                   <li key={item}>
