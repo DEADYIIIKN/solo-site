@@ -13,7 +13,7 @@ function MobileLogo() {
       <source media="(min-width: 480px)" srcSet={firstScreenAssets.navbar.logo480} />
       <img
         alt="СОЛО"
-        className="h-auto w-[113px] [filter:brightness(0)_invert(1)] min-[480px]:w-[124px] min-[768px]:w-[136px]"
+        className="h-auto w-[113px] min-[480px]:w-[124px] min-[768px]:w-[136px]"
         height={24}
         src={firstScreenAssets.navbar.logo360}
         width={136}
@@ -110,12 +110,15 @@ export function FirstScreenHeader() {
         </div>
 
         <div className="hidden min-[1440px]:block">
-          <div className="mx-auto flex h-[82px] w-[1160px] items-center justify-between">
-            <div className="w-[283px] shrink-0">
+          <div className="relative mx-auto h-[82px] w-[1160px]">
+            <div className="absolute left-0 top-1/2 w-[136px] -translate-y-1/2">
               <MobileLogo />
             </div>
 
-            <nav aria-label="Основная навигация" className="shrink-0">
+            <nav
+              aria-label="Основная навигация"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            >
               <ul className="flex items-center gap-6 text-[14px] font-medium leading-[1.2] text-[var(--color-text-on-dark)]">
                 {firstScreenNavItems.map((item) => (
                   <li key={item}>
@@ -130,7 +133,7 @@ export function FirstScreenHeader() {
               </ul>
             </nav>
 
-            <div className="flex shrink-0 items-center gap-3">
+            <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-3">
               <a
                 className="whitespace-nowrap text-[17px] font-semibold leading-[1.2] text-[var(--color-text-on-dark)]"
                 href="tel:+79689731168"
@@ -139,7 +142,7 @@ export function FirstScreenHeader() {
                 {firstScreenContent.phone}
               </a>
               <button
-                className="rounded-[50px] bg-[var(--color-accent)] px-5 pb-[17px] pt-[15px] text-[14px] font-semibold leading-[1.2] text-white transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:bg-[var(--color-accent-strong)]"
+                className="h-10 rounded-[50px] bg-[var(--color-accent)] px-5 text-[14px] font-semibold leading-[1.2] text-white transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:bg-[var(--color-accent-strong)]"
                 type="button"
               >
                 {firstScreenContent.cta}
