@@ -179,31 +179,31 @@ function DesktopHero1024() {
 function DesktopHero1440() {
   return (
     <div className="relative hidden h-[810px] min-[1440px]:block">
-      <div className="absolute left-0 top-[162px]">
+      <div className="absolute left-0 top-[126px]">
         <h1 className="m-0 font-[family-name:var(--font-family-display)] text-white">
-          <span className="block text-[90px] font-normal italic leading-[0.9] tracking-[-0.04em]">
+          <span className="block text-[86px] font-normal italic leading-[0.9] tracking-[-0.04em]">
             {firstScreenContent.titleTop}
           </span>
         </h1>
       </div>
 
-      <div className="absolute left-[227px] top-[243px] w-[933px]">
+      <div className="absolute left-[227px] top-[188px] w-[920px]">
         <h1 className="m-0 font-[family-name:var(--font-family-display)] text-white">
-          <span className="block text-[90px] font-bold leading-[0.9] tracking-[-0.04em]">
+          <span className="block text-[86px] font-bold leading-[0.9] tracking-[-0.04em]">
             {firstScreenContent.titleBottom}
           </span>
         </h1>
       </div>
 
-      <p className="absolute left-[753px] top-[193px] w-[407px] text-[17px] font-normal leading-[1.2] text-white">
+      <p className="absolute left-[753px] top-[142px] w-[407px] text-[17px] font-normal leading-[1.2] text-white/90">
         {firstScreenContent.subtitle}
       </p>
 
-      <div className="absolute left-[640px] top-[376px] size-[210px]">
+      <div className="absolute left-[640px] top-[360px] size-[210px]">
         <HeroCircleButton />
       </div>
 
-      <div className="absolute left-[780px] top-[516px] h-[214px] w-[380px] overflow-hidden rounded-[12px]">
+      <div className="absolute left-[780px] top-[500px] h-[214px] w-[380px] overflow-hidden rounded-[12px]">
         <Image
           alt=""
           className="object-cover"

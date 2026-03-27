@@ -130,7 +130,7 @@ export function FirstScreenHeader() {
               </ul>
             </nav>
 
-            <div className="flex shrink-0 items-center gap-4">
+            <div className="flex shrink-0 items-center gap-3">
               <a
                 className="whitespace-nowrap text-[17px] font-semibold leading-[1.2] text-[var(--color-text-on-dark)]"
                 href="tel:+79689731168"
