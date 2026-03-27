@@ -14,34 +14,46 @@ function HeroCircleButton() {
       className="relative block shrink-0 rounded-full"
       type="button"
     >
-      <img
-        alt=""
-        className="block size-full"
-        height={210}
-        src={firstScreenAssets.ctaOuter}
-        width={210}
-      />
-      <img
-        alt=""
-        className="absolute left-1/2 top-1/2 w-[56px] -translate-x-1/2 -translate-y-1/2"
-        height={56}
-        src={firstScreenAssets.ctaGlow}
-        width={56}
-      />
-      <img
-        alt=""
-        className="absolute left-1/2 top-1/2 w-3 -translate-x-1/2 -translate-y-1/2"
-        height={12}
-        src={firstScreenAssets.ctaDotRing}
-        width={12}
-      />
-      <img
-        alt=""
-        className="absolute left-1/2 top-1/2 w-[187px] -translate-x-1/2 -translate-y-1/2"
-        height={180}
-        src={firstScreenAssets.ctaTextPath}
-        width={187}
-      />
+      <picture>
+        <source media="(min-width: 1024px)" srcSet={firstScreenAssets.cta1024Outer} />
+        <img
+          alt=""
+          className="block size-full"
+          height={210}
+          src={firstScreenAssets.ctaOuter}
+          width={210}
+        />
+      </picture>
+      <picture>
+        <source media="(min-width: 1024px)" srcSet={firstScreenAssets.cta1024Glow} />
+        <img
+          alt=""
+          className="absolute left-1/2 top-1/2 w-[56px] -translate-x-1/2 -translate-y-1/2"
+          height={56}
+          src={firstScreenAssets.ctaGlow}
+          width={56}
+        />
+      </picture>
+      <picture>
+        <source media="(min-width: 1024px)" srcSet={firstScreenAssets.cta1024DotRing} />
+        <img
+          alt=""
+          className="absolute left-1/2 top-1/2 w-3 -translate-x-1/2 -translate-y-1/2"
+          height={12}
+          src={firstScreenAssets.ctaDotRing}
+          width={12}
+        />
+      </picture>
+      <picture>
+        <source media="(min-width: 1024px)" srcSet={firstScreenAssets.cta1024TextPath} />
+        <img
+          alt=""
+          className="absolute left-1/2 top-1/2 w-[187px] -translate-x-1/2 -translate-y-1/2"
+          height={180}
+          src={firstScreenAssets.ctaTextPath}
+          width={187}
+        />
+      </picture>
     </button>
   );
 }
@@ -92,13 +104,13 @@ function MobileHero() {
 
 function TabletHero() {
   return (
-    <div className="relative hidden h-[772px] min-[768px]:block min-[1024px]:hidden">
-      <div className="absolute left-0 top-[76px]">
+    <div className="relative hidden h-[900px] min-[768px]:block min-[1024px]:hidden">
+      <div className="absolute left-[65px] top-[180px] w-[638px]">
         <h1 className="m-0 font-[family-name:var(--font-family-display)] text-white">
           <span className="block text-[80px] font-normal italic leading-[0.9] tracking-[-0.04em]">
             {firstScreenContent.titleTop}
           </span>
-          <span className="mt-[2px] block max-w-[520px] text-[44px] font-bold leading-[0.9] tracking-[-0.04em]">
+          <span className="mt-5 block max-w-[466px] pl-[82px] text-[44px] font-bold leading-[0.9] tracking-[-0.04em]">
             {firstScreenContent.titleBottom}
           </span>
         </h1>
@@ -112,7 +124,7 @@ function TabletHero() {
         <HeroCircleButton />
       </div>
 
-      <div className="absolute bottom-0 left-[195px]">
+      <div className="absolute left-[195px] top-[764px]">
         <HeroGeoBlock />
       </div>
     </div>

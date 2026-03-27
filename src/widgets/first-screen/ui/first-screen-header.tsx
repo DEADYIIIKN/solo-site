@@ -48,7 +48,7 @@ export function FirstScreenHeader() {
   return (
     <header className="absolute inset-x-0 top-0 z-20">
       <div className="container-base">
-        <div className="flex min-h-[56px] items-end justify-between py-4 min-[480px]:min-h-[60px] min-[480px]:py-6 min-[768px]:min-h-[64px] min-[768px]:py-0 min-[1024px]:hidden">
+        <div className="flex h-[56px] items-center justify-between min-[480px]:h-[60px] min-[768px]:h-[64px] min-[1024px]:hidden">
           <div className="flex min-w-0 flex-1 items-center justify-between min-[1024px]:hidden">
             <MobileLogo />
 
@@ -68,7 +68,7 @@ export function FirstScreenHeader() {
         </div>
 
         <div className="hidden min-[1024px]:block min-[1440px]:hidden">
-          <div className="relative mx-auto h-[72px] w-[944px] py-[15px]">
+          <div className="relative mx-auto h-[72px] w-[944px]">
             <div className="absolute left-0 top-1/2 -translate-y-1/2">
               <MobileLogo />
             </div>

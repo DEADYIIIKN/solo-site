@@ -33,6 +33,10 @@ export const firstScreenAssets = {
   ctaGlow: "/assets/figma/10005-cta-button/ellipse110.svg",
   ctaDotRing: "/assets/figma/10005-cta-button/ellipse111.svg",
   ctaTextPath: "/assets/figma/10005-cta-button/vector.svg",
+  cta1024Outer: "/assets/figma/9015-cta-button-1024/ellipse112.svg",
+  cta1024Glow: "/assets/figma/9015-cta-button-1024/ellipse110.svg",
+  cta1024DotRing: "/assets/figma/9015-cta-button-1024/ellipse111.svg",
+  cta1024TextPath: "/assets/figma/9015-cta-button-1024/vector.svg",
   heroImage: "/assets/figma/9003-hero-screen-1024/hero-image.png",
   geoMark: "/assets/figma/9010-hero-geo-block-1024/geo-mark.svg"
 } as const;
