@@ -1,0 +1,27 @@
+/* Изолируем admin от site-globals: сбрасываем фон и цвет, переданные через app/globals.css */
+body {
+  background: var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}
+
+/* globals.css ставит ::selection на акцент сайта — в admin лучше дефолт */
+::selection {
+  background: var(--theme-text) !important;
+  color: var(--theme-bg) !important;
+}
+
+/* Поле detailVideo: вместо Create New — своя полоска (portal) + скрытие дефолтной кнопки */
+@layer payload-default {
+  .upload-field--solo-quickstrip .upload__createNewToggler,
+  .upload-field--solo-quickstrip .upload__dropzoneContent__buttons > input[type="file"] {
+    display: none !important;
+  }
+
+  .upload-field--solo-quickstrip__stripInner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(var(--base) / 2);
+    margin-right: calc(var(--base) / 4);
+  }
+}

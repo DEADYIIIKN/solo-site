@@ -1,154 +1,82 @@
+/* eslint-disable @next/next/no-img-element */
+
+import { useNavbarSurface } from "@/shared/lib/use-navbar-surface";
+import { SiteNavLink } from "@/shared/ui/site-nav-link";
 import {
   firstScreenAssets,
   firstScreenContent,
-  firstScreenNavItems
+  firstScreenNavLinks
 } from "@/widgets/first-screen/model/first-screen.data";
 
-function MobileLogo() {
-  return (
-    <picture>
-      <source media="(min-width: 1440px)" srcSet={firstScreenAssets.navbar.logo1440} />
-      <source media="(min-width: 1024px)" srcSet={firstScreenAssets.navbar.logo1024} />
-      <source media="(min-width: 768px)" srcSet={firstScreenAssets.navbar.logo768} />
-      <source media="(min-width: 480px)" srcSet={firstScreenAssets.navbar.logo480} />
-      <img
-        alt="СОЛО"
-        className="h-auto w-[113px] min-[480px]:w-[124px] min-[768px]:w-[136px]"
-        height={24}
-        src={firstScreenAssets.navbar.logo360}
-        width={136}
-      />
-    </picture>
-  );
-}
+type FirstScreenHeader1440Props = {
+  onCtaClick?: () => void;
+};
 
-function MenuButton() {
+export function FirstScreenHeader1440({ onCtaClick }: FirstScreenHeader1440Props) {
+  const navbarSurface = useNavbarSurface(82);
+  const isLightTheme = navbarSurface === "light-surface";
+  const isHeroTransparent = navbarSurface === "hero-transparent";
+  const headerBackgroundColor = isHeroTransparent ? "transparent" : isLightTheme ? "#ffffff" : "#0d0300";
+
   return (
-    <button
-      aria-label="Открыть меню"
-      className="flex size-full shrink-0 items-center justify-center rounded-full bg-[var(--color-accent)] text-white transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:bg-[var(--color-accent-strong)]"
-      type="button"
+    <header
+      className="fixed inset-x-0 top-0 z-[400] h-[82px] transition-[background-color] duration-[180ms] ease-[var(--ease-standard)]"
+      style={{ backgroundColor: headerBackgroundColor }}
     >
-      <picture>
-        <source media="(min-width: 768px)" srcSet={firstScreenAssets.navbar.menu768} />
-        <source media="(min-width: 480px)" srcSet={firstScreenAssets.navbar.menu480} />
-        <img
-          alt=""
-          className="h-auto w-5 min-[768px]:w-6"
-          height={24}
-          src={firstScreenAssets.navbar.menu360}
-          width={24}
-        />
-      </picture>
-    </button>
-  );
-}
-
-export function FirstScreenHeader() {
-  return (
-    <header className="absolute inset-x-0 top-0 z-20">
-      <div className="container-base">
-        <div className="flex h-[56px] items-center justify-between min-[480px]:h-[60px] min-[768px]:h-[64px] min-[1024px]:hidden">
-          <div className="flex min-w-0 flex-1 items-center justify-between min-[1024px]:hidden">
-            <MobileLogo />
-
-            <div className="flex items-center gap-4 min-[768px]:gap-6">
-              <a
-                className="hidden text-[17px] font-semibold leading-[1.2] min-[768px]:block"
-                href="tel:+79689731168"
-                style={{ color: "var(--color-text-on-dark)" }}
-              >
-                {firstScreenContent.phone}
-              </a>
-              <div className="size-14 min-[480px]:size-15 min-[768px]:size-14">
-                <MenuButton />
-              </div>
-            </div>
+      <div className="mx-auto flex h-full w-[1160px] items-center justify-between px-[40px]">
+        <div className="relative h-[24px] w-[283px] shrink-0">
+          <div className="absolute left-0 top-0 h-[24px] w-[136px]">
+            <img
+              alt="СОЛО"
+              className={`absolute inset-0 block h-full w-full object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
+                isLightTheme ? "opacity-0" : "opacity-100"
+              }`}
+              src={firstScreenAssets.navbar.logo1440}
+            />
+            <img
+              alt="СОЛО"
+              className={`absolute inset-0 block h-full w-full object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
+                isLightTheme ? "opacity-100" : "opacity-0"
+              }`}
+              src={firstScreenAssets.navbar.logo1440Dark}
+            />
           </div>
         </div>
 
-        <div className="hidden min-[1024px]:block min-[1440px]:hidden">
-          <div className="relative mx-auto h-[72px] w-[944px]">
-            <div className="absolute left-0 top-1/2 -translate-y-1/2">
-              <MobileLogo />
-            </div>
-
-            <nav
-              aria-label="Основная навигация"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        <nav
+          className={`flex shrink-0 items-center justify-center gap-[24px] rounded-[10px] text-center text-[14px] font-medium lowercase leading-[1.2] transition-[color] duration-[180ms] ease-[var(--ease-standard)] ${
+            isLightTheme ? "text-[#0d0300]" : "text-white"
+          }`}
+        >
+          {firstScreenNavLinks.map((item) => (
+            <SiteNavLink
+              key={item.label}
+              className="shrink-0 whitespace-nowrap transition-[color,opacity] duration-[180ms] ease-[var(--ease-standard)] hover:opacity-75"
+              href={item.href}
             >
-              <ul className="flex items-center gap-4 text-[13px] font-medium leading-[1.2] text-[var(--color-text-on-dark)]">
-                {firstScreenNavItems.map((item) => (
-                  <li key={item}>
-                    <a
-                      className="transition-opacity duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:opacity-75"
-                      href="#"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+              {item.label}
+            </SiteNavLink>
+          ))}
+        </nav>
 
-            <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-[10px]">
-              <a
-                className="whitespace-nowrap text-[16px] font-semibold leading-[1.2] text-[var(--color-text-on-dark)]"
-                href="tel:+79689731168"
-                style={{ color: "var(--color-text-on-dark)" }}
-              >
-                {firstScreenContent.phone}
-              </a>
-              <button
-                className="rounded-[50px] bg-[var(--color-accent)] px-[20px] pb-[17px] pt-[15px] text-[14px] font-semibold leading-[1.2] text-white transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:bg-[var(--color-accent-strong)]"
-                type="button"
-              >
-                {firstScreenContent.cta}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="hidden min-[1440px]:block">
-          <div className="relative mx-auto h-[82px] w-[1160px]">
-            <div className="absolute left-0 top-1/2 w-[136px] -translate-y-1/2">
-              <MobileLogo />
-            </div>
-
-            <nav
-              aria-label="Основная навигация"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            >
-              <ul className="flex items-center gap-6 text-[14px] font-medium leading-[1.2] text-[var(--color-text-on-dark)]">
-                {firstScreenNavItems.map((item) => (
-                  <li key={item}>
-                    <a
-                      className="transition-opacity duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:opacity-75"
-                      href="#"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <div className="absolute right-0 top-1/2 flex -translate-y-1/2 items-center gap-3">
-              <a
-                className="whitespace-nowrap text-[17px] font-semibold leading-[1.2] text-[var(--color-text-on-dark)]"
-                href="tel:+79689731168"
-                style={{ color: "var(--color-text-on-dark)" }}
-              >
-                {firstScreenContent.phone}
-              </a>
-              <button
-                className="h-10 rounded-[50px] bg-[var(--color-accent)] px-5 text-[14px] font-semibold leading-[1.2] text-white transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:bg-[var(--color-accent-strong)]"
-                type="button"
-              >
-                {firstScreenContent.cta}
-              </button>
-            </div>
-          </div>
+        <div className="flex shrink-0 items-center justify-end gap-[16px]">
+          <a
+            className={`whitespace-nowrap text-right text-[17px] font-semibold leading-[1.2] transition-[color] duration-[180ms] ease-[var(--ease-standard)] ${
+              isLightTheme ? "text-[#0d0300]" : "text-white"
+            }`}
+            href="tel:+79689731168"
+            style={{ color: isLightTheme ? "#0d0300" : "#ffffff" }}
+          >
+            {firstScreenContent.phone}
+          </a>
+          <button
+            className="flex h-[42px] w-[114px] shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] whitespace-nowrap text-center"
+            onClick={onCtaClick}
+            style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.2, color: "#ffffff" }}
+            type="button"
+          >
+            {firstScreenContent.cta}
+          </button>
         </div>
       </div>
     </header>

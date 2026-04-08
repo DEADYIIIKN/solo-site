@@ -1,0 +1,89 @@
+--- a/dist/fields/Upload/Input.js
++++ b/dist/fields/Upload/Input.js
+@@ -4,7 +4,7 @@
+ import { useModal } from '@faceless-ui/modal';
+ import { formatAdminURL } from 'payload/shared';
+ import * as qs from 'qs-esm';
+-import React, { useCallback, useEffect, useMemo } from 'react';
++import React, { useCallback, useEffect, useMemo, useId } from 'react';
+ import { useBulkUpload } from '../../elements/BulkUpload/index.js';
+ import { Button } from '../../elements/Button/index.js';
+ import { useDocumentDrawer } from '../../elements/DocumentDrawer/index.js';
+@@ -16,6 +16,7 @@
+ import { FieldError } from '../../fields/FieldError/index.js';
+ import { FieldLabel } from '../../fields/FieldLabel/index.js';
+ import { useAuth } from '../../providers/Auth/index.js';
++import { useConfig } from '../../providers/Config/index.js';
+ import { useLocale } from '../../providers/Locale/index.js';
+ import { useTranslation } from '../../providers/Translation/index.js';
+ import { normalizeRelationshipValue } from '../../utilities/normalizeRelationshipValue.js';
+@@ -75,6 +76,20 @@
+     i18n,
+     t
+   } = useTranslation();
++  const {
++    getEntityConfig
++  } = useConfig();
++  const uploadFileInputId = useId();
++  const uploadMimeTypesAccept = useMemo(() => {
++    if (typeof activeRelationTo !== 'string') {
++      return '';
++    }
++    const col = getEntityConfig({
++      collectionSlug: activeRelationTo
++    });
++    const m = col?.upload?.mimeTypes;
++    return Array.isArray(m) ? m.join(',') : '';
++  }, [activeRelationTo, getEntityConfig]);
+   // This will be used by the bulk upload to allow you to select only collections you have create permissions for
+   const collectionSlugsWithCreatePermission = useMemo(() => {
+     if (Array.isArray(relationTo)) {
+@@ -553,21 +568,42 @@
+           children: [/*#__PURE__*/_jsxs("div", {
+             className: `${baseClass}__dropzoneContent__buttons`,
+             children: [canCreate && /*#__PURE__*/_jsxs(_Fragment, {
+-              children: [/*#__PURE__*/_jsx(Button, {
++              children: [/*#__PURE__*/hasMany ? /*#__PURE__*/_jsx(Button, {
+                 buttonStyle: "pill",
+                 className: `${baseClass}__createNewToggler`,
+                 disabled: readOnly || !canCreate,
+                 onClick: () => {
+                   if (!readOnly) {
+-                    if (hasMany) {
+-                      onLocalFileSelection();
+-                    } else {
+-                      openCreateDocDrawer();
+-                    }
++                    onLocalFileSelection();
+                   }
+                 },
+                 size: "small",
+                 children: t('general:createNew')
++              }) : /*#__PURE__*/_jsxs(_Fragment, {
++                children: [/*#__PURE__*/_jsx("input", {
++                  accept: uploadMimeTypesAccept,
++                  id: uploadFileInputId,
++                  onChange: e => {
++                    if (e.target.files && e.target.files.length > 0) {
++                      onLocalFileSelection(e.target.files);
++                    }
++                    e.target.value = '';
++                  },
++                  style: {
++                    display: 'none'
++                  },
++                  type: "file"
++                }), /*#__PURE__*/_jsx(Button, {
++                  buttonStyle: "pill",
++                  className: `${baseClass}__createNewToggler`,
++                  disabled: readOnly || !canCreate,
++                  el: "label",
++                  extraButtonProps: {
++                    htmlFor: uploadFileInputId
++                  },
++                  size: "small",
++                  children: t('general:createNew')
++                })]
+               }), /*#__PURE__*/_jsx("span", {
+                 className: `${baseClass}__dropzoneContent__orText`,
+                 children: t('general:or')

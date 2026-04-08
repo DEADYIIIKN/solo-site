@@ -3,23 +3,60 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@10.6.5",
+  "pnpm": {
+    "patchedDependencies": {
+      "@payloadcms/ui@3.81.0": "patches/@payloadcms__ui@3.81.0.patch"
+    }
+  },
   "engines": {
     "node": ">=22.0.0"
   },
   "scripts": {
-    "dev": "next dev",
+    "predev": "node scripts/ensure-env-local.mjs && node scripts/clean-dev-cache.mjs",
+    "dev": "next dev --turbopack -p 3000 -H 0.0.0.0",
+    "dev:auto": "sh scripts/dev-if-free.sh",
+    "dev:fast": "node scripts/ensure-env-local.mjs && cross-env SKIP_DEV_CACHE_CLEAN=1 next dev --turbopack -p 3000 -H 0.0.0.0",
+    "dev:webpack": "node scripts/clean-dev-cache.mjs && next dev -p 3000 -H 0.0.0.0",
+    "dev:3002": "node scripts/clean-dev-cache.mjs && next dev --turbopack -p 3002 -H 0.0.0.0",
+    "dev:clean": "node scripts/clean-dev-cache.mjs && next dev --turbopack -p 3000 -H 0.0.0.0",
+    "dev:rescue": "sh -c 'kill -9 $(lsof -ti :3000) 2>/dev/null || true; node scripts/clean-dev-cache.mjs && exec next dev --turbopack -p 3000 -H 0.0.0.0'",
+    "dev:up": "node scripts/dev-up-verify.mjs",
     "build": "next build",
     "start": "next start",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "postinstall": "node scripts/ensure-env-local.mjs",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "visual:modals": "node scripts/visual-modal-pass.mjs",
+    "audit:modals": "node scripts/consultation-modal-audit.mjs",
+    "verify:modals": "node scripts/visual-modal-pass.mjs && node scripts/consultation-modal-audit.mjs",
+    "audit:philosophy": "node scripts/philosophy-pin-audit.mjs",
+    "audit:philosophy:smoke": "node scripts/philosophy-scroll-smoke.mjs",
+    "verify:philosophy": "node scripts/philosophy-verify-all.mjs",
+    "audit:services-1440": "node scripts/services-1440-check.mjs",
+    "audit:levels": "node scripts/levels-layout-audit.mjs",
+    "audit:services-scroll": "node scripts/services-scroll-smoke.mjs",
+    "audit:services-white": "node scripts/services-white-column-audit.mjs"
   },
   "dependencies": {
+    "@payloadcms/db-sqlite": "^3.81.0",
+    "@payloadcms/live-preview-react": "^3.81.0",
+    "@payloadcms/next": "^3.81.0",
+    "@payloadcms/richtext-lexical": "^3.81.0",
+    "@payloadcms/ui": "^3.81.0",
     "@radix-ui/react-dialog": "^1.1.15",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "next": "^15.3.0",
+    "dotenv": "^17.4.1",
+    "graphql": "^16.13.2",
+    "next": "^15.4.11",
+    "payload": "^3.81.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sharp": "^0.34.5",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
@@ -28,8 +65,11 @@
     "@types/node": "^22.14.1",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.5",
+    "cross-env": "^10.1.0",
     "eslint": "^9.23.0",
-    "eslint-config-next": "^15.3.0",
+    "eslint-config-next": "^15.4.11",
+    "playwright": "1.50.1",
+    "pngjs": "7.0.0",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3"
   }

@@ -1,4 +1,5 @@
 .next
+.visual-run
 node_modules
 dist
 coverage
@@ -8,3 +9,13 @@ coverage
 pnpm-lock.yaml
 output
 public/assets/figma/9010-hero-geo-block-1024/geo-mark.png
+
+# Payload CMS
+payload.db
+payload.db-*
+.env.local
+media/
+
+# IDE / local tooling (не коммитить дампы и скриншоты)
+.cursor/
+.playwright-mcp/

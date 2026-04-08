@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Montserrat", sans-serif;
+}
+
 :root {
   --font-family-display: var(--font-montserrat), "Montserrat", sans-serif;
   --font-family-text: var(--font-montserrat), "Montserrat", sans-serif;
@@ -144,8 +148,19 @@
   box-sizing: border-box;
 }
 
+/* Скрыть нативный скроллбар у горизонтальных каруселей */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* auto: иначе scroll-behavior: smooth рассинхронизирует window.scrollY с scroll-driven анимациями (философия pin) — дергание */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  /* Стабильная ширина layout viewport: иначе при появлении скроллбара min-width:1440px «мигает» и 1440-макеты не совпадают с физическим экраном */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -156,7 +171,7 @@ body {
     radial-gradient(circle at top left, rgba(255, 92, 0, 0.14), transparent 22%),
     linear-gradient(180deg, #fff8f2 0%, #f8f4ef 100%);
   color: var(--color-text);
-  font-family: var(--font-family-text);
+  font-family: var(--font-family-text) !important;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -167,15 +182,19 @@ a {
   text-decoration: none;
 }
 
-button,
-input,
-textarea,
+/* font: inherit на кнопках/полях ломает text-* из Tailwind (немаркированное правило после @layer перебивает utilities). */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
 select {
   font: inherit;
 }
 
-button {
-  cursor: pointer;
+input,
+textarea {
+  font-family: inherit;
 }
 
 img,
@@ -190,9 +209,93 @@ video {
   color: var(--color-text-on-dark);
 }
 
+@keyframes business-goals-card-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.992);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes business-goals-overlay-content-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.992);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--color-focus-ring);
   outline-offset: 3px;
+}
+
+/* Модалка консультации: только нижняя линия, без глобального оранжевого кольца (перекрывает порядок слоёв) */
+.first-screen-consultation-modal input:focus-visible,
+.first-screen-consultation-modal textarea:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Сброс встроенных отступов textarea — иначе в блоке h-80 помещается меньше строк, чем в Figma */
+.first-screen-consultation-modal textarea {
+  margin: 0;
+  padding: 0;
+  appearance: none;
+}
+
+/* Гео-метка первого экрана — плавное «дыхание» как индикатор записи */
+@keyframes first-screen-geo-recording {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.32;
+  }
+}
+
+.first-screen-geo-recording-pulse {
+  animation: first-screen-geo-recording 1.75s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .first-screen-geo-recording-pulse {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* CTA «бесплатная консультация» — плавное вращение текста по кругу */
+@keyframes first-screen-cta-text-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.first-screen-cta-text-orbit {
+  animation: first-screen-cta-text-spin 22s linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .first-screen-cta-text-orbit {
+    animation: none;
+  }
 }
 
 #__next,
@@ -203,12 +306,150 @@ body > div:first-child {
 .page-shell {
   position: relative;
   min-height: 100vh;
-  overflow-x: clip;
+  /* auto: узкие экраны могут прокручивать широкие секции (напр. философия 1440); clip резал внутренний overflow */
+  overflow-x: auto;
+}
+
+/*
+ * От 1024: без overflow-x на shell — иначе не работает position:sticky у «философии» (1024 и 1440), ломается pin-анимация.
+ * До 1024 оставляем auto для горизонтального скролла широких секций.
+ */
+@media (min-width: 1024px) {
+  .page-shell {
+    overflow-x: visible;
+  }
+}
+
+.page-content {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
 }
 
 .app-main {
   position: relative;
   z-index: var(--z-base);
+}
+
+/*
+ * Секции «Что мы делаем» / команда: глобальные img/p не должны ломать утилитную типографику.
+ * Оранжевая точка у eyebrow — всегда `SectionTitleDot` (10×10px круг), не img с ellipse135.svg
+ * (preserveAspectRatio none + flex дают «полоски»). Точка + подпись — `SectionEyebrowRow` (@/shared/ui/section-eyebrow-row),
+ * выравнивание по умолчанию `items-center` (не `items-end` — иначе перекос относительно строчных букв).
+ */
+.team-section-scope :where(p) {
+  margin: 0;
+}
+
+.team-section-scope :where(img) {
+  max-width: none !important;
+}
+
+.philosophy-clients-scope :where(p) {
+  margin: 0;
+}
+
+.philosophy-clients-scope :where(img) {
+  max-width: none !important;
+}
+
+/*
+ * Услуги 1440 (Figma 783:9203): глобальные `img { max-width: 100%; height: auto; }` ломают абсолютную вёрстку
+ * и масштаб ассетов относительно макета; без `max-width: none` картинки подстраиваются под контейнер не как в Figma.
+ * `p` — сброс UA margin, чтобы абсолютные подписи не получали лишний offset.
+ */
+.services-section-scope :where(p) {
+  margin: 0;
+}
+
+.services-section-scope :where(img) {
+  max-width: none !important;
+}
+
+/*
+ * Блок лида (Figma 783:9078…): те же причины, что у услуг —
+ * глобальный `img { max-width: 100%; height: auto; }` сжимает декоративные SVG дуг;
+ * UA/наследие может давать margin у `p`/`h2` и портить сетку.
+ */
+.lead-form-scope :where(p),
+.lead-form-scope :where(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+}
+
+.lead-form-scope :where(img) {
+  max-width: none !important;
+}
+
+/* Как `.first-screen-consultation-modal` — без глобального оранжевого :focus-visible на полях */
+.lead-form-scope input:focus-visible,
+.lead-form-scope textarea:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+}
+
+.lead-form-scope textarea {
+  margin: 0;
+  padding: 0;
+  appearance: none;
+}
+
+/* Снятие pin (fixed→absolute): без этого браузер держит scroll anchoring и подкручивает scrollY — ощущение «откидывания» вверх */
+.philosophy-clients-scope,
+.philosophy-clients-scope [data-philosophy-pin] {
+  overflow-anchor: none;
+}
+
+.cases-section-scope,
+.cases-section-scope [data-cases-pin] {
+  overflow-anchor: none;
+}
+
+.services-section-scope,
+.services-section-scope [data-services-pin] {
+  overflow-anchor: none;
+}
+
+/* «Уровни»: без сторонних keyframes; явные `.levels-reveal-item` управляют своим transition. */
+.levels-section-scope {
+  animation: none;
+  transition: none;
+}
+
+.levels-section-scope :where(*:not(.levels-reveal-item)) {
+  animation: none !important;
+}
+
+/* Ленты логотипов: сдвиг задаётся из JS (--philosophy-marquee-shift), один цикл = ширина сегмента + gap.
+ * Не менять --philosophy-marquee-shift после старта — иначе анимация перезапускается и «дёргается». */
+@keyframes philosophy-marquee-shift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-1 * var(--philosophy-marquee-shift, 0px)), 0, 0);
+  }
+}
+
+.philosophy-marquee-track {
+  animation: philosophy-marquee-shift var(--philosophy-marquee-duration, 75s) linear infinite;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .philosophy-marquee-track {
+    animation: none;
+  }
+}
+
+/* Отдельный слой под поворот лент — меньше мерцания при скролле страницы */
+.philosophy-marquee-row-dark {
+  transform: rotate(-3deg) translateZ(0);
+}
+
+.philosophy-marquee-row-orange {
+  transform: rotate(2deg) translateZ(0);
 }
 
 .container-base {
@@ -258,7 +499,7 @@ body > div:first-child {
 }
 
 .first-screen-grid {
-  opacity: 0.18;
+  opacity: 0.08;
   background-image: var(--first-screen-grid-image);
   background-repeat: no-repeat;
   background-position: top center;
@@ -336,7 +577,6 @@ body > div:first-child {
 
 @media (min-width: 1440px) {
   .first-screen-grid {
-    opacity: 0.05;
     background-position: top left;
     background-repeat: repeat;
     background-size: 778px 416px;
