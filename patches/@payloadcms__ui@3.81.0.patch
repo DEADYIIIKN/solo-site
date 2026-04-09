@@ -88,3 +88,39 @@ index 0b50366ce8375ffdf758cb99390e4ed16f638107..b4f91486f1c0e89b6864fb5a0e6cf3dc
                }), /*#__PURE__*/_jsx("span", {
                  className: `${baseClass}__dropzoneContent__orText`,
                  children: t('general:or')
+diff --git a/dist/fields/Upload/index.js b/dist/fields/Upload/index.js
+index cb7ef39fc970a10c2f62a8b43bf09e0281746fe3..8eceb7c0a14c1384255faf8267459426108111ca 100644
+--- a/dist/fields/Upload/index.js
++++ b/dist/fields/Upload/index.js
+@@ -32,9 +32,10 @@ export function UploadComponent(props) {
+     readOnly,
+     validate
+   } = props;
+-  const {
+-    config
+-  } = useConfig();
++  const cfg = useConfig();
++  const config = cfg?.config;
++  const api = config?.routes?.api ?? '/api';
++  const serverURL = config?.serverURL ?? '';
+   const displayPreview = field.displayPreview;
+   const memoizedValidate = React.useCallback((value, options) => {
+     if (typeof validate === 'function') {
+@@ -82,7 +83,7 @@ export function UploadComponent(props) {
+     children: /*#__PURE__*/_jsx(UploadInput, {
+       AfterInput: AfterInput,
+       allowCreate: allowCreate !== false,
+-      api: config.routes.api,
++      api: api,
+       BeforeInput: BeforeInput,
+       className: className,
+       Description: Description,
+@@ -101,7 +102,7 @@ export function UploadComponent(props) {
+       readOnly: readOnly || disabled,
+       relationTo: relationToFromProps,
+       required: required,
+-      serverURL: config.serverURL,
++      serverURL: serverURL,
+       showError: showError,
+       style: styles,
+       value: memoizedValue
