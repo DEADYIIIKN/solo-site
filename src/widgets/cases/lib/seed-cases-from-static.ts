@@ -6,7 +6,7 @@ import config from "../../../payload.config.ts";
 import {
   casesAdCards1440,
   casesVerticalCards1440,
-} from "../model/cases.data";
+} from "../model/cases.data.ts";
 
 /**
  * Идемпотентно создаёт в Payload записи кейсов из статического макета (по internalKey).
