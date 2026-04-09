@@ -320,9 +320,8 @@ export function UploadWithQuickFileComponent(props: UploadFieldClientProps) {
   } = props;
 
   const cfg = useConfig();
-  const config = cfg?.config;
-  const apiRoute = config?.routes?.api ?? "/api";
-  const serverURL = config?.serverURL ?? "";
+  const apiRoute = cfg?.config?.routes?.api ?? "/api";
+  const serverURL = cfg?.config?.serverURL ?? "";
   const { code: localeCode } = useLocale();
   const displayPreview = field.displayPreview;
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -414,42 +413,6 @@ export function UploadWithQuickFileComponent(props: UploadFieldClientProps) {
     },
     [apiRoute, serverURL, hasMany, localeCode, relationToFromProps, setValue, value0]
   );
-
-  if (!config) {
-    return (
-      <BulkUploadProvider drawerSlugPrefix={pathFromProps}>
-        <div className="upload-field--solo-quickstrip" ref={wrapperRef}>
-          <UploadInput
-            AfterInput={AfterInput}
-            allowCreate={allowCreate !== false}
-            api={apiRoute}
-            BeforeInput={BeforeInput}
-            className={className}
-            Description={Description}
-            description={description}
-            displayPreview={displayPreview}
-            Error={Error}
-            filterOptions={filterOptions}
-            hasMany={hasMany}
-            isSortable={isSortable}
-            label={label}
-            Label={Label}
-            localized={localized}
-            maxRows={maxRows}
-            onChange={setValue}
-            path={path}
-            readOnly={readOnly || Boolean(disabled)}
-            relationTo={relationToFromProps}
-            required={required}
-            serverURL={serverURL}
-            showError={showError}
-            style={styles}
-            value={memoizedValue as UploadInputProps["value"]}
-          />
-        </div>
-      </BulkUploadProvider>
-    );
-  }
 
   return (
     <BulkUploadProvider drawerSlugPrefix={pathFromProps}>
