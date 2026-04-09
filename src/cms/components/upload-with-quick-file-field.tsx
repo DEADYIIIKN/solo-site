@@ -103,7 +103,8 @@ function DropzoneInlineStrip(props: StripProps) {
     uploading,
   } = props;
   const { permissions } = useAuth();
-  const { getEntityConfig } = useConfig();
+  const cfg = useConfig();
+  const getEntityConfig = cfg?.getEntityConfig;
   const { t } = useTranslation();
 
   const [portalHost, setPortalHost] = useState<HTMLDivElement | null>(null);
@@ -115,7 +116,7 @@ function DropzoneInlineStrip(props: StripProps) {
   const activeRelationTo = Array.isArray(relationTo) ? relationTo[0] : relationTo;
 
   const accept = useMemo(() => {
-    if (typeof activeRelationTo !== "string") return "";
+    if (typeof activeRelationTo !== "string" || !getEntityConfig) return "";
     const col = getEntityConfig({ collectionSlug: activeRelationTo });
     const m = col?.upload?.mimeTypes;
     return Array.isArray(m) ? m.join(",") : "";
@@ -318,7 +319,10 @@ export function UploadWithQuickFileComponent(props: UploadFieldClientProps) {
     validate,
   } = props;
 
-  const { config } = useConfig();
+  const cfg = useConfig();
+  const config = cfg?.config;
+  const apiRoute = config?.routes?.api ?? "/api";
+  const serverURL = config?.serverURL ?? "";
   const { code: localeCode } = useLocale();
   const displayPreview = field.displayPreview;
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -387,8 +391,8 @@ export function UploadWithQuickFileComponent(props: UploadFieldClientProps) {
         const id = await postUploadCreateDocument({
           file,
           collectionSlug: slug,
-          apiRoute: config.routes.api,
-          serverURL: config.serverURL ?? "",
+          apiRoute,
+          serverURL,
           localeCode,
         });
         if (hasMany) {
@@ -408,8 +412,44 @@ export function UploadWithQuickFileComponent(props: UploadFieldClientProps) {
         setUploading(false);
       }
     },
-    [config.routes.api, config.serverURL, hasMany, localeCode, relationToFromProps, setValue, value0]
+    [apiRoute, serverURL, hasMany, localeCode, relationToFromProps, setValue, value0]
   );
+
+  if (!config) {
+    return (
+      <BulkUploadProvider drawerSlugPrefix={pathFromProps}>
+        <div className="upload-field--solo-quickstrip" ref={wrapperRef}>
+          <UploadInput
+            AfterInput={AfterInput}
+            allowCreate={allowCreate !== false}
+            api={apiRoute}
+            BeforeInput={BeforeInput}
+            className={className}
+            Description={Description}
+            description={description}
+            displayPreview={displayPreview}
+            Error={Error}
+            filterOptions={filterOptions}
+            hasMany={hasMany}
+            isSortable={isSortable}
+            label={label}
+            Label={Label}
+            localized={localized}
+            maxRows={maxRows}
+            onChange={setValue}
+            path={path}
+            readOnly={readOnly || Boolean(disabled)}
+            relationTo={relationToFromProps}
+            required={required}
+            serverURL={serverURL}
+            showError={showError}
+            style={styles}
+            value={memoizedValue as UploadInputProps["value"]}
+          />
+        </div>
+      </BulkUploadProvider>
+    );
+  }
 
   return (
     <BulkUploadProvider drawerSlugPrefix={pathFromProps}>
@@ -427,7 +467,7 @@ export function UploadWithQuickFileComponent(props: UploadFieldClientProps) {
         <UploadInput
           AfterInput={AfterInput}
           allowCreate={allowCreate !== false}
-          api={config.routes.api}
+          api={apiRoute}
           BeforeInput={BeforeInput}
           className={className}
           Description={Description}
@@ -446,7 +486,7 @@ export function UploadWithQuickFileComponent(props: UploadFieldClientProps) {
           readOnly={readOnly || Boolean(disabled)}
           relationTo={relationToFromProps}
           required={required}
-          serverURL={config.serverURL}
+          serverURL={serverURL}
           showError={showError}
           style={styles}
           value={memoizedValue as UploadInputProps["value"]}

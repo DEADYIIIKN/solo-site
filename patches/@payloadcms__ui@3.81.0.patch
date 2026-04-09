@@ -21,12 +21,11 @@
      i18n,
      t
    } = useTranslation();
-+  const {
-+    getEntityConfig
-+  } = useConfig();
++  const cfg = useConfig();
++  const getEntityConfig = cfg?.getEntityConfig;
 +  const uploadFileInputId = useId();
 +  const uploadMimeTypesAccept = useMemo(() => {
-+    if (typeof activeRelationTo !== 'string') {
++    if (typeof activeRelationTo !== 'string' || !getEntityConfig) {
 +      return '';
 +    }
 +    const col = getEntityConfig({
