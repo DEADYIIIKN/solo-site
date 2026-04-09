@@ -3,6 +3,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Image from "next/image";
 
 import { cn } from "@/shared/lib/utils";
 import { teamSectionAssets } from "@/widgets/team/model/team.data";
@@ -37,21 +38,24 @@ export function TeamSectionPhoto({
       style={style}
     >
       {narrow ? (
-        <img
+        <Image
           alt="Команда SOLO"
-          className="block h-full min-h-0 w-[118%] max-w-none object-cover object-center -ml-[9%]"
-          decoding="async"
+          className="object-cover object-center"
           draggable={false}
+          fill
           loading="lazy"
+          sizes="(max-width: 479px) 387px, (max-width: 767px) 440px, 520px"
           src={teamSectionAssets.teamPhoto}
+          style={{ marginLeft: "-9%", width: "118%" }}
         />
       ) : (
-        <img
+        <Image
           alt="Команда SOLO"
-          className="min-h-0 h-full w-full object-cover object-[center_26%]"
-          decoding="async"
+          className="object-cover object-[center_26%]"
           draggable={false}
+          fill
           loading="lazy"
+          sizes="(max-width: 1023px) 100vw, 50vw"
           src={teamSectionAssets.teamPhoto}
         />
       )}

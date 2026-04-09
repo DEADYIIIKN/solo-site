@@ -5,6 +5,7 @@ import { firstScreenAssets } from "@/widgets/first-screen/model/first-screen.dat
  * Контент списка и контактов совпадает с макетом 360 (node 783:8293); отличаются размеры шапки и кнопки.
  */
 export type MobileMenuLayoutConfig = {
+  visibilityClass: string;
   header: {
     className: string;
     logoClass: string;
@@ -36,9 +37,10 @@ export const MOBILE_MENU_NAV_TOPS = [
 const logoMenuDarkShared = firstScreenAssets.navbar.logo360MenuDark;
 
 export const mobileMenuLayout360: MobileMenuLayoutConfig = {
+  visibilityClass: "hidden max-[479px]:block",
   header: {
     className:
-      "fixed left-1/2 top-0 z-20 flex h-[56px] w-[328px] -translate-x-1/2 items-end justify-between px-[16px]",
+      "fixed left-1/2 top-0 z-[800] hidden h-[56px] w-[328px] -translate-x-1/2 items-end justify-between px-[16px] max-[479px]:flex",
     logoClass: "relative h-[20px] w-[113px] shrink-0",
     logoClosedSrc: firstScreenAssets.navbar.logo360,
     menuButtonClass:
@@ -58,9 +60,10 @@ export const mobileMenuLayout360: MobileMenuLayoutConfig = {
 };
 
 export const mobileMenuLayout480: MobileMenuLayoutConfig = {
+  visibilityClass: "hidden min-[480px]:block min-[768px]:hidden",
   header: {
     className:
-      "fixed left-1/2 top-0 z-20 flex h-[60px] w-[432px] -translate-x-1/2 items-end justify-between px-[24px]",
+      "fixed left-1/2 top-0 z-[800] hidden h-[60px] w-[432px] -translate-x-1/2 items-end justify-between px-[24px] min-[480px]:flex min-[768px]:hidden",
     logoClass: "relative h-[22px] w-[124px] shrink-0",
     logoClosedSrc: firstScreenAssets.navbar.logo480,
     menuButtonClass:
@@ -80,9 +83,10 @@ export const mobileMenuLayout480: MobileMenuLayoutConfig = {
 };
 
 export const mobileMenuLayout768: MobileMenuLayoutConfig = {
+  visibilityClass: "hidden min-[768px]:block min-[1024px]:hidden",
   header: {
     className:
-      "fixed left-1/2 top-0 z-20 flex h-[64px] w-[672px] -translate-x-1/2 items-end justify-between px-[30px]",
+      "fixed left-1/2 top-0 z-[800] hidden h-[64px] w-[672px] -translate-x-1/2 items-end justify-between px-[30px] min-[768px]:flex min-[1024px]:hidden",
     logoClass: "relative h-[24px] w-[136px] shrink-0",
     logoClosedSrc: firstScreenAssets.navbar.logo768,
     menuButtonClass:

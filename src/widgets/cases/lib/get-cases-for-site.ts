@@ -7,11 +7,29 @@ import {
   casesVerticalCards1440,
 } from "@/widgets/cases/model/cases.data";
 
-type MediaLike = { url?: string | null } | number | string | null | undefined;
+type MediaLike =
+  | {
+      url?: string | null;
+      sizes?: Record<string, { url?: string | null } | null> | null;
+    }
+  | number
+  | string
+  | null
+  | undefined;
 
 function mediaSrc(m: MediaLike): string {
-  if (m && typeof m === "object" && typeof m.url === "string" && m.url.length > 0) {
-    return m.url;
+  if (m && typeof m === "object") {
+    if (typeof m.url === "string" && m.url.length > 0) {
+      return m.url;
+    }
+    const sizes = m.sizes;
+    if (sizes && typeof sizes === "object") {
+      for (const v of Object.values(sizes)) {
+        if (v && typeof v === "object" && typeof v.url === "string" && v.url.length > 0) {
+          return v.url;
+        }
+      }
+    }
   }
   return "";
 }

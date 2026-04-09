@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { createPortal } from "react-dom";
+
 import { useNavbarSurface } from "@/shared/lib/use-navbar-surface";
 import { SiteNavLink } from "@/shared/ui/site-nav-link";
 import {
@@ -18,9 +20,9 @@ export function FirstScreenHeader1440({ onCtaClick }: FirstScreenHeader1440Props
   const isHeroTransparent = navbarSurface === "hero-transparent";
   const headerBackgroundColor = isHeroTransparent ? "transparent" : isLightTheme ? "#ffffff" : "#0d0300";
 
-  return (
+  const header = (
     <header
-      className="fixed inset-x-0 top-0 z-[400] h-[82px] transition-[background-color] duration-[180ms] ease-[var(--ease-standard)]"
+      className="fixed inset-x-0 top-0 z-[800] hidden h-[82px] min-[1440px]:block transition-[background-color] duration-[180ms] ease-[var(--ease-standard)]"
       style={{ backgroundColor: headerBackgroundColor }}
     >
       <div className="mx-auto flex h-full w-[1160px] items-center justify-between px-[40px]">
@@ -28,17 +30,19 @@ export function FirstScreenHeader1440({ onCtaClick }: FirstScreenHeader1440Props
           <div className="absolute left-0 top-0 h-[24px] w-[136px]">
             <img
               alt="СОЛО"
-              className={`absolute inset-0 block h-full w-full object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
+              className={`absolute inset-0 block h-full w-full max-w-none object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
                 isLightTheme ? "opacity-0" : "opacity-100"
               }`}
               src={firstScreenAssets.navbar.logo1440}
+              style={{ height: "24px", maxWidth: "none", width: "136px" }}
             />
             <img
               alt="СОЛО"
-              className={`absolute inset-0 block h-full w-full object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
+              className={`absolute inset-0 block h-full w-full max-w-none object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
                 isLightTheme ? "opacity-100" : "opacity-0"
               }`}
               src={firstScreenAssets.navbar.logo1440Dark}
+              style={{ height: "24px", maxWidth: "none", width: "136px" }}
             />
           </div>
         </div>
@@ -81,4 +85,7 @@ export function FirstScreenHeader1440({ onCtaClick }: FirstScreenHeader1440Props
       </div>
     </header>
   );
+
+  if (typeof document === "undefined") return null;
+  return createPortal(header, document.body);
 }

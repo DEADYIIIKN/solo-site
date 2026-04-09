@@ -1,17 +1,22 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 import { cn } from "@/shared/lib/utils";
+import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import { showreelAssets } from "@/widgets/showreel/model/showreel.data";
 
 function ShowreelVideoOrPlaceholder({
   ariaLabel = "Showreel",
   className,
+  shouldLoad = true,
 }: {
   ariaLabel?: string;
   className?: string;
+  shouldLoad?: boolean;
 }) {
   const src = showreelAssets.video;
-  if (!src) {
+  if (!src || !shouldLoad) {
     return (
       <div
         aria-hidden
@@ -33,54 +38,88 @@ function ShowreelVideoOrPlaceholder({
       loop
       muted
       playsInline
-      preload="auto"
+      preload="metadata"
       src={src}
     />
   );
 }
 
 export function Showreel() {
+  const layout = useViewportLayout();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || shouldLoadVideo) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px 0px" },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
+
+  if (!layout) {
+    return <section className="relative z-10 overflow-x-clip" id="showreel-section" ref={sectionRef} />;
+  }
+
   return (
-    <section className="relative z-10 overflow-x-clip" id="showreel-section">
-      {/* 360: 16:9 как на 768/1024 — не квадрат 360×360 (иначе лишняя тёмная зона под полосой видео) */}
-      <div className="relative mx-auto aspect-video w-[360px] min-[480px]:hidden">
-        <div className="absolute inset-0 z-10 overflow-hidden">
-          <ShowreelVideoOrPlaceholder />
+    <section className="relative z-10 overflow-x-clip" id="showreel-section" ref={sectionRef}>
+      {layout === "360" ? (
+        <div className="relative mx-auto aspect-video w-[360px]">
+          <div className="absolute inset-0 z-10 overflow-hidden">
+            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+          </div>
         </div>
-      </div>
+      ) : null}
 
-      <div className="relative mx-auto hidden aspect-video w-[480px] min-[480px]:block min-[768px]:hidden">
-        <div className="absolute inset-0 z-10 overflow-hidden">
-          <ShowreelVideoOrPlaceholder />
+      {layout === "480" ? (
+        <div className="relative mx-auto aspect-video w-[480px]">
+          <div className="absolute inset-0 z-10 overflow-hidden">
+            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+          </div>
         </div>
-      </div>
+      ) : null}
 
-      <div className="relative mx-auto hidden h-[432px] w-[768px] min-[768px]:block min-[1024px]:hidden">
-        <div className="absolute inset-0 z-10 overflow-hidden">
-          <ShowreelVideoOrPlaceholder />
+      {layout === "768" ? (
+        <div className="relative mx-auto h-[432px] w-[768px]">
+          <div className="absolute inset-0 z-10 overflow-hidden">
+            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+          </div>
         </div>
-      </div>
+      ) : null}
 
-      {/* 1024: высота = h видео (576), без вертикального центрирования — иначе полосы «воздуха» сверху/снизу */}
-      <div className="relative mx-auto hidden h-[576px] w-[1024px] min-[1024px]:block min-[1440px]:hidden">
-        <div
-          className="absolute inset-0 z-10 overflow-hidden"
-          data-showreel-target="1024"
-          style={{ opacity: 0 }}
-        >
-          <ShowreelVideoOrPlaceholder />
+      {layout === "1024" ? (
+        <div className="relative mx-auto h-[576px] w-[1024px]">
+          <div
+            className="absolute inset-0 z-10 overflow-hidden"
+            data-showreel-target="1024"
+            style={{ opacity: 0 }}
+          >
+            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+          </div>
         </div>
-      </div>
+      ) : null}
 
-      <div className="relative mx-auto hidden h-[810px] w-[1440px] min-[1440px]:block">
-        <div
-          className="absolute inset-0 z-10 overflow-hidden"
-          data-showreel-target="1440"
-          style={{ opacity: 0 }}
-        >
-          <ShowreelVideoOrPlaceholder />
+      {layout === "1440" ? (
+        <div className="relative mx-auto h-[810px] w-[1440px]">
+          <div
+            className="absolute inset-0 z-10 overflow-hidden"
+            data-showreel-target="1440"
+            style={{ opacity: 0 }}
+          >
+            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+          </div>
         </div>
-      </div>
+      ) : null}
     </section>
   );
 }

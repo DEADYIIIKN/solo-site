@@ -20,6 +20,8 @@ const sqliteClient = {
   url: process.env.DATABASE_URL || "file:./payload.db",
 };
 
+const shouldPushDatabase = process.env.PAYLOAD_DATABASE_PUSH === "1";
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -60,10 +62,10 @@ export default buildConfig({
    * Нужно применить схему к БД вручную: `PAYLOAD_DATABASE_PUSH=1 pnpm dev` (один раз).
    */
   db: sqliteAdapter(
-    process.env.NODE_ENV === "development"
+    shouldPushDatabase
       ? {
           client: sqliteClient,
-          push: process.env.PAYLOAD_DATABASE_PUSH === "1",
+          push: true,
         }
       : { client: sqliteClient },
   ),

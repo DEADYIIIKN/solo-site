@@ -2,6 +2,7 @@
 
 "use client";
 
+import Image from "next/image";
 import { useCallback, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
@@ -245,9 +246,12 @@ export function PhilosophyClients1024() {
                   }}
                 >
                   <div className="absolute left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-x-1/2 -translate-y-1/2">
-                    <img
+                    <Image
                       alt=""
-                      className="pointer-events-none absolute inset-0 size-full max-w-none object-cover"
+                      className="pointer-events-none object-cover"
+                      fill
+                      loading="lazy"
+                      sizes="571px"
                       src={philosophyClients1440Assets.teamPhoto}
                     />
                   </div>

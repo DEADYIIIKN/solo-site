@@ -2,7 +2,7 @@ import { BusinessGoals } from "@/widgets/business-goals";
 import { CasesSection } from "@/widgets/cases";
 import { getCasesForSite } from "@/widgets/cases/lib/get-cases-for-site";
 import { FirstScreen } from "@/widgets/first-screen";
-import { Footer360, Footer480, Footer768, Footer1024, Footer1440 } from "@/widgets/footer";
+import { FooterSection } from "@/widgets/footer";
 import { LeadFormSection } from "@/widgets/lead-form";
 import { LevelsSection } from "@/widgets/levels";
 import { PhilosophyClients } from "@/widgets/philosophy-clients";
@@ -23,7 +23,8 @@ export default async function HomePage() {
 
   return (
     <main className="app-main">
-      <div className="relative isolate z-0 overflow-x-clip bg-[#0d0300]">
+      {/* Без isolate/z-0: иначе stacking context первого блока оказывается под соседними секциями (sticky z-[40]) — навбар и fixed-модалки внутри блока не перекрывают страницу. */}
+      <div className="relative overflow-x-clip bg-[#0d0300]">
         <DarkSurfaceGrid />
         <FirstScreen />
         {settings.showShowreel && <Showreel />}
@@ -37,13 +38,7 @@ export default async function HomePage() {
       {settings.showServices && <ServicesSection />}
       {settings.showLevels && <LevelsSection />}
       <LeadFormSection />
-      <div id="footer-section">
-        <Footer360 showSecrets={settings.showSecrets} />
-        <Footer480 showSecrets={settings.showSecrets} />
-        <Footer768 showSecrets={settings.showSecrets} />
-        <Footer1024 showSecrets={settings.showSecrets} />
-        <Footer1440 showSecrets={settings.showSecrets} />
-      </div>
+      <FooterSection showSecrets={settings.showSecrets} />
     </main>
   );
 }

@@ -2,11 +2,11 @@ import path from "node:path";
 
 import { getPayload } from "payload";
 
-import config from "@payload-config";
+import config from "../../../payload.config.ts";
 import {
   casesAdCards1440,
   casesVerticalCards1440,
-} from "@/widgets/cases/model/cases.data";
+} from "../model/cases.data";
 
 /**
  * Идемпотентно создаёт в Payload записи кейсов из статического макета (по internalKey).

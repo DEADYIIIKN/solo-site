@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { OPEN_CONSULTATION_MODAL_EVENT } from "@/shared/lib/open-consultation-modal";
+import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import {
   defaultFirstScreenConsultationFormState
 } from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
@@ -15,6 +16,7 @@ import { FirstScreen1024Section } from "@/widgets/first-screen/ui/first-screen-1
 import { ShowreelMorphOverlay } from "@/widgets/showreel";
 
 export function FirstScreen() {
+  const layout = useViewportLayout();
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [modalTitleVariant, setModalTitleVariant] =
     useState<FirstScreenConsultationModalTitleVariant>("task");
@@ -43,67 +45,80 @@ export function FirstScreen() {
     };
   }, []);
 
+  if (!layout) {
+    return (
+      <section className="relative z-20 overflow-x-clip" id="first-screen-section">
+        <ShowreelMorphOverlay />
+      </section>
+    );
+  }
+
   return (
     <section className="relative z-20 overflow-x-clip" id="first-screen-section">
-      {/* 360: низ гео-строки ~548px + отступ до шоурила как в макете (~36px), без огромной пустой сетки */}
-      <div className="relative mx-auto h-[584px] w-[360px] min-[480px]:hidden">
-        <FirstScreen360Section
-          consultationOpen={consultationOpen}
-          formState={consultationFormState}
-          modalTitleVariant={modalTitleVariant}
-          onCloseModal={() => setConsultationOpen(false)}
-          onOpenModal={openConsultationModal}
-          setFormState={setConsultationFormState}
-        />
-      </div>
+      {layout === "360" ? (
+        <div className="relative mx-auto h-[584px] w-[360px]">
+          <FirstScreen360Section
+            consultationOpen={consultationOpen}
+            formState={consultationFormState}
+            modalTitleVariant={modalTitleVariant}
+            onCloseModal={() => setConsultationOpen(false)}
+            onOpenModal={openConsultationModal}
+            setFormState={setConsultationFormState}
+          />
+        </div>
+      ) : null}
 
-      {/* 480: низ гео ~639px + отступ до шоурила ~36px */}
-      <div className="relative mx-auto hidden h-[676px] w-[480px] min-[480px]:block min-[768px]:hidden">
-        <FirstScreen480Section
-          consultationOpen={consultationOpen}
-          formState={consultationFormState}
-          modalTitleVariant={modalTitleVariant}
-          onCloseModal={() => setConsultationOpen(false)}
-          onOpenModal={openConsultationModal}
-          setFormState={setConsultationFormState}
-        />
-      </div>
+      {layout === "480" ? (
+        <div className="relative mx-auto h-[676px] w-[480px]">
+          <FirstScreen480Section
+            consultationOpen={consultationOpen}
+            formState={consultationFormState}
+            modalTitleVariant={modalTitleVariant}
+            onCloseModal={() => setConsultationOpen(false)}
+            onOpenModal={openConsultationModal}
+            setFormState={setConsultationFormState}
+          />
+        </div>
+      ) : null}
 
-      {/* 768: низ гео ~807px + отступ до шоурила ~36px */}
-      <div className="relative mx-auto hidden h-[843px] w-[768px] min-[768px]:block min-[1024px]:hidden">
-        <FirstScreen768Section
-          consultationOpen={consultationOpen}
-          formState={consultationFormState}
-          modalTitleVariant={modalTitleVariant}
-          onCloseModal={() => setConsultationOpen(false)}
-          onOpenModal={openConsultationModal}
-          setFormState={setConsultationFormState}
-        />
-      </div>
+      {layout === "768" ? (
+        <div className="relative mx-auto h-[843px] w-[768px]">
+          <FirstScreen768Section
+            consultationOpen={consultationOpen}
+            formState={consultationFormState}
+            modalTitleVariant={modalTitleVariant}
+            onCloseModal={() => setConsultationOpen(false)}
+            onOpenModal={openConsultationModal}
+            setFormState={setConsultationFormState}
+          />
+        </div>
+      ) : null}
 
-      {/* 1024 version: 1024–1439 */}
-      <div className="relative mx-auto hidden h-[700px] w-[1024px] min-[1024px]:block min-[1440px]:hidden">
-        <FirstScreen1024Section
-          consultationOpen={consultationOpen}
-          formState={consultationFormState}
-          modalTitleVariant={modalTitleVariant}
-          onCloseModal={() => setConsultationOpen(false)}
-          onOpenModal={openConsultationModal}
-          setFormState={setConsultationFormState}
-        />
-      </div>
+      {layout === "1024" ? (
+        <div className="relative mx-auto h-[700px] w-[1024px]">
+          <FirstScreen1024Section
+            consultationOpen={consultationOpen}
+            formState={consultationFormState}
+            modalTitleVariant={modalTitleVariant}
+            onCloseModal={() => setConsultationOpen(false)}
+            onOpenModal={openConsultationModal}
+            setFormState={setConsultationFormState}
+          />
+        </div>
+      ) : null}
 
-      {/* 1440 version: 1440+ */}
-      <div className="relative mx-auto hidden h-[810px] w-[1440px] min-[1440px]:block">
-        <FirstScreen1440Section
-          consultationOpen={consultationOpen}
-          formState={consultationFormState}
-          modalTitleVariant={modalTitleVariant}
-          onCloseModal={() => setConsultationOpen(false)}
-          onOpenModal={openConsultationModal}
-          setFormState={setConsultationFormState}
-        />
-      </div>
+      {layout === "1440" ? (
+        <div className="relative mx-auto h-[810px] w-[1440px]">
+          <FirstScreen1440Section
+            consultationOpen={consultationOpen}
+            formState={consultationFormState}
+            modalTitleVariant={modalTitleVariant}
+            onCloseModal={() => setConsultationOpen(false)}
+            onOpenModal={openConsultationModal}
+            setFormState={setConsultationFormState}
+          />
+        </div>
+      ) : null}
 
       <ShowreelMorphOverlay />
     </section>

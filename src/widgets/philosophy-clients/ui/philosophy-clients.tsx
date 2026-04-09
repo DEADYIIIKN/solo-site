@@ -1,5 +1,6 @@
 "use client";
 
+import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import { PhilosophyClients1024 } from "@/widgets/philosophy-clients/ui/philosophy-clients-1024";
 import { PhilosophyClients1440 } from "@/widgets/philosophy-clients/ui/philosophy-clients-1440";
 import { PhilosophyClients360 } from "@/widgets/philosophy-clients/ui/philosophy-clients-360";
@@ -14,23 +15,19 @@ import { PhilosophyClients768 } from "@/widgets/philosophy-clients/ui/philosophy
  * ≥1440: Figma 783:9294.
  */
 export function PhilosophyClients() {
+  const layout = useViewportLayout();
+
+  if (!layout) {
+    return <div id="philosophy-section" />;
+  }
+
   return (
     <div id="philosophy-section">
-      <div className="hidden max-[479px]:block">
-        <PhilosophyClients360 />
-      </div>
-      <div className="hidden min-[480px]:max-[767px]:block">
-        <PhilosophyClients480 />
-      </div>
-      <div className="hidden min-[768px]:max-[1023px]:block">
-        <PhilosophyClients768 />
-      </div>
-      <div className="hidden min-[1024px]:max-[1439px]:block">
-        <PhilosophyClients1024 />
-      </div>
-      <div className="hidden min-[1440px]:block">
-        <PhilosophyClients1440 />
-      </div>
+      {layout === "360" ? <PhilosophyClients360 /> : null}
+      {layout === "480" ? <PhilosophyClients480 /> : null}
+      {layout === "768" ? <PhilosophyClients768 /> : null}
+      {layout === "1024" ? <PhilosophyClients1024 /> : null}
+      {layout === "1440" ? <PhilosophyClients1440 /> : null}
     </div>
   );
 }

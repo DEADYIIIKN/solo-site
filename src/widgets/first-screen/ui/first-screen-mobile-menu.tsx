@@ -4,6 +4,7 @@
 
 import type { ReactNode, TransitionEvent } from "react";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import type { NavbarSurface } from "@/shared/lib/use-navbar-surface";
 import { cn } from "@/shared/lib/utils";
@@ -84,7 +85,7 @@ export function FirstScreenMobileMenu({
   headerBeforeMenu,
   onOverlayCtaClick,
 }: FirstScreenMobileMenuProps) {
-  const { header, overlay } = layout;
+  const { header, overlay, visibilityClass } = layout;
   const [isOpen, setIsOpen] = useState(false);
   const [overlayEntered, setOverlayEntered] = useState(false);
   const [overlayExiting, setOverlayExiting] = useState(false);
@@ -171,7 +172,7 @@ export function FirstScreenMobileMenu({
   const isHeroTransparent = surfaceTheme === "hero-transparent";
   const headerBackgroundColor = isHeroTransparent ? "transparent" : isLightSurface ? "#ffffff" : "#0d0300";
 
-  return (
+  const layer = (
     <>
       <header
         className={cn(
@@ -215,7 +216,7 @@ export function FirstScreenMobileMenu({
 
       {isOpen ? (
         <div
-          className={`fixed inset-0 z-50 bg-[#0d0300] transition-[opacity,transform] will-change-[opacity,transform] ${
+          className={`${visibilityClass} fixed inset-0 z-[810] bg-[#0d0300] transition-[opacity,transform] will-change-[opacity,transform] ${
             overlayEntered
               ? "translate-y-0 opacity-100"
               : `${overlayExiting ? "translate-y-0" : "translate-y-3"} opacity-0`
@@ -296,4 +297,7 @@ export function FirstScreenMobileMenu({
       ) : null}
     </>
   );
+
+  if (typeof document === "undefined") return null;
+  return createPortal(layer, document.body);
 }

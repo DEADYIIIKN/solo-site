@@ -3,8 +3,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 
 import { cn } from "@/shared/lib/utils";
+import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import { dispatchOpenConsultationModal } from "@/shared/lib/open-consultation-modal";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import {
@@ -176,6 +178,9 @@ function AccordionCard({
           <img
             alt=""
             className="absolute top-0 h-full max-w-none"
+            decoding="async"
+            fetchPriority={active ? "high" : "low"}
+            loading={active ? "eager" : "lazy"}
             src={imageSrc}
             style={{
               height: "100%",
@@ -260,6 +265,9 @@ function ExpandedOverlay({
           <img
             alt=""
             className={imageClass}
+            decoding="async"
+            fetchPriority="high"
+            loading="eager"
             src={imageSrc}
             style={imageStyle}
           />
@@ -410,51 +418,48 @@ function MobileBusinessGoals({
                   style={{ height: `${cardHeight}px`, width: `${cardWidth}px` }}
                 >
                   {index === 0 ? (
-                    <img
+                    <Image
                       alt=""
-                      className="absolute left-0 top-[-17.5%] h-[142.5%] max-w-none w-full"
+                      className="object-cover"
+                      fetchPriority={index === activeIndex ? "high" : "low"}
+                      fill
+                      loading={index === activeIndex ? "eager" : "lazy"}
+                      sizes={`${cardWidth}px`}
                       src={imageSources[index]}
-                      style={{ height: "142.5%", maxWidth: "none", width: "100%" }}
+                      style={{ objectPosition: "center top" }}
                     />
                   ) : index === 1 ? (
-                    <img
+                    <Image
                       alt=""
-                      className="absolute max-w-none object-cover"
+                      className="object-cover"
+                      fetchPriority={index === activeIndex ? "high" : "low"}
+                      fill
+                      loading={index === activeIndex ? "eager" : "lazy"}
+                      sizes={`${cardWidth}px`}
                       src={imageSources[index]}
-                      style={{
-                        height: "118%",
-                        left: "-9%",
-                        maxWidth: "none",
-                        objectPosition: "center 38%",
-                        top: "-9%",
-                        width: "118%",
-                      }}
+                      style={{ objectPosition: "center 38%" }}
                     />
                   ) : index === 2 ? (
-                    <img
+                    <Image
                       alt=""
-                      className="absolute left-0 top-[-17.5%] max-w-none w-full object-cover"
+                      className="object-cover"
+                      fetchPriority={index === activeIndex ? "high" : "low"}
+                      fill
+                      loading={index === activeIndex ? "eager" : "lazy"}
+                      sizes={`${cardWidth}px`}
                       src={imageSources[index]}
-                      style={{
-                        height: "142.5%",
-                        maxWidth: "none",
-                        objectPosition: "center 22%",
-                        width: "100%",
-                      }}
+                      style={{ objectPosition: "center 22%" }}
                     />
                   ) : index === 3 ? (
-                    <img
+                    <Image
                       alt=""
-                      className="absolute max-w-none object-cover"
+                      className="object-cover"
+                      fetchPriority={index === activeIndex ? "high" : "low"}
+                      fill
+                      loading={index === activeIndex ? "eager" : "lazy"}
+                      sizes={`${cardWidth}px`}
                       src={imageSources[index]}
-                      style={{
-                        height: "118%",
-                        left: "-9%",
-                        maxWidth: "none",
-                        objectPosition: "center 40%",
-                        top: "-9%",
-                        width: "118%",
-                      }}
+                      style={{ objectPosition: "center 40%" }}
                     />
                   ) : null}
                   <div className={`pointer-events-none absolute inset-0 ${gradientClass}`} />
@@ -531,6 +536,7 @@ function MobileBusinessGoals({
 }
 
 export function BusinessGoals() {
+  const layout = useViewportLayout();
   const [ctaVisible, setCtaVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndex1024, setActiveIndex1024] = useState(0);
@@ -664,26 +670,6 @@ export function BusinessGoals() {
   }
 
   useEffect(() => {
-    const preload = [
-      businessGoalsAssets.mainImage,
-      businessGoalsAssets.cardTrafficImage,
-      businessGoalsAssets.cardImageImage,
-      businessGoalsAssets.cardProductionImage,
-    ];
-
-    preload.forEach((src) => {
-      const img = new Image();
-      img.decoding = "async";
-      img.src = src;
-      if ("decode" in img) {
-        img.decode().catch(() => {
-          // Ignore decode errors for unavailable cache/network states.
-        });
-      }
-    });
-  }, []);
-
-  useEffect(() => {
     function updateCtaVisibility() {
       const section = document.getElementById("business-goals-section");
       if (!section) {
@@ -708,7 +694,8 @@ export function BusinessGoals() {
 
   return (
     <section className="relative overflow-x-clip bg-[#0d0300]" id="business-goals-section">
-      <div className="hidden w-full min-[1440px]:block">
+      {layout === "1440" ? (
+      <div className="w-full">
         <div className="relative overflow-hidden rounded-t-[60px] bg-white">
           <div className="relative mx-auto h-[810px] w-[1440px]">
         <div className="absolute left-[140px] top-[162px] z-20">
@@ -811,8 +798,10 @@ export function BusinessGoals() {
           </div>
         </div>
       </div>
+      ) : null}
 
-      <div className="hidden w-full min-[1024px]:block min-[1440px]:hidden">
+      {layout === "1024" ? (
+      <div className="w-full">
         <div className="relative overflow-hidden rounded-t-[60px] bg-white">
           <div className="relative mx-auto h-[700px] w-[1024px]">
         <div className="absolute left-[40px] top-[130px] z-20">
@@ -937,8 +926,10 @@ export function BusinessGoals() {
           </div>
         </div>
       </div>
+      ) : null}
 
-      <div className="hidden min-[768px]:block min-[1024px]:hidden">
+      {layout === "768" ? (
+      <div>
         <MobileBusinessGoals
           activeIndex={activeIndex768}
           cardHeight={400}
@@ -959,8 +950,10 @@ export function BusinessGoals() {
           titleClassName={sectionEyebrowText480To1439Wrap}
         />
       </div>
+      ) : null}
 
-      <div className="hidden min-[480px]:block min-[768px]:hidden">
+      {layout === "480" ? (
+      <div>
         <MobileBusinessGoals
           activeIndex={activeIndex480}
           cardHeight={400}
@@ -981,8 +974,10 @@ export function BusinessGoals() {
           titleClassName={sectionEyebrowText480To1439Wrap}
         />
       </div>
+      ) : null}
 
-      <div className="min-[480px]:hidden">
+      {layout === "360" ? (
+      <div>
         <MobileBusinessGoals
           activeIndex={activeIndex360}
           cardHeight={302}
@@ -1003,10 +998,12 @@ export function BusinessGoals() {
           titleClassName={sectionEyebrowTextMax479Wrap}
         />
       </div>
+      ) : null}
 
+      {layout === "768" ? (
       <div
         className={cn(
-          "fixed z-[320] hidden min-[768px]:max-[1023px]:block",
+          "fixed z-[320]",
           "bottom-[30px] right-[24px] size-[120px] transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
           ctaVisible
             ? "translate-y-0 scale-100 opacity-100"
@@ -1015,10 +1012,12 @@ export function BusinessGoals() {
       >
         <BusinessGoalsFloatingCta />
       </div>
+      ) : null}
 
+      {layout === "360" || layout === "480" ? (
       <div
         className={cn(
-          "fixed z-[320] hidden max-[767px]:block",
+          "fixed z-[320]",
           "bottom-[20px] right-4 transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] min-[480px]:bottom-[24px] min-[480px]:right-6",
           ctaVisible
             ? "translate-y-0 opacity-100"
@@ -1027,6 +1026,7 @@ export function BusinessGoals() {
       >
         <BusinessGoalsFloatingCtaSmall />
       </div>
+      ) : null}
     </section>
   );
 }

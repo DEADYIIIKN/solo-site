@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
+import { getCriticalSiteLoadAssetsForViewport } from "@/widgets/site-load/model/site-load-critical-assets";
 
 /* ── timing ─────────────────────────────────────────────── */
 const ANIM_MIN_MS = 2800;
 const HOLD_MS     = 500;
 const EXIT_DUR_MS = 600;
+const PRELOAD_TIMEOUT_MS = 4500;
 
 /* ── geometry — все единицы в px (SVG user units при 1:1) ── */
 // Pill & Camera: viewBox width = 113.143 (full unit including triangle)
@@ -116,6 +118,75 @@ const KEYFRAMES_CSS = `
   }
 `;
 
+function preloadImage(src: string): Promise<void> {
+  return new Promise((resolve) => {
+    const image = new Image();
+    let settled = false;
+
+    const done = () => {
+      if (settled) return;
+      settled = true;
+      resolve();
+    };
+
+    const decodeAndDone = () => {
+      if (typeof image.decode === "function") {
+        image.decode().catch(() => undefined).finally(done);
+        return;
+      }
+
+      done();
+    };
+
+    image.decoding = "async";
+    image.fetchPriority = "high";
+    image.loading = "eager";
+    image.onload = decodeAndDone;
+    image.onerror = done;
+    image.src = src;
+
+    if (image.complete) decodeAndDone();
+  });
+}
+
+function preloadVideo(src: string): Promise<void> {
+  return new Promise((resolve) => {
+    const video = document.createElement("video");
+    let settled = false;
+
+    const done = () => {
+      if (settled) return;
+      settled = true;
+      video.removeAttribute("src");
+      video.load();
+      resolve();
+    };
+
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
+    video.onloadedmetadata = done;
+    video.onerror = done;
+    video.src = src;
+    video.load();
+  });
+}
+
+function waitForCriticalAssets(width: number): Promise<void> {
+  const assets = getCriticalSiteLoadAssetsForViewport(width);
+  const preload = Promise.all(
+    assets.map((asset) =>
+      asset.kind === "video" ? preloadVideo(asset.src) : preloadImage(asset.src),
+    ),
+  ).then(() => undefined);
+
+  const timeout = new Promise<void>((resolve) => {
+    window.setTimeout(resolve, PRELOAD_TIMEOUT_MS);
+  });
+
+  return Promise.race([preload, timeout]);
+}
+
 /**
  * Figma 783:9969/9977 — экран загрузки.
  *
@@ -130,6 +201,16 @@ export function SiteLoadOverlay() {
   const [visible, setVisible] = useState(true);
   const [pct, setPct]         = useState(0);
   const [scale, setScale]     = useState(1);
+  const [appReady, setAppReady] = useState(false);
+  const [criticalAssetsReady, setCriticalAssetsReady] = useState(false);
+  const startedAtRef = useRef(0);
+  const progressRef = useRef(0);
+  const appReadyRef = useRef(false);
+  const criticalAssetsReadyRef = useRef(false);
+
+  useEffect(() => {
+    startedAtRef.current = performance.now();
+  }, []);
 
   /* ── Adaptive scale: fit full logo on narrow viewports ── */
   useEffect(() => {
@@ -146,19 +227,42 @@ export function SiteLoadOverlay() {
 
   /* ── Realistic loading progress counter ───────────────── */
   useEffect(() => {
-    let current = 0;
-    let loaded  = document.readyState === "complete";
+    criticalAssetsReadyRef.current = criticalAssetsReady;
+  }, [criticalAssetsReady]);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      appReadyRef.current = true;
+      setAppReady(true);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    waitForCriticalAssets(window.innerWidth).finally(() => {
+      if (!cancelled) setCriticalAssetsReady(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  /* ── Realistic loading progress counter ───────────────── */
+  useEffect(() => {
     let raf: number;
     let last = performance.now();
-
-    const onLoad = () => { loaded = true; };
-    if (!loaded) window.addEventListener("load", onLoad, { once: true });
 
     const tick = (now: number) => {
       const dt = Math.min(50, now - last);
       last = now;
+      const ready = appReadyRef.current && criticalAssetsReadyRef.current;
+      let current = progressRef.current;
 
-      if (loaded) {
+      if (ready) {
         // Страница загружена — быстро добегаем до 100
         current = Math.min(100, current + dt * 0.22);
       } else {
@@ -170,6 +274,7 @@ export function SiteLoadOverlay() {
         current = Math.min(99, current + dt * s);
       }
 
+      progressRef.current = current;
       setPct(Math.floor(current));
       if (current < 100) raf = requestAnimationFrame(tick);
     };
@@ -177,37 +282,23 @@ export function SiteLoadOverlay() {
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("load", onLoad);
     };
   }, []);
 
-  /* ── Exit: ждём window.load + ANIM_MIN_MS ───────────────── */
+  /* ── Exit: ждём гидрацию + критические ассеты первого экрана ── */
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      window.setTimeout(() => setExiting(true), 150);
+    if (!appReady || !criticalAssetsReady) {
       return;
     }
 
-    let cancelled = false;
+    const elapsed = performance.now() - startedAtRef.current;
+    const remaining = reduceMotion ? 0 : Math.max(0, ANIM_MIN_MS - elapsed);
+    const delay = remaining + (reduceMotion ? 150 : HOLD_MS);
+    const timeout = window.setTimeout(() => setExiting(true), delay);
 
-    const pageLoad =
-      document.readyState === "complete"
-        ? Promise.resolve()
-        : new Promise<void>((resolve) => {
-            window.addEventListener("load", () => resolve(), { once: true });
-          });
-
-    const minTime = new Promise<void>((resolve) => {
-      window.setTimeout(resolve, ANIM_MIN_MS);
-    });
-
-    Promise.all([pageLoad, minTime]).then(() => {
-      if (!cancelled) window.setTimeout(() => setExiting(true), HOLD_MS);
-    });
-
-    return () => { cancelled = true; };
-  }, []);
+    return () => window.clearTimeout(timeout);
+  }, [appReady, criticalAssetsReady]);
 
   useEffect(() => {
     if (!exiting) return;

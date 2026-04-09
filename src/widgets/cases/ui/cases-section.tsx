@@ -1,5 +1,6 @@
 "use client";
 
+import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import {
   casesAdCards1440,
   casesVerticalCards1440,
@@ -18,23 +19,39 @@ export function CasesSection({
   verticalCards = casesVerticalCards1440,
   adCards = casesAdCards1440,
 }: CasesSectionCardsProps = {}) {
+  const layout = useViewportLayout();
+
+  if (!layout) {
+    return <div id="cases-section" />;
+  }
+
   return (
     <div id="cases-section">
-      <div className="hidden w-full justify-center bg-[#0d0300] max-[479px]:flex">
-        <CasesSection360 adCards={adCards} verticalCards={verticalCards} />
-      </div>
-      <div className="hidden w-full justify-center bg-[#0d0300] min-[480px]:max-[767px]:flex">
-        <CasesSection480 adCards={adCards} verticalCards={verticalCards} />
-      </div>
-      <div className="hidden w-full justify-center bg-[#0d0300] min-[768px]:max-[1023px]:flex">
-        <CasesSection768 adCards={adCards} verticalCards={verticalCards} />
-      </div>
-      <div className="hidden w-full justify-center bg-[#0d0300] min-[1024px]:max-[1439px]:flex">
-        <CasesSection1024 adCards={adCards} verticalCards={verticalCards} />
-      </div>
-      <div className="hidden w-full justify-center bg-[#0d0300] min-[1440px]:flex">
-        <CasesSection1440 adCards={adCards} verticalCards={verticalCards} />
-      </div>
+      {layout === "360" ? (
+        <div className="flex w-full justify-center bg-[#0d0300]">
+          <CasesSection360 adCards={adCards} verticalCards={verticalCards} />
+        </div>
+      ) : null}
+      {layout === "480" ? (
+        <div className="flex w-full justify-center bg-[#0d0300]">
+          <CasesSection480 adCards={adCards} verticalCards={verticalCards} />
+        </div>
+      ) : null}
+      {layout === "768" ? (
+        <div className="flex w-full justify-center bg-[#0d0300]">
+          <CasesSection768 adCards={adCards} verticalCards={verticalCards} />
+        </div>
+      ) : null}
+      {layout === "1024" ? (
+        <div className="flex w-full justify-center bg-[#0d0300]">
+          <CasesSection1024 adCards={adCards} verticalCards={verticalCards} />
+        </div>
+      ) : null}
+      {layout === "1440" ? (
+        <div className="flex w-full justify-center bg-[#0d0300]">
+          <CasesSection1440 adCards={adCards} verticalCards={verticalCards} />
+        </div>
+      ) : null}
     </div>
   );
 }

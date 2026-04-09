@@ -2,6 +2,7 @@
 
 import type { Dispatch, SetStateAction, TransitionEvent } from "react";
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { cn } from "@/shared/lib/utils";
 import {
@@ -227,13 +228,13 @@ export function FirstScreenConsultationModal1440({
 
   if (!shouldRender) return null;
 
-  return (
+  const layer = (
     <div
       aria-labelledby={
         successStep === "form" ? titleId : successTitleId
       }
       aria-modal="true"
-      className={`fixed inset-0 z-[520] overflow-x-clip transition-opacity ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[opacity] ${
+      className={`fixed inset-0 z-[520] hidden overflow-x-clip min-[1440px]:block transition-opacity ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[opacity] ${
         isEntered ? "opacity-100" : "opacity-0"
       }`}
       onTransitionEnd={handleShellTransitionEnd}
@@ -551,4 +552,6 @@ export function FirstScreenConsultationModal1440({
       </div>
     </div>
   );
+  if (typeof document === "undefined") return null;
+  return createPortal(layer, document.body);
 }

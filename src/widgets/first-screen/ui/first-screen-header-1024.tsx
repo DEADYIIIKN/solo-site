@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
+import { createPortal } from "react-dom";
+
 import { useNavbarSurface } from "@/shared/lib/use-navbar-surface";
 import { SiteNavLink } from "@/shared/ui/site-nav-link";
 import {
@@ -17,26 +19,28 @@ export function FirstScreenHeader1024({ onCtaClick }: FirstScreenHeader1024Props
   const isLightTheme = navbarSurface === "light-surface";
   const isHeroTransparent = navbarSurface === "hero-transparent";
 
-  return (
+  const header = (
     <header
-      className="fixed inset-x-0 top-0 z-[400] h-[72px] transition-[background-color] duration-[180ms] ease-[var(--ease-standard)]"
+      className="fixed inset-x-0 top-0 z-[800] hidden h-[72px] min-[1024px]:block min-[1440px]:hidden transition-[background-color] duration-[180ms] ease-[var(--ease-standard)]"
       style={{ backgroundColor: isHeroTransparent ? "transparent" : isLightTheme ? "#ffffff" : "#0d0300" }}
     >
       <div className="mx-auto flex h-full w-[944px] items-center justify-between px-[30px] py-[15px]">
         <div className="relative h-[24px] w-[136px] shrink-0">
           <img
             alt="СОЛО"
-            className={`absolute inset-0 block h-full w-full object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
+            className={`absolute inset-0 block h-full w-full max-w-none object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
               isLightTheme ? "opacity-0" : "opacity-100"
             }`}
             src={firstScreenAssets.navbar.logo1024}
+            style={{ height: "24px", maxWidth: "none", width: "136px" }}
           />
           <img
             alt="СОЛО"
-            className={`absolute inset-0 block h-full w-full object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
+            className={`absolute inset-0 block h-full w-full max-w-none object-contain object-left transition-opacity duration-[180ms] ease-[var(--ease-standard)] ${
               isLightTheme ? "opacity-100" : "opacity-0"
             }`}
-            src={firstScreenAssets.navbar.logo360MenuDark}
+            src={firstScreenAssets.navbar.logo1024Dark}
+            style={{ height: "24px", maxWidth: "none", width: "136px" }}
           />
         </div>
 
@@ -76,4 +80,7 @@ export function FirstScreenHeader1024({ onCtaClick }: FirstScreenHeader1024Props
       </div>
     </header>
   );
+
+  if (typeof document === "undefined") return null;
+  return createPortal(header, document.body);
 }

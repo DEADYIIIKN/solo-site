@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/shared/lib/utils";
+import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import { levelsCopy } from "@/widgets/levels/model/levels.data";
 import { LevelsGradientBar } from "@/widgets/levels/ui/levels-gradient-bar";
 
@@ -174,15 +177,21 @@ function Levels360() {
 }
 
 export function LevelsSectionBelow1024() {
+  const layout = useViewportLayout();
+
+  if (!layout || (layout !== "768" && layout !== "480" && layout !== "360")) {
+    return null;
+  }
+
   return (
     <section
-      className="levels-section-scope relative z-10 w-full bg-white min-[1024px]:hidden"
+      className="levels-section-scope relative z-10 w-full bg-white"
       id="levels-section-sm"
     >
       <div className="flex w-full justify-center">
-        <Levels768 />
-        <Levels480 />
-        <Levels360 />
+        {layout === "768" ? <Levels768 /> : null}
+        {layout === "480" ? <Levels480 /> : null}
+        {layout === "360" ? <Levels360 /> : null}
       </div>
     </section>
   );

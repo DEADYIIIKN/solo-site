@@ -3,6 +3,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Image from "next/image";
 
 import { cn } from "@/shared/lib/utils";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
@@ -287,9 +288,12 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
               : "left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-y-1/2",
           )}
         >
-          <img
+          <Image
             alt=""
-            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover"
+            className="pointer-events-none object-cover"
+            fill
+            loading="lazy"
+            sizes="(max-width: 479px) 439px, 571px"
             src={philosophyClients1440Assets.teamPhoto}
           />
         </div>

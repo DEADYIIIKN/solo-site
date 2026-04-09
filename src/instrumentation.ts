@@ -1,8 +1,7 @@
 /**
- * При `next dev` подтягивает кейсы из статики в Payload, если записей ещё нет.
- * Сид идёт в фоне (queueMicrotask), чтобы не блокировать готовность Next — иначе после
- * перезапуска кажется, что «localhost не грузится», пока крутится getPayload/миграции.
- * Отключить полностью: PAYLOAD_AUTO_SEED=0
+ * В dev подтягивает кейсы из статики в Payload, если записей ещё нет (фоном).
+ * В Docker/production то же делает `scripts/seed-cases-if-missing.ts` перед `next start`.
+ * Отключить: PAYLOAD_AUTO_SEED=0
  */
 export async function register() {
   if (process.env.NEXT_RUNTIME !== "nodejs") return;

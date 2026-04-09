@@ -5,6 +5,7 @@ import type { ServerFunctionClient } from "payload";
 import { handleServerFunctions, RootLayout } from "@payloadcms/next/layouts";
 import React from "react";
 
+import { ensurePayloadSchema } from "@/shared/lib/ensure-payload-schema";
 import { importMap } from "./admin/importMap.js";
 import "./custom.scss";
 
@@ -21,10 +22,14 @@ const serverFunction: ServerFunctionClient = async function (args) {
   });
 };
 
-const Layout = ({ children }: Args) => (
-  <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
-    {children}
-  </RootLayout>
-);
+const Layout = async ({ children }: Args) => {
+  await ensurePayloadSchema();
+
+  return (
+    <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
+      {children}
+    </RootLayout>
+  );
+};
 
 export default Layout;

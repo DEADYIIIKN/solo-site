@@ -6,6 +6,7 @@ import { useId, type CSSProperties } from "react";
 
 import { dispatchOpenConsultationModal } from "@/shared/lib/open-consultation-modal";
 import { cn } from "@/shared/lib/utils";
+import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { FirstScreenGeoGlow } from "@/widgets/first-screen/ui/first-screen-geo-glow";
 import { services1440Assets, services1440Copy } from "@/widgets/services/model/services.data";
@@ -907,16 +908,17 @@ function CommercialCard360() {
 }
 
 export function ServicesSectionBelow1024() {
+  const layout = useViewportLayout();
+
+  if (!layout || (layout !== "768" && layout !== "480" && layout !== "360")) {
+    return null;
+  }
+
   return (
-    <section className="services-section-scope relative z-10 w-full bg-[#0d0300] min-[1024px]:hidden" id="services-section-sm">
+    <section className="services-section-scope relative z-10 w-full bg-[#0d0300]" id="services-section-sm">
       <div className="flex w-full justify-center">
-        {/* 768–1023: full-bleed белый, контент в max-w */}
-        <div
-          className={cn(
-            "hidden w-full flex-col bg-white",
-            "min-[768px]:max-[1023px]:flex",
-          )}
-        >
+        {layout === "768" ? (
+        <div className="flex w-full flex-col bg-white">
           <div
             className={cn(
               "mx-auto flex w-full max-w-[768px] flex-col",
@@ -942,14 +944,10 @@ export function ServicesSectionBelow1024() {
           </div>
           </div>
         </div>
+        ) : null}
 
-        {/* 480–767 */}
-        <div
-          className={cn(
-            "hidden w-full flex-col items-center bg-white",
-            "min-[480px]:max-[767px]:flex",
-          )}
-        >
+        {layout === "480" ? (
+        <div className="flex w-full flex-col items-center bg-white">
           <div
             className={cn(
               "mx-auto flex w-full max-w-[480px] flex-col items-center",
@@ -973,14 +971,10 @@ export function ServicesSectionBelow1024() {
           </div>
           </div>
         </div>
+        ) : null}
 
-        {/* &lt;480 */}
-        <div
-          className={cn(
-            "flex w-full flex-col items-center bg-white",
-            "max-[479px]:flex min-[480px]:hidden",
-          )}
-        >
+        {layout === "360" ? (
+        <div className="flex w-full flex-col items-center bg-white">
           <div
             className={cn(
               "mx-auto flex w-full max-w-[360px] flex-col items-center",
@@ -999,6 +993,7 @@ export function ServicesSectionBelow1024() {
           </div>
           </div>
         </div>
+        ) : null}
       </div>
     </section>
   );
