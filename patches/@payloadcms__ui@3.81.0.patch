@@ -124,3 +124,30 @@ index cb7ef39fc970a10c2f62a8b43bf09e0281746fe3..8eceb7c0a14c1384255faf8267459426
        showError: showError,
        style: styles,
        value: memoizedValue
+diff --git a/dist/providers/Config/index.js b/dist/providers/Config/index.js
+index b3d5e60f56b1b4404e0cb6a4b02400bc9eca2643..596b889dff29d887bd1ef04ae3c3ad1171cf824e 100644
+--- a/dist/providers/Config/index.js
++++ b/dist/providers/Config/index.js
+@@ -6,6 +6,13 @@ import { jsx as _jsx } from "react/jsx-runtime";
+ import React, { createContext, use, useCallback, useEffect, useMemo } from 'react';
+ import { useControllableState } from '../../hooks/useControllableState.js';
+ const RootConfigContext = /*#__PURE__*/createContext(undefined);
++function missingConfigContextValue() {
++  return {
++    config: {},
++    getEntityConfig: () => null,
++    setConfig: () => {}
++  };
++}
+ export const ConfigProvider = ({
+   children,
+   config: configFromProps
+@@ -51,7 +58,7 @@ export const ConfigProvider = ({
+     children: children
+   });
+ };
+-export const useConfig = () => use(RootConfigContext);
++export const useConfig = () => use(RootConfigContext) ?? missingConfigContextValue();
+ /**
+  * This provider shadows the `ConfigProvider` on the _page_ level, allowing us to
+  * update the config when needed, e.g. after authentication.
