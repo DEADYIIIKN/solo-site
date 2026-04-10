@@ -74,15 +74,25 @@ jobs:
             echo "enabled=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Set up SSH agent
+        if: steps.deploy-secrets.outputs.enabled == 'true'
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEMO_SSH_KEY }}
+
+      - name: Add VPS to known_hosts
+        if: steps.deploy-secrets.outputs.enabled == 'true'
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ steps.deploy-secrets.outputs.port }}" "${{ secrets.DEMO_SSH_HOST }}" >> ~/.ssh/known_hosts
+
       - name: Deploy demo over SSH
         if: steps.deploy-secrets.outputs.enabled == 'true'
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.DEMO_SSH_HOST }}
-          port: ${{ steps.deploy-secrets.outputs.port }}
-          username: ${{ secrets.DEMO_SSH_USER }}
-          key: ${{ secrets.DEMO_SSH_KEY }}
-          script: /opt/beget/n8n/solo-site/scripts/deploy-demo.sh
+        run: |
+          ssh \
+            -p "${{ steps.deploy-secrets.outputs.port }}" \
+            "${{ secrets.DEMO_SSH_USER }}@${{ secrets.DEMO_SSH_HOST }}" \
+            /opt/beget/n8n/solo-site/scripts/deploy-demo.sh
 
       - name: Skip deploy when SSH secrets are missing
         if: steps.deploy-secrets.outputs.enabled != 'true'

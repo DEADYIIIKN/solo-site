@@ -5,23 +5,9 @@
  *
  * Run with: `pnpm exec node --experimental-strip-types scripts/ensure-payload-db.ts`
  * Do not use `tsx` here — it breaks `@next/env` when Payload loads.
- *
- * pushDevSchema is required from the file path to avoid the package barrel importing
- * `payload/node` (loadEnv) at module load time.
  */
-import { createRequire } from "node:module";
 import { DatabaseSync } from "node:sqlite";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const require = createRequire(import.meta.url);
-const drizzlePackageRoot = path.join(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "../node_modules/@payloadcms/drizzle",
-);
-const { pushDevSchema } = require(
-  path.join(drizzlePackageRoot, "dist/utilities/pushDevSchema.js"),
-) as { pushDevSchema: (adapter: unknown) => Promise<void> };
+import type { DrizzleAdapter } from "@payloadcms/drizzle";
 
 function hasUsersTable(): boolean {
   const url = process.env.DATABASE_URL?.trim();
@@ -52,14 +38,15 @@ async function main(): Promise<void> {
   }
   process.env.PAYLOAD_FORCE_DRIZZLE_PUSH = "true";
 
-  const [{ getPayload }, { default: config }] = await Promise.all([
+  const [{ pushDevSchema }, { getPayload }, { default: config }] = await Promise.all([
+    import("@payloadcms/drizzle"),
     import("payload"),
     import("../src/payload.config.ts"),
   ]);
 
   const payload = await getPayload({ config });
   try {
-    await pushDevSchema(payload.db);
+    await pushDevSchema(payload.db as unknown as DrizzleAdapter);
   } finally {
     if (typeof payload.destroy === "function") {
       await payload.destroy();
