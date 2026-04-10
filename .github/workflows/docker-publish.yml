@@ -86,10 +86,18 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -p "${{ steps.deploy-secrets.outputs.port }}" "${{ secrets.DEMO_SSH_HOST }}" >> ~/.ssh/known_hosts
 
+      - name: Debug SSH target
+        if: steps.deploy-secrets.outputs.enabled == 'true'
+        run: |
+          echo "host=${{ secrets.DEMO_SSH_HOST }}"
+          echo "port=${{ steps.deploy-secrets.outputs.port }}"
+          echo "user=${{ secrets.DEMO_SSH_USER }}"
+
       - name: Deploy demo over SSH
         if: steps.deploy-secrets.outputs.enabled == 'true'
         run: |
           ssh \
+            -vvv \
             -p "${{ steps.deploy-secrets.outputs.port }}" \
             "${{ secrets.DEMO_SSH_USER }}@${{ secrets.DEMO_SSH_HOST }}" \
             /opt/beget/n8n/solo-site/scripts/deploy-demo.sh
