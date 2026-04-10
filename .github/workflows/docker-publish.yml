@@ -57,13 +57,33 @@ jobs:
   deploy-demo:
     runs-on: ubuntu-latest
     needs: build-and-push
-    if: ${{ secrets.DEMO_SSH_HOST != '' && secrets.DEMO_SSH_USER != '' && secrets.DEMO_SSH_KEY != '' }}
     steps:
+      - name: Check deploy secrets
+        id: deploy-secrets
+        env:
+          DEMO_SSH_HOST: ${{ secrets.DEMO_SSH_HOST }}
+          DEMO_SSH_PORT: ${{ secrets.DEMO_SSH_PORT }}
+          DEMO_SSH_USER: ${{ secrets.DEMO_SSH_USER }}
+          DEMO_SSH_KEY: ${{ secrets.DEMO_SSH_KEY }}
+        run: |
+          echo "port=${DEMO_SSH_PORT:-22}" >> "$GITHUB_OUTPUT"
+
+          if [ -n "$DEMO_SSH_HOST" ] && [ -n "$DEMO_SSH_USER" ] && [ -n "$DEMO_SSH_KEY" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Deploy demo over SSH
+        if: steps.deploy-secrets.outputs.enabled == 'true'
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.DEMO_SSH_HOST }}
-          port: ${{ secrets.DEMO_SSH_PORT || '22' }}
+          port: ${{ steps.deploy-secrets.outputs.port }}
           username: ${{ secrets.DEMO_SSH_USER }}
           key: ${{ secrets.DEMO_SSH_KEY }}
           script: /opt/beget/n8n/solo-site/scripts/deploy-demo.sh
+
+      - name: Skip deploy when SSH secrets are missing
+        if: steps.deploy-secrets.outputs.enabled != 'true'
+        run: echo "Skipping deploy-demo because required SSH secrets are not configured."
