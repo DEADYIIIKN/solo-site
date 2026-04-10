@@ -1,7 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-
 import {
-  firstScreenAssets,
   firstScreenContent
 } from "@/widgets/first-screen/model/first-screen.data";
 import { FirstScreenCta } from "@/widgets/first-screen/ui/first-screen-cta";

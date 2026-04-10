@@ -73,7 +73,7 @@ async function main() {
       });
     }
 
-    return { samples };
+    return { headerOffset, samples };
   });
 
   await browser.close();
@@ -83,7 +83,9 @@ async function main() {
     process.exit(1);
   }
 
-  const firstAlignedIndex = result.samples.findIndex((sample) => Math.abs(sample.footerTop - 72) <= 16);
+  const firstAlignedIndex = result.samples.findIndex(
+    (sample) => Math.abs(sample.footerTop - result.headerOffset) <= 16,
+  );
   const earlyAlignedSamples = result.samples
     .slice(Math.max(0, firstAlignedIndex - 2), firstAlignedIndex + 8)
     .map((sample) => ({ ...sample, state: classifyNavbar(sample.headerBg) }));

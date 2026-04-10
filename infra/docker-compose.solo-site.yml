@@ -1,0 +1,57 @@
+services:
+  solo-site:
+    container_name: solo-site
+    image: ${SOLO_SITE_IMAGE:-ghcr.io/deadyiiikn/solo-site:latest}
+    restart: always
+    mem_limit: 512m
+    memswap_limit: 768m
+    cpus: "0.5"
+    pids_limit: 200
+    env_file:
+      - /opt/beget/n8n/solo-site.env.production
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      PAYLOAD_UPLOAD_DIR: /data/media
+    volumes:
+      - solo_sqlite_data:/data
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://127.0.0.1:' + (process.env.PORT || 3000) + '/').then((res) => { if (!res.ok) process.exit(1); }).catch(() => process.exit(1))
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    networks:
+      - n8n_beget-network
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: n8n_n8n_beget-network
+      traefik.http.routers.solo-site.rule: Host(`demo.soloproduction.pro`)
+      traefik.http.routers.solo-site.tls: "true"
+      traefik.http.routers.solo-site.entrypoints: web,websecure
+      traefik.http.routers.solo-site.tls.certresolver: mytlschallenge
+      traefik.http.routers.solo-site.middlewares: solo-site@docker
+      traefik.http.middlewares.solo-site.headers.SSLRedirect: "true"
+      traefik.http.middlewares.solo-site.headers.STSSeconds: "315360000"
+      traefik.http.middlewares.solo-site.headers.browserXSSFilter: "true"
+      traefik.http.middlewares.solo-site.headers.contentTypeNosniff: "true"
+      traefik.http.middlewares.solo-site.headers.forceSTSHeader: "true"
+      traefik.http.middlewares.solo-site.headers.STSIncludeSubdomains: "true"
+      traefik.http.middlewares.solo-site.headers.STSPreload: "true"
+      traefik.http.services.solo-site.loadbalancer.server.port: "3000"
+
+volumes:
+  solo_sqlite_data:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /opt/beget/n8n/solo_sqlite_data
+
+networks:
+  n8n_beget-network:
+    external: true
+    name: n8n_n8n_beget-network

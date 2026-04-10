@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
 import type { CSSProperties } from "react";
@@ -24,7 +22,7 @@ type NarrowSize = "432" | "360";
 
 /** Как в team-section: появление при первом входе в вьюпорт */
 export const philosophyNarrowRevealTransition =
-  "transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity]";
+  "transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity]";
 export const philosophyNarrowRevealOn = "translate-y-0 opacity-100";
 export const philosophyNarrowRevealOff = "translate-y-6 opacity-0";
 

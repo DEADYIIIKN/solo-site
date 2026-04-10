@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getPayload } from "payload";
 import { notFound } from "next/navigation";
 
@@ -5,6 +6,14 @@ import config from "@payload-config";
 import { CasesAdvertisingPreviewClient } from "./PreviewClient";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Preview рекламного кейса",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function CasesAdvertisingPreviewPage({
   params,

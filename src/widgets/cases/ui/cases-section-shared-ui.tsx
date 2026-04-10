@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element -- svg стрелки */
-
 import { cn } from "@/shared/lib/utils";
 import { DarkSurfaceGrid } from "@/shared/ui/dark-surface-grid";
 

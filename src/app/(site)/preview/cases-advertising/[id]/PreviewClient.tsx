@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { useLivePreview } from "@payloadcms/live-preview-react";
 
+import { publicSiteUrl } from "@/shared/config/public-site-url";
 import { CasesAdDetailModal } from "@/widgets/cases/ui/cases-ad-detail-modal";
 import type { CasesAdCard } from "@/widgets/cases/model/cases.data";
 
@@ -98,7 +99,7 @@ export function CasesAdvertisingPreviewClient({
 }) {
   const { data } = useLivePreview({
     initialData,
-    serverURL: "http://localhost:3000",
+    serverURL: publicSiteUrl,
     depth: 2,
   });
 

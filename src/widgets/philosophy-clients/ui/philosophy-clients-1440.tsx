@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
 import Image from "next/image";
@@ -9,9 +7,8 @@ import { cn } from "@/shared/lib/utils";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { sectionEyebrowTextMin1440 } from "@/shared/ui/section-eyebrow-text";
 import {
-  PHILOSOPHY_CARD_ENTER_OFFSET_Y,
   PHILOSOPHY_PIN_SCROLL_VH,
-  philosophyCardOpacity,
+  philosophyCardEnterTranslateY,
   philosophyCardStackLocalT,
   usePhilosophyPinScrollProgress,
 } from "@/widgets/philosophy-clients/lib/use-philosophy-stack-progress";
@@ -71,6 +68,17 @@ const STRATEGY_BARS = [
   { left: 534, bottom: 0, h: 320, w: 106, top: undefined },
 ] as const;
 
+const CARD_TOPS_1440 = [90, 171, 252, 333, 414] as const;
+const PRESTACK_SECOND_TOP_1440 = 458;
+const HIDDEN_START_TOP_1440 = 930;
+const CARD_ENTER_OFFSET_Y_1440 = [
+  0,
+  PRESTACK_SECOND_TOP_1440 - CARD_TOPS_1440[1],
+  HIDDEN_START_TOP_1440 - CARD_TOPS_1440[2],
+  HIDDEN_START_TOP_1440 - CARD_TOPS_1440[3],
+  HIDDEN_START_TOP_1440 - CARD_TOPS_1440[4],
+] as const;
+
 export function PhilosophyClients1440() {
   const [c1, c2, c3, c4, c5] = philosophyClients1440Content.cards;
   const [pinEl, setPinEl] = useState<HTMLDivElement | null>(null);
@@ -79,9 +87,8 @@ export function PhilosophyClients1440() {
   }, []);
   const { progress, pinPhase } = usePhilosophyPinScrollProgress(pinEl);
 
-  const enterY = (i: number) =>
-    (1 - philosophyCardStackLocalT(progress, i)) * PHILOSOPHY_CARD_ENTER_OFFSET_Y[i];
-  const cardOp = (i: number) => philosophyCardOpacity(progress, i);
+  const enterY = (i: number) => philosophyCardEnterTranslateY(progress, i, CARD_ENTER_OFFSET_Y_1440[i]);
+  const isCardInteractive = (i: number) => i < 2 || philosophyCardStackLocalT(progress, i) > 0;
 
   return (
     /* Без overflow-x на этом предке — иначе ломается pin; горизонталь — у .page-shell на узкой ширине */
@@ -130,8 +137,7 @@ export function PhilosophyClients1440() {
             height: 340,
             borderRadius: 20,
             transform: `translate3d(0, ${enterY(0)}px, 0)`,
-            opacity: cardOp(0),
-            pointerEvents: cardOp(0) > 0 ? "auto" : "none",
+            pointerEvents: isCardInteractive(0) ? "auto" : "none",
           }}
         >
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -188,8 +194,7 @@ export function PhilosophyClients1440() {
             height: 340,
             borderRadius: 20,
             transform: `translate3d(0, ${enterY(1)}px, 0)`,
-            opacity: cardOp(1),
-            pointerEvents: cardOp(1) > 0 ? "auto" : "none",
+            pointerEvents: isCardInteractive(1) ? "auto" : "none",
           }}
         >
           {STRATEGY_BARS.map((b, i) => (
@@ -226,8 +231,7 @@ export function PhilosophyClients1440() {
             height: 340,
             borderRadius: 20,
             transform: `translate3d(0, ${enterY(2)}px, 0)`,
-            opacity: cardOp(2),
-            pointerEvents: cardOp(2) > 0 ? "auto" : "none",
+            pointerEvents: isCardInteractive(2) ? "auto" : "none",
           }}
         >
           <div className="absolute left-[calc(50%-91.5px)] top-[calc(50%-4px)] h-[460px] w-[823px] -translate-x-1/2 -translate-y-1/2">
@@ -262,8 +266,7 @@ export function PhilosophyClients1440() {
             backgroundImage: philosophyCard04RadialBg,
             backgroundSize: "100% 100%",
             transform: `translate3d(0, ${enterY(3)}px, 0)`,
-            opacity: cardOp(3),
-            pointerEvents: cardOp(3) > 0 ? "auto" : "none",
+            pointerEvents: isCardInteractive(3) ? "auto" : "none",
           }}
         >
           <p className={`${NUM} text-white`}>{c4.id}</p>
@@ -286,8 +289,7 @@ export function PhilosophyClients1440() {
             height: 340,
             borderRadius: 20,
             transform: `translate3d(0, ${enterY(4)}px, 0)`,
-            opacity: cardOp(4),
-            pointerEvents: cardOp(4) > 0 ? "auto" : "none",
+            pointerEvents: isCardInteractive(4) ? "auto" : "none",
           }}
         >
           <div

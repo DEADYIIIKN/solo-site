@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export type NavbarSurface = "hero-transparent" | "dark-surface" | "light-surface";
 type SectionSurface = NavbarSurface | "hero-section";
-const SITE_ANCHOR_NAVIGATION_ATTR = "data-site-anchor-navigation";
 const SITE_ANCHOR_NAVBAR_SURFACE_ATTR = "data-site-anchor-navbar-surface";
 const SITE_ANCHOR_NAVIGATION_COMPLETE_EVENT = "site-anchor-navigation-complete";
 

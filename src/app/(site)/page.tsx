@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { BusinessGoals } from "@/widgets/business-goals";
 import { CasesSection } from "@/widgets/cases";
 import { getCasesForSite } from "@/widgets/cases/lib/get-cases-for-site";
@@ -10,10 +12,38 @@ import { DarkSurfaceGrid } from "@/shared/ui/dark-surface-grid";
 import { ServicesSection } from "@/widgets/services";
 import { Showreel } from "@/widgets/showreel";
 import { TeamSection } from "@/widgets/team";
+import { siteConfig } from "@/shared/config/site";
 import { getSiteSettings } from "@/shared/lib/get-site-settings";
 
 /** Обновление с CMS без полной пересборки. */
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Видеопродакшн для брендов и рекламы",
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Видеопродакшн для брендов и рекламы",
+    description: siteConfig.ogDescription,
+    url: "/",
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 512,
+        height: 512,
+        alt: `${siteConfig.name} Продакшн`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Видеопродакшн для брендов и рекламы",
+    description: siteConfig.ogDescription,
+    images: [siteConfig.ogImage],
+  },
+};
 
 export default async function HomePage() {
   const [{ verticalCards, adCards }, settings] = await Promise.all([

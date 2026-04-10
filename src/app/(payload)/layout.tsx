@@ -1,6 +1,7 @@
 /* Сгенерировано по шаблону Payload — при `payload generate:importmap` может обновиться importMap. */
 import config from "@payload-config";
 import "@payloadcms/next/css";
+import type { Metadata } from "next";
 import type { ServerFunctionClient } from "payload";
 import { handleServerFunctions, RootLayout } from "@payloadcms/next/layouts";
 import React from "react";
@@ -8,6 +9,18 @@ import React from "react";
 import { ensurePayloadSchema } from "@/shared/lib/ensure-payload-schema";
 import { importMap } from "./admin/importMap.js";
 import "./custom.scss";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
+};
 
 type Args = {
   children: React.ReactNode;

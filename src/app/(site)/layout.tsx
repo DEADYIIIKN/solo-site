@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { publicSiteUrl } from "@/shared/config/public-site-url";
 import { siteConfig } from "@/shared/config/site";
 import { SiteLoadOverlay } from "@/widgets/site-load";
 
 import "../globals.css";
+
+const metadataBase = new URL(publicSiteUrl);
 
 const montserrat = localFont({
   display: "swap",
@@ -54,11 +57,47 @@ const montserrat = localFont({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.name,
+  title: {
+    default: `${siteConfig.name} Продакшн`,
+    template: `%s | ${siteConfig.name} Продакшн`,
+  },
   description: siteConfig.description,
+  metadataBase,
+  applicationName: `${siteConfig.name} Продакшн`,
+  alternates: {
+    canonical: "/",
+  },
   icons: {
-    icon: "/assets/figma/7408-navbar-360/logo.svg"
-  }
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: "/favicon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    url: "/",
+    siteName: `${siteConfig.name} Продакшн`,
+    title: `${siteConfig.name} Продакшн`,
+    description: siteConfig.ogDescription,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 512,
+        height: 512,
+        alt: `${siteConfig.name} Продакшн`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} Продакшн`,
+    description: siteConfig.ogDescription,
+    images: [siteConfig.ogImage],
+  },
+  category: "marketing",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function SiteLayout({

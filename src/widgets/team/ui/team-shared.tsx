@@ -19,7 +19,7 @@ export function useInViewOnce<T extends HTMLElement>(options?: IntersectionObser
 
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [options]);
 
   return [ref, inView] as const;
 }

@@ -3,28 +3,13 @@
 import { useLayoutEffect, useRef, useState } from "react";
 
 /**
- * На сколько px ниже финальной позиции (Figma) карточка «стоит в очереди» до своего отрезка скролла.
- * Амплитуда по карточкам как в исходном веере макета (01…05); последняя тоже с ненулевым сдвигом, как у 04.
- */
-/** Последняя — как 4-я по масштабу сдвига (52), чтобы въезд был заметен, не «спавн» */
-export const PHILOSOPHY_CARD_ENTER_OFFSET_Y = [210, 158, 105, 52, 52] as const;
-
-/** @deprecated используйте PHILOSOPHY_CARD_ENTER_OFFSET_Y — оставлено для поиска по репо */
-export const PHILOSOPHY_STACK_SPREAD_Y = PHILOSOPHY_CARD_ENTER_OFFSET_Y;
-
-/**
  * Высота зоны pin-скролла (vh): длина «лока» документного скролла под анимацию.
  * 220 ≈2.2 экрана: все 5 карточек проходят быстрее и равномерно,
  * без ощущения, что последняя «дотягивается» отдельным длинным скроллом.
  */
 export const PHILOSOPHY_PIN_SCROLL_VH = 220;
 
-const CARD_COUNT = PHILOSOPHY_CARD_ENTER_OFFSET_Y.length;
-
-function smoothstep01(t: number): number {
-  const x = Math.min(1, Math.max(0, t));
-  return x * x * (3 - 2 * x);
-}
+const CARD_COUNT = 5;
 
 /**
  * Глобальный прогресс скролла (0…1) режем на CARD_COUNT отрезков: карточка i
@@ -42,15 +27,17 @@ export function philosophyCardStackLocalT(globalProgress: number, cardIndex: num
   return (g - start) / (end - start);
 }
 
-/** До начала отрезка карточки i она скрыта — не показываем все 5 «веером» сразу */
-export function philosophyCardOpacity(globalProgress: number, cardIndex: number): number {
-  const g = Math.min(1, Math.max(0, globalProgress));
-  const start = cardIndex / CARD_COUNT;
-  const fadeWindow = 0.05;
-  const fadeStart = start - fadeWindow;
-  if (g <= fadeStart) return 0;
-  if (g >= start) return 1;
-  return smoothstep01((g - fadeStart) / fadeWindow);
+/**
+ * Scroll-linked вертикальный сдвиг карточки без fade:
+ * карточка стартует из своей pre-stack позиции и линейно доезжает в финальную точку
+ * только на своём сегменте pin-скролла.
+ */
+export function philosophyCardEnterTranslateY(
+  globalProgress: number,
+  cardIndex: number,
+  initialOffsetY: number,
+): number {
+  return (1 - philosophyCardStackLocalT(globalProgress, cardIndex)) * initialOffsetY;
 }
 
 export type PhilosophyPinPhase = "before" | "active" | "after" | "static";

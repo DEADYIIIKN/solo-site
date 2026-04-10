@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 
 import { cn } from "@/shared/lib/utils";
@@ -144,6 +144,9 @@ type AccordionCardProps = {
   imageWidthPercent: string;
   label: string;
   onClick: () => void;
+  onFocusCard?: () => void;
+  onHoverCancel?: () => void;
+  onHover?: () => void;
   topPx: number;
 };
 
@@ -155,6 +158,9 @@ function AccordionCard({
   imageWidthPercent,
   label,
   onClick,
+  onFocusCard,
+  onHoverCancel,
+  onHover,
   topPx,
 }: AccordionCardProps) {
   const labelBoxHeightById: Record<string, string> = {
@@ -171,6 +177,9 @@ function AccordionCard({
         active ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
       onClick={onClick}
+      onFocus={onFocusCard}
+      onMouseLeave={onHoverCancel}
+      onMouseEnter={onHover}
       type="button"
     >
       <div className="pointer-events-none absolute inset-0">
@@ -244,9 +253,7 @@ function ExpandedOverlay({
       }}
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0"
-          style={{ willChange: "auto" }}
-        >
+        <div className="absolute inset-0">
           <div
             className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
           >
@@ -543,9 +550,17 @@ export function BusinessGoals() {
   const [activeIndex768, setActiveIndex768] = useState(0);
   const [activeIndex480, setActiveIndex480] = useState(0);
   const [activeIndex360, setActiveIndex360] = useState(0);
+  const hoverIntentRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hoverIntent1024Ref = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hoverBlockedRef = useRef(false);
+  const hoverBlocked1024Ref = useRef(false);
+  const pointerRef = useRef<{ x: number; y: number } | null>(null);
+  const pointer1024Ref = useRef<{ x: number; y: number } | null>(null);
   const accordionGapPx = 10;
   const accordionTransition = "620ms cubic-bezier(0.2,0.9,0.25,1)";
   const accordionOverlayTransition = "680ms cubic-bezier(0.2,0.9,0.25,1)";
+  const hoverIntentDelayMs = 130;
+  const hoverUnblockDistancePx = 8;
 
   const cardVisuals = useMemo(
     () => [
@@ -640,7 +655,9 @@ export function BusinessGoals() {
   }, [activeIndex1024, accordionGapPx]);
 
   function changeActiveCard(nextIndex: number) {
+    clearHoverIntent();
     if (nextIndex === activeIndex) return;
+    hoverBlockedRef.current = true;
     setActiveIndex(nextIndex);
   }
 
@@ -654,8 +671,27 @@ export function BusinessGoals() {
     changeActiveCard(activeIndex + 1);
   }
 
+  function clearHoverIntent() {
+    if (hoverIntentRef.current != null) {
+      clearTimeout(hoverIntentRef.current);
+      hoverIntentRef.current = null;
+    }
+  }
+
+  function scheduleHoverCard(nextIndex: number) {
+    if (hoverBlockedRef.current) return;
+    if (nextIndex === activeIndex) return;
+    clearHoverIntent();
+    hoverIntentRef.current = setTimeout(() => {
+      hoverIntentRef.current = null;
+      changeActiveCard(nextIndex);
+    }, hoverIntentDelayMs);
+  }
+
   function changeActiveCard1024(nextIndex: number) {
+    clearHoverIntent1024();
     if (nextIndex === activeIndex1024) return;
+    hoverBlocked1024Ref.current = true;
     setActiveIndex1024(nextIndex);
   }
 
@@ -667,6 +703,61 @@ export function BusinessGoals() {
   function handleNext1024() {
     if (activeIndex1024 === businessGoalsContent.cards.length - 1) return;
     changeActiveCard1024(activeIndex1024 + 1);
+  }
+
+  function clearHoverIntent1024() {
+    if (hoverIntent1024Ref.current != null) {
+      clearTimeout(hoverIntent1024Ref.current);
+      hoverIntent1024Ref.current = null;
+    }
+  }
+
+  function scheduleHoverCard1024(nextIndex: number) {
+    if (hoverBlocked1024Ref.current) return;
+    if (nextIndex === activeIndex1024) return;
+    clearHoverIntent1024();
+    hoverIntent1024Ref.current = setTimeout(() => {
+      hoverIntent1024Ref.current = null;
+      changeActiveCard1024(nextIndex);
+    }, hoverIntentDelayMs);
+  }
+
+  function handlePointerMove(clientX: number, clientY: number) {
+    const prev = pointerRef.current;
+    pointerRef.current = { x: clientX, y: clientY };
+    if (!hoverBlockedRef.current || prev == null) return;
+
+    if (
+      Math.abs(clientX - prev.x) >= hoverUnblockDistancePx ||
+      Math.abs(clientY - prev.y) >= hoverUnblockDistancePx
+    ) {
+      hoverBlockedRef.current = false;
+    }
+  }
+
+  function handlePointerMove1024(clientX: number, clientY: number) {
+    const prev = pointer1024Ref.current;
+    pointer1024Ref.current = { x: clientX, y: clientY };
+    if (!hoverBlocked1024Ref.current || prev == null) return;
+
+    if (
+      Math.abs(clientX - prev.x) >= hoverUnblockDistancePx ||
+      Math.abs(clientY - prev.y) >= hoverUnblockDistancePx
+    ) {
+      hoverBlocked1024Ref.current = false;
+    }
+  }
+
+  function resetHoverState() {
+    clearHoverIntent();
+    hoverBlockedRef.current = false;
+    pointerRef.current = null;
+  }
+
+  function resetHoverState1024() {
+    clearHoverIntent1024();
+    hoverBlocked1024Ref.current = false;
+    pointer1024Ref.current = null;
   }
 
   useEffect(() => {
@@ -689,6 +780,17 @@ export function BusinessGoals() {
     return () => {
       window.removeEventListener("scroll", updateCtaVisibility);
       window.removeEventListener("resize", updateCtaVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      clearHoverIntent();
+      clearHoverIntent1024();
+      hoverBlockedRef.current = false;
+      hoverBlocked1024Ref.current = false;
+      pointerRef.current = null;
+      pointer1024Ref.current = null;
     };
   }, []);
 
@@ -753,6 +855,8 @@ export function BusinessGoals() {
 
         <div
           className="absolute left-[140px] top-[214px] grid h-[500px] w-[1160px] items-start"
+          onMouseLeave={resetHoverState}
+          onMouseMove={(event) => handlePointerMove(event.clientX, event.clientY)}
           style={{
             columnGap: `${accordionGapPx}px`,
             gridTemplateColumns: columns1440,
@@ -770,6 +874,9 @@ export function BusinessGoals() {
               imageWidthPercent={visual.narrowImageWidthPercent}
               label={card.label}
               onClick={() => changeActiveCard(index)}
+              onFocusCard={() => changeActiveCard(index)}
+              onHover={() => scheduleHoverCard(index)}
+              onHoverCancel={clearHoverIntent}
               topPx={214}
             />
           ))}
@@ -787,7 +894,7 @@ export function BusinessGoals() {
         />
 
         <div
-          className={`fixed bottom-[30px] left-[calc(50%+540px)] z-[320] size-[120px] transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`fixed bottom-[30px] left-[calc(50%+540px)] z-[320] size-[120px] transform-gpu transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             ctaVisible
               ? "translate-y-0 scale-100 opacity-100"
               : "pointer-events-none translate-y-[18px] scale-90 opacity-0"
@@ -857,6 +964,8 @@ export function BusinessGoals() {
 
         <div
           className="absolute left-[40px] top-[181px] grid h-[400px] w-[938px] items-start"
+          onMouseLeave={resetHoverState1024}
+          onMouseMove={(event) => handlePointerMove1024(event.clientX, event.clientY)}
           style={{
             columnGap: `${accordionGapPx}px`,
             gridTemplateColumns: columns1024,
@@ -890,6 +999,9 @@ export function BusinessGoals() {
               }
               label={card.label}
               onClick={() => changeActiveCard1024(index)}
+              onFocusCard={() => changeActiveCard1024(index)}
+              onHover={() => scheduleHoverCard1024(index)}
+              onHoverCancel={clearHoverIntent1024}
               topPx={181}
             />
           ))}
@@ -915,7 +1027,7 @@ export function BusinessGoals() {
         />
 
         <div
-          className={`fixed bottom-[30px] left-[calc(50%+422px)] z-[320] size-[120px] transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`fixed bottom-[30px] left-[calc(50%+422px)] z-[320] size-[120px] transform-gpu transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             ctaVisible
               ? "translate-y-0 scale-100 opacity-100"
               : "pointer-events-none translate-y-[18px] scale-90 opacity-0"
@@ -1004,7 +1116,7 @@ export function BusinessGoals() {
       <div
         className={cn(
           "fixed z-[320]",
-          "bottom-[30px] right-[24px] size-[120px] transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "bottom-[30px] right-[24px] size-[120px] transform-gpu transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
           ctaVisible
             ? "translate-y-0 scale-100 opacity-100"
             : "pointer-events-none translate-y-[18px] scale-90 opacity-0",
@@ -1018,7 +1130,7 @@ export function BusinessGoals() {
       <div
         className={cn(
           "fixed z-[320]",
-          "bottom-[20px] right-4 transform-gpu transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] min-[480px]:bottom-[24px] min-[480px]:right-6",
+          "bottom-[20px] right-4 transform-gpu transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] min-[480px]:bottom-[24px] min-[480px]:right-6",
           ctaVisible
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-[12px] opacity-0",

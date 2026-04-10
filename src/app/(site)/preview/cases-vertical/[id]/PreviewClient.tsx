@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { useLivePreview } from "@payloadcms/live-preview-react";
 
+import { publicSiteUrl } from "@/shared/config/public-site-url";
 import { CasesVerticalDetailModal } from "@/widgets/cases/ui/cases-vertical-detail-modal";
 import { cases1440Assets } from "@/widgets/cases/model/cases.data";
 import type { CasesVerticalCard } from "@/widgets/cases/model/cases.data";
@@ -78,7 +79,14 @@ function CardPreview({
           ))}
         </div>
         <div className="flex items-center justify-center gap-2">
-          <img alt="" className="block shrink-0 object-contain" height="21" src={cases1440Assets.viewsIcon} style={{ maxWidth: 31, maxHeight: 21 }} width="31" />
+          <Image
+            alt=""
+            className="block shrink-0 object-contain"
+            height={21}
+            src={cases1440Assets.viewsIcon}
+            unoptimized
+            width={31}
+          />
           <p className="m-0 text-[40px] font-bold lowercase leading-[1.2]">{card.views}</p>
         </div>
         <div className="flex min-h-[37px] flex-col justify-end text-[14px] font-normal leading-[1.2]">
@@ -106,7 +114,7 @@ export function CasesVerticalPreviewClient({
 }) {
   const { data } = useLivePreview({
     initialData,
-    serverURL: "http://localhost:3000",
+    serverURL: publicSiteUrl,
     depth: 2,
   });
 

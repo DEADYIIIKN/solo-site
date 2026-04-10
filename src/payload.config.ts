@@ -6,6 +6,7 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 
+import { publicSiteUrl } from "./shared/config/public-site-url.ts";
 import { CasesAdvertising } from "./cms/collections/cases-advertising.ts";
 import { CasesVertical } from "./cms/collections/cases-vertical.ts";
 import { Media } from "./cms/collections/media.ts";
@@ -33,13 +34,12 @@ export default buildConfig({
     },
     livePreview: {
       url: ({ data, collectionConfig }) => {
-        const base = "http://localhost:3000";
         const slug = collectionConfig?.slug;
         const id = data?.id;
-        if (!id) return base;
-        if (slug === "cases-vertical") return `${base}/preview/cases-vertical/${id}`;
-        if (slug === "cases-advertising") return `${base}/preview/cases-advertising/${id}`;
-        return base;
+        if (!id) return publicSiteUrl;
+        if (slug === "cases-vertical") return `${publicSiteUrl}/preview/cases-vertical/${id}`;
+        if (slug === "cases-advertising") return `${publicSiteUrl}/preview/cases-advertising/${id}`;
+        return publicSiteUrl;
       },
       collections: ["cases-vertical", "cases-advertising"],
       breakpoints: [

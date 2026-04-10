@@ -25,7 +25,7 @@ export function TeamSection1440() {
         <div className="mx-auto w-[1160px]" ref={headerRef}>
           <div
             className={cn(
-              "flex items-start gap-[160px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "flex items-start gap-[160px] transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
               headerInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
             )}
           >
@@ -46,7 +46,7 @@ export function TeamSection1440() {
 
         <div
           className={cn(
-            "mx-auto mt-[60px] flex w-[1160px] flex-col gap-[40px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "mx-auto mt-[60px] flex w-[1160px] flex-col gap-[40px] transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
             statsInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
           ref={statsRef}
@@ -80,7 +80,7 @@ export function TeamSection1440() {
         <div className="mx-auto mt-[80px] max-w-[966px] text-center" ref={manifestoRef}>
           <p
             className={cn(
-              "text-[0] text-[#0d0300] transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "text-[0] text-[#0d0300] transition-[transform,opacity] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
               manifestoInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
           >

@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
 import Image from "next/image";
@@ -10,12 +8,11 @@ import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { sectionEyebrowText480To1439 } from "@/shared/ui/section-eyebrow-text";
 import {
   PHILOSOPHY_PIN_SCROLL_VH,
-  philosophyCardOpacity,
+  philosophyCardEnterTranslateY,
   philosophyCardStackLocalT,
   usePhilosophyPinScrollProgress,
 } from "@/widgets/philosophy-clients/lib/use-philosophy-stack-progress";
 import {
-  PHILOSOPHY_CARD_ENTER_OFFSET_Y_1024,
   PHILOSOPHY_STACK_MIN_H_PX_1024,
   philosophyCard04RadialBg1024,
   philosophyClients1440Assets,
@@ -87,6 +84,16 @@ const CARD_XY = [
   { left: 506, top: 370 },
 ] as const;
 
+const PRESTACK_SECOND_TOP_1024 = 384;
+const HIDDEN_START_TOP_1024 = 760;
+const CARD_ENTER_OFFSET_Y_1024 = [
+  0,
+  PRESTACK_SECOND_TOP_1024 - CARD_XY[1].top,
+  HIDDEN_START_TOP_1024 - CARD_XY[2].top,
+  HIDDEN_START_TOP_1024 - CARD_XY[3].top,
+  HIDDEN_START_TOP_1024 - CARD_XY[4].top,
+] as const;
+
 /** Figma 783:8605 */
 export function PhilosophyClients1024() {
   const [c1, c2, c3, c4, c5] = philosophyClients1440Content.cards;
@@ -96,9 +103,8 @@ export function PhilosophyClients1024() {
   }, []);
   const { progress, pinPhase } = usePhilosophyPinScrollProgress(pinEl);
 
-  const enterY = (i: number) =>
-    (1 - philosophyCardStackLocalT(progress, i)) * PHILOSOPHY_CARD_ENTER_OFFSET_Y_1024[i];
-  const cardOp = (i: number) => philosophyCardOpacity(progress, i);
+  const enterY = (i: number) => philosophyCardEnterTranslateY(progress, i, CARD_ENTER_OFFSET_Y_1024[i]);
+  const isCardInteractive = (i: number) => i < 2 || philosophyCardStackLocalT(progress, i) > 0;
 
   return (
     <div className="w-full min-w-0">
@@ -145,8 +151,7 @@ export function PhilosophyClients1024() {
                     height: CH,
                     borderRadius: BR,
                     transform: `translate3d(0, ${enterY(0)}px, 0)`,
-                    opacity: cardOp(0),
-                    pointerEvents: cardOp(0) > 0 ? "auto" : "none",
+                    pointerEvents: isCardInteractive(0) ? "auto" : "none",
                   }}
                 >
                   <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -203,8 +208,7 @@ export function PhilosophyClients1024() {
                     height: CH,
                     borderRadius: BR,
                     transform: `translate3d(0, ${enterY(1)}px, 0)`,
-                    opacity: cardOp(1),
-                    pointerEvents: cardOp(1) > 0 ? "auto" : "none",
+                    pointerEvents: isCardInteractive(1) ? "auto" : "none",
                   }}
                 >
                   {STRATEGY_BARS_1024.map((b, i) => (
@@ -241,8 +245,7 @@ export function PhilosophyClients1024() {
                     height: CH,
                     borderRadius: BR,
                     transform: `translate3d(0, ${enterY(2)}px, 0)`,
-                    opacity: cardOp(2),
-                    pointerEvents: cardOp(2) > 0 ? "auto" : "none",
+                    pointerEvents: isCardInteractive(2) ? "auto" : "none",
                   }}
                 >
                   <div className="absolute left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-x-1/2 -translate-y-1/2">
@@ -277,8 +280,7 @@ export function PhilosophyClients1024() {
                     backgroundImage: philosophyCard04RadialBg1024,
                     backgroundSize: "100% 100%",
                     transform: `translate3d(0, ${enterY(3)}px, 0)`,
-                    opacity: cardOp(3),
-                    pointerEvents: cardOp(3) > 0 ? "auto" : "none",
+                    pointerEvents: isCardInteractive(3) ? "auto" : "none",
                   }}
                 >
                   <p className={`${NUM} text-white`}>{c4.id}</p>
@@ -301,8 +303,7 @@ export function PhilosophyClients1024() {
                     height: CH,
                     borderRadius: BR,
                     transform: `translate3d(0, ${enterY(4)}px, 0)`,
-                    opacity: cardOp(4),
-                    pointerEvents: cardOp(4) > 0 ? "auto" : "none",
+                    pointerEvents: isCardInteractive(4) ? "auto" : "none",
                   }}
                 >
                   <div

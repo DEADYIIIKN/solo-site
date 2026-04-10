@@ -114,7 +114,7 @@ const KEYFRAMES_CSS = `
   */
   @keyframes _slLogoCenter {
     from { transform: translateX(0); }
-    to   { transform: translateX(141.429px); }
+    to   { transform: translateX(${LOGO_CENTER_SHIFT}px); }
   }
 `;
 

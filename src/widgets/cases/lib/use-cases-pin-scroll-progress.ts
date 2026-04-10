@@ -13,9 +13,6 @@ export const CASES_PIN_SCROLL_VH = 240;
  */
 export const CASES_PIN_HOLD_END_FRAC = 0.55;
 
-/** Скорость догонки сглаженного collapse к цели (чем меньше — тем «тяжелее» и премиальнее). */
-const CASES_COLLAPSE_SMOOTH_LAMBDA = 6.5;
-
 /** Perlin-style smoother step — мягче, чем linear ramp, для скролл-анимаций. */
 function smootherstep01(t: number): number {
   const x = Math.min(1, Math.max(0, t));

@@ -1,6 +1,11 @@
 export const siteConfig = {
   name: "СОЛО",
+  shortName: "SOLO",
   description:
-    "Стартовая архитектура для последующей 1:1 сборки сайта на Next.js, TypeScript и Tailwind.",
-  locale: "ru-RU"
+    "СОЛО Продакшн: видеопродакшн для брендов, рекламы и соцсетей. Стратегия, креатив, съёмка и контент, который решает бизнес-задачи.",
+  ogDescription:
+    "Создаём рекламу и видеоконтент для брендов: соцсети, performance, имиджевые ролики и контент-системы под результат.",
+  locale: "ru-RU",
+  themeColor: "#0d0300",
+  ogImage: "/favicon.png",
 } as const;

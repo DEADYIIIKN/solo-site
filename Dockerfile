@@ -27,15 +27,14 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/patches ./patches
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
+ENV NEXT_TELEMETRY_DISABLED=1
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.ts ./
-COPY --from=builder /app/postcss.config.mjs ./
-COPY --from=builder /app/tsconfig.json ./
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/scripts ./scripts
+COPY --from=builder /app/package.json ./
 RUN mkdir -p /app/media
-CMD ["sh", "-c", "pnpm exec node --experimental-strip-types scripts/ensure-payload-db.ts && pnpm exec node --experimental-strip-types scripts/seed-cases-if-missing.ts && exec pnpm start"]
+EXPOSE 3000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 CMD node -e "fetch(`http://127.0.0.1:${process.env.PORT || 3000}/`).then((res) => { if (!res.ok) process.exit(1); }).catch(() => process.exit(1))"
+CMD ["sh", "-c", "node --experimental-strip-types scripts/ensure-payload-db.ts && node --experimental-strip-types scripts/seed-cases-if-missing.ts && exec node server.js"]

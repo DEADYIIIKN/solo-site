@@ -1,7 +1,7 @@
 "use client";
 
 import type { Dispatch, SetStateAction, TransitionEvent } from "react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { cn } from "@/shared/lib/utils";
@@ -130,17 +130,17 @@ export function FirstScreenConsultationModal360({
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose, shouldRender]);
 
-  function clearExitUnmountTimer() {
+  const clearExitUnmountTimer = useCallback(() => {
     if (exitUnmountTimerRef.current != null) {
       clearTimeout(exitUnmountTimerRef.current);
       exitUnmountTimerRef.current = null;
     }
-  }
+  }, []);
 
-  function unmountAfterClose() {
+  const unmountAfterClose = useCallback(() => {
     clearExitUnmountTimer();
     setShouldRender(false);
-  }
+  }, [clearExitUnmountTimer]);
 
   function handleShellTransitionEnd(event: TransitionEvent<HTMLDivElement>) {
     if (event.target !== event.currentTarget) return;
@@ -156,13 +156,13 @@ export function FirstScreenConsultationModal360({
       unmountAfterClose();
     }, MODAL_TRANSITION_MS + 120);
     return () => clearExitUnmountTimer();
-  }, [open, shouldRender]);
+  }, [open, shouldRender, unmountAfterClose, clearExitUnmountTimer]);
 
   useEffect(
     () => () => {
       clearExitUnmountTimer();
     },
-    [],
+    [clearExitUnmountTimer],
   );
 
   if (!shouldRender) return null;

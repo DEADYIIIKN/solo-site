@@ -38,8 +38,13 @@ function hasUsersTable(): boolean {
   }
 }
 
+function shouldEnsureSchema(): boolean {
+  if (process.env.PAYLOAD_DATABASE_PUSH === "1") return true;
+  return process.env.NODE_ENV === "production";
+}
+
 async function main(): Promise<void> {
-  if (process.env.PAYLOAD_DATABASE_PUSH !== "1") {
+  if (!shouldEnsureSchema()) {
     return;
   }
   if (hasUsersTable()) {
