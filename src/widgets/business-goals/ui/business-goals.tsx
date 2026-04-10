@@ -273,6 +273,11 @@ function ExpandedOverlay({
       }}
     >
       <div className="pointer-events-none absolute inset-0">
+        <p
+          className={`absolute ${is1024 ? "right-[20px] top-[20px]" : "right-[30px] top-[30px]"} z-10 text-[17px] font-bold leading-none text-white`}
+        >
+          {card.id}
+        </p>
         <div
           className="absolute inset-0"
           style={{
@@ -301,20 +306,6 @@ function ExpandedOverlay({
               <p className="m-0 font-bold">{card.titleSuffix}</p>
             ) : null}
           </div>
-          <p
-            className={`absolute ${is1024 ? "right-[20px] top-[20px]" : "right-[30px] top-[30px]"} text-[17px] font-bold leading-none text-white`}
-            style={{
-              clipPath: contentEntered
-                ? "inset(0 0% 0 0 round 0px)"
-                : "inset(0 100% 0 0 round 0px)",
-              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(-4px,0,0)",
-              transition:
-                `clip-path 520ms ${premiumEase} 60ms, transform 520ms ${premiumEase} 60ms`,
-              willChange: "clip-path,transform",
-            }}
-          >
-            {card.id}
-          </p>
           <p
             className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}
             style={{
