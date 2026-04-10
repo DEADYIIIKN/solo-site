@@ -21,6 +21,16 @@ import {
   businessGoalsContent,
 } from "@/widgets/business-goals/model/business-goals.data";
 
+const accordionGapPx = 10;
+const accordionTransition = "620ms cubic-bezier(0.2,0.9,0.25,1)";
+const accordionOverlayTransition = "680ms cubic-bezier(0.2,0.9,0.25,1)";
+const hoverIntentDelayMs = 130;
+const hoverUnblockDistancePx = 8;
+const collapsedWidths1440 = [88, 87, 88, 87] as const;
+const activeWidths1440 = [868, 867, 868, 867] as const;
+const collapsedWidths1024 = [68, 68, 67, 68] as const;
+const activeWidths1024 = [705, 704, 705, 704] as const;
+
 /** Figma 805:14096–805:14097 — плавающая кнопка 90×36 для 360/480 */
 function BusinessGoalsFloatingCtaSmall() {
   return (
@@ -218,10 +228,36 @@ function AccordionCard({
   );
 }
 
+function getAccordionCardLeft({
+  index,
+  activeIndex,
+  collapsedWidths,
+  activeWidths,
+  startLeft,
+  gap,
+}: {
+  index: number;
+  activeIndex: number;
+  collapsedWidths: readonly number[];
+  activeWidths: readonly number[];
+  startLeft: number;
+  gap: number;
+}) {
+  let left = startLeft;
+
+  for (let i = 0; i < index; i += 1) {
+    left += (i === activeIndex ? activeWidths[i] : collapsedWidths[i]) + gap;
+  }
+
+  return left;
+}
+
 function ExpandedOverlay({
   card,
   imageClass,
   imageSrc,
+  initialLeftPx,
+  initialWidthPx,
   imageStyle,
   leftPx,
   topPx,
@@ -232,6 +268,8 @@ function ExpandedOverlay({
   card: (typeof businessGoalsContent.cards)[number];
   imageClass: string;
   imageSrc: string;
+  initialLeftPx: number;
+  initialWidthPx: number;
   imageStyle: { height: string; maxWidth: "none"; width: string };
   leftPx: number;
   topPx: number;
@@ -240,30 +278,43 @@ function ExpandedOverlay({
   transition: string;
 }) {
   const [contentEntered, setContentEntered] = useState(false);
+  const [frameLeftPx, setFrameLeftPx] = useState(initialLeftPx);
+  const [frameWidthPx, setFrameWidthPx] = useState(initialWidthPx);
   const contentRevealDelayMs = is1024 ? 150 : 170;
   const premiumEase = "cubic-bezier(0.16,1,0.3,1)";
 
   useEffect(() => {
     setContentEntered(false);
-    let animationFrameId = 0;
+    setFrameLeftPx(initialLeftPx);
+    setFrameWidthPx(initialWidthPx);
+    let enterAnimationFrameId = 0;
+    let expandAnimationFrameId = 0;
+    const expandTimeoutId = window.setTimeout(() => {
+      expandAnimationFrameId = requestAnimationFrame(() => {
+        setFrameLeftPx(leftPx);
+        setFrameWidthPx(widthPx);
+      });
+    }, 12);
     const enterTimeoutId = window.setTimeout(() => {
-      animationFrameId = requestAnimationFrame(() => setContentEntered(true));
+      enterAnimationFrameId = requestAnimationFrame(() => setContentEntered(true));
     }, contentRevealDelayMs);
 
     return () => {
+      window.clearTimeout(expandTimeoutId);
       window.clearTimeout(enterTimeoutId);
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(expandAnimationFrameId);
+      cancelAnimationFrame(enterAnimationFrameId);
     };
-  }, [card.id, contentRevealDelayMs]);
+  }, [card.id, contentRevealDelayMs, initialLeftPx, initialWidthPx, leftPx, widthPx]);
 
   return (
     <div
       className="absolute z-20 overflow-hidden bg-[#0d0300]"
       style={{
         borderRadius: `${is1024 ? 12 : 20}px`,
-        left: `${leftPx}px`,
+        left: `${frameLeftPx}px`,
         top: `${topPx}px`,
-        width: `${widthPx}px`,
+        width: `${frameWidthPx}px`,
         height: `${is1024 ? 400 : 500}px`,
         transition: `left ${transition}, width ${transition}`,
         willChange: "left,width",
@@ -610,6 +661,8 @@ export function BusinessGoals() {
   const [ctaVisible, setCtaVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndex1024, setActiveIndex1024] = useState(0);
+  const [overlayStart1440, setOverlayStart1440] = useState({ leftPx: 140, widthPx: 868 });
+  const [overlayStart1024, setOverlayStart1024] = useState({ leftPx: 40, widthPx: 705 });
   const [activeIndex768, setActiveIndex768] = useState(0);
   const [activeIndex480, setActiveIndex480] = useState(0);
   const [activeIndex360, setActiveIndex360] = useState(0);
@@ -619,11 +672,6 @@ export function BusinessGoals() {
   const hoverBlocked1024Ref = useRef(false);
   const pointerRef = useRef<{ x: number; y: number } | null>(null);
   const pointer1024Ref = useRef<{ x: number; y: number } | null>(null);
-  const accordionGapPx = 10;
-  const accordionTransition = "620ms cubic-bezier(0.2,0.9,0.25,1)";
-  const accordionOverlayTransition = "680ms cubic-bezier(0.2,0.9,0.25,1)";
-  const hoverIntentDelayMs = 130;
-  const hoverUnblockDistancePx = 8;
 
   const cardVisuals = useMemo(
     () => [
@@ -675,20 +723,22 @@ export function BusinessGoals() {
   );
 
   const columns1440 = useMemo(() => {
-    const collapsed = [88, 87, 88, 87];
-    const active = [868, 867, 868, 867];
     return businessGoalsContent.cards
-      .map((_, index) => (index === activeIndex ? active[index] : collapsed[index]))
+      .map((_, index) => (index === activeIndex ? activeWidths1440[index] : collapsedWidths1440[index]))
       .map((px) => `${px}px`)
       .join(" ");
   }, [activeIndex]);
 
   const overlayLeft1440 = useMemo(() => {
-    const collapsed = [88, 87, 88, 87];
-    let left = 140;
-    for (let i = 0; i < activeIndex; i += 1) left += collapsed[i] + accordionGapPx;
-    return left;
-  }, [activeIndex, accordionGapPx]);
+    return getAccordionCardLeft({
+      index: activeIndex,
+      activeIndex,
+      activeWidths: activeWidths1440,
+      collapsedWidths: collapsedWidths1440,
+      gap: accordionGapPx,
+      startLeft: 140,
+    });
+  }, [activeIndex]);
 
   const accordionCards1024 = useMemo(
     () =>
@@ -702,24 +752,37 @@ export function BusinessGoals() {
   );
 
   const columns1024 = useMemo(() => {
-    const collapsed = [68, 68, 67, 68];
-    const active = [705, 704, 705, 704];
     return businessGoalsContent.cards
-      .map((_, index) => (index === activeIndex1024 ? active[index] : collapsed[index]))
+      .map((_, index) => (index === activeIndex1024 ? activeWidths1024[index] : collapsedWidths1024[index]))
       .map((px) => `${px}px`)
       .join(" ");
   }, [activeIndex1024]);
 
   const overlayLeft1024 = useMemo(() => {
-    const collapsed = [68, 68, 67, 68];
-    let left = 40;
-    for (let i = 0; i < activeIndex1024; i += 1) left += collapsed[i] + accordionGapPx;
-    return left;
-  }, [activeIndex1024, accordionGapPx]);
+    return getAccordionCardLeft({
+      index: activeIndex1024,
+      activeIndex: activeIndex1024,
+      activeWidths: activeWidths1024,
+      collapsedWidths: collapsedWidths1024,
+      gap: accordionGapPx,
+      startLeft: 40,
+    });
+  }, [activeIndex1024]);
 
   function changeActiveCard(nextIndex: number) {
     clearHoverIntent();
     if (nextIndex === activeIndex) return;
+    setOverlayStart1440({
+      leftPx: getAccordionCardLeft({
+        index: nextIndex,
+        activeIndex,
+        activeWidths: activeWidths1440,
+        collapsedWidths: collapsedWidths1440,
+        gap: accordionGapPx,
+        startLeft: 140,
+      }),
+      widthPx: nextIndex === activeIndex ? activeWidths1440[nextIndex] : collapsedWidths1440[nextIndex],
+    });
     hoverBlockedRef.current = true;
     setActiveIndex(nextIndex);
   }
@@ -754,6 +817,17 @@ export function BusinessGoals() {
   function changeActiveCard1024(nextIndex: number) {
     clearHoverIntent1024();
     if (nextIndex === activeIndex1024) return;
+    setOverlayStart1024({
+      leftPx: getAccordionCardLeft({
+        index: nextIndex,
+        activeIndex: activeIndex1024,
+        activeWidths: activeWidths1024,
+        collapsedWidths: collapsedWidths1024,
+        gap: accordionGapPx,
+        startLeft: 40,
+      }),
+      widthPx: nextIndex === activeIndex1024 ? activeWidths1024[nextIndex] : collapsedWidths1024[nextIndex],
+    });
     hoverBlocked1024Ref.current = true;
     setActiveIndex1024(nextIndex);
   }
@@ -946,6 +1020,8 @@ export function BusinessGoals() {
         </div>
         <ExpandedOverlay
           card={businessGoalsContent.cards[activeIndex]}
+          initialLeftPx={overlayStart1440.leftPx}
+          initialWidthPx={overlayStart1440.widthPx}
           imageClass={cardVisuals[activeIndex].mainImageClass}
           imageSrc={cardVisuals[activeIndex].mainImage}
           imageStyle={cardVisuals[activeIndex].mainImageStyle}
@@ -1071,6 +1147,8 @@ export function BusinessGoals() {
         </div>
         <ExpandedOverlay
           card={businessGoalsContent.cards[activeIndex1024]}
+          initialLeftPx={overlayStart1024.leftPx}
+          initialWidthPx={overlayStart1024.widthPx}
           imageClass={
             activeIndex1024 === 0 || activeIndex1024 === 2
               ? "absolute right-[70px] top-0 h-[400px] w-[236px] object-cover"
