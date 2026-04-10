@@ -171,7 +171,7 @@ export function FirstScreenConsultationModal360({
     <div
       aria-labelledby={isSuccess ? successTitleId : titleId}
       aria-modal="true"
-      className={`fixed inset-0 z-[520] hidden overflow-x-clip max-[479px]:block transition-opacity ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[opacity] ${
+      className={`fixed inset-0 z-[var(--z-modal)] hidden overflow-x-clip max-[479px]:block transition-opacity ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[opacity] ${
         isEntered ? "opacity-100" : "opacity-0"
       }`}
       onTransitionEnd={handleShellTransitionEnd}
@@ -186,7 +186,14 @@ export function FirstScreenConsultationModal360({
       />
 
       {/* Figma 783:9821: колонка крестик+карточка по центру, gap 10px, shell px 16 */}
-      <div className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto px-[16px] py-0">
+      <div
+        className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto px-[16px] py-0"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) {
+            onClose();
+          }
+        }}
+      >
         <div className="relative flex w-full min-w-0 max-w-[360px] flex-col items-end gap-[10px]">
           <button
             className="inline-flex size-[24px] shrink-0 self-end items-center justify-center rounded-[8px] border-0 bg-transparent p-0 transition-opacity hover:opacity-80"

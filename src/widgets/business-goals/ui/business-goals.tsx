@@ -239,6 +239,22 @@ function ExpandedOverlay({
   is1024: boolean;
   transition: string;
 }) {
+  const [contentEntered, setContentEntered] = useState(false);
+  const contentRevealDelayMs = is1024 ? 170 : 190;
+
+  useEffect(() => {
+    setContentEntered(false);
+    let animationFrameId = 0;
+    const enterTimeoutId = window.setTimeout(() => {
+      animationFrameId = requestAnimationFrame(() => setContentEntered(true));
+    }, contentRevealDelayMs);
+
+    return () => {
+      window.clearTimeout(enterTimeoutId);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [card.id, contentRevealDelayMs]);
+
   return (
     <div
       className="absolute z-20 overflow-hidden bg-[#0d0300]"
@@ -253,9 +269,26 @@ function ExpandedOverlay({
       }}
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: contentEntered ? 1 : 0,
+            clipPath: contentEntered ? "inset(0 0% 0 0 round 0px)" : "inset(0 0% 14% 0 round 0px)",
+            transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,12px,0)",
+            transition:
+              "opacity 240ms cubic-bezier(0.22,1,0.36,1), clip-path 620ms cubic-bezier(0.2,0.9,0.25,1), transform 620ms cubic-bezier(0.2,0.9,0.25,1)",
+            willChange: "opacity,clip-path,transform",
+          }}
+        >
           <div
             className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
+            style={{
+              opacity: contentEntered ? 1 : 0,
+              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,18px,0)",
+              transition:
+                "opacity 220ms cubic-bezier(0.22,1,0.36,1) 40ms, transform 560ms cubic-bezier(0.22,1,0.36,1) 40ms",
+              willChange: "opacity,transform",
+            }}
           >
             <p className="m-0 font-bold">{card.titlePrimary}</p>
             <p className="m-0 font-normal italic">{card.titleAccent}</p>
@@ -263,10 +296,28 @@ function ExpandedOverlay({
               <p className="m-0 font-bold">{card.titleSuffix}</p>
             ) : null}
           </div>
-          <p className={`absolute ${is1024 ? "right-[20px] top-[20px]" : "right-[30px] top-[30px]"} text-[17px] font-bold leading-none text-white`}>
+          <p
+            className={`absolute ${is1024 ? "right-[20px] top-[20px]" : "right-[30px] top-[30px]"} text-[17px] font-bold leading-none text-white`}
+            style={{
+              opacity: contentEntered ? 1 : 0,
+              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(8px,0,0)",
+              transition:
+                "opacity 200ms cubic-bezier(0.22,1,0.36,1) 90ms, transform 460ms cubic-bezier(0.22,1,0.36,1) 90ms",
+              willChange: "opacity,transform",
+            }}
+          >
             {card.id}
           </p>
-          <p className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}>
+          <p
+            className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}
+            style={{
+              opacity: contentEntered ? 1 : 0,
+              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,14px,0)",
+              transition:
+                "opacity 220ms cubic-bezier(0.22,1,0.36,1) 120ms, transform 520ms cubic-bezier(0.22,1,0.36,1) 120ms",
+              willChange: "opacity,transform",
+            }}
+          >
             {card.description}
           </p>
           <img
@@ -276,7 +327,17 @@ function ExpandedOverlay({
             fetchPriority="high"
             loading="eager"
             src={imageSrc}
-            style={imageStyle}
+            style={{
+              ...imageStyle,
+              opacity: contentEntered ? 1 : 0,
+              transform: contentEntered
+                ? "translate3d(0,0,0) scale(1)"
+                : "translate3d(18px,0,0) scale(1.02)",
+              transformOrigin: "center center",
+              transition:
+                "opacity 240ms cubic-bezier(0.22,1,0.36,1) 70ms, transform 760ms cubic-bezier(0.2,0.9,0.25,1) 70ms",
+              willChange: "opacity,transform",
+            }}
           />
         </div>
       </div>

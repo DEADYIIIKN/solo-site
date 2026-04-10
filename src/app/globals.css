@@ -95,9 +95,9 @@
   --motion-slow: 360ms;
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   --z-base: 1;
-  /* Выше sticky-секций (напр. z-[40] у философии), ниже навбара/модалок сайта (400–520) */
-  --z-overlay: 500;
-  --z-modal: 510;
+  /* Ниже navbar нельзя: header использует z-[800], поэтому модалки и overlay держим выше. */
+  --z-overlay: 880;
+  --z-modal: 900;
 }
 
 @media (min-width: 480px) {

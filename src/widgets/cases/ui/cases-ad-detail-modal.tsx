@@ -407,7 +407,7 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
       aria-labelledby={titleId}
       aria-modal="true"
       className={cn(
-        "fixed inset-0 z-[500] overflow-x-clip transition-opacity ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[opacity]",
+        "fixed inset-0 z-[var(--z-modal)] overflow-x-clip transition-opacity ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[opacity]",
         isEntered ? "opacity-100" : "opacity-0",
       )}
       onTransitionEnd={handleShellEnd}
@@ -420,7 +420,14 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
         onClick={onClose}
         type="button"
       />
-      <div className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto py-6">
+      <div
+        className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto py-6"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) {
+            onClose();
+          }
+        }}
+      >
         {shell}
       </div>
     </div>

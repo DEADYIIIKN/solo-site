@@ -13,6 +13,12 @@ COPY patches ./patches
 COPY scripts ./scripts
 RUN pnpm install --frozen-lockfile
 
+FROM base AS prod-deps
+COPY package.json pnpm-lock.yaml ./
+COPY patches ./patches
+COPY scripts ./scripts
+RUN pnpm install --frozen-lockfile --prod
+
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -29,6 +35,7 @@ ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=builder /app/.next/standalone ./
+COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/src ./src

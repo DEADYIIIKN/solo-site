@@ -234,7 +234,7 @@ export function FirstScreenConsultationModal1440({
         successStep === "form" ? titleId : successTitleId
       }
       aria-modal="true"
-      className={`fixed inset-0 z-[520] hidden overflow-x-clip min-[1440px]:block transition-opacity ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[opacity] ${
+      className={`fixed inset-0 z-[var(--z-modal)] hidden overflow-x-clip min-[1440px]:block transition-opacity ease-[cubic-bezier(0.33,1,0.68,1)] will-change-[opacity] ${
         isEntered ? "opacity-100" : "opacity-0"
       }`}
       onTransitionEnd={handleShellTransitionEnd}
@@ -249,7 +249,14 @@ export function FirstScreenConsultationModal1440({
       />
 
       {/* Figma 783:9900 / 783:9919 / 783:9812: колонка по центру, gap 20px между крестиком и карточкой */}
-      <div className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto px-4 py-2">
+      <div
+        className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto px-4 py-2"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) {
+            onClose();
+          }
+        }}
+      >
         <div
           className={cn(
             "relative flex w-full flex-col items-center gap-[20px] transition-[max-width]",
