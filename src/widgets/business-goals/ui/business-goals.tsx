@@ -240,7 +240,8 @@ function ExpandedOverlay({
   transition: string;
 }) {
   const [contentEntered, setContentEntered] = useState(false);
-  const contentRevealDelayMs = is1024 ? 170 : 190;
+  const contentRevealDelayMs = is1024 ? 150 : 170;
+  const premiumEase = "cubic-bezier(0.16,1,0.3,1)";
 
   useEffect(() => {
     setContentEntered(false);
@@ -266,28 +267,32 @@ function ExpandedOverlay({
         height: `${is1024 ? 400 : 500}px`,
         transition: `left ${transition}, width ${transition}`,
         willChange: "left,width",
+        boxShadow: is1024
+          ? "0 16px 48px rgba(13, 3, 0, 0.16)"
+          : "0 20px 60px rgba(13, 3, 0, 0.18)",
       }}
     >
       <div className="pointer-events-none absolute inset-0">
         <div
           className="absolute inset-0"
           style={{
-            opacity: contentEntered ? 1 : 0,
-            clipPath: contentEntered ? "inset(0 0% 0 0 round 0px)" : "inset(0 0% 14% 0 round 0px)",
-            transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,12px,0)",
+            clipPath: contentEntered ? "inset(0 0% 0 0 round 0px)" : "inset(0 0% 0 0 round 0px)",
+            transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,8px,0)",
             transition:
-              "opacity 240ms cubic-bezier(0.22,1,0.36,1), clip-path 620ms cubic-bezier(0.2,0.9,0.25,1), transform 620ms cubic-bezier(0.2,0.9,0.25,1)",
-            willChange: "opacity,clip-path,transform",
+              `transform 680ms ${premiumEase}`,
+            willChange: "transform",
           }}
         >
           <div
             className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
             style={{
-              opacity: contentEntered ? 1 : 0,
-              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,18px,0)",
+              clipPath: contentEntered
+                ? "inset(0 0% 0 0 round 0px)"
+                : "inset(0 0 0 100% round 0px)",
+              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(6px,0,0)",
               transition:
-                "opacity 220ms cubic-bezier(0.22,1,0.36,1) 40ms, transform 560ms cubic-bezier(0.22,1,0.36,1) 40ms",
-              willChange: "opacity,transform",
+                `clip-path 700ms ${premiumEase} 10ms, transform 700ms ${premiumEase} 10ms`,
+              willChange: "clip-path,transform",
             }}
           >
             <p className="m-0 font-bold">{card.titlePrimary}</p>
@@ -299,11 +304,13 @@ function ExpandedOverlay({
           <p
             className={`absolute ${is1024 ? "right-[20px] top-[20px]" : "right-[30px] top-[30px]"} text-[17px] font-bold leading-none text-white`}
             style={{
-              opacity: contentEntered ? 1 : 0,
-              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(8px,0,0)",
+              clipPath: contentEntered
+                ? "inset(0 0% 0 0 round 0px)"
+                : "inset(0 100% 0 0 round 0px)",
+              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(-4px,0,0)",
               transition:
-                "opacity 200ms cubic-bezier(0.22,1,0.36,1) 90ms, transform 460ms cubic-bezier(0.22,1,0.36,1) 90ms",
-              willChange: "opacity,transform",
+                `clip-path 520ms ${premiumEase} 60ms, transform 520ms ${premiumEase} 60ms`,
+              willChange: "clip-path,transform",
             }}
           >
             {card.id}
@@ -311,11 +318,13 @@ function ExpandedOverlay({
           <p
             className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}
             style={{
-              opacity: contentEntered ? 1 : 0,
-              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,14px,0)",
+              clipPath: contentEntered
+                ? "inset(0 0% 0 0 round 0px)"
+                : "inset(100% 0 0 0 round 0px)",
+              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,6px,0)",
               transition:
-                "opacity 220ms cubic-bezier(0.22,1,0.36,1) 120ms, transform 520ms cubic-bezier(0.22,1,0.36,1) 120ms",
-              willChange: "opacity,transform",
+                `clip-path 600ms ${premiumEase} 70ms, transform 600ms ${premiumEase} 70ms`,
+              willChange: "clip-path,transform",
             }}
           >
             {card.description}
@@ -329,14 +338,16 @@ function ExpandedOverlay({
             src={imageSrc}
             style={{
               ...imageStyle,
-              opacity: contentEntered ? 1 : 0,
               transform: contentEntered
                 ? "translate3d(0,0,0) scale(1)"
-                : "translate3d(18px,0,0) scale(1.02)",
+                : "translate3d(-16px,0,0) scale(1.025)",
+              clipPath: contentEntered
+                ? "inset(0 0% 0 0 round 0px)"
+                : "inset(0 100% 0 0 round 0px)",
               transformOrigin: "center center",
               transition:
-                "opacity 240ms cubic-bezier(0.22,1,0.36,1) 70ms, transform 760ms cubic-bezier(0.2,0.9,0.25,1) 70ms",
-              willChange: "opacity,transform",
+                `clip-path 760ms ${premiumEase} 20ms, transform 820ms ${premiumEase} 20ms`,
+              willChange: "clip-path,transform",
             }}
           />
         </div>
