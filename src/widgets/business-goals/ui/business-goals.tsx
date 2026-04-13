@@ -178,7 +178,7 @@ function AccordionCard({
 }: AccordionCardProps) {
   const premiumEase = "cubic-bezier(0.16,1,0.3,1)";
   const [showCollapsedVisual, setShowCollapsedVisual] = useState(!active);
-  const [showExpandedVisual, setShowExpandedVisual] = useState(active);
+  const [showExpandedImage, setShowExpandedImage] = useState(active);
   const labelBoxHeightById: Record<string, string> = {
     "01": "h-[174px]",
     "02": "h-[159px]",
@@ -192,15 +192,15 @@ function AccordionCard({
     let expandedTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
     if (active) {
-      setShowExpandedVisual(true);
+      setShowExpandedImage(true);
       collapsedTimeoutId = setTimeout(() => {
         setShowCollapsedVisual(false);
       }, 70);
     } else {
       setShowCollapsedVisual(true);
       expandedTimeoutId = setTimeout(() => {
-        setShowExpandedVisual(false);
-      }, 260);
+        setShowExpandedImage(false);
+      }, 180);
     }
 
     return () => {
@@ -268,7 +268,7 @@ function AccordionCard({
         <div
           className="absolute inset-0"
           style={{
-            transform: active || showExpandedVisual ? "translate3d(0,0,0)" : "translate3d(0,8px,0)",
+            transform: active || showExpandedImage ? "translate3d(0,0,0)" : "translate3d(0,8px,0)",
             transition: `transform 680ms ${premiumEase}`,
             willChange: "transform",
           }}
@@ -276,8 +276,8 @@ function AccordionCard({
           <div
             className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
             style={{
-              clipPath: active || showExpandedVisual ? "inset(0 0% 0 0 round 0px)" : "inset(0 0 0 100% round 0px)",
-              transform: active || showExpandedVisual ? "translate3d(0,0,0)" : "translate3d(6px,0,0)",
+              clipPath: active ? "inset(0 0% 0 0 round 0px)" : "inset(0 0 0 100% round 0px)",
+              transform: active ? "translate3d(0,0,0)" : "translate3d(6px,0,0)",
               transition: `clip-path 700ms ${premiumEase} 10ms, transform 700ms ${premiumEase} 10ms`,
               willChange: "clip-path,transform",
             }}
@@ -289,8 +289,8 @@ function AccordionCard({
           <p
             className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}
             style={{
-              clipPath: active || showExpandedVisual ? "inset(0 0% 0 0 round 0px)" : "inset(100% 0 0 0 round 0px)",
-              transform: active || showExpandedVisual ? "translate3d(0,0,0)" : "translate3d(0,6px,0)",
+              clipPath: active ? "inset(0 0% 0 0 round 0px)" : "inset(100% 0 0 0 round 0px)",
+              transform: active ? "translate3d(0,0,0)" : "translate3d(0,6px,0)",
               transition: `clip-path 600ms ${premiumEase} 70ms, transform 600ms ${premiumEase} 70ms`,
               willChange: "clip-path,transform",
             }}
@@ -303,8 +303,8 @@ function AccordionCard({
             src={imageSrc}
             style={{
               ...expandedImageStyle,
-              transform: active || showExpandedVisual ? "translate3d(0,0,0) scale(1)" : "translate3d(-16px,0,0) scale(1.025)",
-              clipPath: active || showExpandedVisual ? "inset(0 0% 0 0 round 0px)" : "inset(0 100% 0 0 round 0px)",
+              transform: active || showExpandedImage ? "translate3d(0,0,0) scale(1)" : "translate3d(-16px,0,0) scale(1.025)",
+              clipPath: active || showExpandedImage ? "inset(0 0% 0 0 round 0px)" : "inset(0 100% 0 0 round 0px)",
               transformOrigin: "center center",
               transition: `clip-path 760ms ${premiumEase} 20ms, transform 820ms ${premiumEase} 20ms`,
               willChange: "clip-path,transform",
