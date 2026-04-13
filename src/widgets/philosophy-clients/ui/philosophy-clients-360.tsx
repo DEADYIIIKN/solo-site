@@ -42,11 +42,11 @@ export function PhilosophyClients360() {
             </div>
             <PhilosophyNarrowCardStack size="360" />
             </div>
-            <PhilosophyClientsNarrowClientsBlock
-              clientsEyebrowStyle="narrow"
-              eyebrowPlClassName="flex w-full justify-center px-4"
-            />
           </div>
+          <PhilosophyClientsNarrowClientsBlock
+            clientsEyebrowStyle="narrow"
+            eyebrowPlClassName="flex w-full justify-center px-4"
+          />
         </div>
       </section>
     </div>

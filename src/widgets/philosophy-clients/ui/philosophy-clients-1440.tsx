@@ -354,7 +354,7 @@ export function PhilosophyClients1440() {
         {/*
          * «клиенты» y=954, ленты ~973 → ~20px; заголовок и ленты в потоке (не absolute top-48 + mt-6).
          */}
-        <div className="relative z-[5] w-full overflow-hidden rounded-bl-[60px] rounded-br-[60px] bg-white pb-10">
+        <div className="relative z-[5] w-full overflow-x-visible overflow-y-visible rounded-bl-[60px] rounded-br-[60px] bg-white pb-10">
           <div className="pl-[140px]">
             <SectionEyebrowRow>
               <p className={sectionEyebrowTextMin1440}>
@@ -362,7 +362,7 @@ export function PhilosophyClients1440() {
               </p>
             </SectionEyebrowRow>
           </div>
-          <div className="relative mt-5 h-[400px] w-full">
+          <div className="relative left-1/2 mt-5 h-[400px] w-screen max-w-[100vw] -translate-x-1/2">
             <PhilosophyClientsMarquee1440 />
           </div>
         </div>

@@ -385,7 +385,7 @@ export function PhilosophyClientsNarrowClientsBlock({
       <div className="h-10 w-full shrink-0 bg-white" aria-hidden />
       <div
         ref={clientsRef}
-        className="relative z-[5] w-full overflow-hidden rounded-bl-[60px] rounded-br-[60px] bg-white pb-10"
+        className="relative z-[5] w-full overflow-x-visible overflow-y-visible rounded-bl-[60px] rounded-br-[60px] bg-white pb-10"
       >
         <div
           className={cn(
@@ -408,7 +408,7 @@ export function PhilosophyClientsNarrowClientsBlock({
         </div>
         <div
           className={cn(
-            "relative mt-8 h-[400px] w-full",
+            "relative left-1/2 mt-8 h-[400px] w-screen max-w-[100vw] -translate-x-1/2",
             REVEAL,
             clientsInView ? REVEAL_ON : REVEAL_OFF,
           )}

@@ -362,7 +362,7 @@ export function PhilosophyClients1024() {
           {/* Как 1440 (783:9294): 100px воздуха после стопки, затем плавно блок «клиенты» + ленты */}
           <div className="h-[100px] w-full shrink-0 bg-white" aria-hidden />
 
-          <div className="relative z-[5] w-full overflow-hidden rounded-bl-[60px] rounded-br-[60px] bg-white pb-10">
+          <div className="relative z-[5] w-full overflow-x-visible overflow-y-visible rounded-bl-[60px] rounded-br-[60px] bg-white pb-10">
             <div className="pl-10">
               <SectionEyebrowRow>
                 <p className={sectionEyebrowText480To1439}>
@@ -370,7 +370,7 @@ export function PhilosophyClients1024() {
                 </p>
               </SectionEyebrowRow>
             </div>
-            <div className="relative mt-5 h-[400px] w-full">
+            <div className="relative left-1/2 mt-5 h-[400px] w-screen max-w-[100vw] -translate-x-1/2">
               <PhilosophyClientsMarquee1024 />
             </div>
           </div>
