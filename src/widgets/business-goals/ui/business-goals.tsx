@@ -22,7 +22,7 @@ import {
 } from "@/widgets/business-goals/model/business-goals.data";
 
 const accordionGapPx = 10;
-const accordionTransition = "620ms cubic-bezier(0.2,0.9,0.25,1)";
+const accordionTransition = "540ms cubic-bezier(0.22,1,0.36,1)";
 const hoverIntentDelayMs = 130;
 const hoverUnblockDistancePx = 8;
 const collapsedWidths1440 = [88, 87, 88, 87] as const;
@@ -181,23 +181,14 @@ function AccordionCard({
   const premiumEase = "cubic-bezier(0.16,1,0.3,1)";
   const [showCollapsedVisual, setShowCollapsedVisual] = useState(!active);
   const [showExpandedImage, setShowExpandedImage] = useState(active);
-  const labelBoxHeightById: Record<string, string> = {
-    "01": "h-[174px]",
-    "02": "h-[159px]",
-    "03": "h-[153px]",
-    "04": "h-[223px]",
-  };
-  const labelBoxHeight = labelBoxHeightById[card.id] ?? "h-[159px]";
   const entryDirection = motionDirection;
   const exitDirection = (motionDirection * -1) as -1 | 1;
   const collapsedHideClip =
     entryDirection > 0 ? "inset(0 100% 0 0 round 0px)" : "inset(0 0 0 100% round 0px)";
-  const expandedExitHideClip =
-    exitDirection > 0 ? "inset(0 0 0 100% round 0px)" : "inset(0 100% 0 0 round 0px)";
-  const horizontalOffsetPx = entryDirection > 0 ? -10 : 10;
-  const verticalLabelOffsetPx = entryDirection > 0 ? -8 : 8;
-  const expandedExitOffsetPx = exitDirection > 0 ? 6 : -6;
-  const expandedImageExitOffsetPx = exitDirection > 0 ? -16 : 16;
+  const horizontalOffsetPx = entryDirection > 0 ? -8 : 8;
+  const verticalLabelOffsetPx = entryDirection > 0 ? -6 : 6;
+  const expandedExitOffsetPx = exitDirection > 0 ? 18 : -18;
+  const expandedImageExitOffsetPx = exitDirection > 0 ? 28 : -28;
 
   useEffect(() => {
     let collapsedTimeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -267,21 +258,19 @@ function AccordionCard({
           {card.id}
         </p>
         <div
-          className={`absolute flex w-[28px] -translate-y-full items-center justify-center ${labelBoxHeight}`}
+          className="pointer-events-none absolute z-20 overflow-visible"
           style={{
             left: topPx === 214 ? "27px" : "20px",
-            top: topPx === 214 ? "470px" : "380px",
-            clipPath:
-              active || !showCollapsedVisual ? collapsedHideClip : "inset(0 0% 0 0 round 0px)",
-            transform:
-              active || !showCollapsedVisual
-                ? `translate3d(${verticalLabelOffsetPx}px,-100%,0)`
-                : "translate3d(0,-100%,0)",
-            transition: `clip-path 420ms ${premiumEase}, transform 420ms ${premiumEase}`,
-            willChange: "clip-path,transform",
+            bottom: topPx === 214 ? "30px" : "20px",
+            opacity: active ? 0 : 1,
+            transform: active
+              ? `translate3d(${verticalLabelOffsetPx}px,0,0)`
+              : "translate3d(0,0,0)",
+            transition: `opacity 180ms ease-out, transform 420ms ${premiumEase}`,
+            willChange: "opacity,transform",
           }}
         >
-          <p className="-rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
+          <p className="m-0 origin-[0%_100%] -rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
             {card.label}
           </p>
         </div>
@@ -289,18 +278,20 @@ function AccordionCard({
           className="absolute inset-0"
           style={{
             transform: active || showExpandedImage ? "translate3d(0,0,0)" : "translate3d(0,8px,0)",
-            transition: `transform 680ms ${premiumEase}`,
-            willChange: "transform",
+            opacity: active || showExpandedImage ? 1 : 0,
+            transition: `transform 520ms ${premiumEase}, opacity 240ms ease-out`,
+            willChange: "transform,opacity",
           }}
         >
           <div
             className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
             style={{
-              clipPath: active ? "inset(0 0% 0 0 round 0px)" : expandedExitHideClip,
-              transform:
-                active ? "translate3d(0,0,0)" : `translate3d(${expandedExitOffsetPx}px,0,0)`,
-              transition: `clip-path 700ms ${premiumEase} 10ms, transform 700ms ${premiumEase} 10ms`,
-              willChange: "clip-path,transform",
+              opacity: active ? 1 : 0,
+              transform: active
+                ? "translate3d(0,0,0)"
+                : `translate3d(${expandedExitOffsetPx}px,0,0)`,
+              transition: `transform 460ms ${premiumEase} 40ms, opacity 220ms ease-out 40ms`,
+              willChange: "transform,opacity",
             }}
           >
             <p className="m-0 font-bold">{card.titlePrimary}</p>
@@ -310,10 +301,10 @@ function AccordionCard({
           <p
             className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}
             style={{
-              clipPath: active ? "inset(0 0% 0 0 round 0px)" : "inset(100% 0 0 0 round 0px)",
-              transform: active ? "translate3d(0,0,0)" : "translate3d(0,6px,0)",
-              transition: `clip-path 600ms ${premiumEase} 70ms, transform 600ms ${premiumEase} 70ms`,
-              willChange: "clip-path,transform",
+              opacity: active ? 1 : 0,
+              transform: active ? "translate3d(0,0,0)" : "translate3d(0,10px,0)",
+              transition: `transform 420ms ${premiumEase} 90ms, opacity 200ms ease-out 90ms`,
+              willChange: "transform,opacity",
             }}
           >
             {card.description}
@@ -328,11 +319,10 @@ function AccordionCard({
                 active || showExpandedImage
                   ? "translate3d(0,0,0) scale(1)"
                   : `translate3d(${expandedImageExitOffsetPx}px,0,0) scale(1.025)`,
-              clipPath:
-                active || showExpandedImage ? "inset(0 0% 0 0 round 0px)" : expandedExitHideClip,
+              opacity: active || showExpandedImage ? 1 : 0,
               transformOrigin: "center center",
-              transition: `clip-path 760ms ${premiumEase} 20ms, transform 820ms ${premiumEase} 20ms`,
-              willChange: "clip-path,transform",
+              transition: `transform 560ms ${premiumEase} 30ms, opacity 220ms ease-out 30ms`,
+              willChange: "transform,opacity",
             }}
           />
         </div>
