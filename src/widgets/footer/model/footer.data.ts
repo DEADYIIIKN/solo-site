@@ -13,7 +13,7 @@ export const footerAssets = {
 
 export const footerNavItems = ["об агенстве", "кейсы", "услуги", "Новости"] as const;
 
-export const footerNavLinks = firstScreenNavLinks;
+export const footerNavLinks = firstScreenNavLinks.filter((item) => item.label !== "Контакты");
 
 export const footerBlogPosts = [
   {
