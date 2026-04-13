@@ -188,12 +188,16 @@ function AccordionCard({
     "04": "h-[223px]",
   };
   const labelBoxHeight = labelBoxHeightById[card.id] ?? "h-[159px]";
-  const collapsedHideClip = motionDirection > 0 ? "inset(0 100% 0 0 round 0px)" : "inset(0 0 0 100% round 0px)";
-  const expandedHideClip = motionDirection > 0 ? "inset(0 0 0 100% round 0px)" : "inset(0 100% 0 0 round 0px)";
-  const horizontalOffsetPx = motionDirection > 0 ? -10 : 10;
-  const verticalLabelOffsetPx = motionDirection > 0 ? -8 : 8;
-  const expandedOffsetPx = motionDirection > 0 ? 6 : -6;
-  const expandedImageOffsetPx = motionDirection > 0 ? -16 : 16;
+  const entryDirection = motionDirection;
+  const exitDirection = (motionDirection * -1) as -1 | 1;
+  const collapsedHideClip =
+    entryDirection > 0 ? "inset(0 100% 0 0 round 0px)" : "inset(0 0 0 100% round 0px)";
+  const expandedExitHideClip =
+    exitDirection > 0 ? "inset(0 0 0 100% round 0px)" : "inset(0 100% 0 0 round 0px)";
+  const horizontalOffsetPx = entryDirection > 0 ? -10 : 10;
+  const verticalLabelOffsetPx = entryDirection > 0 ? -8 : 8;
+  const expandedExitOffsetPx = exitDirection > 0 ? 6 : -6;
+  const expandedImageExitOffsetPx = exitDirection > 0 ? -16 : 16;
 
   useEffect(() => {
     let collapsedTimeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -230,7 +234,8 @@ function AccordionCard({
         <div
           className="absolute inset-0 overflow-hidden"
           style={{
-            clipPath: active || !showCollapsedVisual ? collapsedHideClip : "inset(0 0% 0 0 round 0px)",
+            clipPath:
+              active || !showCollapsedVisual ? collapsedHideClip : "inset(0 0% 0 0 round 0px)",
             transition: `clip-path 520ms ${premiumEase}, transform 520ms ${premiumEase}`,
             transform:
               active || !showCollapsedVisual
@@ -266,7 +271,8 @@ function AccordionCard({
           style={{
             left: topPx === 214 ? "27px" : "20px",
             top: topPx === 214 ? "470px" : "380px",
-            clipPath: active || !showCollapsedVisual ? collapsedHideClip : "inset(0 0% 0 0 round 0px)",
+            clipPath:
+              active || !showCollapsedVisual ? collapsedHideClip : "inset(0 0% 0 0 round 0px)",
             transform:
               active || !showCollapsedVisual
                 ? `translate3d(${verticalLabelOffsetPx}px,-100%,0)`
@@ -290,8 +296,9 @@ function AccordionCard({
           <div
             className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
             style={{
-              clipPath: active ? "inset(0 0% 0 0 round 0px)" : expandedHideClip,
-              transform: active ? "translate3d(0,0,0)" : `translate3d(${expandedOffsetPx}px,0,0)`,
+              clipPath: active ? "inset(0 0% 0 0 round 0px)" : expandedExitHideClip,
+              transform:
+                active ? "translate3d(0,0,0)" : `translate3d(${expandedExitOffsetPx}px,0,0)`,
               transition: `clip-path 700ms ${premiumEase} 10ms, transform 700ms ${premiumEase} 10ms`,
               willChange: "clip-path,transform",
             }}
@@ -320,8 +327,9 @@ function AccordionCard({
               transform:
                 active || showExpandedImage
                   ? "translate3d(0,0,0) scale(1)"
-                  : `translate3d(${expandedImageOffsetPx}px,0,0) scale(1.025)`,
-              clipPath: active || showExpandedImage ? "inset(0 0% 0 0 round 0px)" : expandedHideClip,
+                  : `translate3d(${expandedImageExitOffsetPx}px,0,0) scale(1.025)`,
+              clipPath:
+                active || showExpandedImage ? "inset(0 0% 0 0 round 0px)" : expandedExitHideClip,
               transformOrigin: "center center",
               transition: `clip-path 760ms ${premiumEase} 20ms, transform 820ms ${premiumEase} 20ms`,
               willChange: "clip-path,transform",
