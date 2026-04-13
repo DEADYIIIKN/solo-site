@@ -150,9 +150,9 @@ type AccordionCardProps = {
   card: (typeof businessGoalsContent.cards)[number];
   expandedImageClass: string;
   expandedImageStyle: { height: string; maxWidth: "none"; width: string };
-  imageLeftPercent: string;
+  collapsedImageLeftPx: number;
   imageSrc: string;
-  imageWidthPercent: string;
+  collapsedImageWidthPx: number;
   is1024?: boolean;
   onClick: () => void;
   onFocusCard?: () => void;
@@ -164,11 +164,11 @@ type AccordionCardProps = {
 function AccordionCard({
   active,
   card,
+  collapsedImageLeftPx,
+  collapsedImageWidthPx,
   expandedImageClass,
   expandedImageStyle,
-  imageLeftPercent,
   imageSrc,
-  imageWidthPercent,
   is1024 = false,
   onClick,
   onFocusCard,
@@ -210,9 +210,9 @@ function AccordionCard({
             src={imageSrc}
             style={{
               height: "100%",
-              left: imageLeftPercent,
+              left: `${collapsedImageLeftPx}px`,
               maxWidth: "none",
-              width: imageWidthPercent,
+              width: `${collapsedImageWidthPx}px`,
             }}
           />
         </div>
@@ -854,11 +854,15 @@ export function BusinessGoals() {
               key={card.id}
               active={isActive}
               card={card}
+              collapsedImageLeftPx={
+                (collapsedWidths1440[index] * Number.parseFloat(visual.narrowImageLeftPercent)) / 100
+              }
+              collapsedImageWidthPx={
+                (collapsedWidths1440[index] * Number.parseFloat(visual.narrowImageWidthPercent)) / 100
+              }
               expandedImageClass={visual.mainImageClass}
               expandedImageStyle={visual.mainImageStyle}
-              imageLeftPercent={visual.narrowImageLeftPercent}
               imageSrc={visual.mainImage}
-              imageWidthPercent={visual.narrowImageWidthPercent}
               onClick={() => changeActiveCard(index)}
               onFocusCard={() => changeActiveCard(index)}
               onHover={() => scheduleHoverCard(index)}
@@ -953,6 +957,32 @@ export function BusinessGoals() {
               key={card.id}
               active={isActive}
               card={card}
+              collapsedImageLeftPx={
+                (collapsedWidths1024[index] *
+                  Number.parseFloat(
+                    index === 0
+                      ? "-97.83%"
+                      : index === 1
+                        ? "-491.24%"
+                        : index === 2
+                          ? "-235.42%"
+                          : "-430.83%",
+                  )) /
+                100
+              }
+              collapsedImageWidthPx={
+                (collapsedWidths1024[index] *
+                  Number.parseFloat(
+                    index === 0
+                      ? "330.88%"
+                      : index === 1
+                        ? "1394.34%"
+                        : index === 2
+                          ? "335.82%"
+                          : "844.77%",
+                  )) /
+                100
+              }
               expandedImageClass={
                 index === 0 || index === 2
                   ? "absolute right-[70px] top-0 h-[400px] w-[236px] object-cover"
@@ -963,25 +993,7 @@ export function BusinessGoals() {
                   ? { height: "400px", maxWidth: "none", width: "236px" }
                   : { height: "228px", maxWidth: "none", width: "407px" }
               }
-              imageLeftPercent={
-                index === 0
-                  ? "-97.83%"
-                  : index === 1
-                    ? "-491.24%"
-                    : index === 2
-                      ? "-235.42%"
-                      : "-430.83%"
-              }
               imageSrc={visual.mainImage}
-              imageWidthPercent={
-                index === 0
-                  ? "330.88%"
-                  : index === 1
-                    ? "1394.34%"
-                    : index === 2
-                      ? "335.82%"
-                      : "844.77%"
-              }
               is1024={true}
               onClick={() => changeActiveCard1024(index)}
               onFocusCard={() => changeActiveCard1024(index)}
