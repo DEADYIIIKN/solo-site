@@ -154,6 +154,7 @@ type AccordionCardProps = {
   imageSrc: string;
   collapsedImageWidthPx: number;
   is1024?: boolean;
+  motionDirection?: -1 | 1;
   onClick: () => void;
   onFocusCard?: () => void;
   onHoverCancel?: () => void;
@@ -170,6 +171,7 @@ function AccordionCard({
   expandedImageStyle,
   imageSrc,
   is1024 = false,
+  motionDirection = 1,
   onClick,
   onFocusCard,
   onHoverCancel,
@@ -186,6 +188,12 @@ function AccordionCard({
     "04": "h-[223px]",
   };
   const labelBoxHeight = labelBoxHeightById[card.id] ?? "h-[159px]";
+  const collapsedHideClip = motionDirection > 0 ? "inset(0 100% 0 0 round 0px)" : "inset(0 0 0 100% round 0px)";
+  const expandedHideClip = motionDirection > 0 ? "inset(0 0 0 100% round 0px)" : "inset(0 100% 0 0 round 0px)";
+  const horizontalOffsetPx = motionDirection > 0 ? -10 : 10;
+  const verticalLabelOffsetPx = motionDirection > 0 ? -8 : 8;
+  const expandedOffsetPx = motionDirection > 0 ? 6 : -6;
+  const expandedImageOffsetPx = motionDirection > 0 ? -16 : 16;
 
   useEffect(() => {
     let collapsedTimeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -222,9 +230,12 @@ function AccordionCard({
         <div
           className="absolute inset-0 overflow-hidden"
           style={{
-            clipPath: active || !showCollapsedVisual ? "inset(0 100% 0 0 round 0px)" : "inset(0 0% 0 0 round 0px)",
+            clipPath: active || !showCollapsedVisual ? collapsedHideClip : "inset(0 0% 0 0 round 0px)",
             transition: `clip-path 520ms ${premiumEase}, transform 520ms ${premiumEase}`,
-            transform: active || !showCollapsedVisual ? "translate3d(-10px,0,0)" : "translate3d(0,0,0)",
+            transform:
+              active || !showCollapsedVisual
+                ? `translate3d(${horizontalOffsetPx}px,0,0)`
+                : "translate3d(0,0,0)",
             willChange: "clip-path,transform",
           }}
         >
@@ -255,8 +266,11 @@ function AccordionCard({
           style={{
             left: topPx === 214 ? "27px" : "20px",
             top: topPx === 214 ? "470px" : "380px",
-            clipPath: active || !showCollapsedVisual ? "inset(0 100% 0 0 round 0px)" : "inset(0 0% 0 0 round 0px)",
-            transform: active || !showCollapsedVisual ? "translate3d(-8px,-100%,0)" : "translate3d(0,-100%,0)",
+            clipPath: active || !showCollapsedVisual ? collapsedHideClip : "inset(0 0% 0 0 round 0px)",
+            transform:
+              active || !showCollapsedVisual
+                ? `translate3d(${verticalLabelOffsetPx}px,-100%,0)`
+                : "translate3d(0,-100%,0)",
             transition: `clip-path 420ms ${premiumEase}, transform 420ms ${premiumEase}`,
             willChange: "clip-path,transform",
           }}
@@ -276,8 +290,8 @@ function AccordionCard({
           <div
             className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
             style={{
-              clipPath: active ? "inset(0 0% 0 0 round 0px)" : "inset(0 0 0 100% round 0px)",
-              transform: active ? "translate3d(0,0,0)" : "translate3d(6px,0,0)",
+              clipPath: active ? "inset(0 0% 0 0 round 0px)" : expandedHideClip,
+              transform: active ? "translate3d(0,0,0)" : `translate3d(${expandedOffsetPx}px,0,0)`,
               transition: `clip-path 700ms ${premiumEase} 10ms, transform 700ms ${premiumEase} 10ms`,
               willChange: "clip-path,transform",
             }}
@@ -303,8 +317,11 @@ function AccordionCard({
             src={imageSrc}
             style={{
               ...expandedImageStyle,
-              transform: active || showExpandedImage ? "translate3d(0,0,0) scale(1)" : "translate3d(-16px,0,0) scale(1.025)",
-              clipPath: active || showExpandedImage ? "inset(0 0% 0 0 round 0px)" : "inset(0 100% 0 0 round 0px)",
+              transform:
+                active || showExpandedImage
+                  ? "translate3d(0,0,0) scale(1)"
+                  : `translate3d(${expandedImageOffsetPx}px,0,0) scale(1.025)`,
+              clipPath: active || showExpandedImage ? "inset(0 0% 0 0 round 0px)" : expandedHideClip,
               transformOrigin: "center center",
               transition: `clip-path 760ms ${premiumEase} 20ms, transform 820ms ${premiumEase} 20ms`,
               willChange: "clip-path,transform",
@@ -579,6 +596,8 @@ export function BusinessGoals() {
   const [ctaVisible, setCtaVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndex1024, setActiveIndex1024] = useState(0);
+  const [activeDirection, setActiveDirection] = useState<-1 | 1>(1);
+  const [activeDirection1024, setActiveDirection1024] = useState<-1 | 1>(1);
   const [activeIndex768, setActiveIndex768] = useState(0);
   const [activeIndex480, setActiveIndex480] = useState(0);
   const [activeIndex360, setActiveIndex360] = useState(0);
@@ -666,6 +685,7 @@ export function BusinessGoals() {
   function changeActiveCard(nextIndex: number) {
     clearHoverIntent();
     if (nextIndex === activeIndex) return;
+    setActiveDirection(nextIndex > activeIndex ? 1 : -1);
     hoverBlockedRef.current = true;
     setActiveIndex(nextIndex);
   }
@@ -700,6 +720,7 @@ export function BusinessGoals() {
   function changeActiveCard1024(nextIndex: number) {
     clearHoverIntent1024();
     if (nextIndex === activeIndex1024) return;
+    setActiveDirection1024(nextIndex > activeIndex1024 ? 1 : -1);
     hoverBlocked1024Ref.current = true;
     setActiveIndex1024(nextIndex);
   }
@@ -887,6 +908,7 @@ export function BusinessGoals() {
               expandedImageClass={visual.mainImageClass}
               expandedImageStyle={visual.mainImageStyle}
               imageSrc={visual.mainImage}
+              motionDirection={activeDirection}
               onClick={() => changeActiveCard(index)}
               onFocusCard={() => changeActiveCard(index)}
               onHover={() => scheduleHoverCard(index)}
@@ -1019,6 +1041,7 @@ export function BusinessGoals() {
               }
               imageSrc={visual.mainImage}
               is1024={true}
+              motionDirection={activeDirection1024}
               onClick={() => changeActiveCard1024(index)}
               onFocusCard={() => changeActiveCard1024(index)}
               onHover={() => scheduleHoverCard1024(index)}
