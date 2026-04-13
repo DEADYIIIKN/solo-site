@@ -4,10 +4,11 @@ const B = "/assets/figma/7830-philosophy-clients-1440";
 export const philosophyMarquee1440Assets = {
   dark: {
     group261: `${B}/marquee-dark-a-group261.svg`,
-    /** В выгрузке нет b/d с исходными именами; слоты заполнены белыми логотипами 1:1 из той же секции Figma */
-    image41: `${B}/marquee-orange-a-baikal.svg`,
+    /** Белый логотип слота b — `marquee-dark-b-image41.png` (не оранжевая выгрузка baikal). */
+    image41: `${B}/marquee-dark-b-image41.png`,
     wgp: `${B}/marquee-dark-c-wgp.svg`,
-    image39: `${B}/marquee-orange-b-smyssly.svg`,
+    /** Белый логотип слота d — `marquee-dark-d-image39.png` (не smyssly). */
+    image39: `${B}/marquee-dark-d-image39.png`,
     layer1: `${B}/marquee-dark-e-layer1.svg`,
     ingos: `${B}/marquee-dark-f-ingos.svg`,
   },
