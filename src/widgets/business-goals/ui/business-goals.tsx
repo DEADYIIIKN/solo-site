@@ -23,7 +23,6 @@ import {
 
 const accordionGapPx = 10;
 const accordionTransition = "620ms cubic-bezier(0.2,0.9,0.25,1)";
-const accordionOverlayTransition = "680ms cubic-bezier(0.2,0.9,0.25,1)";
 const hoverIntentDelayMs = 130;
 const hoverUnblockDistancePx = 8;
 const collapsedWidths1440 = [88, 87, 88, 87] as const;
@@ -148,11 +147,13 @@ function BusinessGoalsFloatingCta() {
 
 type AccordionCardProps = {
   active: boolean;
-  cardId: string;
+  card: (typeof businessGoalsContent.cards)[number];
+  expandedImageClass: string;
+  expandedImageStyle: { height: string; maxWidth: "none"; width: string };
   imageLeftPercent: string;
   imageSrc: string;
   imageWidthPercent: string;
-  label: string;
+  is1024?: boolean;
   onClick: () => void;
   onFocusCard?: () => void;
   onHoverCancel?: () => void;
@@ -162,30 +163,31 @@ type AccordionCardProps = {
 
 function AccordionCard({
   active,
-  cardId,
+  card,
+  expandedImageClass,
+  expandedImageStyle,
   imageLeftPercent,
   imageSrc,
   imageWidthPercent,
-  label,
+  is1024 = false,
   onClick,
   onFocusCard,
   onHoverCancel,
   onHover,
   topPx,
 }: AccordionCardProps) {
+  const premiumEase = "cubic-bezier(0.16,1,0.3,1)";
   const labelBoxHeightById: Record<string, string> = {
     "01": "h-[174px]",
     "02": "h-[159px]",
     "03": "h-[153px]",
     "04": "h-[223px]",
   };
-  const labelBoxHeight = labelBoxHeightById[cardId] ?? "h-[159px]";
+  const labelBoxHeight = labelBoxHeightById[card.id] ?? "h-[159px]";
 
   return (
     <button
-      className={`relative h-full w-full overflow-hidden text-left ${topPx === 214 ? "rounded-[20px]" : "rounded-[12px]"} ${
-        active ? "pointer-events-none opacity-0" : "opacity-100"
-      }`}
+      className={`relative h-full w-full overflow-hidden bg-[#0d0300] text-left ${topPx === 214 ? "rounded-[20px]" : "rounded-[12px]"}`}
       onClick={onClick}
       onFocus={onFocusCard}
       onMouseLeave={onHoverCancel}
@@ -193,13 +195,18 @@ function AccordionCard({
       type="button"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            clipPath: active ? "inset(0 100% 0 0 round 0px)" : "inset(0 0% 0 0 round 0px)",
+            transition: `clip-path 520ms ${premiumEase}, transform 520ms ${premiumEase}`,
+            transform: active ? "translate3d(-10px,0,0)" : "translate3d(0,0,0)",
+            willChange: "clip-path,transform",
+          }}
+        >
           <img
             alt=""
             className="absolute top-0 h-full max-w-none"
-            decoding="async"
-            fetchPriority={active ? "high" : "low"}
-            loading={active ? "eager" : "lazy"}
             src={imageSrc}
             style={{
               height: "100%",
@@ -210,162 +217,57 @@ function AccordionCard({
           />
         </div>
         <p
-          className="absolute w-[47px] text-center text-[17px] font-bold leading-none text-white"
-          style={{ left: topPx === 214 ? "20px" : "10px", top: topPx === 214 ? "30px" : "20px" }}
-        >
-          {cardId}
-        </p>
-        <div
-          className={`absolute flex w-[28px] -translate-y-full items-center justify-center ${labelBoxHeight}`}
-          style={{ left: topPx === 214 ? "27px" : "20px", top: topPx === 214 ? "470px" : "380px" }}
-        >
-          <p className="-rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
-            {label}
-          </p>
-        </div>
-      </div>
-    </button>
-  );
-}
-
-function getAccordionCardLeft({
-  index,
-  activeIndex,
-  collapsedWidths,
-  activeWidths,
-  startLeft,
-  gap,
-}: {
-  index: number;
-  activeIndex: number;
-  collapsedWidths: readonly number[];
-  activeWidths: readonly number[];
-  startLeft: number;
-  gap: number;
-}) {
-  let left = startLeft;
-
-  for (let i = 0; i < index; i += 1) {
-    left += (i === activeIndex ? activeWidths[i] : collapsedWidths[i]) + gap;
-  }
-
-  return left;
-}
-
-function ExpandedOverlay({
-  card,
-  imageClass,
-  imageSrc,
-  initialLeftPx,
-  initialWidthPx,
-  imageStyle,
-  leftPx,
-  topPx,
-  widthPx,
-  is1024,
-  transition,
-}: {
-  card: (typeof businessGoalsContent.cards)[number];
-  imageClass: string;
-  imageSrc: string;
-  initialLeftPx: number;
-  initialWidthPx: number;
-  imageStyle: { height: string; maxWidth: "none"; width: string };
-  leftPx: number;
-  topPx: number;
-  widthPx: number;
-  is1024: boolean;
-  transition: string;
-}) {
-  const [contentEntered, setContentEntered] = useState(false);
-  const [frameLeftPx, setFrameLeftPx] = useState(initialLeftPx);
-  const [frameWidthPx, setFrameWidthPx] = useState(initialWidthPx);
-  const contentRevealDelayMs = is1024 ? 150 : 170;
-  const premiumEase = "cubic-bezier(0.16,1,0.3,1)";
-
-  useEffect(() => {
-    setContentEntered(false);
-    setFrameLeftPx(initialLeftPx);
-    setFrameWidthPx(initialWidthPx);
-    let enterAnimationFrameId = 0;
-    let expandAnimationFrameId = 0;
-    const expandTimeoutId = window.setTimeout(() => {
-      expandAnimationFrameId = requestAnimationFrame(() => {
-        setFrameLeftPx(leftPx);
-        setFrameWidthPx(widthPx);
-      });
-    }, 12);
-    const enterTimeoutId = window.setTimeout(() => {
-      enterAnimationFrameId = requestAnimationFrame(() => setContentEntered(true));
-    }, contentRevealDelayMs);
-
-    return () => {
-      window.clearTimeout(expandTimeoutId);
-      window.clearTimeout(enterTimeoutId);
-      cancelAnimationFrame(expandAnimationFrameId);
-      cancelAnimationFrame(enterAnimationFrameId);
-    };
-  }, [card.id, contentRevealDelayMs, initialLeftPx, initialWidthPx, leftPx, widthPx]);
-
-  return (
-    <div
-      className="absolute z-20 overflow-hidden bg-[#0d0300]"
-      style={{
-        borderRadius: `${is1024 ? 12 : 20}px`,
-        left: `${frameLeftPx}px`,
-        top: `${topPx}px`,
-        width: `${frameWidthPx}px`,
-        height: `${is1024 ? 400 : 500}px`,
-        transition: `left ${transition}, width ${transition}`,
-        willChange: "left,width",
-        boxShadow: is1024
-          ? "0 16px 48px rgba(13, 3, 0, 0.16)"
-          : "0 20px 60px rgba(13, 3, 0, 0.18)",
-      }}
-    >
-      <div className="pointer-events-none absolute inset-0">
-        <p
-          className={`absolute ${is1024 ? "right-[20px] top-[20px]" : "right-[30px] top-[30px]"} z-10 text-[17px] font-bold leading-none text-white`}
+          className={`absolute z-20 w-[47px] text-center text-[17px] font-bold leading-none text-white ${active ? (is1024 ? "right-[20px]" : "right-[30px]") : ""}`}
+          style={
+            active
+              ? { top: is1024 ? "20px" : "30px" }
+              : { left: topPx === 214 ? "20px" : "10px", top: topPx === 214 ? "30px" : "20px" }
+          }
         >
           {card.id}
         </p>
         <div
+          className={`absolute flex w-[28px] -translate-y-full items-center justify-center ${labelBoxHeight}`}
+          style={{
+            left: topPx === 214 ? "27px" : "20px",
+            top: topPx === 214 ? "470px" : "380px",
+            clipPath: active ? "inset(0 100% 0 0 round 0px)" : "inset(0 0% 0 0 round 0px)",
+            transform: active ? "translate3d(-8px,-100%,0)" : "translate3d(0,-100%,0)",
+            transition: `clip-path 420ms ${premiumEase}, transform 420ms ${premiumEase}`,
+            willChange: "clip-path,transform",
+          }}
+        >
+          <p className="-rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
+            {card.label}
+          </p>
+        </div>
+        <div
           className="absolute inset-0"
           style={{
-            clipPath: contentEntered ? "inset(0 0% 0 0 round 0px)" : "inset(0 0% 0 0 round 0px)",
-            transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,8px,0)",
-            transition:
-              `transform 680ms ${premiumEase}`,
+            transform: active ? "translate3d(0,0,0)" : "translate3d(0,8px,0)",
+            transition: `transform 680ms ${premiumEase}`,
             willChange: "transform",
           }}
         >
           <div
             className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
             style={{
-              clipPath: contentEntered
-                ? "inset(0 0% 0 0 round 0px)"
-                : "inset(0 0 0 100% round 0px)",
-              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(6px,0,0)",
-              transition:
-                `clip-path 700ms ${premiumEase} 10ms, transform 700ms ${premiumEase} 10ms`,
+              clipPath: active ? "inset(0 0% 0 0 round 0px)" : "inset(0 0 0 100% round 0px)",
+              transform: active ? "translate3d(0,0,0)" : "translate3d(6px,0,0)",
+              transition: `clip-path 700ms ${premiumEase} 10ms, transform 700ms ${premiumEase} 10ms`,
               willChange: "clip-path,transform",
             }}
           >
             <p className="m-0 font-bold">{card.titlePrimary}</p>
             <p className="m-0 font-normal italic">{card.titleAccent}</p>
-            {"titleSuffix" in card && card.titleSuffix ? (
-              <p className="m-0 font-bold">{card.titleSuffix}</p>
-            ) : null}
+            {"titleSuffix" in card && card.titleSuffix ? <p className="m-0 font-bold">{card.titleSuffix}</p> : null}
           </div>
           <p
             className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}
             style={{
-              clipPath: contentEntered
-                ? "inset(0 0% 0 0 round 0px)"
-                : "inset(100% 0 0 0 round 0px)",
-              transform: contentEntered ? "translate3d(0,0,0)" : "translate3d(0,6px,0)",
-              transition:
-                `clip-path 600ms ${premiumEase} 70ms, transform 600ms ${premiumEase} 70ms`,
+              clipPath: active ? "inset(0 0% 0 0 round 0px)" : "inset(100% 0 0 0 round 0px)",
+              transform: active ? "translate3d(0,0,0)" : "translate3d(0,6px,0)",
+              transition: `clip-path 600ms ${premiumEase} 70ms, transform 600ms ${premiumEase} 70ms`,
               willChange: "clip-path,transform",
             }}
           >
@@ -373,28 +275,20 @@ function ExpandedOverlay({
           </p>
           <img
             alt=""
-            className={imageClass}
-            decoding="async"
-            fetchPriority="high"
-            loading="eager"
+            className={expandedImageClass}
             src={imageSrc}
             style={{
-              ...imageStyle,
-              transform: contentEntered
-                ? "translate3d(0,0,0) scale(1)"
-                : "translate3d(-16px,0,0) scale(1.025)",
-              clipPath: contentEntered
-                ? "inset(0 0% 0 0 round 0px)"
-                : "inset(0 100% 0 0 round 0px)",
+              ...expandedImageStyle,
+              transform: active ? "translate3d(0,0,0) scale(1)" : "translate3d(-16px,0,0) scale(1.025)",
+              clipPath: active ? "inset(0 0% 0 0 round 0px)" : "inset(0 100% 0 0 round 0px)",
               transformOrigin: "center center",
-              transition:
-                `clip-path 760ms ${premiumEase} 20ms, transform 820ms ${premiumEase} 20ms`,
+              transition: `clip-path 760ms ${premiumEase} 20ms, transform 820ms ${premiumEase} 20ms`,
               willChange: "clip-path,transform",
             }}
           />
         </div>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -661,8 +555,6 @@ export function BusinessGoals() {
   const [ctaVisible, setCtaVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndex1024, setActiveIndex1024] = useState(0);
-  const [overlayStart1440, setOverlayStart1440] = useState({ leftPx: 140, widthPx: 868 });
-  const [overlayStart1024, setOverlayStart1024] = useState({ leftPx: 40, widthPx: 705 });
   const [activeIndex768, setActiveIndex768] = useState(0);
   const [activeIndex480, setActiveIndex480] = useState(0);
   const [activeIndex360, setActiveIndex360] = useState(0);
@@ -729,17 +621,6 @@ export function BusinessGoals() {
       .join(" ");
   }, [activeIndex]);
 
-  const overlayLeft1440 = useMemo(() => {
-    return getAccordionCardLeft({
-      index: activeIndex,
-      activeIndex,
-      activeWidths: activeWidths1440,
-      collapsedWidths: collapsedWidths1440,
-      gap: accordionGapPx,
-      startLeft: 140,
-    });
-  }, [activeIndex]);
-
   const accordionCards1024 = useMemo(
     () =>
       businessGoalsContent.cards.map((card, index) => ({
@@ -758,31 +639,9 @@ export function BusinessGoals() {
       .join(" ");
   }, [activeIndex1024]);
 
-  const overlayLeft1024 = useMemo(() => {
-    return getAccordionCardLeft({
-      index: activeIndex1024,
-      activeIndex: activeIndex1024,
-      activeWidths: activeWidths1024,
-      collapsedWidths: collapsedWidths1024,
-      gap: accordionGapPx,
-      startLeft: 40,
-    });
-  }, [activeIndex1024]);
-
   function changeActiveCard(nextIndex: number) {
     clearHoverIntent();
     if (nextIndex === activeIndex) return;
-    setOverlayStart1440({
-      leftPx: getAccordionCardLeft({
-        index: nextIndex,
-        activeIndex,
-        activeWidths: activeWidths1440,
-        collapsedWidths: collapsedWidths1440,
-        gap: accordionGapPx,
-        startLeft: 140,
-      }),
-      widthPx: nextIndex === activeIndex ? activeWidths1440[nextIndex] : collapsedWidths1440[nextIndex],
-    });
     hoverBlockedRef.current = true;
     setActiveIndex(nextIndex);
   }
@@ -817,17 +676,6 @@ export function BusinessGoals() {
   function changeActiveCard1024(nextIndex: number) {
     clearHoverIntent1024();
     if (nextIndex === activeIndex1024) return;
-    setOverlayStart1024({
-      leftPx: getAccordionCardLeft({
-        index: nextIndex,
-        activeIndex: activeIndex1024,
-        activeWidths: activeWidths1024,
-        collapsedWidths: collapsedWidths1024,
-        gap: accordionGapPx,
-        startLeft: 40,
-      }),
-      widthPx: nextIndex === activeIndex1024 ? activeWidths1024[nextIndex] : collapsedWidths1024[nextIndex],
-    });
     hoverBlocked1024Ref.current = true;
     setActiveIndex1024(nextIndex);
   }
@@ -1005,11 +853,12 @@ export function BusinessGoals() {
             <AccordionCard
               key={card.id}
               active={isActive}
-              cardId={card.id}
+              card={card}
+              expandedImageClass={visual.mainImageClass}
+              expandedImageStyle={visual.mainImageStyle}
               imageLeftPercent={visual.narrowImageLeftPercent}
               imageSrc={visual.mainImage}
               imageWidthPercent={visual.narrowImageWidthPercent}
-              label={card.label}
               onClick={() => changeActiveCard(index)}
               onFocusCard={() => changeActiveCard(index)}
               onHover={() => scheduleHoverCard(index)}
@@ -1018,19 +867,6 @@ export function BusinessGoals() {
             />
           ))}
         </div>
-        <ExpandedOverlay
-          card={businessGoalsContent.cards[activeIndex]}
-          initialLeftPx={overlayStart1440.leftPx}
-          initialWidthPx={overlayStart1440.widthPx}
-          imageClass={cardVisuals[activeIndex].mainImageClass}
-          imageSrc={cardVisuals[activeIndex].mainImage}
-          imageStyle={cardVisuals[activeIndex].mainImageStyle}
-          is1024={false}
-          leftPx={overlayLeft1440}
-          topPx={214}
-          transition={accordionOverlayTransition}
-          widthPx={[868, 867, 868, 867][activeIndex]}
-        />
 
         <div
           className={`fixed bottom-[30px] left-[calc(50%+540px)] z-[320] size-[120px] transform-gpu transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
@@ -1116,7 +952,17 @@ export function BusinessGoals() {
             <AccordionCard
               key={card.id}
               active={isActive}
-              cardId={card.id}
+              card={card}
+              expandedImageClass={
+                index === 0 || index === 2
+                  ? "absolute right-[70px] top-0 h-[400px] w-[236px] object-cover"
+                  : "absolute right-[20px] top-[152px] h-[228px] w-[407px] object-cover"
+              }
+              expandedImageStyle={
+                index === 0 || index === 2
+                  ? { height: "400px", maxWidth: "none", width: "236px" }
+                  : { height: "228px", maxWidth: "none", width: "407px" }
+              }
               imageLeftPercent={
                 index === 0
                   ? "-97.83%"
@@ -1136,7 +982,7 @@ export function BusinessGoals() {
                       ? "335.82%"
                       : "844.77%"
               }
-              label={card.label}
+              is1024={true}
               onClick={() => changeActiveCard1024(index)}
               onFocusCard={() => changeActiveCard1024(index)}
               onHover={() => scheduleHoverCard1024(index)}
@@ -1145,27 +991,6 @@ export function BusinessGoals() {
             />
           ))}
         </div>
-        <ExpandedOverlay
-          card={businessGoalsContent.cards[activeIndex1024]}
-          initialLeftPx={overlayStart1024.leftPx}
-          initialWidthPx={overlayStart1024.widthPx}
-          imageClass={
-            activeIndex1024 === 0 || activeIndex1024 === 2
-              ? "absolute right-[70px] top-0 h-[400px] w-[236px] object-cover"
-              : "absolute right-[20px] top-[152px] h-[228px] w-[407px] object-cover"
-          }
-          imageSrc={cardVisuals[activeIndex1024].mainImage}
-          imageStyle={
-            activeIndex1024 === 0 || activeIndex1024 === 2
-              ? { height: "400px", maxWidth: "none", width: "236px" }
-              : { height: "228px", maxWidth: "none", width: "407px" }
-          }
-          is1024={true}
-          leftPx={overlayLeft1024}
-          topPx={181}
-          transition={accordionOverlayTransition}
-          widthPx={[705, 704, 705, 704][activeIndex1024]}
-        />
 
         <div
           className={`fixed bottom-[30px] left-[calc(50%+422px)] z-[320] size-[120px] transform-gpu transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
