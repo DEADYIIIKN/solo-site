@@ -19,7 +19,7 @@ export function FooterSection({ showSecrets }: FooterSectionProps) {
   }
 
   return (
-    <div id="footer-section">
+    <div className="bg-[#0d0300]" id="footer-section">
       {layout === "360" ? <Footer360 showSecrets={showSecrets} /> : null}
       {layout === "480" ? <Footer480 showSecrets={showSecrets} /> : null}
       {layout === "768" ? <Footer768 showSecrets={showSecrets} /> : null}
