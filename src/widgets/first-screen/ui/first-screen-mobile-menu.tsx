@@ -174,6 +174,17 @@ export function FirstScreenMobileMenu({
 
   const layer = (
     <>
+      <div
+        className={cn(
+          header.backgroundBarClass,
+          "transition-[background-color] ease-[var(--ease-standard)]",
+        )}
+        style={{
+          backgroundColor: headerBackgroundColor,
+          transitionDuration: `${HEADER_THEME_TRANSITION_MS}ms`,
+        }}
+      />
+
       <header
         className={cn(
           header.className,
@@ -232,6 +243,7 @@ export function FirstScreenMobileMenu({
                 : "cubic-bezier(0.33, 1, 0.68, 1)"
           }}
         >
+          <div className={overlay.topBarClass} />
           <div className={overlay.whitePanelClass} />
 
           {firstScreenNavLinks.map((item, i) => (

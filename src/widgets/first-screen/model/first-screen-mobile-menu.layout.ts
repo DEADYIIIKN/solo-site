@@ -7,6 +7,7 @@ import { firstScreenAssets } from "@/widgets/first-screen/model/first-screen.dat
 export type MobileMenuLayoutConfig = {
   visibilityClass: string;
   header: {
+    backgroundBarClass: string;
     className: string;
     logoClass: string;
     logoClosedSrc: string;
@@ -16,6 +17,7 @@ export type MobileMenuLayoutConfig = {
     menuIconSrc: string;
   };
   overlay: {
+    topBarClass: string;
     whitePanelClass: string;
     navBarRowClass: string;
     logoMenuDarkClass: string;
@@ -39,6 +41,7 @@ const logoMenuDarkShared = firstScreenAssets.navbar.logo360MenuDark;
 export const mobileMenuLayout360: MobileMenuLayoutConfig = {
   visibilityClass: "hidden max-[479px]:block",
   header: {
+    backgroundBarClass: "fixed inset-x-0 top-0 z-[799] h-[56px] max-[479px]:block",
     className:
       "fixed left-1/2 top-0 z-[800] hidden h-[56px] w-[328px] -translate-x-1/2 items-end justify-between px-[16px] max-[479px]:flex",
     logoClass: "relative h-[20px] w-[113px] shrink-0",
@@ -49,6 +52,7 @@ export const mobileMenuLayout360: MobileMenuLayoutConfig = {
     menuIconSrc: firstScreenAssets.navbar.menu360
   },
   overlay: {
+    topBarClass: "absolute inset-x-0 top-0 h-[56px] bg-white",
     whitePanelClass: "absolute right-0 top-0 h-[575px] w-full bg-white",
     navBarRowClass:
       "absolute left-1/2 top-0 flex h-[56px] w-[328px] -translate-x-1/2 items-end justify-between px-[16px]",
@@ -62,6 +66,7 @@ export const mobileMenuLayout360: MobileMenuLayoutConfig = {
 export const mobileMenuLayout480: MobileMenuLayoutConfig = {
   visibilityClass: "hidden min-[480px]:block min-[768px]:hidden",
   header: {
+    backgroundBarClass: "fixed inset-x-0 top-0 z-[799] hidden h-[60px] min-[480px]:block min-[768px]:hidden",
     className:
       "fixed left-1/2 top-0 z-[800] hidden h-[60px] w-[432px] -translate-x-1/2 items-end justify-between px-[24px] min-[480px]:flex min-[768px]:hidden",
     logoClass: "relative h-[22px] w-[124px] shrink-0",
@@ -72,6 +77,7 @@ export const mobileMenuLayout480: MobileMenuLayoutConfig = {
     menuIconSrc: firstScreenAssets.navbar.menu480
   },
   overlay: {
+    topBarClass: "absolute inset-x-0 top-0 h-[60px] bg-white",
     whitePanelClass: "absolute right-0 top-0 h-[575px] w-full bg-white",
     navBarRowClass:
       "absolute left-1/2 top-0 flex h-[60px] w-[432px] -translate-x-1/2 items-end justify-between px-[24px]",
@@ -85,6 +91,7 @@ export const mobileMenuLayout480: MobileMenuLayoutConfig = {
 export const mobileMenuLayout768: MobileMenuLayoutConfig = {
   visibilityClass: "hidden min-[768px]:block min-[1024px]:hidden",
   header: {
+    backgroundBarClass: "fixed inset-x-0 top-0 z-[799] hidden h-[64px] min-[768px]:block min-[1024px]:hidden",
     className:
       "fixed left-1/2 top-0 z-[800] hidden h-[64px] w-[672px] -translate-x-1/2 items-end justify-between px-[30px] min-[768px]:flex min-[1024px]:hidden",
     logoClass: "relative h-[24px] w-[136px] shrink-0",
@@ -95,6 +102,7 @@ export const mobileMenuLayout768: MobileMenuLayoutConfig = {
     menuIconSrc: firstScreenAssets.navbar.menu768
   },
   overlay: {
+    topBarClass: "absolute inset-x-0 top-0 h-[64px] bg-white",
     whitePanelClass: "absolute right-0 top-0 h-[575px] w-full bg-white",
     navBarRowClass:
       "absolute left-1/2 top-0 flex h-[64px] w-[672px] -translate-x-1/2 items-end justify-between px-[30px]",
@@ -104,4 +112,3 @@ export const mobileMenuLayout768: MobileMenuLayoutConfig = {
       "relative size-[56px] shrink-0 overflow-hidden rounded-[28px] border-0 bg-transparent p-0"
   }
 };
-
