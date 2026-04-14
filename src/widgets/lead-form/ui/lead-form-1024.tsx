@@ -20,7 +20,7 @@ export function LeadForm1024() {
         {/*
           Дуга: 25%×1024+51 = 307px от левого края карты (783:8364).
         */}
-        <div className="first-screen-cta-text-orbit pointer-events-none absolute bottom-[-140px] left-[307px] z-0 flex size-[490px] items-center justify-center">
+        <div className="first-screen-cta-text-orbit first-screen-cta-text-orbit-reverse pointer-events-none absolute bottom-[-140px] left-[307px] z-0 flex size-[490px] items-center justify-center">
           <div className="-rotate-90 flex-none">
             <div className="relative size-[490px]">
               <img

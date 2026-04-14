@@ -15,7 +15,7 @@ export function LeadForm1440() {
     >
       <div className="w-full overflow-hidden rounded-bl-[60px] rounded-br-[60px] bg-white">
         <div className="relative mx-auto min-h-[810px] w-full max-w-[1440px]">
-        <div className="first-screen-cta-text-orbit pointer-events-none absolute bottom-[-231px] left-[-110px] z-0 size-[490px]">
+        <div className="first-screen-cta-text-orbit first-screen-cta-text-orbit-reverse pointer-events-none absolute bottom-[-231px] left-[-110px] z-0 size-[490px]">
           <img
             alt=""
             className="absolute inset-0 size-full max-w-none"

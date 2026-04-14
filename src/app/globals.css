@@ -293,6 +293,10 @@ video {
   -webkit-backface-visibility: hidden;
 }
 
+.first-screen-cta-text-orbit-reverse {
+  animation-direction: reverse;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .first-screen-cta-text-orbit {
     animation: none;
