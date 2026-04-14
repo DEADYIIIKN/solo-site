@@ -146,7 +146,8 @@ export function LeadFormBullets1440() {
         <p className={leadFormBulletP1440}>
           <span className="font-bold">примерную </span>
           <span className="font-normal italic">стратегию</span>
-          <span className="font-bold"> на 1 месяц</span>
+          <br />
+          <span className="font-bold">на 1 месяц</span>
         </p>
       </LeadFormBulletRow>
       <LeadFormBulletRow
@@ -214,7 +215,8 @@ export function LeadFormBullets1024() {
       <p className={cn(p, "top-[120px] w-[209px]")}>
         <span className="font-bold">примерную </span>
         <span className="font-normal italic">стратегию</span>
-        <span className="font-bold"> на 1 месяц</span>
+        <br />
+        <span className="font-bold">на 1 месяц</span>
       </p>
 
       {/* 04 — 783:8400/8399 */}
@@ -254,7 +256,8 @@ export function LeadFormBullets768() {
         <p className={p}>
           <span className="font-bold">примерную </span>
           <span className="font-normal italic">стратегию</span>
-          <span className="font-bold"> на 1 месяц</span>
+          <br />
+          <span className="font-bold">на 1 месяц</span>
         </p>
       </LeadFormBulletRow>
       <LeadFormBulletRow badgeClass="size-[22px]" n="04" numClass="text-[12px]">
@@ -291,7 +294,8 @@ export function LeadFormBulletsStacked({ onDark }: { onDark?: boolean } = {}) {
         <p className={cn("m-0 leading-[1.2] [&>span]:leading-[inherit]", t)}>
           <span className="font-bold">примерную </span>
           <span className="font-normal italic">стратегию</span>
-          <span className="font-bold"> на 1 месяц</span>
+          <br />
+          <span className="font-bold">на 1 месяц</span>
         </p>
       </LeadFormBulletRow>
       <LeadFormBulletRow badgeClass={badge} n="04" numClass={num} onDark={onDark}>
