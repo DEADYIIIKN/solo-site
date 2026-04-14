@@ -9,9 +9,25 @@ type FirstScreenHero1024Props = {
   onConsultationCtaClick?: () => void;
 };
 
+const copyRevealClass =
+  "block opacity-0 [animation:first-screen-copy-in_760ms_cubic-bezier(0.22,1,0.36,1)_forwards]";
+
 export function FirstScreenHero1024({ onConsultationCtaClick }: FirstScreenHero1024Props) {
   return (
     <div className="absolute inset-0 overflow-visible">
+      <style jsx>{`
+        @keyframes first-screen-copy-in {
+          from {
+            opacity: 0;
+            transform: translate3d(36px, 0, 0);
+          }
+          to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+          }
+        }
+      `}</style>
+
       {/* image: 604,446 380x214 r12 */}
       <div
         className="absolute left-[604px] top-[446px] z-10 h-[214px] w-[380px] overflow-clip rounded-[12px]"
@@ -43,14 +59,18 @@ export function FirstScreenHero1024({ onConsultationCtaClick }: FirstScreenHero1
 
       {/* title "видеоконтент": 40,140 */}
       <p className="absolute left-[40px] top-[140px] m-0 whitespace-nowrap text-[70px] font-normal italic leading-[0.9] text-white" style={{ fontFamily: "var(--font-family-display)" }}>
-        {firstScreenContent.titleTop}
+        <span className={copyRevealClass} style={{ animationDelay: "0ms" }}>
+          {firstScreenContent.titleTop}
+        </span>
       </p>
 
       {/* title "под бизнес-задачи бренда": 256,199 w728 */}
       <p className="absolute left-[256px] top-[199px] m-0 w-[728px] text-[70px] font-bold leading-[0.9] text-white" style={{ fontFamily: "var(--font-family-display)" }}>
-        <span className="whitespace-nowrap">под{"\u00A0"}бизнес-задачи</span>
-        <br />
-        бренда
+        <span className={copyRevealClass} style={{ animationDelay: "80ms" }}>
+          <span className="whitespace-nowrap">под{"\u00A0"}бизнес-задачи</span>
+          <br />
+          бренда
+        </span>
       </p>
 
       {/* geo label: 84,603 */}
