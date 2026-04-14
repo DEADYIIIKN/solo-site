@@ -505,7 +505,7 @@ export function LeadFormFields({
         title="скоро вернемся!"
       >
         <button
-          className="flex min-h-[56px] w-full items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-10 text-[16px] font-semibold lowercase leading-[1.2] text-white transition-colors hover:bg-[#de4f00]"
+          className="flex h-[56px] w-full shrink-0 items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-[40px] pb-[20px] pt-[22px] text-center text-[16px] font-semibold lowercase leading-[1.2] text-white transition-colors hover:bg-[#de4f00]"
           onClick={() => setSuccessOpen(false)}
           type="button"
         >
