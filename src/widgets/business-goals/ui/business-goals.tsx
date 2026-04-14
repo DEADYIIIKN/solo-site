@@ -265,9 +265,9 @@ function AccordionCard({
           {card.id}
         </p>
         <div
-          className={`pointer-events-none absolute z-20 flex w-[28px] -translate-y-full items-center justify-center overflow-visible ${labelBoxHeight}`}
+          className={`pointer-events-none absolute z-20 w-[40px] -translate-y-full overflow-visible ${labelBoxHeight}`}
           style={{
-            left: topPx === 214 ? "27px" : "20px",
+            left: topPx === 214 ? "20px" : "14px",
             top: topPx === 214 ? "470px" : "380px",
             opacity: active ? 0 : 1,
             transform: active
@@ -277,7 +277,7 @@ function AccordionCard({
             willChange: "opacity,transform",
           }}
         >
-          <p className="m-0 origin-[0%_100%] -rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
+          <p className="absolute left-1/2 top-1/2 m-0 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
             {card.label}
           </p>
         </div>
