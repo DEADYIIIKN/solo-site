@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
+import { Modal } from "@/shared/ui/modal";
 import {
   formatConsultationPhone,
   formatConsultationPhoneBackspace,
@@ -164,6 +165,7 @@ export function LeadFormFields({
     defaultFirstScreenConsultationFormState,
   );
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
   const { name, phone, message, contactMethod, consent } = formState;
 
   const nameError = submitAttempted && !name.trim();
@@ -208,6 +210,9 @@ export function LeadFormFields({
         setSubmitAttempted(true);
         if (!name.trim() || !isConsultationPhoneValid(phone) || !consent) return;
         /* TODO: отправка заявки */
+        setSuccessOpen(true);
+        setFormState(defaultFirstScreenConsultationFormState);
+        setSubmitAttempted(false);
       }}
     >
       {!embedInCard && (
@@ -492,6 +497,21 @@ export function LeadFormFields({
           оставить заявку
         </button>
       </div>
+
+      <Modal
+        description="Мы получили вашу заявку и скоро свяжемся с вами, чтобы обсудить детали"
+        onOpenChange={setSuccessOpen}
+        open={successOpen}
+        title="скоро вернемся!"
+      >
+        <button
+          className="flex min-h-[56px] w-full items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-10 text-[16px] font-semibold lowercase leading-[1.2] text-white transition-colors hover:bg-[#de4f00]"
+          onClick={() => setSuccessOpen(false)}
+          type="button"
+        >
+          вернуться
+        </button>
+      </Modal>
     </form>
   );
 }
