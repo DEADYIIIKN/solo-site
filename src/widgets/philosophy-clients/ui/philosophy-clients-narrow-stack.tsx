@@ -1,9 +1,11 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 import { cn } from "@/shared/lib/utils";
+import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { sectionEyebrowText480To1439, sectionEyebrowTextMax479 } from "@/shared/ui/section-eyebrow-text";
 import { useInViewOnce } from "@/widgets/team/ui/team-shared";
@@ -202,6 +204,7 @@ function CreativeBg360() {
  */
 export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
   const [stackRef, stackInView] = useInViewOnce<HTMLDivElement>();
+  const [teamCardLoaded, setTeamCardLoaded] = useState(false);
   const [c1, c2, c3, c4, c5] = philosophyClients1440Content.cards;
   const is360 = size === "360";
 
@@ -277,39 +280,46 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
 
       {/* 03 */}
       <div className={cardReveal()} style={cardRevealStyle(2)}>
-        <div className={cn(cardBox, "bg-[#0d0300]", h)}>
-        <div
-          className={cn(
-            "absolute -translate-x-1/2",
-            is360
-              ? "left-[calc(50%-10.5px)] top-1/2 h-[244px] w-[439px] -translate-y-1/2"
-              : "left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-y-1/2",
-          )}
+        <BoneyardSkeleton
+          loading={!teamCardLoaded}
+          name={is360 ? "philosophy-team-card-360" : "philosophy-team-card-432"}
         >
-          <Image
-            alt=""
-            className="pointer-events-none object-cover"
-            fill
-            loading="lazy"
-            sizes="(max-width: 479px) 439px, 571px"
-            src={philosophyClients1440Assets.teamPhoto}
-          />
-        </div>
-        <p className={cn("absolute z-[1] text-white", padLeftClass, numTop, numLg)}>{c3.id}</p>
-        <p
-          className={cn(
-            "absolute z-[1] whitespace-nowrap text-white",
-            topTitle,
-            is360 ? "right-[156px] translate-x-full" : "right-[208px] translate-x-full",
-            titleCls,
-          )}
-        >
-          {c3.title}
-        </p>
-        <div className={cn("absolute z-[1] text-white", padLeftClass, bRest, is360 ? "w-[291px]" : "w-[371px]")}>
-          <CardBodyParts bodyClass={bodyCls} inverted parts={c3.body.parts} />
-        </div>
-        </div>
+          <div className={cn(cardBox, "bg-[#0d0300]", h)}>
+          <div
+            className={cn(
+              "absolute -translate-x-1/2",
+              is360
+                ? "left-[calc(50%-10.5px)] top-1/2 h-[244px] w-[439px] -translate-y-1/2"
+                : "left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-y-1/2",
+            )}
+          >
+            <Image
+              alt=""
+              className="pointer-events-none object-cover"
+              fill
+              loading="lazy"
+              onError={() => setTeamCardLoaded(true)}
+              onLoad={() => setTeamCardLoaded(true)}
+              sizes="(max-width: 479px) 439px, 571px"
+              src={philosophyClients1440Assets.teamPhoto}
+            />
+          </div>
+          <p className={cn("absolute z-[1] text-white", padLeftClass, numTop, numLg)}>{c3.id}</p>
+          <p
+            className={cn(
+              "absolute z-[1] whitespace-nowrap text-white",
+              topTitle,
+              is360 ? "right-[156px] translate-x-full" : "right-[208px] translate-x-full",
+              titleCls,
+            )}
+          >
+            {c3.title}
+          </p>
+          <div className={cn("absolute z-[1] text-white", padLeftClass, bRest, is360 ? "w-[291px]" : "w-[371px]")}>
+            <CardBodyParts bodyClass={bodyCls} inverted parts={c3.body.parts} />
+          </div>
+          </div>
+        </BoneyardSkeleton>
       </div>
 
       {/* 04 */}

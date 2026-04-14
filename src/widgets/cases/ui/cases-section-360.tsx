@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
+import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { useCasesHorizontalCarousel } from "@/widgets/cases/lib/use-cases-horizontal-carousel";
 import type { CasesAdCard, CasesVerticalCard } from "@/widgets/cases/model/cases.data";
@@ -70,7 +71,10 @@ function VerticalCard360({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
+    <BoneyardSkeleton loading={!imageLoaded} name="cases-vertical-card-360">
     <article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[4px] bg-[#0d0300]"
       onClick={onOpenDetail}
@@ -92,6 +96,8 @@ function VerticalCard360({
           casesCardHoverEase,
         )}
         fill
+        onError={() => setImageLoaded(true)}
+        onLoad={() => setImageLoaded(true)}
         sizes={`${VERT_CARD_W}px`}
         src={image}
       />
@@ -129,6 +135,7 @@ function VerticalCard360({
         </div>
       </div>
     </article>
+    </BoneyardSkeleton>
   );
 }
 
@@ -143,7 +150,10 @@ function AdCard360({
   credits: readonly string[];
   onOpenDetail?: () => void;
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
+    <BoneyardSkeleton loading={!imageLoaded} name="cases-ad-card-360">
     <article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[4px] bg-[#0d0300]"
       onClick={onOpenDetail}
@@ -165,6 +175,8 @@ function AdCard360({
           casesCardHoverEase,
         )}
         fill
+        onError={() => setImageLoaded(true)}
+        onLoad={() => setImageLoaded(true)}
         sizes={`${AD_CARD_W}px`}
         src={image}
       />
@@ -187,6 +199,7 @@ function AdCard360({
         </div>
       </div>
     </article>
+    </BoneyardSkeleton>
   );
 }
 

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { publicSiteUrl } from "@/shared/config/public-site-url";
 import { siteConfig } from "@/shared/config/site";
 import { SiteLoadOverlay } from "@/widgets/site-load";
+import "@/bones/registry.js";
 
 import "../globals.css";
 

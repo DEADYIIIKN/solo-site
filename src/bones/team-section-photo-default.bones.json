@@ -1,0 +1,57 @@
+{
+  "breakpoints": {
+    "768": {
+      "name": "team-section-photo-default",
+      "viewportWidth": 657,
+      "width": 657,
+      "height": 280,
+      "bones": []
+    },
+    "1024": {
+      "name": "team-section-photo-default",
+      "viewportWidth": 944,
+      "width": 944,
+      "height": 320,
+      "bones": [
+        [
+          0,
+          0,
+          100,
+          320,
+          12,
+          true
+        ],
+        [
+          0,
+          0,
+          100,
+          320,
+          8
+        ]
+      ]
+    },
+    "1440": {
+      "name": "team-section-photo-default",
+      "viewportWidth": 1160,
+      "width": 1160,
+      "height": 400,
+      "bones": [
+        [
+          0,
+          0,
+          100,
+          400,
+          12,
+          true
+        ],
+        [
+          0,
+          0,
+          100,
+          400,
+          8
+        ]
+      ]
+    }
+  }
+}

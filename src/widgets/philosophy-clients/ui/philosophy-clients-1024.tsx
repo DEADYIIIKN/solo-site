@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
+import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { sectionEyebrowText480To1439 } from "@/shared/ui/section-eyebrow-text";
 import {
@@ -98,6 +99,7 @@ const CARD_ENTER_OFFSET_Y_1024 = [
 export function PhilosophyClients1024() {
   const [c1, c2, c3, c4, c5] = philosophyClients1440Content.cards;
   const [pinEl, setPinEl] = useState<HTMLDivElement | null>(null);
+  const [teamCardLoaded, setTeamCardLoaded] = useState(false);
   const setPinRef = useCallback((node: HTMLDivElement | null) => {
     setPinEl(node);
   }, []);
@@ -235,37 +237,41 @@ export function PhilosophyClients1024() {
                 </div>
 
                 {/* 03 Команда — 783:8628 */}
-                <div
-                  data-philosophy-card="2"
-                  className={`${CARD} z-[3] bg-[#0d0300]`}
-                  style={{
-                    left: CARD_XY[2].left,
-                    top: CARD_XY[2].top,
-                    width: CW,
-                    height: CH,
-                    borderRadius: BR,
-                    transform: `translate3d(0, ${enterY(2)}px, 0)`,
-                    pointerEvents: isCardInteractive(2) ? "auto" : "none",
-                  }}
-                >
-                  <div className="absolute left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-x-1/2 -translate-y-1/2">
-                    <Image
-                      alt=""
-                      className="pointer-events-none object-cover"
-                      fill
-                      loading="lazy"
-                      sizes="571px"
-                      src={philosophyClients1440Assets.teamPhoto}
-                    />
+                <BoneyardSkeleton loading={!teamCardLoaded} name="philosophy-team-card-1024">
+                  <div
+                    data-philosophy-card="2"
+                    className={`${CARD} z-[3] bg-[#0d0300]`}
+                    style={{
+                      left: CARD_XY[2].left,
+                      top: CARD_XY[2].top,
+                      width: CW,
+                      height: CH,
+                      borderRadius: BR,
+                      transform: `translate3d(0, ${enterY(2)}px, 0)`,
+                      pointerEvents: isCardInteractive(2) ? "auto" : "none",
+                    }}
+                  >
+                    <div className="absolute left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-x-1/2 -translate-y-1/2">
+                      <Image
+                        alt=""
+                        className="pointer-events-none object-cover"
+                        fill
+                        loading="lazy"
+                        onError={() => setTeamCardLoaded(true)}
+                        onLoad={() => setTeamCardLoaded(true)}
+                        sizes="571px"
+                        src={philosophyClients1440Assets.teamPhoto}
+                      />
+                    </div>
+                    <p className={`${NUM} z-[1] text-white`}>{c3.id}</p>
+                    <p className="absolute left-[239px] top-[30px] z-[1] whitespace-nowrap text-[38px] font-bold leading-[0.9] tracking-[-0.76px] text-white">
+                      {c3.title}
+                    </p>
+                    <div className="absolute bottom-[30px] left-[20px] z-[1] w-[371px] text-white">
+                      <CardBodyText1024 inverted parts={c3.body.parts} />
+                    </div>
                   </div>
-                  <p className={`${NUM} z-[1] text-white`}>{c3.id}</p>
-                  <p className="absolute left-[239px] top-[30px] z-[1] whitespace-nowrap text-[38px] font-bold leading-[0.9] tracking-[-0.76px] text-white">
-                    {c3.title}
-                  </p>
-                  <div className="absolute bottom-[30px] left-[20px] z-[1] w-[371px] text-white">
-                    <CardBodyText1024 inverted parts={c3.body.parts} />
-                  </div>
-                </div>
+                </BoneyardSkeleton>
 
                 {/* 04 Прозрачность — 783:8633 */}
                 <div

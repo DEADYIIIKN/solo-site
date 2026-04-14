@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
+import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { sectionEyebrowTextMin1440 } from "@/shared/ui/section-eyebrow-text";
 import {
@@ -82,6 +83,7 @@ const CARD_ENTER_OFFSET_Y_1440 = [
 export function PhilosophyClients1440() {
   const [c1, c2, c3, c4, c5] = philosophyClients1440Content.cards;
   const [pinEl, setPinEl] = useState<HTMLDivElement | null>(null);
+  const [teamCardLoaded, setTeamCardLoaded] = useState(false);
   const setPinRef = useCallback((node: HTMLDivElement | null) => {
     setPinEl(node);
   }, []);
@@ -221,37 +223,41 @@ export function PhilosophyClients1440() {
         </div>
 
         {/* 03 Команда */}
-        <div
-          data-philosophy-card="2"
-          className={`${CARD} z-[3] bg-[#0d0300]`}
-          style={{
-            left: 140,
-            top: 252,
-            width: 640,
-            height: 340,
-            borderRadius: 20,
-            transform: `translate3d(0, ${enterY(2)}px, 0)`,
-            pointerEvents: isCardInteractive(2) ? "auto" : "none",
-          }}
-        >
-          <div className="absolute left-[calc(50%-91.5px)] top-[calc(50%-4px)] h-[460px] w-[823px] -translate-x-1/2 -translate-y-1/2">
-            <Image
-              alt=""
-              className="pointer-events-none object-cover"
-              fill
-              loading="lazy"
-              sizes="823px"
-              src={philosophyClients1440Assets.teamPhoto}
-            />
+        <BoneyardSkeleton loading={!teamCardLoaded} name="philosophy-team-card-1440">
+          <div
+            data-philosophy-card="2"
+            className={`${CARD} z-[3] bg-[#0d0300]`}
+            style={{
+              left: 140,
+              top: 252,
+              width: 640,
+              height: 340,
+              borderRadius: 20,
+              transform: `translate3d(0, ${enterY(2)}px, 0)`,
+              pointerEvents: isCardInteractive(2) ? "auto" : "none",
+            }}
+          >
+            <div className="absolute left-[calc(50%-91.5px)] top-[calc(50%-4px)] h-[460px] w-[823px] -translate-x-1/2 -translate-y-1/2">
+              <Image
+                alt=""
+                className="pointer-events-none object-cover"
+                fill
+                loading="lazy"
+                onError={() => setTeamCardLoaded(true)}
+                onLoad={() => setTeamCardLoaded(true)}
+                sizes="823px"
+                src={philosophyClients1440Assets.teamPhoto}
+              />
+            </div>
+            <p className={`${NUM} z-[1] text-white`}>{c3.id}</p>
+            <p className="absolute left-[calc(50%-84px)] top-[30px] z-[1] whitespace-nowrap text-[50px] font-bold leading-[0.9] tracking-[-1px] text-white">
+              {c3.title}
+            </p>
+            <div className={`${BODY} left-[calc(50%-84px)] z-[1] w-[374px] text-white`} style={{ top: 310 }}>
+              <CardBodyText inverted parts={c3.body.parts} />
+            </div>
           </div>
-          <p className={`${NUM} z-[1] text-white`}>{c3.id}</p>
-          <p className="absolute left-[calc(50%-84px)] top-[30px] z-[1] whitespace-nowrap text-[50px] font-bold leading-[0.9] tracking-[-1px] text-white">
-            {c3.title}
-          </p>
-          <div className={`${BODY} left-[calc(50%-84px)] z-[1] w-[374px] text-white`} style={{ top: 310 }}>
-            <CardBodyText inverted parts={c3.body.parts} />
-          </div>
-        </div>
+        </BoneyardSkeleton>
 
         {/* 04 Прозрачность */}
         <div

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
+import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { DarkSurfaceGrid } from "@/shared/ui/dark-surface-grid";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import {
@@ -154,30 +155,35 @@ function VerticalCard({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
-    <article
-      className="group relative h-[510px] w-[283px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
-      onClick={onOpenDetail}
-      onKeyDown={(e) => {
-        if (!onOpenDetail) return;
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onOpenDetail();
-        }
-      }}
-      role={onOpenDetail ? "button" : undefined}
-      tabIndex={onOpenDetail ? 0 : undefined}
-    >
-      <Image
-        alt=""
-        className={cn(
-          "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
-          casesCardHoverEase,
-        )}
-        fill
-        sizes="283px"
-        src={image}
-      />
+    <BoneyardSkeleton loading={!imageLoaded} name="cases-vertical-card-1440">
+      <article
+        className="group relative h-[510px] w-[283px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
+        onClick={onOpenDetail}
+        onKeyDown={(e) => {
+          if (!onOpenDetail) return;
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onOpenDetail();
+          }
+        }}
+        role={onOpenDetail ? "button" : undefined}
+        tabIndex={onOpenDetail ? 0 : undefined}
+      >
+        <Image
+          alt=""
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
+            casesCardHoverEase,
+          )}
+          fill
+          onError={() => setImageLoaded(true)}
+          onLoad={() => setImageLoaded(true)}
+          sizes="283px"
+          src={image}
+        />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 bg-[#0d0300] mix-blend-color transition-opacity",
@@ -212,7 +218,8 @@ function VerticalCard({
           ))}
         </div>
       </div>
-    </article>
+      </article>
+    </BoneyardSkeleton>
   );
 }
 
@@ -227,30 +234,35 @@ function AdCard({
   credits: readonly string[];
   onOpenDetail?: () => void;
 }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
-    <article
-      className="group relative h-[320px] w-[575px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
-      onClick={onOpenDetail}
-      onKeyDown={(e) => {
-        if (!onOpenDetail) return;
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onOpenDetail();
-        }
-      }}
-      role={onOpenDetail ? "button" : undefined}
-      tabIndex={onOpenDetail ? 0 : undefined}
-    >
-      <Image
-        alt=""
-        className={cn(
-          "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
-          casesCardHoverEase,
-        )}
-        fill
-        sizes="575px"
-        src={image}
-      />
+    <BoneyardSkeleton loading={!imageLoaded} name="cases-ad-card-1440">
+      <article
+        className="group relative h-[320px] w-[575px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
+        onClick={onOpenDetail}
+        onKeyDown={(e) => {
+          if (!onOpenDetail) return;
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onOpenDetail();
+          }
+        }}
+        role={onOpenDetail ? "button" : undefined}
+        tabIndex={onOpenDetail ? 0 : undefined}
+      >
+        <Image
+          alt=""
+          className={cn(
+            "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
+            casesCardHoverEase,
+          )}
+          fill
+          onError={() => setImageLoaded(true)}
+          onLoad={() => setImageLoaded(true)}
+          sizes="575px"
+          src={image}
+        />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 bg-[#0d0300] mix-blend-color opacity-20 transition-opacity",
@@ -269,7 +281,8 @@ function AdCard({
           ))}
         </div>
       </div>
-    </article>
+      </article>
+    </BoneyardSkeleton>
   );
 }
 

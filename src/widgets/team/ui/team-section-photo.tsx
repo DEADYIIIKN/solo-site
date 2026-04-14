@@ -1,9 +1,11 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 import { cn } from "@/shared/lib/utils";
+import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { teamSectionAssets } from "@/widgets/team/model/team.data";
 
 type TeamSectionPhotoProps = {
@@ -23,40 +25,51 @@ export function TeamSectionPhoto({
   variant = "default",
 }: TeamSectionPhotoProps) {
   const narrow = variant === "narrow";
+  const [loaded, setLoaded] = useState(false);
 
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden",
-        narrow ? "bg-white" : "isolate bg-[#0d0300]",
-        roundedClassName,
-        frameClassName,
-        className,
-      )}
-      style={style}
+    <BoneyardSkeleton
+      loading={!loaded}
+      name={narrow ? "team-section-photo-narrow" : "team-section-photo-default"}
     >
-      {narrow ? (
-        <Image
-          alt="Команда SOLO"
-          className="object-cover object-center"
-          draggable={false}
-          fill
-          loading="lazy"
-          sizes="(max-width: 479px) 387px, (max-width: 767px) 440px, 520px"
-          src={teamSectionAssets.teamPhoto}
-          style={{ marginLeft: "-9%", width: "118%" }}
-        />
-      ) : (
-        <Image
-          alt="Команда SOLO"
-          className="object-cover object-[center_26%]"
-          draggable={false}
-          fill
-          loading="lazy"
-          sizes="(max-width: 1023px) 100vw, 50vw"
-          src={teamSectionAssets.teamPhoto}
-        />
-      )}
-    </div>
+      <div
+        className={cn(
+          "relative overflow-hidden",
+          narrow ? "bg-white" : "isolate bg-[#0d0300]",
+          roundedClassName,
+          frameClassName,
+          className,
+        )}
+        style={style}
+      >
+        {narrow ? (
+          <div className="absolute inset-y-0 left-[-9%] w-[118%]">
+            <Image
+              alt="Команда SOLO"
+              className="object-cover object-center"
+              draggable={false}
+              fill
+              loading="lazy"
+              onError={() => setLoaded(true)}
+              onLoad={() => setLoaded(true)}
+              sizes="(max-width: 479px) 387px, (max-width: 767px) 440px, 520px"
+              src={teamSectionAssets.teamPhoto}
+            />
+          </div>
+        ) : (
+          <Image
+            alt="Команда SOLO"
+            className="object-cover object-[center_26%]"
+            draggable={false}
+            fill
+            loading="lazy"
+            onError={() => setLoaded(true)}
+            onLoad={() => setLoaded(true)}
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            src={teamSectionAssets.teamPhoto}
+          />
+        )}
+      </div>
+    </BoneyardSkeleton>
   );
 }
