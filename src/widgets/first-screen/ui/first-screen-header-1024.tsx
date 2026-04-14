@@ -69,7 +69,7 @@ export function FirstScreenHeader1024({ onCtaClick }: FirstScreenHeader1024Props
             {firstScreenContent.phone}
           </a>
           <button
-            className="flex h-[42px] w-[114px] shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] whitespace-nowrap text-center"
+            className="flex h-[42px] w-[114px] shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] whitespace-nowrap text-center lowercase"
             onClick={onCtaClick}
             style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.2, color: "#ffffff" }}
             type="button"

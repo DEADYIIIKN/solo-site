@@ -85,13 +85,19 @@ function OrderButton({
   return (
     <button
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-10 text-white transition-opacity hover:opacity-92",
+        "inline-flex h-[56px] shrink-0 items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-[40px] pb-[20px] pt-[22px] text-center lowercase text-white transition-opacity hover:opacity-92",
         className,
       )}
       onClick={onClick}
+      style={{
+        fontFamily: "var(--font-montserrat), Montserrat, sans-serif",
+        fontSize: 16,
+        fontWeight: 600,
+        lineHeight: 1.2,
+      }}
       type="button"
     >
-      Заказать проект
+      заказать проект
     </button>
   );
 }

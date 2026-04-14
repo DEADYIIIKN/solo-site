@@ -488,7 +488,7 @@ export function LeadFormFields({
 
         <button
           className={cn(
-            "flex w-full items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-10 font-semibold text-white transition-colors hover:bg-[#de4f00]",
+            "flex w-full items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-10 font-semibold lowercase text-white transition-colors hover:bg-[#de4f00]",
             d.btn,
             d.btnH,
           )}
