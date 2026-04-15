@@ -181,13 +181,6 @@ function AccordionCard({
   const premiumEase = "cubic-bezier(0.16,1,0.3,1)";
   const [showCollapsedVisual, setShowCollapsedVisual] = useState(!active);
   const [showExpandedImage, setShowExpandedImage] = useState(active);
-  const labelBoxHeightById: Record<string, string> = {
-    "01": "h-[174px]",
-    "02": "h-[159px]",
-    "03": "h-[153px]",
-    "04": "h-[223px]",
-  };
-  const labelBoxHeight = labelBoxHeightById[card.id] ?? "h-[159px]";
   const entryDirection = motionDirection;
   const exitDirection = (motionDirection * -1) as -1 | 1;
   const collapsedHideClip =
@@ -265,19 +258,17 @@ function AccordionCard({
           {card.id}
         </p>
         <div
-          className={`pointer-events-none absolute z-20 w-[40px] -translate-y-full overflow-visible ${labelBoxHeight}`}
+          className="pointer-events-none absolute bottom-[30px] left-1/2 z-20 overflow-visible"
           style={{
-            left: topPx === 214 ? "20px" : "14px",
-            top: topPx === 214 ? "470px" : "380px",
             opacity: active ? 0 : 1,
             transform: active
-              ? `translate3d(${verticalLabelOffsetPx}px,-100%,0)`
-              : "translate3d(0,-100%,0)",
+              ? `translate3d(calc(-50% + ${verticalLabelOffsetPx}px),0,0)`
+              : "translate3d(-50%,0,0)",
             transition: `opacity 180ms ease-out, transform 420ms ${premiumEase}`,
             willChange: "opacity,transform",
           }}
         >
-          <p className="absolute left-1/2 top-1/2 m-0 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
+          <p className="m-0 -rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
             {card.label}
           </p>
         </div>

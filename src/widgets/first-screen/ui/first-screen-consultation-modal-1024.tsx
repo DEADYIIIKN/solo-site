@@ -256,7 +256,7 @@ export function FirstScreenConsultationModal1024({
                 <>
                   <span>бесплатная </span>
                   <span className="font-normal italic">консультация </span>
-                  <span>по вашему проекту</span>
+                  <span>по{"\u00A0"}вашему проекту</span>
                 </>
               ) : (
                 <>

@@ -264,7 +264,7 @@ export function FirstScreenConsultationModal480({
                     консультация
                   </span>
                   <span className="block text-[30px] leading-[0.9]">
-                    по вашему проекту
+                    по{"\u00A0"}вашему проекту
                   </span>
                 </>
               ) : (
