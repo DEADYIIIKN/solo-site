@@ -1,5 +1,7 @@
 import type { CollectionConfig } from "payload";
 
+const MEDIA_STATIC_DIR = process.env.PAYLOAD_UPLOAD_DIR || "media";
+
 /** Человекочитаемый alt из имени файла (без расширения). */
 function altFromFilename(filename: string): string {
   const base = filename
@@ -45,6 +47,7 @@ export const Media: CollectionConfig = {
     ],
   },
   upload: {
+    staticDir: MEDIA_STATIC_DIR,
     mimeTypes: ["image/*", "video/*"],
     /** Массовая загрузка с экрана списка (drag-and-drop на таблицу). */
     bulkUpload: true,
