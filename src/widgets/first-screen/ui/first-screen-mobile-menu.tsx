@@ -169,8 +169,7 @@ export function FirstScreenMobileMenu({
   );
 
   const isLightSurface = surfaceTheme === "light-surface";
-  const isHeroTransparent = surfaceTheme === "hero-transparent";
-  const headerBackgroundColor = isHeroTransparent ? "transparent" : isLightSurface ? "#ffffff" : "#0d0300";
+  const headerBackgroundColor = isLightSurface ? "#ffffff" : "#0d0300";
 
   const layer = (
     <>
