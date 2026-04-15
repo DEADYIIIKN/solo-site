@@ -15,7 +15,7 @@ import { FirstScreen1440Section } from "@/widgets/first-screen/ui/first-screen-1
 import { FirstScreen1024Section } from "@/widgets/first-screen/ui/first-screen-1024-section";
 import { ShowreelMorphOverlay } from "@/widgets/showreel";
 
-export function FirstScreen() {
+export function FirstScreen({ showNews = true }: { showNews?: boolean }) {
   const layout = useViewportLayout();
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [modalTitleVariant, setModalTitleVariant] =
@@ -63,6 +63,7 @@ export function FirstScreen() {
             modalTitleVariant={modalTitleVariant}
             onCloseModal={() => setConsultationOpen(false)}
             onOpenModal={openConsultationModal}
+            showNews={showNews}
             setFormState={setConsultationFormState}
           />
         </div>
@@ -76,6 +77,7 @@ export function FirstScreen() {
             modalTitleVariant={modalTitleVariant}
             onCloseModal={() => setConsultationOpen(false)}
             onOpenModal={openConsultationModal}
+            showNews={showNews}
             setFormState={setConsultationFormState}
           />
         </div>
@@ -89,6 +91,7 @@ export function FirstScreen() {
             modalTitleVariant={modalTitleVariant}
             onCloseModal={() => setConsultationOpen(false)}
             onOpenModal={openConsultationModal}
+            showNews={showNews}
             setFormState={setConsultationFormState}
           />
         </div>
@@ -102,6 +105,7 @@ export function FirstScreen() {
             modalTitleVariant={modalTitleVariant}
             onCloseModal={() => setConsultationOpen(false)}
             onOpenModal={openConsultationModal}
+            showNews={showNews}
             setFormState={setConsultationFormState}
           />
         </div>
@@ -115,6 +119,7 @@ export function FirstScreen() {
             modalTitleVariant={modalTitleVariant}
             onCloseModal={() => setConsultationOpen(false)}
             onOpenModal={openConsultationModal}
+            showNews={showNews}
             setFormState={setConsultationFormState}
           />
         </div>

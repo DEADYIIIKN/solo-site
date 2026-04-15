@@ -19,6 +19,7 @@ type FirstScreen1024SectionProps = {
   setFormState: Dispatch<SetStateAction<FirstScreenConsultationFormState>>;
   onOpenModal: (variant: FirstScreenConsultationModalTitleVariant) => void;
   onCloseModal: () => void;
+  showNews: boolean;
 };
 
 export function FirstScreen1024Section({
@@ -27,12 +28,13 @@ export function FirstScreen1024Section({
   formState,
   setFormState,
   onOpenModal,
-  onCloseModal
+  onCloseModal,
+  showNews,
 }: FirstScreen1024SectionProps) {
 
   return (
     <>
-      <FirstScreenHeader1024 onCtaClick={() => onOpenModal("task")} />
+      <FirstScreenHeader1024 onCtaClick={() => onOpenModal("task")} showNews={showNews} />
       <FirstScreenHero1024 onConsultationCtaClick={() => onOpenModal("consultation")} />
       <FirstScreenConsultationModal1024
         formState={formState}

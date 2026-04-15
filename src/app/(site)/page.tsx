@@ -56,7 +56,7 @@ export default async function HomePage() {
       {/* Без isolate/z-0: иначе stacking context первого блока оказывается под соседними секциями (sticky z-[40]) — навбар и fixed-модалки внутри блока не перекрывают страницу. */}
       <div className="relative overflow-x-clip bg-[#0d0300]">
         <DarkSurfaceGrid />
-        <FirstScreen />
+        <FirstScreen showNews={settings.showNews} />
         {settings.showShowreel && <Showreel />}
       </div>
       <BusinessGoals />
@@ -68,7 +68,7 @@ export default async function HomePage() {
       {settings.showServices && <ServicesSection />}
       {settings.showLevels && <LevelsSection />}
       <LeadFormSection />
-      <FooterSection showSecrets={settings.showSecrets} />
+      <FooterSection showNews={settings.showNews} showSecrets={settings.showSecrets} />
     </main>
   );
 }

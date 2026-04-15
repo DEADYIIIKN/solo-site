@@ -62,6 +62,16 @@ export const SiteSettings: GlobalConfig = {
           type: "row",
           fields: [
             {
+              name: "showNews",
+              type: "checkbox",
+              defaultValue: true,
+              label: "Новости",
+              admin: {
+                description: "Страница новостей и ссылки на нее в навигации",
+                width: "33%",
+              },
+            },
+            {
               name: "showCases",
               type: "checkbox",
               defaultValue: true,
@@ -81,6 +91,11 @@ export const SiteSettings: GlobalConfig = {
                 width: "33%",
               },
             },
+          ],
+        },
+        {
+          type: "row",
+          fields: [
             {
               name: "showLevels",
               type: "checkbox",

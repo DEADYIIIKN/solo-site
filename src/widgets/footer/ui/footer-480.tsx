@@ -8,7 +8,7 @@ import {
   footerAssets,
   footerBlogPosts,
   footerContent,
-  footerNavLinks,
+  getFooterNavLinks,
 } from "@/widgets/footer/model/footer.data";
 
 const CARD_WIDTH = 320;
@@ -19,8 +19,15 @@ const MAX_SLIDE = 2;
 /**
  * Figma 783:10823 — «footer» 480px: одноколоночный центрированный макет без навигации.
  */
-export function Footer480({ showSecrets = true }: { showSecrets?: boolean }) {
+export function Footer480({
+  showSecrets = true,
+  showNews = true,
+}: {
+  showSecrets?: boolean;
+  showNews?: boolean;
+}) {
   const [slideIndex, setSlideIndex] = useState(0);
+  const navLinks = getFooterNavLinks(showNews);
 
   const handlePrev = () => setSlideIndex((i) => Math.max(0, i - 1));
   const handleNext = () => setSlideIndex((i) => Math.min(MAX_SLIDE, i + 1));
@@ -138,7 +145,7 @@ export function Footer480({ showSecrets = true }: { showSecrets?: boolean }) {
             aria-label="Footer navigation"
             className="flex w-full max-w-[320px] flex-wrap items-center justify-center gap-x-[24px] gap-y-[14px]"
           >
-            {footerNavLinks.map((item) => (
+            {navLinks.map((item) => (
               <SiteNavLink
                 className="font-normal lowercase leading-[1.2] text-[15px] no-underline transition-opacity hover:opacity-70"
                 href={item.href}

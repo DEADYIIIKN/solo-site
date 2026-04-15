@@ -16,6 +16,10 @@ export const firstScreenNavLinks = [
   { label: "Контакты", href: "#footer-section" },
 ] as const;
 
+export function getFirstScreenNavLinks(showNews: boolean) {
+  return firstScreenNavLinks.filter((item) => showNews || item.label !== "Новости");
+}
+
 export const firstScreenContent = {
   phone: "+7 (968) 973-11-68",
   email: "info@soloproduction.pro",

@@ -11,7 +11,10 @@ import { cn } from "@/shared/lib/utils";
 import { SiteNavLink } from "@/shared/ui/site-nav-link";
 import type { MobileMenuLayoutConfig } from "@/widgets/first-screen/model/first-screen-mobile-menu.layout";
 import { MOBILE_MENU_NAV_TOPS } from "@/widgets/first-screen/model/first-screen-mobile-menu.layout";
-import { firstScreenContent, firstScreenNavLinks } from "@/widgets/first-screen/model/first-screen.data";
+import {
+  firstScreenContent,
+  getFirstScreenNavLinks,
+} from "@/widgets/first-screen/model/first-screen.data";
 
 const MENU_ICON_TRANSITION_MS = 480;
 const OVERLAY_OPEN_MS = 380;
@@ -24,6 +27,7 @@ type FirstScreenMobileMenuProps = {
   headerBeforeMenu?: ReactNode;
   /** Кнопка «связаться» в открытом меню — модалка консультации (вариант «задача») */
   onOverlayCtaClick?: () => void;
+  showNews?: boolean;
 };
 
 /** Оранжевый круг и белые точки — один слой с общим transform (как в Figma, без «разъезда» слоёв). */
@@ -83,8 +87,10 @@ export function FirstScreenMobileMenu({
   surfaceTheme,
   headerBeforeMenu,
   onOverlayCtaClick,
+  showNews = true,
 }: FirstScreenMobileMenuProps) {
   const { header, overlay, visibilityClass } = layout;
+  const navLinks = getFirstScreenNavLinks(showNews);
   const [isOpen, setIsOpen] = useState(false);
   const [overlayEntered, setOverlayEntered] = useState(false);
   const [overlayExiting, setOverlayExiting] = useState(false);
@@ -233,7 +239,7 @@ export function FirstScreenMobileMenu({
           <div className={overlay.topBarClass} />
           <div className={overlay.whitePanelClass} />
 
-          {firstScreenNavLinks.map((item, i) => (
+          {navLinks.map((item, i) => (
             <SiteNavLink
               key={item.label}
               className={`absolute left-1/2 w-[188px] -translate-x-1/2 text-center text-[16px] font-medium lowercase leading-[1.2] text-[#0d0300] ${MOBILE_MENU_NAV_TOPS[i]}`}

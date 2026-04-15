@@ -6,15 +6,20 @@ import { FirstScreenMobileMenu } from "@/widgets/first-screen/ui/first-screen-mo
 
 type FirstScreenHeader480Props = {
   onCtaClick?: () => void;
+  showNews?: boolean;
 };
 
-export function FirstScreenHeader480({ onCtaClick }: FirstScreenHeader480Props) {
+export function FirstScreenHeader480({
+  onCtaClick,
+  showNews = true,
+}: FirstScreenHeader480Props) {
   const surfaceTheme = useNavbarSurface(60);
 
   return (
     <FirstScreenMobileMenu
       layout={mobileMenuLayout480}
       onOverlayCtaClick={onCtaClick}
+      showNews={showNews}
       surfaceTheme={surfaceTheme}
     />
   );

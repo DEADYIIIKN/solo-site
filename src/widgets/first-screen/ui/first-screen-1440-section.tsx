@@ -17,6 +17,7 @@ type FirstScreen1440SectionProps = {
   setFormState: Dispatch<SetStateAction<FirstScreenConsultationFormState>>;
   onOpenModal: (variant: FirstScreenConsultationModalTitleVariant) => void;
   onCloseModal: () => void;
+  showNews: boolean;
 };
 
 export function FirstScreen1440Section({
@@ -25,12 +26,13 @@ export function FirstScreen1440Section({
   formState,
   setFormState,
   onOpenModal,
-  onCloseModal
+  onCloseModal,
+  showNews,
 }: FirstScreen1440SectionProps) {
 
   return (
     <>
-      <FirstScreenHeader1440 onCtaClick={() => onOpenModal("task")} />
+      <FirstScreenHeader1440 onCtaClick={() => onOpenModal("task")} showNews={showNews} />
       <FirstScreenHero1440 onConsultationCtaClick={() => onOpenModal("consultation")} />
       <FirstScreenConsultationModal1440
         formState={formState}

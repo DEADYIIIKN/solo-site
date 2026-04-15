@@ -7,9 +7,13 @@ import { FirstScreenMobileMenu } from "@/widgets/first-screen/ui/first-screen-mo
 
 type FirstScreenHeader768Props = {
   onCtaClick?: () => void;
+  showNews?: boolean;
 };
 
-export function FirstScreenHeader768({ onCtaClick }: FirstScreenHeader768Props) {
+export function FirstScreenHeader768({
+  onCtaClick,
+  showNews = true,
+}: FirstScreenHeader768Props) {
   const surfaceTheme = useNavbarSurface(64);
   const phoneColor = surfaceTheme === "light-surface" ? "#0d0300" : "#ffffff";
 
@@ -26,6 +30,7 @@ export function FirstScreenHeader768({ onCtaClick }: FirstScreenHeader768Props) 
       }
       layout={mobileMenuLayout768}
       onOverlayCtaClick={onCtaClick}
+      showNews={showNews}
       surfaceTheme={surfaceTheme}
     />
   );

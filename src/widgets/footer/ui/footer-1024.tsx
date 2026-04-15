@@ -8,7 +8,7 @@ import {
   footerAssets,
   footerBlogPosts,
   footerContent,
-  footerNavLinks,
+  getFooterNavLinks,
 } from "@/widgets/footer/model/footer.data";
 
 const CARD_WIDTH = 386;
@@ -19,8 +19,15 @@ const MAX_SLIDE = 1;
 /**
  * Figma 783:8318 — «footer» 1024px: тёмный блок с разделом блога и нижней информацией.
  */
-export function Footer1024({ showSecrets = true }: { showSecrets?: boolean }) {
+export function Footer1024({
+  showSecrets = true,
+  showNews = true,
+}: {
+  showSecrets?: boolean;
+  showNews?: boolean;
+}) {
   const [slideIndex, setSlideIndex] = useState(0);
+  const navLinks = getFooterNavLinks(showNews);
 
   const handlePrev = () => setSlideIndex((i) => Math.max(0, i - 1));
   const handleNext = () => setSlideIndex((i) => Math.min(MAX_SLIDE, i + 1));
@@ -150,7 +157,7 @@ export function Footer1024({ showSecrets = true }: { showSecrets?: boolean }) {
             aria-label="Footer navigation"
             className="flex items-center justify-between"
           >
-            {footerNavLinks.map((item) => (
+            {navLinks.map((item) => (
               <SiteNavLink
                 className="font-medium lowercase leading-[1.4] text-[16px] no-underline transition-opacity hover:opacity-70"
                 href={item.href}

@@ -17,6 +17,7 @@ type FirstScreen360SectionProps = {
   setFormState: Dispatch<SetStateAction<FirstScreenConsultationFormState>>;
   onOpenModal: (variant: FirstScreenConsultationModalTitleVariant) => void;
   onCloseModal: () => void;
+  showNews: boolean;
 };
 
 export function FirstScreen360Section({
@@ -25,12 +26,13 @@ export function FirstScreen360Section({
   formState,
   setFormState,
   onOpenModal,
-  onCloseModal
+  onCloseModal,
+  showNews,
 }: FirstScreen360SectionProps) {
 
   return (
     <>
-      <FirstScreenHeader360 onCtaClick={() => onOpenModal("task")} />
+      <FirstScreenHeader360 onCtaClick={() => onOpenModal("task")} showNews={showNews} />
       <FirstScreenHero360 onConsultationCtaClick={() => onOpenModal("consultation")} />
       <FirstScreenConsultationModal360
         formState={formState}

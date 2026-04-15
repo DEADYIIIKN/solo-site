@@ -5,20 +5,25 @@ import { createPortal } from "react-dom";
 import { useNavbarSurface } from "@/shared/lib/use-navbar-surface";
 import { SiteNavLink } from "@/shared/ui/site-nav-link";
 import {
+  getFirstScreenNavLinks,
   firstScreenAssets,
   firstScreenContent,
-  firstScreenNavLinks
 } from "@/widgets/first-screen/model/first-screen.data";
 
 type FirstScreenHeader1440Props = {
   onCtaClick?: () => void;
+  showNews?: boolean;
 };
 
-export function FirstScreenHeader1440({ onCtaClick }: FirstScreenHeader1440Props) {
+export function FirstScreenHeader1440({
+  onCtaClick,
+  showNews = true,
+}: FirstScreenHeader1440Props) {
   const navbarSurface = useNavbarSurface(82);
   const isLightTheme = navbarSurface === "light-surface";
   const isHeroTransparent = navbarSurface === "hero-transparent";
   const headerBackgroundColor = isHeroTransparent ? "transparent" : isLightTheme ? "#ffffff" : "#0d0300";
+  const navLinks = getFirstScreenNavLinks(showNews);
 
   const header = (
     <header
@@ -52,7 +57,7 @@ export function FirstScreenHeader1440({ onCtaClick }: FirstScreenHeader1440Props
             isLightTheme ? "text-[#0d0300]" : "text-white"
           }`}
         >
-          {firstScreenNavLinks.map((item) => (
+          {navLinks.map((item) => (
             <SiteNavLink
               key={item.label}
               className="shrink-0 whitespace-nowrap transition-[color,opacity] duration-[180ms] ease-[var(--ease-standard)] hover:opacity-75"
