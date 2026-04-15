@@ -173,17 +173,6 @@ export function FirstScreenMobileMenu({
 
   const layer = (
     <>
-      <div
-        className={cn(
-          header.backgroundBarClass,
-          "transition-[background-color] ease-[var(--ease-standard)]",
-        )}
-        style={{
-          backgroundColor: headerBackgroundColor,
-          transitionDuration: `${HEADER_THEME_TRANSITION_MS}ms`,
-        }}
-      />
-
       <header
         className={cn(
           header.className,
@@ -194,7 +183,7 @@ export function FirstScreenMobileMenu({
           transitionDuration: `${HEADER_THEME_TRANSITION_MS}ms`,
         }}
       >
-        <div className="flex flex-1 items-center justify-between">
+        <div className={header.innerClassName}>
           <div className={header.logoClass}>
             <img
               alt="СОЛО"
@@ -285,7 +274,7 @@ export function FirstScreenMobileMenu({
           </a>
 
           <div className={overlay.navBarRowClass}>
-            <div className="flex flex-1 items-center justify-between">
+            <div className={overlay.navBarInnerClassName}>
               <div className={overlay.logoMenuDarkClass}>
                 <img
                   alt="СОЛО"
