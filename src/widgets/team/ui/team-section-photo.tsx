@@ -13,6 +13,8 @@ type TeamSectionPhotoProps = {
   frameClassName: string;
   roundedClassName?: string;
   style?: CSSProperties;
+  imageClassName?: string;
+  imageWrapperClassName?: string;
   /** 360/480: кроп по бокам без transform — иначе ломается скругление; фон белый */
   variant?: "default" | "narrow";
 };
@@ -22,6 +24,8 @@ export function TeamSectionPhoto({
   frameClassName,
   roundedClassName = "rounded-[12px]",
   style,
+  imageClassName,
+  imageWrapperClassName,
   variant = "default",
 }: TeamSectionPhotoProps) {
   const narrow = variant === "narrow";
@@ -43,10 +47,10 @@ export function TeamSectionPhoto({
         style={style}
       >
         {narrow ? (
-          <div className="absolute inset-y-0 left-[-9%] w-[118%]">
+          <div className={cn("absolute inset-y-0 left-[-9%] w-[118%]", imageWrapperClassName)}>
             <Image
               alt="Команда SOLO"
-              className="object-cover object-center"
+              className={cn("object-cover object-center", imageClassName)}
               draggable={false}
               fill
               loading="lazy"
@@ -59,7 +63,7 @@ export function TeamSectionPhoto({
         ) : (
           <Image
             alt="Команда SOLO"
-            className="object-cover object-[center_26%]"
+            className={cn("object-cover object-[center_26%]", imageClassName)}
             draggable={false}
             fill
             loading="lazy"

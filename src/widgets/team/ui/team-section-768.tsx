@@ -18,11 +18,11 @@ export function TeamSection768() {
       id="team-section-768"
     >
       <div className="w-full bg-white">
-        <div className="relative mx-auto w-full max-w-[768px] px-[48px] pb-[48px] pt-[56px]">
+        <div className="relative mx-auto flex w-full max-w-[768px] flex-col gap-[60px] px-[48px] pb-[80px] pt-[80px]">
         <div ref={headerRef}>
           <div
             className={cn(
-              "flex items-start gap-[32px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              "flex items-start gap-[80px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
               headerInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
             )}
           >
@@ -32,25 +32,27 @@ export function TeamSection768() {
               </p>
             </SectionEyebrowRow>
             <p className="min-w-0 max-w-[520px] text-[0] text-[#0d0300]">
-              <span className="text-[26px] font-bold leading-[1.08]">{teamSectionContent.headline.lead}</span>
-              <span className="text-[26px] font-normal italic leading-[1.08]">
+              <span className="text-[28px] font-bold leading-none">{teamSectionContent.headline.lead}</span>
+              <span className="text-[28px] font-normal italic leading-none">
                 {teamSectionContent.headline.accent}
               </span>
-              <span className="text-[26px] font-bold leading-[1.08]">{teamSectionContent.headline.tail}</span>
+              <span className="text-[28px] font-bold leading-none">{teamSectionContent.headline.tail}</span>
             </p>
           </div>
         </div>
 
         <TeamSectionPhoto
           className={cn(
-            "mt-[44px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
             headerInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
-          frameClassName="h-[280px] w-full"
+          frameClassName="h-[284px] w-full"
+          imageClassName="object-cover object-[center_45%]"
+          roundedClassName="rounded-[8px]"
           style={{ transitionDelay: "100ms" }}
         />
 
-        <div className="mx-auto mt-[56px] max-w-[600px] text-center" ref={manifestoRef}>
+        <div className="mx-auto max-w-[672px] text-center" ref={manifestoRef}>
           <p
             className={cn(
               "text-[0] text-[#0d0300] transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
@@ -60,7 +62,7 @@ export function TeamSection768() {
             {teamSectionContent.manifesto.parts.map((part, i) => (
               <span
                 className={cn(
-                  "text-[28px] leading-[1.05]",
+                  "text-[32px] leading-[0.9]",
                   "italic" in part && part.italic ? "font-normal italic" : "font-bold",
                 )}
                 key={i}

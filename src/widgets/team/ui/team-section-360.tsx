@@ -18,10 +18,10 @@ export function TeamSection360() {
       id="team-section-360"
     >
       <div className="w-full bg-white">
-        <div className="relative mx-auto w-full max-w-[360px] px-4 pb-10 pt-10" ref={blockRef}>
+        <div className="relative mx-auto flex w-full max-w-[360px] flex-col items-center gap-[40px] px-4 pb-[70px] pt-[70px]" ref={blockRef}>
         <div
           className={cn(
-            "flex flex-col items-center gap-8 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "flex flex-col items-center gap-[40px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
         >
@@ -31,40 +31,42 @@ export function TeamSection360() {
             </p>
           </SectionEyebrowRow>
 
-          <p className="w-full text-center text-[0] text-[#0d0300]">
-            <span className="block text-[20px] font-bold leading-[1.15]">
+          <p className="min-w-full text-center text-[0] text-[#0d0300]">
+            <span className="text-[18px] font-bold leading-none">
               Создаем рекламу и контент для&nbsp;соцсетей, которые{" "}
             </span>
-            <span className="mt-1 block text-[20px] font-normal italic leading-[1.15]">
-              системно приводят клиентов{" "}
+            <span className="text-[18px] font-normal italic leading-none">
+              системно приводят клиентов
             </span>
-            <span className="mt-1 block text-[20px] font-bold leading-[1.15]">в ваш бизнес.</span>
+            <span className="text-[18px] font-bold leading-none"> в&nbsp;ваш бизнес.</span>
           </p>
         </div>
 
         <TeamSectionPhoto
           className={cn(
-            "mt-10 w-full transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "w-full transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
-          frameClassName="h-[200px] w-full"
-          roundedClassName="rounded-2xl"
+          frameClassName="h-[204px] w-full"
+          imageWrapperClassName="inset-0 w-full"
+          imageClassName="object-cover object-center"
+          roundedClassName="rounded-[8px]"
           style={{ transitionDelay: "80ms" }}
           variant="narrow"
         />
 
-        <div className="mt-12 text-center" ref={manifestoRef}>
+        <div className="text-center" ref={manifestoRef}>
           <p
             className={cn(
               "text-[0] text-[#0d0300] transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
               manifestoInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
           >
-            <span className="text-[18px] font-bold leading-[1.12]">Мы </span>
-            <span className="text-[18px] font-normal italic leading-[1.12]">
+            <span className="text-[18px] font-bold leading-[0.9]">Мы </span>
+            <span className="text-[18px] font-normal italic leading-[0.9]">
               превращаем идеи в&nbsp;контент,{" "}
             </span>
-            <span className="text-[18px] font-bold leading-[1.12]">
+            <span className="text-[18px] font-bold leading-[0.9]">
               который объединяет креатив и&nbsp;стратегию.
             </span>
           </p>

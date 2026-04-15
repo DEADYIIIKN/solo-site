@@ -18,10 +18,10 @@ export function TeamSection480() {
       id="team-section-480"
     >
       <div className="w-full bg-white">
-        <div className="relative mx-auto w-full max-w-[480px] px-6 pb-10 pt-12" ref={blockRef}>
+        <div className="relative mx-auto flex w-full max-w-[480px] flex-col items-center gap-[50px] px-6 pb-[80px] pt-[80px]" ref={blockRef}>
         <div
           className={cn(
-            "flex flex-col items-center gap-10 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "flex flex-col items-center gap-[50px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
         >
@@ -31,43 +31,40 @@ export function TeamSection480() {
             </p>
           </SectionEyebrowRow>
 
-          <p className="w-full text-center text-[0] text-[#0d0300]">
-            <span className="block text-[22px] font-bold leading-[1.12]">Создаем рекламу и контент</span>
-            <span className="mt-1 block text-[22px] leading-[1.12]">
-              <span className="font-bold">для соцсетей, которые </span>
-              <span className="font-normal italic">системно</span>
+          <p className="min-w-full text-center text-[0] text-[#0d0300]">
+            <span className="text-[23px] font-bold leading-none">
+              Создаем рекламу и контент для соцсетей, которые{" "}
             </span>
-            <span className="mt-1 block text-[22px] leading-[1.12]">
-              <span className="font-normal italic">приводят клиентов </span>
-              <span className="font-bold">в ваш бизнес.</span>
-            </span>
+            <span className="text-[23px] font-normal italic leading-none">системно приводят клиентов</span>
+            <span className="text-[23px] font-bold leading-none"> в ваш бизнес.</span>
           </p>
         </div>
 
         <TeamSectionPhoto
           className={cn(
-            "mt-12 w-full transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            "w-full transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
             inView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
           )}
-          frameClassName="h-[240px] w-full"
-          roundedClassName="rounded-2xl"
+          frameClassName="h-[284px] w-full"
+          imageWrapperClassName="left-[-11.79%] w-[123.58%]"
+          imageClassName="object-cover object-center"
+          roundedClassName="rounded-[8px]"
           style={{ transitionDelay: "80ms" }}
           variant="narrow"
         />
 
-        <div className="mt-14 text-center" ref={manifestoRef}>
+        <div className="text-center" ref={manifestoRef}>
           <p
             className={cn(
               "text-[0] text-[#0d0300] transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
               manifestoInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
           >
-            <span className="text-[22px] font-bold leading-[1.12]">Мы </span>
-            <span className="text-[22px] font-normal italic leading-[1.12]">
+            <span className="text-[24px] font-bold leading-[0.9]">Мы </span>
+            <span className="text-[24px] font-normal italic leading-[0.9]">
               превращаем идеи в&nbsp;контент,{" "}
             </span>
-            <span className="mt-1 block text-[22px] font-bold leading-[1.12]">который объединяет креатив</span>
-            <span className="block text-[22px] font-bold leading-[1.12]">и стратегию.</span>
+            <span className="text-[24px] font-bold leading-[0.9]">который объединяет креатив и стратегию.</span>
           </p>
         </div>
         </div>
