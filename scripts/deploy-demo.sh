@@ -16,6 +16,10 @@ if [[ ! -f "$RUNTIME_COMPOSE" ]]; then
   exit 1
 fi
 
+echo "==> Pruning unused Docker cache"
+docker builder prune -af >/dev/null || true
+docker image prune -af >/dev/null || true
+
 echo "==> Pulling solo-site image"
 docker compose \
   --project-directory "$STACK_DIR" \
