@@ -258,12 +258,12 @@ function AccordionCard({
           {card.id}
         </p>
         <div
-          className="pointer-events-none absolute bottom-[30px] left-1/2 z-20 overflow-visible"
+          className="pointer-events-none absolute left-1/2 top-1/2 z-20 overflow-visible"
           style={{
             opacity: active ? 0 : 1,
             transform: active
-              ? `translate3d(calc(-50% + ${verticalLabelOffsetPx}px),0,0)`
-              : "translate3d(-50%,0,0)",
+              ? `translate3d(calc(-50% + ${verticalLabelOffsetPx}px),-50%,0)`
+              : "translate3d(-50%,-50%,0)",
             transition: `opacity 180ms ease-out, transform 420ms ${premiumEase}`,
             willChange: "opacity,transform",
           }}
