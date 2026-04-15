@@ -14,20 +14,22 @@ function ModalPlayOverlay({ sizePx }: { sizePx: number }) {
       className="pointer-events-none relative flex shrink-0 items-center justify-center"
       style={{ width: s, height: s }}
     >
-      <div
-        className="absolute rounded-full border-2 border-white/95 bg-white/15"
-        style={{ inset: 0 }}
-      />
-      <svg
+      <Image
+        alt=""
         aria-hidden
-        className="relative ml-[3px]"
-        fill="white"
-        height={Math.round(s * 0.35)}
-        viewBox="0 0 24 24"
-        width={Math.round(s * 0.35)}
-      >
-        <path d="M8 5v14l11-7z" />
-      </svg>
+        className="absolute inset-0"
+        height={s}
+        src="/assets/figma/7255-play-button/subtract.svg"
+        width={s}
+      />
+      <Image
+        alt=""
+        aria-hidden
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        height={Math.round(s * (55.7143 / 60))}
+        src="/assets/figma/7255-play-button/ellipse2.svg"
+        width={Math.round(s * (55.7143 / 60))}
+      />
     </div>
   );
 }
