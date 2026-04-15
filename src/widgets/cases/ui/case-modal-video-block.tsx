@@ -17,18 +17,18 @@ function ModalPlayOverlay({ sizePx }: { sizePx: number }) {
       <Image
         alt=""
         aria-hidden
-        className="absolute inset-0"
-        height={s}
-        src="/assets/figma/7255-play-button/subtract.svg"
-        width={s}
-      />
-      <Image
-        alt=""
-        aria-hidden
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         height={Math.round(s * (55.7143 / 60))}
         src="/assets/figma/7255-play-button/ellipse2.svg"
         width={Math.round(s * (55.7143 / 60))}
+      />
+      <Image
+        alt=""
+        aria-hidden
+        className="absolute inset-0"
+        height={s}
+        src="/assets/figma/7255-play-button/subtract.svg"
+        width={s}
       />
     </div>
   );
