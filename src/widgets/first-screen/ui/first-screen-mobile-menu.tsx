@@ -16,8 +16,6 @@ import { firstScreenContent, firstScreenNavLinks } from "@/widgets/first-screen/
 const MENU_ICON_TRANSITION_MS = 480;
 const OVERLAY_OPEN_MS = 380;
 const OVERLAY_CLOSE_MS = 560;
-const HEADER_THEME_TRANSITION_MS = 180;
-
 type FirstScreenMobileMenuProps = {
   layout: MobileMenuLayoutConfig;
   surfaceTheme: NavbarSurface;
@@ -174,13 +172,9 @@ export function FirstScreenMobileMenu({
   const layer = (
     <>
       <header
-        className={cn(
-          header.className,
-          "transition-[background-color] ease-[var(--ease-standard)]",
-        )}
+        className={header.className}
         style={{
           backgroundColor: headerBackgroundColor,
-          transitionDuration: `${HEADER_THEME_TRANSITION_MS}ms`,
         }}
       >
         <div className={header.innerClassName}>
@@ -191,7 +185,7 @@ export function FirstScreenMobileMenu({
                 isLightSurface ? "opacity-0" : "opacity-100"
               }`}
               src={header.logoClosedSrc}
-              style={{ transitionDuration: `${HEADER_THEME_TRANSITION_MS}ms` }}
+              style={{ transitionDuration: "180ms" }}
             />
             <img
               alt="СОЛО"
@@ -199,7 +193,7 @@ export function FirstScreenMobileMenu({
                 isLightSurface ? "opacity-100" : "opacity-0"
               }`}
               src={overlay.logoMenuDarkSrc}
-              style={{ transitionDuration: `${HEADER_THEME_TRANSITION_MS}ms` }}
+              style={{ transitionDuration: "180ms" }}
             />
           </div>
           {headerBeforeMenu ? (
