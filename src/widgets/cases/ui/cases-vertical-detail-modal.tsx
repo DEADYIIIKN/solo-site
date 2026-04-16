@@ -380,10 +380,13 @@ function ModalBodyMobile({
   const titleMaxWidth = size === "480" ? "max-w-[240px]" : "max-w-[170px]";
   const iconH = size === "480" ? 18 : 12;
   const iconW = size === "480" ? 26 : 16;
+  const outerGap = size === "480" ? "gap-[36px]" : "gap-[24px]";
+  const topGap = size === "480" ? "gap-6" : "gap-4";
+  const taskGap = size === "480" ? "gap-[28px]" : "gap-[30px]";
 
   return (
-    <div className="flex w-full flex-col gap-9">
-      <div className="flex flex-col gap-6">
+    <div className={cn("flex w-full flex-col", outerGap)}>
+      <div className={cn("flex flex-col", topGap)}>
         <div className="flex w-full items-start justify-between gap-2">
           <p
             className={cn("m-0 font-bold uppercase leading-[0.9]", titlePx, titleMaxWidth)}
@@ -409,7 +412,7 @@ function ModalBodyMobile({
           ))}
         </div>
       </div>
-      <ModalTaskResult card={card} textClass={cn("leading-[1.2]", bodyPx)} gapSection={size === "360" ? "gap-[30px]" : "gap-7"} />
+      <ModalTaskResult card={card} textClass={cn("leading-[1.2]", bodyPx)} gapSection={taskGap} />
       <OrderButton className={cn("w-full rounded-[50px] font-semibold", btnPx)} onClick={onOrderProject} />
     </div>
   );

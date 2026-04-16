@@ -304,7 +304,11 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
                 />
               </div>
               <div className="mt-6">
-                <AdModalTaskResultStacked card={card} textClass="text-[14px] leading-[1.2]" />
+                <AdModalTaskResultStacked
+                  card={card}
+                  gapSection="gap-[30px]"
+                  textClass="text-[14px] leading-[1.2]"
+                />
               </div>
             </div>
           </div>
