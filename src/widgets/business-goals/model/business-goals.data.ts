@@ -5,7 +5,7 @@ import {
 } from "@/widgets/first-screen/model/first-screen.data";
 
 export const businessGoalsContent = {
-  sectionTitle: "решаем бизнес-задачи с помощью видео",
+  sectionTitle: "решаем бизнес-задачи с\u00a0помощью видео",
   cards: [
     {
       id: "01",
