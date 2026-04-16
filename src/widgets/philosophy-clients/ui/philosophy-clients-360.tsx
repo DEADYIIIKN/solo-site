@@ -26,21 +26,21 @@ export function PhilosophyClients360() {
         <div className="w-full min-w-0 rounded-bl-[60px] rounded-br-[60px] bg-white">
           <div className="relative mx-auto w-full max-w-[360px] min-w-0 overflow-x-auto">
             <div className="flex flex-col items-center gap-[50px] px-4 py-[70px]">
-            <div ref={titleRef}>
-              <div
-                className={cn(
-                  philosophyNarrowRevealTransition,
-                  titleInView ? philosophyNarrowRevealOn : philosophyNarrowRevealOff,
-                )}
-              >
-                <SectionEyebrowRow>
-                  <p className={sectionEyebrowTextMax479}>
-                    {philosophyClients1440Content.philosophyEyebrow}
-                  </p>
-                </SectionEyebrowRow>
+              <div ref={titleRef}>
+                <div
+                  className={cn(
+                    philosophyNarrowRevealTransition,
+                    titleInView ? philosophyNarrowRevealOn : philosophyNarrowRevealOff,
+                  )}
+                >
+                  <SectionEyebrowRow align="start">
+                    <p className={sectionEyebrowTextMax479}>
+                      {philosophyClients1440Content.philosophyEyebrow}
+                    </p>
+                  </SectionEyebrowRow>
+                </div>
               </div>
-            </div>
-            <PhilosophyNarrowCardStack size="360" />
+              <PhilosophyNarrowCardStack size="360" />
             </div>
           </div>
           <PhilosophyClientsNarrowClientsBlock

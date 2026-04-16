@@ -332,7 +332,7 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
           }}
         >
         <p className={cn("absolute text-white", padLeftClass, numTop, numLg)}>{c4.id}</p>
-        <p className={cn("absolute left-1/2 -translate-x-1/2 whitespace-nowrap text-center text-white opacity-95", topTitle, titleCls)}>
+        <p className={cn("absolute left-1/2 -translate-x-1/2 whitespace-nowrap text-center text-white", topTitle, titleCls)}>
           {c4.title}
         </p>
         <div
@@ -364,7 +364,7 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
           className={cn(
             "absolute z-[1] whitespace-nowrap text-right text-white",
             padRightClass,
-            topTitle,
+            "top-[30px]",
             is360 ? "text-[28px] font-normal italic leading-[0.9] tracking-[-0.56px]" : "text-[38px] font-normal italic leading-[0.9] tracking-[-0.76px]",
           )}
         >

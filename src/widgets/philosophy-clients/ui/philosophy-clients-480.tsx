@@ -33,7 +33,7 @@ export function PhilosophyClients480() {
                   titleInView ? philosophyNarrowRevealOn : philosophyNarrowRevealOff,
                 )}
               >
-                <SectionEyebrowRow>
+                <SectionEyebrowRow align="end">
                   <p className={sectionEyebrowText480To1439}>
                     {philosophyClients1440Content.philosophyEyebrow}
                   </p>
