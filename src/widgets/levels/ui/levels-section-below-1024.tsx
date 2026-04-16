@@ -5,24 +5,36 @@ import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import { levelsCopy } from "@/widgets/levels/model/levels.data";
 import { LevelsGradientBar } from "@/widgets/levels/ui/levels-gradient-bar";
 
-function IntroText({ className }: { className: string }) {
+function IntroText({
+  className,
+  textClassName,
+}: {
+  className: string;
+  textClassName: string;
+}) {
   const { introBefore, introItalic, introAfter } = levelsCopy;
   return (
-    <p className={cn("m-0 font-bold leading-none text-[#0d0300]", className)}>
-      <span>{introBefore}</span>
-      <span className="font-normal italic">{introItalic}</span>
-      <span>{introAfter}</span>
+    <p className={cn("m-0 text-[0px] font-bold leading-[0] text-[#0d0300]", className)}>
+      <span className={cn("leading-none", textClassName)}>{introBefore}</span>
+      <span className={cn("font-normal italic leading-none", textClassName)}>{introItalic}</span>
+      <span className={cn("leading-none", textClassName)}>{introAfter}</span>
     </p>
   );
 }
 
-function OutroText({ className }: { className: string }) {
+function OutroText({
+  className,
+  textClassName,
+}: {
+  className: string;
+  textClassName: string;
+}) {
   const { outroBefore, outroItalic, outroAfter } = levelsCopy;
   return (
-    <p className={cn("m-0 font-bold leading-none text-[#0d0300]", className)}>
-      <span>{outroBefore}</span>
-      <span className="font-normal italic">{outroItalic}</span>
-      <span>{outroAfter}</span>
+    <p className={cn("m-0 text-[0px] font-bold leading-[0] text-[#0d0300]", className)}>
+      <span className={cn("leading-none", textClassName)}>{outroBefore}</span>
+      <span className={cn("font-normal italic leading-none", textClassName)}>{outroItalic}</span>
+      <span className={cn("leading-none", textClassName)}>{outroAfter}</span>
     </p>
   );
 }
@@ -38,7 +50,7 @@ function Levels768() {
       )}
     >
       <div className="flex w-full flex-col gap-[30px]">
-        <IntroText className="max-w-[515px] text-[28px]" />
+        <IntroText className="max-w-[515px]" textClassName="text-[28px]" />
         <div className="relative h-[400px] w-full max-w-[672px]">
           <div className="absolute left-[258px] top-0 z-[1]">
             <LevelsGradientBar height={153} opacityPct={70} width={139} />
@@ -70,7 +82,7 @@ function Levels768() {
         </div>
       </div>
       <div className="flex w-full flex-col items-end text-right">
-        <OutroText className="w-full max-w-[672px] text-[32px]" />
+        <OutroText className="w-full max-w-[672px]" textClassName="text-[32px]" />
       </div>
     </div>
   );
@@ -87,7 +99,7 @@ function Levels480() {
       )}
     >
       <div className="flex w-full flex-col gap-[30px]">
-        <IntroText className="w-full max-w-[432px] text-[23px]" />
+        <IntroText className="w-full max-w-[432px]" textClassName="text-[23px]" />
         <div className="relative h-[310px] w-full max-w-[432px]">
           <div className="absolute left-[112px] top-0 z-[1]">
             <LevelsGradientBar height={115} opacityPct={70} width={107} />
@@ -119,7 +131,7 @@ function Levels480() {
         </div>
       </div>
       <div className="flex w-full flex-col items-center text-center">
-        <OutroText className="w-full max-w-[432px] text-[32px]" />
+        <OutroText className="w-full max-w-[432px]" textClassName="text-[32px]" />
       </div>
     </div>
   );
@@ -136,7 +148,7 @@ function Levels360() {
       )}
     >
       <div className="flex w-full flex-col gap-5">
-        <IntroText className="w-full max-w-[328px] text-[20px]" />
+        <IntroText className="w-full max-w-[328px]" textClassName="text-[20px]" />
         <div className="relative h-[270px] w-full max-w-[328px]">
           <div className="absolute left-[86px] top-0 z-[1]">
             <LevelsGradientBar height={100} opacityPct={70} width={81} />
@@ -168,7 +180,7 @@ function Levels360() {
         </div>
       </div>
       <div className="flex w-full flex-col items-center text-center">
-        <OutroText className="w-full max-w-[328px] text-[23px]" />
+        <OutroText className="w-full max-w-[328px]" textClassName="text-[23px]" />
       </div>
     </div>
   );
