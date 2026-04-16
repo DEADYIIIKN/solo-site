@@ -168,6 +168,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: clip;
   background:
     radial-gradient(circle at top left, rgba(255, 92, 0, 0.14), transparent 22%),
     linear-gradient(180deg, #fff8f2 0%, #f8f4ef 100%);
@@ -311,13 +312,12 @@ body > div:first-child {
 .page-shell {
   position: relative;
   min-height: 100vh;
-  /* auto: узкие экраны могут прокручивать широкие секции (напр. философия 1440); clip резал внутренний overflow */
-  overflow-x: auto;
+  /* Горизонтальный скролл должен жить только внутри локальных каруселей, а не на уровне всей страницы. */
+  overflow-x: clip;
 }
 
 /*
- * От 1024: без overflow-x на shell — иначе не работает position:sticky у «философии» (1024 и 1440), ломается pin-анимация.
- * До 1024 оставляем auto для горизонтального скролла широких секций.
+ * От 1024: без clip на shell — иначе не работает position:sticky у «философии» (1024 и 1440), ломается pin-анимация.
  */
 @media (min-width: 1024px) {
   .page-shell {
