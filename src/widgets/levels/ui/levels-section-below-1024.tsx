@@ -33,7 +33,7 @@ function Levels768() {
   return (
     <div
       className={cn(
-        "hidden w-full max-w-[768px] flex-col gap-[70px] px-12 pt-20 pb-8",
+        "hidden w-full max-w-[768px] flex-col gap-[70px] px-12 py-20",
         "min-[768px]:max-[1023px]:flex",
       )}
     >
@@ -70,7 +70,7 @@ function Levels768() {
         </div>
       </div>
       <div className="flex w-full flex-col items-end text-right">
-        <OutroText className="max-w-full text-[32px]" />
+        <OutroText className="w-full max-w-[672px] text-[32px]" />
       </div>
     </div>
   );
@@ -82,13 +82,13 @@ function Levels480() {
   return (
     <div
       className={cn(
-        "hidden w-full max-w-[480px] flex-col gap-[90px] px-6 pt-20 pb-8",
+        "hidden w-full max-w-[480px] flex-col gap-[90px] px-6 py-20",
         "min-[480px]:max-[767px]:flex",
       )}
     >
       <div className="flex w-full flex-col gap-[30px]">
-        <IntroText className="max-w-[384px] text-[23px]" />
-        <div className="relative mx-auto h-[360px] w-full max-w-[432px]">
+        <IntroText className="w-full max-w-[432px] text-[23px]" />
+        <div className="relative h-[310px] w-full max-w-[432px]">
           <div className="absolute left-[112px] top-0 z-[1]">
             <LevelsGradientBar height={115} opacityPct={70} width={107} />
           </div>
@@ -98,29 +98,28 @@ function Levels480() {
           <div className="absolute left-[325px] top-0 z-[3]">
             <LevelsGradientBar height={300} opacityPct={70} width={107} />
           </div>
-          {/* Как 1024: ~20px между верхами строк → gap ≈ 20 − (11×0.9) */}
-          <div className="absolute left-0 top-[82px] z-[6] flex flex-col gap-[10px]">
-            <p className="m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[0].label}</p>
-            <p className="m-0 max-w-[181px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
-              {levels[0].title}
-            </p>
-          </div>
-          <div className="absolute left-[112px] top-[175px] z-[6] flex flex-col gap-[10px]">
-            <p className="m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[1].label}</p>
-            <p className="m-0 max-w-[164px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
-              {levels[1].title}
-            </p>
-          </div>
-          <div className="absolute left-[224px] top-[267px] z-[6] flex flex-col gap-[10px]">
-            <p className="m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[2].label}</p>
-            <p className="m-0 max-w-[172px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
-              {levels[2].title}
-            </p>
-          </div>
+          <p className="absolute left-0 top-[82px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">
+            {levels[0].label}
+          </p>
+          <p className="absolute left-0 top-[98px] z-[6] m-0 max-w-[181px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
+            {levels[0].title}
+          </p>
+          <p className="absolute left-[112px] top-[175px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">
+            {levels[1].label}
+          </p>
+          <p className="absolute left-[112px] top-[191px] z-[6] m-0 max-w-[164px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
+            {levels[1].title}
+          </p>
+          <p className="absolute left-[224px] top-[267px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">
+            {levels[2].label}
+          </p>
+          <p className="absolute left-[224px] top-[283px] z-[6] m-0 max-w-[172px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
+            {levels[2].title}
+          </p>
         </div>
       </div>
       <div className="flex w-full flex-col items-center text-center">
-        <OutroText className="text-[32px]" />
+        <OutroText className="w-full max-w-[432px] text-[32px]" />
       </div>
     </div>
   );
@@ -132,13 +131,13 @@ function Levels360() {
   return (
     <div
       className={cn(
-        "flex w-full max-w-[360px] flex-col gap-[70px] px-4 pt-[70px] pb-8",
+        "flex w-full max-w-[360px] flex-col gap-[70px] px-4 py-[70px]",
         "max-[479px]:flex min-[480px]:hidden",
       )}
     >
       <div className="flex w-full flex-col gap-5">
-        <IntroText className="text-[20px]" />
-        <div className="relative mx-auto h-[310px] w-full max-w-[328px]">
+        <IntroText className="w-full max-w-[328px] text-[20px]" />
+        <div className="relative h-[270px] w-full max-w-[328px]">
           <div className="absolute left-[86px] top-0 z-[1]">
             <LevelsGradientBar height={100} opacityPct={70} width={81} />
           </div>
@@ -148,29 +147,28 @@ function Levels360() {
           <div className="absolute left-[247px] top-0 z-[3]">
             <LevelsGradientBar height={260} opacityPct={70} width={81} />
           </div>
-          {/* gap ≈ 20px между верхами − (10×0.9) */}
-          <div className="absolute left-0 top-[73px] z-[6] flex flex-col gap-[11px]">
-            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[0].label}</p>
-            <p className="m-0 max-w-[159px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">
-              {levels[0].title}
-            </p>
-          </div>
-          <div className="absolute left-[86px] top-[153px] z-[6] flex flex-col gap-[11px]">
-            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[1].label}</p>
-            <p className="m-0 max-w-[143px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">
-              {levels[1].title}
-            </p>
-          </div>
-          <div className="absolute left-[172px] top-[233px] z-[6] flex flex-col gap-[11px]">
-            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[2].label}</p>
-            <p className="m-0 max-w-[149px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">
-              {levels[2].title}
-            </p>
-          </div>
+          <p className="absolute left-0 top-[73px] z-[6] m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">
+            {levels[0].label}
+          </p>
+          <p className="absolute left-0 top-[86px] z-[6] m-0 max-w-[159px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">
+            {levels[0].title}
+          </p>
+          <p className="absolute left-[86px] top-[153px] z-[6] m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">
+            {levels[1].label}
+          </p>
+          <p className="absolute left-[86px] top-[166px] z-[6] m-0 max-w-[143px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">
+            {levels[1].title}
+          </p>
+          <p className="absolute left-[172px] top-[233px] z-[6] m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">
+            {levels[2].label}
+          </p>
+          <p className="absolute left-[172px] top-[246px] z-[6] m-0 max-w-[149px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">
+            {levels[2].title}
+          </p>
         </div>
       </div>
       <div className="flex w-full flex-col items-center text-center">
-        <OutroText className="text-[23px]" />
+        <OutroText className="w-full max-w-[328px] text-[23px]" />
       </div>
     </div>
   );
