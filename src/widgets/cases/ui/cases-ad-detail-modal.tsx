@@ -85,7 +85,7 @@ function OrderButton({
   return (
     <button
       className={cn(
-        "inline-flex h-[56px] shrink-0 items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-[40px] pb-[20px] pt-[22px] text-center lowercase text-white transition-opacity hover:opacity-92",
+        "inline-flex shrink-0 items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-[40px] text-center lowercase text-white transition-opacity hover:opacity-92",
         className,
       )}
       onClick={onClick}
@@ -221,7 +221,7 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
       case "1440":
       case "1024":
         return (
-          <div className="flex w-full max-w-[930px] flex-col items-end gap-5">
+          <div className="flex max-h-[calc(100vh-48px)] w-full max-w-[930px] flex-col items-end gap-5 overflow-y-auto pr-1">
             <button
               aria-label="Закрыть"
               className="inline-flex shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 transition-opacity hover:opacity-85"
@@ -266,7 +266,7 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
         );
       case "768":
         return (
-          <div className="flex w-full max-w-[672px] flex-col items-end gap-5">
+          <div className="flex max-h-[calc(100vh-48px)] w-full max-w-[672px] flex-col items-end gap-5 overflow-y-auto pr-1">
             <button
               aria-label="Закрыть"
               className="inline-flex shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 transition-opacity hover:opacity-85"
@@ -311,7 +311,7 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
         );
       case "480":
         return (
-          <div className="flex w-full max-w-[480px] flex-col items-end gap-5 px-6 py-5">
+          <div className="flex max-h-[calc(100vh-40px)] w-full max-w-[480px] flex-col items-end gap-5 overflow-y-auto px-6 py-5 pr-[26px]">
             <button
               aria-label="Закрыть"
               className="inline-flex shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 transition-opacity hover:opacity-85"
@@ -322,18 +322,18 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
             </button>
             <div className="flex w-full flex-col gap-6 rounded-[24px] bg-white p-6 text-[#0d0300]">
               <CaseModalVideoBlock
-                className="aspect-[463/260] w-full"
-                imageSizes="(max-width:480px) 100vw, 432px"
+                className="h-[175px] w-[312px] shrink-0"
+                imageSizes="312px"
                 modalOpen={open}
                 playSize={40}
                 posterSrc={card.image}
                 videoLabel={`Видео: ${card.title}`}
                 videoUrl={card.detailVideoUrl}
               />
-              <div className="flex flex-col gap-9">
+              <div className="flex w-full flex-col gap-[36px]">
                 <div className="flex flex-col gap-6">
                   <p
-                    className="m-0 max-w-[240px] text-[26px] font-bold uppercase leading-[0.9]"
+                    className="m-0 max-w-full text-[26px] font-bold uppercase leading-[0.9]"
                     id={titleId}
                   >
                     {card.title}
@@ -346,7 +346,7 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
                 </div>
                 <AdModalTaskResultStacked
                   card={card}
-                  gapSection="gap-7"
+                  gapSection="gap-[28px]"
                   textClass="text-[14px] leading-[1.2]"
                 />
                 <OrderButton
@@ -359,7 +359,7 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
         );
       case "360":
         return (
-          <div className="flex w-full max-w-[360px] flex-col items-end gap-5 px-4 py-5">
+          <div className="flex max-h-[calc(100vh-40px)] w-full max-w-[360px] flex-col items-end gap-5 overflow-y-auto px-4 py-5 pr-[18px]">
             <button
               aria-label="Закрыть"
               className="inline-flex shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 transition-opacity hover:opacity-85"
@@ -370,18 +370,18 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
             </button>
             <div className="flex w-full flex-col gap-6 rounded-[24px] bg-white p-4 text-[#0d0300]">
               <CaseModalVideoBlock
-                className="aspect-[463/260] w-full"
-                imageSizes="(max-width:360px) 100vw, 328px"
+                className="h-[136px] w-[242px] shrink-0"
+                imageSizes="242px"
                 modalOpen={open}
                 playSize={40}
                 posterSrc={card.image}
                 videoLabel={`Видео: ${card.title}`}
                 videoUrl={card.detailVideoUrl}
               />
-              <div className="flex flex-col gap-9">
-                <div className="flex flex-col gap-6">
+              <div className="flex w-full flex-col gap-[24px]">
+                <div className="flex flex-col gap-4">
                   <p
-                    className="m-0 max-w-[220px] text-[23px] font-bold uppercase leading-[0.9]"
+                    className="m-0 max-w-full text-[23px] font-bold uppercase leading-[0.9]"
                     id={titleId}
                   >
                     {card.title}
@@ -427,7 +427,7 @@ export function CasesAdDetailModal({ open, onClose, card, layout }: CasesAdDetai
         type="button"
       />
       <div
-        className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto py-6"
+        className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto py-5 md:py-6"
         onClick={(event) => {
           if (event.target === event.currentTarget) {
             onClose();

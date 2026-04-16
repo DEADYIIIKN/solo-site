@@ -147,7 +147,7 @@ export function CasesVerticalDetailModal({
       case "1440":
       case "1024":
         return (
-          <div className="flex w-full max-w-[930px] flex-col items-end gap-5">
+          <div className="flex max-h-[calc(100vh-48px)] w-full max-w-[930px] flex-col items-end gap-5 overflow-y-auto pr-1">
             <button
               aria-label="Закрыть"
               className="inline-flex shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 transition-opacity hover:opacity-85"
@@ -172,7 +172,7 @@ export function CasesVerticalDetailModal({
         );
       case "768":
         return (
-          <div className="flex w-full max-w-[672px] flex-col items-end gap-5">
+          <div className="flex max-h-[calc(100vh-48px)] w-full max-w-[672px] flex-col items-end gap-5 overflow-y-auto pr-1">
             <button
               aria-label="Закрыть"
               className="inline-flex shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 transition-opacity hover:opacity-85"
@@ -197,7 +197,7 @@ export function CasesVerticalDetailModal({
         );
       case "480":
         return (
-          <div className="flex w-full max-w-[480px] flex-col items-end gap-5 px-6 py-5">
+          <div className="flex max-h-[calc(100vh-40px)] w-full max-w-[480px] flex-col items-end gap-5 overflow-y-auto px-6 py-5 pr-[26px]">
             <button
               aria-label="Закрыть"
               className="inline-flex shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 transition-opacity hover:opacity-85"
@@ -222,7 +222,7 @@ export function CasesVerticalDetailModal({
         );
       case "360":
         return (
-          <div className="flex w-full max-w-[360px] flex-col items-end gap-5 px-4 py-5">
+          <div className="flex max-h-[calc(100vh-40px)] w-full max-w-[360px] flex-col items-end gap-5 overflow-y-auto px-4 py-5 pr-[18px]">
             <button
               aria-label="Закрыть"
               className="inline-flex shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 transition-opacity hover:opacity-85"
@@ -267,7 +267,7 @@ export function CasesVerticalDetailModal({
         type="button"
       />
       <div
-        className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto py-6"
+        className="absolute inset-0 z-10 flex min-h-0 min-w-0 items-center justify-center overflow-x-clip overflow-y-auto py-5 md:py-6"
         onClick={(event) => {
           if (event.target === event.currentTarget) {
             onClose();
@@ -377,6 +377,7 @@ function ModalBodyMobile({
   const metaPx = size === "480" ? "text-[14px]" : "text-[12px]";
   const bodyPx = size === "480" ? "text-[14px]" : "text-[12px]";
   const btnPx = size === "480" ? "text-[14px] h-12" : "text-[13px] h-11";
+  const titleMaxWidth = size === "480" ? "max-w-[240px]" : "max-w-[170px]";
   const iconH = size === "480" ? 18 : 12;
   const iconW = size === "480" ? 26 : 16;
 
@@ -385,7 +386,7 @@ function ModalBodyMobile({
       <div className="flex flex-col gap-6">
         <div className="flex w-full items-start justify-between gap-2">
           <p
-            className={cn("m-0 max-w-[240px] font-bold uppercase leading-[0.9]", titlePx)}
+            className={cn("m-0 font-bold uppercase leading-[0.9]", titlePx, titleMaxWidth)}
             id={titleId}
           >
             {modalTitle(card)}
@@ -449,7 +450,7 @@ function OrderButton({
   return (
     <button
       className={cn(
-        "inline-flex h-[56px] shrink-0 items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-[40px] pb-[20px] pt-[22px] text-center lowercase text-white transition-opacity hover:opacity-92",
+        "inline-flex shrink-0 items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-[40px] text-center lowercase text-white transition-opacity hover:opacity-92",
         className,
       )}
       onClick={onClick}
