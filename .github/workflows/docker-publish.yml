@@ -84,7 +84,27 @@ jobs:
         if: steps.deploy-secrets.outputs.enabled == 'true'
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -p "${{ steps.deploy-secrets.outputs.port }}" "${{ secrets.DEMO_SSH_HOST }}" >> ~/.ssh/known_hosts
+          host="${{ secrets.DEMO_SSH_HOST }}"
+          port="${{ steps.deploy-secrets.outputs.port }}"
+          tmpfile="$(mktemp)"
+
+          for attempt in 1 2 3; do
+            ssh-keyscan -T 15 -H -p "$port" "$host" >"$tmpfile" 2>/dev/null || true
+
+            if [ -s "$tmpfile" ]; then
+              cat "$tmpfile" >> ~/.ssh/known_hosts
+              break
+            fi
+
+            if [ "$attempt" -lt 3 ]; then
+              sleep 5
+            fi
+          done
+
+          if [ ! -s "$tmpfile" ]; then
+            echo "ssh-keyscan did not return any host keys for $host:$port" >&2
+            exit 1
+          fi
 
       - name: Debug SSH target
         if: steps.deploy-secrets.outputs.enabled == 'true'
