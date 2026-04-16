@@ -331,143 +331,242 @@ function AccordionCard({
 
 function MobileBusinessGoals({
   activeIndex,
-  cardHeight,
-  cardWidth,
   containerWidth,
-  gap,
-  horizontalPadding,
   id,
   imageSources,
   onNext,
   onPrev,
-  textSizeClass,
   titleClassName,
 }: {
   activeIndex: number;
-  cardHeight: number;
-  cardWidth: number;
   containerWidth: number;
-  gap: number;
-  horizontalPadding: number;
   id: string;
   imageSources: [string, string, string, string];
   onNext: () => void;
   onPrev: () => void;
-  textSizeClass: string;
   titleClassName: string;
 }) {
-  const trackShift = useMemo(
-    () => -(activeIndex * (cardWidth + gap)),
-    [activeIndex, cardWidth, gap],
-  );
+  const variant = containerWidth === 768 ? "768" : containerWidth === 480 ? "480" : "360";
   const isFirst = activeIndex === 0;
   const isLast = activeIndex === businessGoalsContent.cards.length - 1;
-  const visibleWidth = containerWidth - horizontalPadding * 2;
-  const padX = horizontalPadding === 16 ? 12 : 16;
-  const bottomPad = horizontalPadding === 16 ? 24 : 24;
-  const titleTopPx = [Math.round((cardHeight * 182) / 302), 12] as const;
+
+  const config =
+    variant === "768"
+      ? {
+          topPad: 80,
+          bottomPad: 80,
+          headerBottomGap: 50,
+          horizontalPadding: 48,
+          headerWidth: 672,
+          headerItemsAlign: "items-end",
+          titleWidthClass: "w-auto whitespace-nowrap",
+          arrowGap: 10,
+          arrowButtonSize: 30,
+          arrowIconSize: 30,
+          visibleWidth: 672,
+          trackGap: 16,
+          cardWidths: [414, 414, 414, 414] as const,
+          cardHeights: [518, 518, 518, 518] as const,
+          radiusClass: "rounded-[12px]",
+          titleFontClass: "text-[32px] tracking-[-0.32px]",
+          bodyFontClass: "text-[14px]",
+          titleLeft: 20,
+          descLeft: 20,
+          cards: [
+            { titleTop: 361, titleWidth: 292, descWidth: 374, overlayClass: "bg-gradient-to-b from-[53.614%] from-transparent to-[rgba(13,3,0,0.6)]" },
+            { titleTop: 20, titleWidth: 339, descWidth: 201, overlayClass: "bg-gradient-to-b from-[rgba(13,3,0,0.6)] via-1/2 via-transparent to-transparent" },
+            { titleTop: 332, titleWidth: 254, descWidth: 216, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+            { titleTop: 378, titleWidth: 351, descWidth: 333, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+          ] as const,
+        }
+      : variant === "480"
+        ? {
+            topPad: 80,
+            bottomPad: 80,
+            headerBottomGap: 40,
+            horizontalPadding: 24,
+            headerWidth: 432,
+            headerItemsAlign: "items-center",
+            titleWidthClass: "w-[206px]",
+            arrowGap: 10,
+            arrowButtonSize: 44,
+            arrowIconSize: 40,
+            visibleWidth: 432,
+            trackGap: 16,
+            cardWidths: [320, 320, 318, 320] as const,
+            cardHeights: [400, 400, 398, 400] as const,
+            radiusClass: "rounded-[12px]",
+            titleFontClass: "text-[26px] tracking-[-0.26px]",
+            bodyFontClass: "text-[12px]",
+            titleLeft: 16,
+            descLeft: 16,
+            cards: [
+              { titleTop: 266, titleWidth: 213, descWidth: 273, overlayClass: "bg-gradient-to-b from-[53.614%] from-transparent to-[rgba(13,3,0,0.6)]" },
+              { titleTop: 16, titleWidth: 282, descWidth: 192, overlayClass: "bg-gradient-to-b from-[rgba(13,3,0,0.6)] via-1/2 via-transparent to-transparent" },
+              { titleTop: 245, titleWidth: 188, descWidth: 216, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+              { titleTop: 280, titleWidth: 287, descWidth: 275, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+            ] as const,
+          }
+        : {
+            topPad: 70,
+            bottomPad: 70,
+            headerBottomGap: 30,
+            horizontalPadding: 16,
+            headerWidth: 328,
+            headerItemsAlign: "items-start",
+            titleWidthClass: "w-[179px]",
+            arrowGap: 10,
+            arrowButtonSize: 30,
+            arrowIconSize: 30,
+            visibleWidth: 328,
+            trackGap: 15,
+            cardWidths: [242, 242, 242, 242] as const,
+            cardHeights: [302, 302, 302, 302] as const,
+            radiusClass: "rounded-[8px]",
+            titleFontClass: "text-[20px] tracking-[-0.2px]",
+            bodyFontClass: "text-[11px]",
+            titleLeft: 12,
+            descLeft: 12,
+            cards: [
+              { titleTop: 182, titleWidth: 171, descWidth: 182, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+              { titleTop: 12, titleWidth: 218, descWidth: 161, overlayClass: "bg-gradient-to-t from-[35.096%] from-transparent to-[rgba(13,3,0,0.2)]" },
+              { titleTop: 177, titleWidth: 147, descWidth: 216, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+              { titleTop: 195, titleWidth: 218, descWidth: 218, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+            ] as const,
+          };
+
+  const trackOffsets = useMemo(() => {
+    const offsets: number[] = [];
+    let acc = 0;
+    config.cardWidths.forEach((width, index) => {
+      offsets.push(acc);
+      acc += width + (index === config.cardWidths.length - 1 ? 0 : config.trackGap);
+    });
+    return offsets;
+  }, [config.cardWidths, config.trackGap]);
+
+  const trackShift = -trackOffsets[activeIndex];
+  const trackWidth =
+    config.cardWidths.reduce((sum, width) => sum + width, 0) +
+    config.trackGap * (config.cardWidths.length - 1);
 
   return (
     <div className="relative bg-white" id={id}>
       <div
         className="mx-auto"
-        style={{ width: `${containerWidth}px`, padding: "0" }}
+        style={{
+          paddingBottom: `${config.bottomPad}px`,
+          width: `${containerWidth}px`,
+        }}
       >
         <div
-          className="flex items-start justify-between gap-3"
-          style={{ padding: `${horizontalPadding === 24 ? 80 : 70}px ${horizontalPadding}px 0` }}
+          className={cn("flex justify-between", config.headerItemsAlign)}
+          style={{
+            padding: `${config.topPad}px ${config.horizontalPadding}px 0`,
+            width: `${config.headerWidth + config.horizontalPadding * 2}px`,
+          }}
         >
           <SectionEyebrowRow
             align="start"
             className="min-w-0 flex-1"
-            dotClassName={horizontalPadding === 24 ? "mt-[4px]" : "mt-[3px]"}
+            dotClassName={variant === "360" ? "mt-[3px]" : variant === "480" ? "mt-[4px]" : undefined}
           >
-            <p className={cn(titleClassName, "min-w-0 flex-1")}>{businessGoalsContent.sectionTitle}</p>
+            <p className={cn(titleClassName, "min-w-0 shrink-0", config.titleWidthClass)}>
+              {businessGoalsContent.sectionTitle}
+            </p>
           </SectionEyebrowRow>
-          <div className={`flex shrink-0 items-center ${horizontalPadding === 24 ? "gap-[10px]" : "gap-[10px]"}`}>
+          <div className="flex shrink-0 items-center" style={{ gap: `${config.arrowGap}px` }}>
             <button
               aria-disabled={isFirst}
-              className={`inline-flex items-center justify-center rounded-full transition-colors duration-300 ${
-                horizontalPadding === 24 ? "size-[44px]" : "size-[30px]"
-              } ${isFirst ? "cursor-default bg-[#ffd8c2]" : "bg-[#ff5c00]"}`}
+              className={cn(
+                "inline-flex items-center justify-center rounded-full transition-colors duration-300",
+                isFirst ? "cursor-default bg-[#ffd8c2]" : "bg-[#ff5c00]",
+              )}
               disabled={isFirst}
               onClick={onPrev}
+              style={{
+                height: `${config.arrowButtonSize}px`,
+                width: `${config.arrowButtonSize}px`,
+              }}
               type="button"
             >
               <img
                 alt="Назад"
-                className={`max-w-none ${horizontalPadding === 24 ? "size-[40px]" : "size-[30px]"} ${isFirst ? "opacity-40" : "opacity-100"}`}
+                className={cn("max-w-none", isFirst ? "opacity-40" : "opacity-100")}
                 src={businessGoalsAssets.mobileArrowLeft}
                 style={{
-                  height: horizontalPadding === 24 ? "40px" : "30px",
+                  height: `${config.arrowIconSize}px`,
                   maxWidth: "none",
-                  transform: "scaleX(-1)",
-                  width: horizontalPadding === 24 ? "40px" : "30px",
+                  width: `${config.arrowIconSize}px`,
                 }}
               />
             </button>
             <button
               aria-disabled={isLast}
-              className={`inline-flex items-center justify-center rounded-full transition-colors duration-300 ${
-                horizontalPadding === 24 ? "size-[44px]" : "size-[30px]"
-              } ${isLast ? "cursor-default bg-[#ffd8c2]" : "bg-[#ff5c00]"}`}
+              className={cn(
+                "inline-flex items-center justify-center rounded-full transition-colors duration-300",
+                isLast ? "cursor-default bg-[#ffd8c2]" : "bg-[#ff5c00]",
+              )}
               disabled={isLast}
               onClick={onNext}
+              style={{
+                height: `${config.arrowButtonSize}px`,
+                width: `${config.arrowButtonSize}px`,
+              }}
               type="button"
             >
               <img
                 alt="Вперед"
-                className={`max-w-none ${horizontalPadding === 24 ? "size-[40px]" : "size-[30px]"} ${isLast ? "opacity-40" : "opacity-100"}`}
-                src={businessGoalsAssets.mobileArrowLeft}
+                className={cn("max-w-none", isLast ? "opacity-40" : "opacity-100")}
+                src={businessGoalsAssets.mobileArrowRight}
                 style={{
-                  height: horizontalPadding === 24 ? "40px" : "30px",
+                  height: `${config.arrowIconSize}px`,
                   maxWidth: "none",
-                  width: horizontalPadding === 24 ? "40px" : "30px",
+                  width: `${config.arrowIconSize}px`,
                 }}
               />
             </button>
           </div>
         </div>
 
-        <div style={{ padding: `${horizontalPadding === 24 ? 40 : 30}px ${horizontalPadding}px 0` }}>
-          <div className="overflow-hidden" style={{ width: `${visibleWidth}px` }}>
+        <div style={{ padding: `${config.headerBottomGap}px ${config.horizontalPadding}px 0` }}>
+          <div className="overflow-hidden" style={{ width: `${config.visibleWidth}px` }}>
             <div
               className="flex items-start"
               style={{
-                columnGap: `${gap}px`,
+                columnGap: `${config.trackGap}px`,
                 transform: `translate3d(${trackShift}px,0,0)`,
                 transition: "transform 620ms cubic-bezier(0.2,0.9,0.25,1)",
-                width: `${businessGoalsContent.cards.length * cardWidth + (businessGoalsContent.cards.length - 1) * gap}px`,
+                width: `${trackWidth}px`,
                 willChange: "transform",
               }}
             >
               {businessGoalsContent.cards.map((card, index) => {
+                const cardCfg = config.cards[index];
                 const titleBlock = (
                   <>
-                    <p className={`${textSizeClass} m-0 font-bold lowercase leading-[0.9] tracking-[-0.2px] text-white`}>
+                    <p className={cn(config.titleFontClass, "m-0 font-bold lowercase leading-[0.9] text-white")}>
                       {card.titlePrimary}
                     </p>
-                    <p className={`${textSizeClass} m-0 font-normal lowercase italic leading-[0.9] tracking-[-0.2px] text-white`}>
+                    <p className={cn(config.titleFontClass, "m-0 font-normal lowercase italic leading-[0.9] text-white")}>
                       {card.titleAccent}
                     </p>
                     {"titleSuffix" in card && card.titleSuffix ? (
-                      <p className={`${textSizeClass} m-0 font-bold lowercase leading-[0.9] tracking-[-0.2px] text-white`}>
+                      <p className={cn(config.titleFontClass, "m-0 font-bold lowercase leading-[0.9] text-white")}>
                         {card.titleSuffix}
                       </p>
                     ) : null}
                   </>
                 );
 
-                const gradientClass =
-                  index === 1 || index === 3
-                    ? "bg-gradient-to-t from-[35%] from-transparent via-[rgba(13,3,0,0.15)] to-[rgba(13,3,0,0.55)]"
-                    : "bg-gradient-to-b from-[35%] from-transparent via-[rgba(13,3,0,0.08)] to-[rgba(13,3,0,0.62)]";
-
                 return (
                 <div
-                  className={`relative shrink-0 overflow-hidden bg-[#0d0300] ${horizontalPadding === 16 ? "rounded-[8px]" : "rounded-[12px]"}`}
+                  className={cn("relative shrink-0 overflow-hidden bg-[#0d0300]", config.radiusClass)}
                   key={card.id}
-                  style={{ height: `${cardHeight}px`, width: `${cardWidth}px` }}
+                  style={{
+                    height: `${config.cardHeights[index]}px`,
+                    width: `${config.cardWidths[index]}px`,
+                  }}
                 >
                   {index === 0 ? (
                     <Image
@@ -476,7 +575,7 @@ function MobileBusinessGoals({
                       fetchPriority={index === activeIndex ? "high" : "low"}
                       fill
                       loading={index === activeIndex ? "eager" : "lazy"}
-                      sizes={`${cardWidth}px`}
+                      sizes={`${config.cardWidths[index]}px`}
                       src={imageSources[index]}
                       style={{ objectPosition: "center top" }}
                     />
@@ -487,7 +586,7 @@ function MobileBusinessGoals({
                       fetchPriority={index === activeIndex ? "high" : "low"}
                       fill
                       loading={index === activeIndex ? "eager" : "lazy"}
-                      sizes={`${cardWidth}px`}
+                      sizes={`${config.cardWidths[index]}px`}
                       src={imageSources[index]}
                       style={{ objectPosition: "center 38%" }}
                     />
@@ -498,7 +597,7 @@ function MobileBusinessGoals({
                       fetchPriority={index === activeIndex ? "high" : "low"}
                       fill
                       loading={index === activeIndex ? "eager" : "lazy"}
-                      sizes={`${cardWidth}px`}
+                      sizes={`${config.cardWidths[index]}px`}
                       src={imageSources[index]}
                       style={{ objectPosition: "center 22%" }}
                     />
@@ -509,23 +608,31 @@ function MobileBusinessGoals({
                       fetchPriority={index === activeIndex ? "high" : "low"}
                       fill
                       loading={index === activeIndex ? "eager" : "lazy"}
-                      sizes={`${cardWidth}px`}
+                      sizes={`${config.cardWidths[index]}px`}
                       src={imageSources[index]}
                       style={{ objectPosition: "center 40%" }}
                     />
                   ) : null}
-                  <div className={`pointer-events-none absolute inset-0 ${gradientClass}`} />
+                  <div className={cn("pointer-events-none absolute inset-0", cardCfg.overlayClass)} />
                   {index === 0 ? (
                     <>
                       <div
                         className="absolute text-left"
-                        style={{ left: padX, right: padX, top: `${titleTopPx[0]}px` }}
+                        style={{
+                          left: `${config.titleLeft}px`,
+                          top: `${cardCfg.titleTop}px`,
+                          width: `${cardCfg.titleWidth}px`,
+                        }}
                       >
                         {titleBlock}
                       </div>
                       <p
-                        className="absolute m-0 text-[11px] font-normal leading-[1.2] text-white"
-                        style={{ bottom: bottomPad, left: padX, right: padX }}
+                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        style={{
+                          bottom: "24px",
+                          left: `${config.descLeft}px`,
+                          width: `${cardCfg.descWidth}px`,
+                        }}
                       >
                         {card.description}
                       </p>
@@ -534,13 +641,21 @@ function MobileBusinessGoals({
                     <>
                       <div
                         className="absolute text-left"
-                        style={{ left: padX, right: padX, top: `${titleTopPx[1]}px` }}
+                        style={{
+                          left: `${config.titleLeft}px`,
+                          top: `${cardCfg.titleTop}px`,
+                          width: `${cardCfg.titleWidth}px`,
+                        }}
                       >
                         {titleBlock}
                       </div>
                       <p
-                        className="absolute m-0 text-[11px] font-normal leading-[1.2] text-white"
-                        style={{ bottom: bottomPad, left: padX, right: padX }}
+                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        style={{
+                          bottom: "24px",
+                          left: `${config.descLeft}px`,
+                          width: `${cardCfg.descWidth}px`,
+                        }}
                       >
                         {card.description}
                       </p>
@@ -549,13 +664,21 @@ function MobileBusinessGoals({
                     <>
                       <div
                         className="absolute text-left"
-                        style={{ left: padX, right: padX, top: "calc(50% + 26px)" }}
+                        style={{
+                          left: `${config.titleLeft}px`,
+                          top: `${cardCfg.titleTop}px`,
+                          width: `${cardCfg.titleWidth}px`,
+                        }}
                       >
                         {titleBlock}
                       </div>
                       <p
-                        className="absolute m-0 text-[11px] font-normal leading-[1.2] text-white"
-                        style={{ bottom: bottomPad, left: padX, right: padX }}
+                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        style={{
+                          bottom: "24px",
+                          left: `${config.descLeft}px`,
+                          width: `${cardCfg.descWidth}px`,
+                        }}
                       >
                         {card.description}
                       </p>
@@ -564,13 +687,21 @@ function MobileBusinessGoals({
                     <>
                       <div
                         className="absolute text-left"
-                        style={{ left: padX, right: padX, top: `${titleTopPx[1]}px` }}
+                        style={{
+                          left: `${config.titleLeft}px`,
+                          top: `${cardCfg.titleTop}px`,
+                          width: `${cardCfg.titleWidth}px`,
+                        }}
                       >
                         {titleBlock}
                       </div>
                       <p
-                        className="absolute m-0 text-[11px] font-normal leading-[1.2] text-white"
-                        style={{ bottom: bottomPad, left: padX, right: padX }}
+                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        style={{
+                          bottom: "24px",
+                          left: `${config.descLeft}px`,
+                          width: `${cardCfg.descWidth}px`,
+                        }}
                       >
                         {card.description}
                       </p>
@@ -1065,11 +1196,7 @@ export function BusinessGoals() {
       <div>
         <MobileBusinessGoals
           activeIndex={activeIndex768}
-          cardHeight={400}
-          cardWidth={320}
           containerWidth={768}
-          gap={16}
-          horizontalPadding={24}
           id="business-goals-section-768"
           imageSources={[
             businessGoalsAssets.mobile768CardSocial,
@@ -1079,7 +1206,6 @@ export function BusinessGoals() {
           ]}
           onNext={() => setActiveIndex768((prev) => Math.min(prev + 1, businessGoalsContent.cards.length - 1))}
           onPrev={() => setActiveIndex768((prev) => Math.max(prev - 1, 0))}
-          textSizeClass="text-[26px]"
           titleClassName={sectionEyebrowText480To1439Wrap}
         />
       </div>
@@ -1089,11 +1215,7 @@ export function BusinessGoals() {
       <div>
         <MobileBusinessGoals
           activeIndex={activeIndex480}
-          cardHeight={400}
-          cardWidth={320}
           containerWidth={480}
-          gap={16}
-          horizontalPadding={24}
           id="business-goals-section-480"
           imageSources={[
             businessGoalsAssets.mobile480CardSocial,
@@ -1103,7 +1225,6 @@ export function BusinessGoals() {
           ]}
           onNext={() => setActiveIndex480((prev) => Math.min(prev + 1, businessGoalsContent.cards.length - 1))}
           onPrev={() => setActiveIndex480((prev) => Math.max(prev - 1, 0))}
-          textSizeClass="text-[26px]"
           titleClassName={sectionEyebrowText480To1439Wrap}
         />
       </div>
@@ -1113,11 +1234,7 @@ export function BusinessGoals() {
       <div>
         <MobileBusinessGoals
           activeIndex={activeIndex360}
-          cardHeight={302}
-          cardWidth={242}
           containerWidth={360}
-          gap={15}
-          horizontalPadding={16}
           id="business-goals-section-360"
           imageSources={[
             businessGoalsAssets.mobile360CardSocial,
@@ -1127,7 +1244,6 @@ export function BusinessGoals() {
           ]}
           onNext={() => setActiveIndex360((prev) => Math.min(prev + 1, businessGoalsContent.cards.length - 1))}
           onPrev={() => setActiveIndex360((prev) => Math.max(prev - 1, 0))}
-          textSizeClass="text-[20px]"
           titleClassName={sectionEyebrowTextMax479Wrap}
         />
       </div>
