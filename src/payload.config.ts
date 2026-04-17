@@ -52,6 +52,13 @@ export default buildConfig({
   globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
+  upload: {
+    // Видео могут загружаться дольше минуты через admin на VPS, особенно через прокси.
+    uploadTimeout: 10 * 60 * 1000,
+    // Большие mp4 не держим целиком в памяти процесса.
+    useTempFiles: true,
+    tempFileDir: process.env.PAYLOAD_TEMP_UPLOAD_DIR || "/tmp/payload-uploads",
+  },
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
