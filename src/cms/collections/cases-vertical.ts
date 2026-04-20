@@ -65,7 +65,6 @@ export const CasesVertical: CollectionConfig = {
             {
               name: "views",
               type: "text",
-              required: true,
               label: "Просмотры",
               admin: {
                 description: "Введи число — пробелы расставятся автоматически",
