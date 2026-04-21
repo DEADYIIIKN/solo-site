@@ -405,6 +405,29 @@ body > div:first-child {
   overflow-anchor: none;
 }
 
+.philosophy-scroll-card {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  contain: layout paint style;
+}
+
+.philosophy-scroll-card-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Safari/WebKit заметно хуже тянет большие blur-слои внутри движущихся карточек. */
+@supports (-webkit-touch-callout: none) {
+  .philosophy-scroll-card-blur-strong {
+    filter: blur(10px) !important;
+  }
+
+  .philosophy-scroll-card-blur-soft {
+    filter: blur(3px) !important;
+  }
+}
+
 .cases-section-scope,
 .cases-section-scope [data-cases-pin] {
   overflow-anchor: none;

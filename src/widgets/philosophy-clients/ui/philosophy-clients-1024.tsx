@@ -27,7 +27,7 @@ const CW = 478;
 const CH = 270;
 const BR = 12;
 
-const CARD = "absolute overflow-hidden";
+const CARD = "philosophy-scroll-card absolute overflow-hidden";
 const NUM = "absolute left-[16px] top-[16px] whitespace-nowrap text-[17px] font-bold leading-[1.2]";
 
 function SectionEyebrow1024({ label, top }: { label: string; top: number }) {
@@ -156,21 +156,21 @@ export function PhilosophyClients1024() {
                     pointerEvents: isCardInteractive(0) ? "auto" : "none",
                   }}
                 >
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  <div className="philosophy-scroll-card-layer pointer-events-none absolute inset-0 overflow-hidden">
                     <div className="absolute left-[calc(50%+222.82px)] top-[calc(50%-222.82px)] flex size-[808px] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
                       <div className="-rotate-45">
-                        <div className="h-[571px] w-[572px] rounded-[401px] bg-[#e63a24] blur-[15px]" />
+                        <div className="philosophy-scroll-card-blur-strong h-[571px] w-[572px] rounded-[401px] bg-[#e63a24] blur-[15px]" />
                       </div>
                     </div>
                     <div className="absolute left-[calc(50%-221.82px)] top-[calc(50%+221.83px)] flex size-[808px] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
                       <div className="-rotate-45">
-                        <div className="h-[571px] w-[572px] rounded-[401px] bg-[#e63a24] blur-[15px]" />
+                        <div className="philosophy-scroll-card-blur-strong h-[571px] w-[572px] rounded-[401px] bg-[#e63a24] blur-[15px]" />
                       </div>
                     </div>
                     <div className="absolute left-[calc(50%+210.45px)] top-[calc(50%-210.45px)] flex size-[676px] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
                       <div className="rotate-[135deg]">
                         <div
-                          className="h-[479px] w-[477px] rounded-[401px] blur-[5px]"
+                          className="philosophy-scroll-card-blur-soft h-[479px] w-[477px] rounded-[401px] blur-[5px]"
                           style={{
                             background:
                               "radial-gradient(ellipse at 70% 30%, rgba(255,154,68,0.95) 0%, rgba(255,154,68,0) 65%)",
@@ -181,7 +181,7 @@ export function PhilosophyClients1024() {
                     <div className="absolute left-[calc(50%-211px)] top-[calc(50%+212.95px)] flex size-[676px] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
                       <div className="-rotate-45">
                         <div
-                          className="h-[479px] w-[477px] rounded-[401px] blur-[5px]"
+                          className="philosophy-scroll-card-blur-soft h-[479px] w-[477px] rounded-[401px] blur-[5px]"
                           style={{
                             background:
                               "radial-gradient(ellipse at 70% 30%, rgba(255,154,68,0.95) 0%, rgba(255,154,68,0) 65%)",
