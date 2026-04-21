@@ -5,13 +5,13 @@ import { useLayoutEffect, useRef, useState } from "react";
 /**
  * Высота pin-зоны (vh): больше значение — дольше и мягче проход по переходу при том же жесте скролла.
  */
-export const CASES_PIN_SCROLL_VH = 180;
+export const CASES_PIN_SCROLL_VH = 125;
 
 /**
  * Доля скролла внутри pin, пока collapse = 0: вертикальный слайдер + разделитель + «Рекламные кейсы»
  * уже видны; дальше скролл увеличивает {@link CasesPinCollapseProgress} → сворачивается вертикаль, открывается реклама.
  */
-export const CASES_PIN_HOLD_END_FRAC = 0.36;
+export const CASES_PIN_HOLD_END_FRAC = 0.18;
 
 /** Perlin-style smoother step — мягче, чем linear ramp, для скролл-анимаций. */
 function smootherstep01(t: number): number {
@@ -49,15 +49,15 @@ export type CasesPinCollapseProgress = number;
 export function getCasesPinWeights(collapseProgress: CasesPinCollapseProgress): CasesPinWeights {
   const c = Math.min(1, Math.max(0, collapseProgress));
 
-  /* Плотнее и быстрее: без ощущения «застряли в пине», но всё ещё с хорошим overlap. */
-  const vertGone = smootherstep01(ramp(c, 0.06, 0.72));
+  /* Короче проход по пину: vertical уходит раньше, advertising раскрывается быстрее. */
+  const vertGone = smootherstep01(ramp(c, 0.04, 0.5));
   const vertStrip = 1 - vertGone;
   const vertArrows = vertStrip;
 
   const divider = 1;
   const adHeader = 1;
 
-  const adStrip = smootherstep01(ramp(c, 0.02, 0.62));
+  const adStrip = smootherstep01(ramp(c, 0.01, 0.42));
   const adArrows = adStrip;
 
   return {
