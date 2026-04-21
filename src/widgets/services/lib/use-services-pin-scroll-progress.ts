@@ -283,6 +283,9 @@ export function useServicesPinScrollProgress(
     let tickRafId = 0;
     let tickCoalesced = false;
     let lastProgressWritten = -1;
+    let rangeStart = 0;
+    let rangeEnd = 0;
+    let rangeReady = false;
 
     const setPhase = (next: ServicesPinPhase) => {
       if (lastPhaseRef.current === next) return;
@@ -296,6 +299,15 @@ export function useServicesPinScrollProgress(
       lastProgressWritten = clamped;
       setSlideProgress(clamped);
       pinElement.setAttribute("data-services-slide-progress", clamped.toFixed(4));
+    };
+
+    const recalculateRange = () => {
+      if (!alive) return;
+      if (pinElement.offsetHeight < 2) return;
+      const { start, end } = getServicesPinScrollRange(pinElement, viewport);
+      rangeStart = start;
+      rangeEnd = end;
+      rangeReady = true;
     };
 
     const tick = () => {
@@ -321,7 +333,12 @@ export function useServicesPinScrollProgress(
         return;
       }
 
-      const { start, end } = getServicesPinScrollRange(el, viewport);
+      if (!rangeReady) {
+        recalculateRange();
+      }
+
+      const start = rangeStart;
+      const end = rangeEnd;
 
       if (end <= start + 1) {
         applyProgress(1);
@@ -354,7 +371,6 @@ export function useServicesPinScrollProgress(
     window.addEventListener("scroll", scheduleTick, { passive: true });
     window.addEventListener("resize", scheduleTick, { passive: true });
     const vv = window.visualViewport;
-    vv?.addEventListener("scroll", scheduleTick, { passive: true });
     vv?.addEventListener("resize", scheduleTick, { passive: true });
 
     let roRaf = false;
@@ -363,10 +379,13 @@ export function useServicesPinScrollProgress(
       roRaf = true;
       requestAnimationFrame(() => {
         roRaf = false;
+        recalculateRange();
         scheduleTick();
       });
     });
     ro.observe(pinElement);
+
+    recalculateRange();
 
     return () => {
       alive = false;
@@ -375,7 +394,6 @@ export function useServicesPinScrollProgress(
       pinElement.removeAttribute("data-services-slide-progress");
       window.removeEventListener("scroll", scheduleTick);
       window.removeEventListener("resize", scheduleTick);
-      vv?.removeEventListener("scroll", scheduleTick);
       vv?.removeEventListener("resize", scheduleTick);
       ro.disconnect();
       lastPhaseRef.current = "before";

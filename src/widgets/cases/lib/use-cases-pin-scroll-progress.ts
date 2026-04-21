@@ -205,7 +205,6 @@ export function useCasesPinScrollProgress(pinElement: HTMLElement | null) {
     window.addEventListener("scroll", scheduleTick, { passive: true });
     window.addEventListener("resize", scheduleTick, { passive: true });
     const vv = window.visualViewport;
-    vv?.addEventListener("scroll", scheduleTick, { passive: true });
     vv?.addEventListener("resize", scheduleTick, { passive: true });
 
     let roRaf = false;
@@ -228,7 +227,6 @@ export function useCasesPinScrollProgress(pinElement: HTMLElement | null) {
       cancelAnimationFrame(tickRafId);
       window.removeEventListener("scroll", scheduleTick);
       window.removeEventListener("resize", scheduleTick);
-      vv?.removeEventListener("scroll", scheduleTick);
       vv?.removeEventListener("resize", scheduleTick);
       ro.disconnect();
       lastPhaseRef.current = "before";

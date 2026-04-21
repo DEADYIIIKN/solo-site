@@ -93,6 +93,9 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
     let alive = true;
     let tickRafId = 0;
     let tickCoalesced = false;
+    let rangeStart = 0;
+    let rangeEnd = 0;
+    let rangeReady = false;
 
     const applyProgress = (next: number) => {
       const prev = lastProgressRef.current;
@@ -106,6 +109,15 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
       if (lastPhaseRef.current === next) return;
       lastPhaseRef.current = next;
       setPinPhase(next);
+    };
+
+    const recalculateRange = () => {
+      if (!alive) return;
+      if (pinElement.offsetHeight < 2) return;
+      const { start, end } = getPhilosophyPinScrollRange(pinElement);
+      rangeStart = start;
+      rangeEnd = end;
+      rangeReady = true;
     };
 
     const tick = () => {
@@ -124,7 +136,12 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
       const scrollY = window.scrollY;
       if (el.offsetHeight < 2) return;
 
-      const { start, end } = getPhilosophyPinScrollRange(el);
+      if (!rangeReady) {
+        recalculateRange();
+      }
+
+      const start = rangeStart;
+      const end = rangeEnd;
 
       if (end <= start + 1) {
         applyProgress(1);
@@ -159,7 +176,6 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
     window.addEventListener("scroll", scheduleTick, { passive: true });
     window.addEventListener("resize", scheduleTick, { passive: true });
     const vv = window.visualViewport;
-    vv?.addEventListener("scroll", scheduleTick, { passive: true });
     vv?.addEventListener("resize", scheduleTick, { passive: true });
     /* Один scheduleTick на кадр при resize layout — без лавины вызовов от RO */
     let roRaf = false;
@@ -168,10 +184,13 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
       roRaf = true;
       requestAnimationFrame(() => {
         roRaf = false;
+        recalculateRange();
         scheduleTick();
       });
     });
     ro.observe(pinElement);
+
+    recalculateRange();
 
     return () => {
       alive = false;
@@ -179,7 +198,6 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
       cancelAnimationFrame(tickRafId);
       window.removeEventListener("scroll", scheduleTick);
       window.removeEventListener("resize", scheduleTick);
-      vv?.removeEventListener("scroll", scheduleTick);
       vv?.removeEventListener("resize", scheduleTick);
       ro.disconnect();
       lastProgressRef.current = null;
