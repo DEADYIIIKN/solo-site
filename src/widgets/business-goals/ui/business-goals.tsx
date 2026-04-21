@@ -918,27 +918,46 @@ export function BusinessGoals() {
   }
 
   useEffect(() => {
+    if (!layout) {
+      setCtaVisible(false);
+      return;
+    }
+
+    let frameId = 0;
+
     function updateCtaVisibility() {
       const section = document.getElementById("business-goals-section");
-      if (!section) {
+      if (!section || section.getClientRects().length === 0) {
         setCtaVisible(false);
         return;
       }
 
-      const sectionTop = section.offsetTop;
-      const viewportBottom = window.scrollY + window.innerHeight;
-      setCtaVisible(viewportBottom >= sectionTop);
+      const rect = section.getBoundingClientRect();
+      setCtaVisible(rect.top <= window.innerHeight && rect.bottom > 0);
     }
 
-    updateCtaVisibility();
-    window.addEventListener("scroll", updateCtaVisibility, { passive: true });
-    window.addEventListener("resize", updateCtaVisibility);
+    function scheduleUpdate() {
+      if (frameId !== 0) return;
+      frameId = window.requestAnimationFrame(() => {
+        frameId = 0;
+        updateCtaVisibility();
+      });
+    }
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("orientationchange", scheduleUpdate);
 
     return () => {
-      window.removeEventListener("scroll", updateCtaVisibility);
-      window.removeEventListener("resize", updateCtaVisibility);
+      if (frameId !== 0) {
+        window.cancelAnimationFrame(frameId);
+      }
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("orientationchange", scheduleUpdate);
     };
-  }, []);
+  }, [layout]);
 
   useEffect(() => {
     return () => {
