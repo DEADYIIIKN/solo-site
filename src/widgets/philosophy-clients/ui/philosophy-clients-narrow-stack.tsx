@@ -418,7 +418,7 @@ export function PhilosophyClientsNarrowClientsBlock({
         </div>
         <div
           className={cn(
-            "relative left-1/2 mt-8 h-[400px] w-screen max-w-[100vw] -translate-x-1/2",
+            "relative mt-8 h-[400px] w-full max-w-full overflow-x-clip",
             REVEAL,
             clientsInView ? REVEAL_ON : REVEAL_OFF,
           )}

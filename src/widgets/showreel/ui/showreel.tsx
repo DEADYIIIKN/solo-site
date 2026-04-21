@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 import { cn } from "@/shared/lib/utils";
 import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
@@ -47,25 +47,6 @@ function ShowreelVideoOrPlaceholder({
 export function Showreel() {
   const layout = useViewportLayout();
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || shouldLoadVideo) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setShouldLoadVideo(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "300px 0px" },
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, [shouldLoadVideo]);
 
   if (!layout) {
     return <section className="relative z-10 overflow-x-clip" id="showreel-section" ref={sectionRef} />;
@@ -76,7 +57,7 @@ export function Showreel() {
       {layout === "360" ? (
         <div className="relative mx-auto aspect-video w-[360px]">
           <div className="absolute inset-0 z-10 overflow-hidden">
-            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+            <ShowreelVideoOrPlaceholder />
           </div>
         </div>
       ) : null}
@@ -84,7 +65,7 @@ export function Showreel() {
       {layout === "480" ? (
         <div className="relative mx-auto aspect-video w-[480px]">
           <div className="absolute inset-0 z-10 overflow-hidden">
-            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+            <ShowreelVideoOrPlaceholder />
           </div>
         </div>
       ) : null}
@@ -92,7 +73,7 @@ export function Showreel() {
       {layout === "768" ? (
         <div className="relative mx-auto h-[432px] w-[768px]">
           <div className="absolute inset-0 z-10 overflow-hidden">
-            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+            <ShowreelVideoOrPlaceholder />
           </div>
         </div>
       ) : null}
@@ -104,7 +85,7 @@ export function Showreel() {
             data-showreel-target="1024"
             style={{ opacity: 0 }}
           >
-            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+            <ShowreelVideoOrPlaceholder />
           </div>
         </div>
       ) : null}
@@ -116,7 +97,7 @@ export function Showreel() {
             data-showreel-target="1440"
             style={{ opacity: 0 }}
           >
-            <ShowreelVideoOrPlaceholder shouldLoad={shouldLoadVideo} />
+            <ShowreelVideoOrPlaceholder />
           </div>
         </div>
       ) : null}

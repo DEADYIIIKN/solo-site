@@ -243,7 +243,7 @@ export function PhilosophyClientsMarquee1024() {
 
   return (
     <>
-      <div className="absolute left-1/2 top-0 z-[8] flex h-[157.577px] w-screen max-w-[100vw] -translate-x-1/2 items-center justify-start overflow-hidden">
+      <div className="absolute inset-x-0 top-0 z-[8] flex h-[157.577px] w-full max-w-full items-center justify-start overflow-hidden">
         <div className="philosophy-marquee-row-dark min-w-0 max-w-full flex-none">
           <MarqueeTrack durationSec={85} stripClassName={darkStripClass} trackBgClass="bg-[#0d0300]">
             {darkStrip}
@@ -251,7 +251,7 @@ export function PhilosophyClientsMarquee1024() {
         </div>
       </div>
 
-      <div className="absolute left-1/2 top-[121px] z-[8] flex h-[130.41px] w-screen max-w-[100vw] -translate-x-1/2 items-center justify-start overflow-hidden">
+      <div className="absolute inset-x-0 top-[121px] z-[8] flex h-[130.41px] w-full max-w-full items-center justify-start overflow-hidden">
         <div className="philosophy-marquee-row-orange min-w-0 max-w-full flex-none">
           <MarqueeTrack durationSec={72} stripClassName={orangeStripClass} trackBgClass="bg-[#ff5c00]">
             {orangeStrip}

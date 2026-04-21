@@ -376,7 +376,7 @@ export function PhilosophyClients1024() {
                 </p>
               </SectionEyebrowRow>
             </div>
-            <div className="relative left-1/2 mt-5 h-[400px] w-screen max-w-[100vw] -translate-x-1/2">
+            <div className="relative mt-5 h-[400px] w-full max-w-full overflow-x-clip">
               <PhilosophyClientsMarquee1024 />
             </div>
           </div>
