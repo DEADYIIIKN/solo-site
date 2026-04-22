@@ -376,7 +376,13 @@ export function PhilosophyClients1024() {
                 </p>
               </SectionEyebrowRow>
             </div>
-            <div className="relative mt-5 h-[400px] w-full max-w-full overflow-x-clip">
+            <div
+              className="relative mt-5 h-[400px]"
+              style={{
+                width: "100vw",
+                marginLeft: "calc(50% - 50vw)",
+              }}
+            >
               <PhilosophyClientsMarquee1024 />
             </div>
           </div>
