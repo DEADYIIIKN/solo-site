@@ -83,7 +83,15 @@ Plans:
   2. Scroll-driven animations and sticky elements behave identically in Safari and Chrome
   3. The cases section scroll transition animates correctly (scroll-based case switching works without visual glitches)
   4. All site animations use smooth easing — no jarring jumps, flickers, or incorrect final states visible in either browser
-**Plans**: TBD
+**Plans**: 6 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Install motion@^12.38.0 and wire <MotionConfig reducedMotion="user"> in site layout
+- [ ] 04-02-PLAN.md — Migrate team-section-photo to motion.div fade (Pattern A, simplest consumer)
+- [ ] 04-03-PLAN.md — Migrate philosophy-clients-narrow-stack team card (card 03) to motion.div; useInViewOnce untouched
+- [ ] 04-04-PLAN.md — Migrate cases-section-360/480/768 cards (VerticalCard + AdCard) to motion.article — Pattern A + D
+- [ ] 04-05-PLAN.md — Migrate cases-section-1024/1440 and philosophy-clients-1024/1440 team card (Patterns A + B + C) + Safari UAT D-11 checkpoint + optional D-07 drop-in
+- [ ] 04-06-PLAN.md — Atomic teardown (Pattern E): delete BoneyardSkeleton + src/bones + layout import + boneyard-js from package.json
 
 ### Phase 5: Pixel-Perfect Final Pass
 **Goal**: Every visible section on all four breakpoints matches the Figma "Адаптивы актуальные" sheet at pixel level after Figma MCP sverka
@@ -117,6 +125,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Quick Wins + Stack Audit | 4/4 | Complete | 2026-04-22 |
 | 2. Desktop Layout (1440px + 1180px) | 3/3 | Complete | 2026-04-22 |
 | 3. Mobile/Tablet Layout (820px + 360px) | 5/5 | Complete | 2026-04-22 |
-| 4. Safari + Animations | 0/TBD | Not started | - |
+| 4. Safari + Animations | 0/6 | Not started | - |
 | 5. Pixel-Perfect Final Pass | 0/TBD | Not started | - |
 | 6. Testing | 0/TBD | Not started | - |
