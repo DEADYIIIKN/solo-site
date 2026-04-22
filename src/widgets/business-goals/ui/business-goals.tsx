@@ -148,6 +148,7 @@ function BusinessGoalsFloatingCta() {
 type AccordionCardProps = {
   active: boolean;
   card: (typeof businessGoalsContent.cards)[number];
+  cardIndex?: number;
   expandedImageClass: string;
   expandedImageStyle: { height: string; maxWidth: "none"; width: string };
   collapsedImageLeftPx: number;
@@ -165,6 +166,7 @@ type AccordionCardProps = {
 function AccordionCard({
   active,
   card,
+  cardIndex,
   collapsedImageLeftPx,
   collapsedImageWidthPx,
   expandedImageClass,
@@ -282,7 +284,7 @@ function AccordionCard({
           }}
         >
           <div
-            className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
+            className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : `left-[30px] bottom-[120px] ${cardIndex === 3 ? "w-[390px]" : "w-[470px]"} text-[50px] tracking-[-0.5px]`} lowercase leading-[0.9] text-white`}
             style={{
               opacity: active ? 1 : 0,
               transform: active
@@ -292,7 +294,7 @@ function AccordionCard({
               willChange: "transform,opacity",
             }}
           >
-            <p className="m-0 font-bold">{card.titlePrimary}</p>
+            <p className={`m-0 ${!is1024 && cardIndex === 3 ? "font-normal" : "font-bold"}`}>{card.titlePrimary}</p>
             <p className="m-0 font-normal italic">{card.titleAccent}</p>
             {"titleSuffix" in card && card.titleSuffix ? <p className="m-0 font-bold">{card.titleSuffix}</p> : null}
           </div>
@@ -1045,6 +1047,7 @@ export function BusinessGoals() {
               key={card.id}
               active={isActive}
               card={card}
+              cardIndex={index}
               collapsedImageLeftPx={
                 (collapsedWidths1440[index] * Number.parseFloat(visual.narrowImageLeftPercent)) / 100
               }
