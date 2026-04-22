@@ -40,13 +40,17 @@
 
 ### Safari Cross-Browser
 
-- [ ] **SAFARI-01**: Анимации и CSS transitions работают в Safari идентично Chrome
-- [ ] **SAFARI-02**: Scroll-анимации и sticky-элементы работают в Safari идентично Chrome
+- [x] **SAFARI-01
+**: Анимации и CSS transitions работают в Safari идентично Chrome
+- [x] **SAFARI-02
+**: Scroll-анимации и sticky-элементы работают в Safari идентично Chrome
 
 ### Animations
 
-- [ ] **ANI-01**: Анимация секции с кейсами работает корректно (scroll-based transition между кейсами)
-- [ ] **ANI-02**: Все анимации сайта имеют плавный easing (нет рывков, мерцания, некорректных состояний)
+- [x] **ANI-01
+**: Анимация секции с кейсами работает корректно (scroll-based transition между кейсами)
+- [x] **ANI-02
+**: Все анимации сайта имеют плавный easing (нет рывков, мерцания, некорректных состояний)
 
 ### Pixel-Perfect (Figma)
 
