@@ -227,7 +227,7 @@ export function CasesSection360({
         open={adDetailCard != null}
       />
       <CasesSectionBackgroundGrid />
-      <div className="relative mx-auto w-full max-w-[360px] overflow-x-clip pb-[120px]">
+      <div className="relative mx-auto w-full max-w-[360px] pb-[120px]">
         <div className="relative z-[1] flex flex-col gap-[100px] px-4 pt-[70px]">
           <div className="flex flex-col items-center gap-[50px]">
             <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
