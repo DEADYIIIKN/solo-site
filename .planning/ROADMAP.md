@@ -51,9 +51,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Fix LY1440-01 (bottom-aligned titles) and LY1440-02 (card #4 text frame + font weight) via Figma MCP
-- [ ] 02-02-PLAN.md — Replace team photo (LY1440-03) [BLOCKING checkpoint: user provides file]
-- [ ] 02-03-PLAN.md — Fix LY1180-01: marquee 100vw breakout to span full viewport
+- [x] 02-01-PLAN.md — Fix LY1440-01 (bottom-aligned titles) and LY1440-02 (card #4 text frame + font weight) via Figma MCP
+- [x] 02-02-PLAN.md — Replace team photo (LY1440-03) [BLOCKING checkpoint: user provides file]
+- [x] 02-03-PLAN.md — Fix LY1180-01: marquee 100vw breakout to span full viewport
 
 ### Phase 3: Mobile/Tablet Layout (820px + 360px)
 **Goal**: The 820px and 360px breakpoints work correctly — carousel arrows point the right way, carousels don't clip content, client strips fill the screen, line-heights match Figma, and the missing photo is restored
@@ -108,8 +108,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Quick Wins + Stack Audit | 0/4 | Not started | - |
-| 2. Desktop Layout (1440px + 1180px) | 0/3 | Not started | - |
+| 1. Quick Wins + Stack Audit | 4/4 | Complete | 2026-04-22 |
+| 2. Desktop Layout (1440px + 1180px) | 3/3 | Complete | 2026-04-22 |
 | 3. Mobile/Tablet Layout (820px + 360px) | 0/TBD | Not started | - |
 | 4. Safari + Animations | 0/TBD | Not started | - |
 | 5. Pixel-Perfect Final Pass | 0/TBD | Not started | - |
