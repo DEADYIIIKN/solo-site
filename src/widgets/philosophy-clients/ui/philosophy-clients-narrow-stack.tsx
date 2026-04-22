@@ -1,11 +1,10 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useState } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { sectionEyebrowText480To1439, sectionEyebrowTextMax479 } from "@/shared/ui/section-eyebrow-text";
 import { useInViewOnce } from "@/widgets/team/ui/team-shared";
@@ -207,7 +206,6 @@ function CreativeBg360() {
  */
 export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
   const [stackRef, stackInView] = useInViewOnce<HTMLDivElement>();
-  const [teamCardLoaded, setTeamCardLoaded] = useState(false);
   const [c1, c2, c3, c4, c5] = philosophyClients1440Content.cards;
   const is360 = size === "360";
 
@@ -283,11 +281,13 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
 
       {/* 03 */}
       <div className={cardReveal()} style={cardRevealStyle(2)}>
-        <BoneyardSkeleton
-          loading={!teamCardLoaded}
-          name={is360 ? "philosophy-team-card-360" : "philosophy-team-card-432"}
+        <motion.div
+          className={cn(cardBox, "bg-[#0d0300]", h)}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
         >
-          <div className={cn(cardBox, "bg-[#0d0300]", h)}>
           <div
             className={cn(
               "absolute -translate-x-1/2",
@@ -301,8 +301,6 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
               className="pointer-events-none object-cover"
               fill
               loading="lazy"
-              onError={() => setTeamCardLoaded(true)}
-              onLoad={() => setTeamCardLoaded(true)}
               sizes="(max-width: 479px) 439px, 571px"
               src={philosophyClients1440Assets.teamPhoto}
             />
@@ -321,8 +319,7 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
           <div className={cn("absolute z-[1] text-white", padLeftClass, bRest, is360 ? "w-[291px]" : "w-[371px]")}>
             <CardBodyParts bodyClass={bodyCls} inverted parts={c3.body.parts} />
           </div>
-          </div>
-        </BoneyardSkeleton>
+        </motion.div>
       </div>
 
       {/* 04 */}
