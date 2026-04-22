@@ -3,10 +3,10 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { useCasesHorizontalCarousel } from "@/widgets/cases/lib/use-cases-horizontal-carousel";
 import type { CasesAdCard, CasesVerticalCard } from "@/widgets/cases/model/cases.data";
@@ -71,12 +71,10 @@ function VerticalCard480({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-vertical-card-480">
-    <article
+    <motion.article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[6px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
       onClick={onOpenDetail}
       onKeyDown={(e) => {
         if (!onOpenDetail) return;
@@ -88,6 +86,9 @@ function VerticalCard480({
       role={onOpenDetail ? "button" : undefined}
       style={{ height: VERT_CARD_H, width: VERT_CARD_W }}
       tabIndex={onOpenDetail ? 0 : undefined}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.15 }}
+      whileInView={{ opacity: 1 }}
     >
       <Image
         alt=""
@@ -96,8 +97,6 @@ function VerticalCard480({
           casesCardHoverEase,
         )}
         fill
-        onError={() => setImageLoaded(true)}
-        onLoad={() => setImageLoaded(true)}
         sizes={`${VERT_CARD_W}px`}
         src={image}
       />
@@ -134,8 +133,7 @@ function VerticalCard480({
           ))}
         </div>
       </div>
-    </article>
-    </BoneyardSkeleton>
+    </motion.article>
   );
 }
 
@@ -150,12 +148,10 @@ function AdCard480({
   credits: readonly string[];
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-ad-card-480">
-    <article
+    <motion.article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[6px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
       onClick={onOpenDetail}
       onKeyDown={(e) => {
         if (!onOpenDetail) return;
@@ -167,6 +163,9 @@ function AdCard480({
       role={onOpenDetail ? "button" : undefined}
       style={{ height: AD_CARD_H, width: AD_CARD_W }}
       tabIndex={onOpenDetail ? 0 : undefined}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.15 }}
+      whileInView={{ opacity: 1 }}
     >
       <Image
         alt=""
@@ -175,8 +174,6 @@ function AdCard480({
           casesCardHoverEase,
         )}
         fill
-        onError={() => setImageLoaded(true)}
-        onLoad={() => setImageLoaded(true)}
         sizes={`${AD_CARD_W}px`}
         src={image}
       />
@@ -198,8 +195,7 @@ function AdCard480({
           ))}
         </div>
       </div>
-    </article>
-    </BoneyardSkeleton>
+    </motion.article>
   );
 }
 
