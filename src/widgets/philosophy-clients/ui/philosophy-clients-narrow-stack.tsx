@@ -18,7 +18,10 @@ import {
   STRATEGY_BARS_432,
   strategyBarGradient,
 } from "@/widgets/philosophy-clients/model/philosophy-clients.data";
-import { PhilosophyClientsMarquee1024 } from "@/widgets/philosophy-clients/ui/philosophy-clients-marquee-1024";
+import {
+  MARQUEE_GAP_360_PX,
+  PhilosophyClientsMarquee1024,
+} from "@/widgets/philosophy-clients/ui/philosophy-clients-marquee-1024";
 
 type NarrowSize = "432" | "360";
 
@@ -383,10 +386,13 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
 export function PhilosophyClientsNarrowClientsBlock({
   eyebrowPlClassName,
   clientsEyebrowStyle = "default",
+  marqueeGapPx = 60,
 }: {
   eyebrowPlClassName: string;
   /** `narrow` — подпись 14px; точка та же 10×10, что и везде (`SectionTitleDot`) */
   clientsEyebrowStyle?: "default" | "narrow";
+  /** Gap между логотипами в маркизе (px). Default=60 для 768px+; передавайте MARQUEE_GAP_360_PX для 360px. */
+  marqueeGapPx?: number;
 }) {
   const [clientsRef, clientsInView] = useInViewOnce<HTMLDivElement>();
 
@@ -418,13 +424,17 @@ export function PhilosophyClientsNarrowClientsBlock({
         </div>
         <div
           className={cn(
-            "relative mt-8 h-[400px] w-full max-w-full overflow-x-clip",
+            "relative mt-8 h-[400px]",
             REVEAL,
             clientsInView ? REVEAL_ON : REVEAL_OFF,
           )}
-          style={{ transitionDelay: clientsInView ? "100ms" : "0ms" }}
+          style={{
+            width: "100vw",
+            marginLeft: "calc(50% - 50vw)",
+            transitionDelay: clientsInView ? "100ms" : "0ms",
+          }}
         >
-          <PhilosophyClientsMarquee1024 />
+          <PhilosophyClientsMarquee1024 gapPx={marqueeGapPx} />
         </div>
       </div>
     </>
