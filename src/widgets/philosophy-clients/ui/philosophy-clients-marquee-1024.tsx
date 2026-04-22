@@ -240,9 +240,9 @@ export function PhilosophyClientsMarquee1024({ gapPx = 60 }: { gapPx?: number } 
   );
 
   const darkStripClass =
-    "philosophy-marquee-strip relative inline-flex h-[90px] min-w-max max-w-none flex-nowrap shrink-0 items-center bg-[#0d0300] p-[20px]";
+    "philosophy-marquee-strip relative inline-flex h-[90px] min-w-max max-w-none flex-nowrap shrink-0 items-center gap-[60px] bg-[#0d0300] p-[20px]";
   const orangeStripClass =
-    "philosophy-marquee-strip relative inline-flex h-[90px] min-w-max max-w-none flex-nowrap shrink-0 items-center bg-[#ff5c00] p-[20px]";
+    "philosophy-marquee-strip relative inline-flex h-[90px] min-w-max max-w-none flex-nowrap shrink-0 items-center gap-[60px] bg-[#ff5c00] p-[20px]";
 
   return (
     <>
