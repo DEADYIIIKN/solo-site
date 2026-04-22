@@ -68,11 +68,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Swap carousel arrow SVG paths (LY820-01, LY360-01) + verify team photo 360px (LY360-03)
-- [ ] 03-02-PLAN.md — Fix cases carousel container clipping via Figma MCP padding (LY820-02, LY360-02)
-- [ ] 03-03-PLAN.md — 100vw breakout for client logo strips + gapPx prop for 360px gap (LY820-03, LY360-04)
-- [ ] 03-04-PLAN.md — Fix cases credits line-height and mb spacing via Figma MCP (LY820-04, LY360-05)
-- [ ] 03-05-PLAN.md — Fix levels section absolute positions via Figma MCP (LY820-05, LY360-06)
+- [x] 03-01-PLAN.md — Swap carousel arrow SVG paths (LY820-01, LY360-01) + verify team photo 360px (LY360-03)
+- [x] 03-02-PLAN.md — Fix cases carousel container clipping via Figma MCP padding (LY820-02, LY360-02)
+- [x] 03-03-PLAN.md — 100vw breakout for client logo strips + gapPx prop for 360px gap (LY820-03, LY360-04)
+- [x] 03-04-PLAN.md — Fix cases credits line-height and mb spacing via Figma MCP (LY820-04, LY360-05)
+- [x] 03-05-PLAN.md — Fix levels section absolute positions via Figma MCP (LY820-05, LY360-06)
 
 ### Phase 4: Safari + Animations
 **Goal**: All animations and transitions run identically in Safari and Chrome, and the cases scroll animation works correctly
