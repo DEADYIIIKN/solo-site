@@ -13,6 +13,7 @@ import { Media } from "./cms/collections/media.ts";
 import { SecretsPost } from "./cms/collections/secrets-post.ts";
 import { Users } from "./cms/collections/users.ts";
 import { SiteSettings } from "./cms/globals/site-settings.ts";
+import { PrivacyPage } from "./cms/globals/privacy-page.ts";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -49,7 +50,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, CasesVertical, CasesAdvertising, SecretsPost],
-  globals: [SiteSettings],
+  globals: [SiteSettings, PrivacyPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   upload: {
