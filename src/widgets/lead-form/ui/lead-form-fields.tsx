@@ -479,6 +479,8 @@ export function LeadFormFields({
                 className="underline decoration-solid [text-decoration-skip-ink:none]"
                 href="/privacy"
                 onClick={(e) => e.stopPropagation()}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Политикой конфиденциальности
               </a>
