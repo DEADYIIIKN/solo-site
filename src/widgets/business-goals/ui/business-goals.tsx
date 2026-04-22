@@ -453,7 +453,7 @@ function MobileBusinessGoals({
     config.trackGap * (config.cardWidths.length - 1);
 
   return (
-    <div className="relative bg-white" id={id}>
+    <div className="relative bg-white overflow-x-clip" id={id}>
       <div
         className="mx-auto"
         style={{
@@ -532,7 +532,7 @@ function MobileBusinessGoals({
         </div>
 
         <div style={{ padding: `${config.headerBottomGap}px ${config.horizontalPadding}px 0` }}>
-          <div className="overflow-hidden" style={{ width: `${config.visibleWidth}px` }}>
+          <div className="overflow-visible" style={{ width: `${config.visibleWidth}px` }}>
             <div
               className="flex items-start"
               style={{
