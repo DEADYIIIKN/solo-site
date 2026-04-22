@@ -168,7 +168,7 @@ function MarqueeTrack({
       ro.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, []);
+  }, [gapPx]);
 
   const style = {
     "--philosophy-marquee-duration": `${durationSec}s`,
