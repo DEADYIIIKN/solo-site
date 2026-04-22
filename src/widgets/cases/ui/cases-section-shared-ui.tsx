@@ -22,7 +22,7 @@ function CasesNavArrowIcon({
   variant: "back" | "forward";
 }) {
   const d =
-    variant === "back" ? CASES_ARROW_PATH_FIGMA_LEFT_FILE : CASES_ARROW_PATH_FIGMA_RIGHT_FILE;
+    variant === "back" ? CASES_ARROW_PATH_FIGMA_RIGHT_FILE : CASES_ARROW_PATH_FIGMA_LEFT_FILE;
   const chevron = (
     <path clipRule="evenodd" d={d} fill={CASES_ARROW_FILL_WHITE} fillRule="evenodd" />
   );
