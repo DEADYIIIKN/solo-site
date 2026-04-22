@@ -2,11 +2,11 @@
 
 /* eslint-disable @next/next/no-img-element -- svg стрелки и иконка просмотров */
 
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { useCasesHorizontalCarousel } from "@/widgets/cases/lib/use-cases-horizontal-carousel";
 import {
@@ -90,12 +90,13 @@ function VerticalCard1024({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-vertical-card-1024">
-    <article
+    <motion.article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[8px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
       onClick={onOpenDetail}
       onKeyDown={(e) => {
         if (!onOpenDetail) return;
@@ -115,8 +116,6 @@ function VerticalCard1024({
           casesCardHoverEase,
         )}
         fill
-        onError={() => setImageLoaded(true)}
-        onLoad={() => setImageLoaded(true)}
         sizes={`${VERT_CARD_W}px`}
         src={image}
       />
@@ -153,8 +152,7 @@ function VerticalCard1024({
           ))}
         </div>
       </div>
-    </article>
-    </BoneyardSkeleton>
+    </motion.article>
   );
 }
 
@@ -170,12 +168,13 @@ function AdCard1024({
   credits: readonly string[];
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-ad-card-1024">
-    <article
+    <motion.article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[8px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
       onClick={onOpenDetail}
       onKeyDown={(e) => {
         if (!onOpenDetail) return;
@@ -195,8 +194,6 @@ function AdCard1024({
           casesCardHoverEase,
         )}
         fill
-        onError={() => setImageLoaded(true)}
-        onLoad={() => setImageLoaded(true)}
         sizes={`${AD_CARD_W}px`}
         src={image}
       />
@@ -218,8 +215,7 @@ function AdCard1024({
           ))}
         </div>
       </div>
-    </article>
-    </BoneyardSkeleton>
+    </motion.article>
   );
 }
 
