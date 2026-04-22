@@ -31,7 +31,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The "Оставить заявку" button text is visually centered in its container inside case forms
   4. A written audit document exists comparing Next.js App Router vs React SPA for this landing, with a clear recommendation
   5. A written audit document exists comparing boneyard-js + CSS vs GSAP / Framer Motion, with a clear recommendation
-**Plans**: TBD
+**Plans**: 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Fix FORM-02 (privacy link new tab) and FORM-03 (button centering in 5 consultation modals)
+- [ ] 01-02-PLAN.md — Create Payload Global privacy-page.ts, register in payload.config.ts, run schema push [BLOCKING checkpoint]
+- [ ] 01-03-PLAN.md — Create /privacy Next.js page, update all 5 footer files to href=/privacy
+- [ ] 01-04-PLAN.md — Write AUDIT-STACK.md and AUDIT-ANIMATIONS.md with comparison tables and recommendations
 
 ### Phase 2: Desktop Layout (1440px + 1180px)
 **Goal**: The 1440px and 1180px breakpoints match Figma visually — service card alignment, font rendering, team photo, and client logo strips are correct
@@ -98,7 +104,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Quick Wins + Stack Audit | 0/TBD | Not started | - |
+| 1. Quick Wins + Stack Audit | 0/4 | Not started | - |
 | 2. Desktop Layout (1440px + 1180px) | 0/TBD | Not started | - |
 | 3. Mobile/Tablet Layout (820px + 360px) | 0/TBD | Not started | - |
 | 4. Safari + Animations | 0/TBD | Not started | - |
