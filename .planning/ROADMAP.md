@@ -65,8 +65,14 @@ Plans:
   3. Client logo strips on 820px fill the full viewport width with no visible endpoint
   4. The "что мы делаем" photo on 360px is visible (no missing image)
   5. Line-height in case cards (Режиссер / DOP rows) and funnel section text on 820px and 360px matches Figma — no text overlap
-**Plans**: TBD
-**UI hint**: yes
+**Plans**: 5 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Swap carousel arrow SVG paths (LY820-01, LY360-01) + verify team photo 360px (LY360-03)
+- [ ] 03-02-PLAN.md — Fix cases carousel container clipping via Figma MCP padding (LY820-02, LY360-02)
+- [ ] 03-03-PLAN.md — 100vw breakout for client logo strips + gapPx prop for 360px gap (LY820-03, LY360-04)
+- [ ] 03-04-PLAN.md — Fix cases credits line-height and mb spacing via Figma MCP (LY820-04, LY360-05)
+- [ ] 03-05-PLAN.md — Fix levels section absolute positions via Figma MCP (LY820-05, LY360-06)
 
 ### Phase 4: Safari + Animations
 **Goal**: All animations and transitions run identically in Safari and Chrome, and the cases scroll animation works correctly
@@ -110,7 +116,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Quick Wins + Stack Audit | 4/4 | Complete | 2026-04-22 |
 | 2. Desktop Layout (1440px + 1180px) | 3/3 | Complete | 2026-04-22 |
-| 3. Mobile/Tablet Layout (820px + 360px) | 0/TBD | Not started | - |
+| 3. Mobile/Tablet Layout (820px + 360px) | 0/5 | Not started | - |
 | 4. Safari + Animations | 0/TBD | Not started | - |
 | 5. Pixel-Perfect Final Pass | 0/TBD | Not started | - |
 | 6. Testing | 0/TBD | Not started | - |
