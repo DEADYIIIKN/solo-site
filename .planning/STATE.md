@@ -1,0 +1,73 @@
+# Project State
+
+## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-04-22)
+
+**Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
+**Current focus:** Phase 1 — Quick Wins + Stack Audit
+
+## Current Position
+
+Phase: 1 of 6 (Quick Wins + Stack Audit)
+Plan: 0 of TBD in current phase
+Status: Ready to plan
+Last activity: 2026-04-22 — Roadmap created, all 31 v1 requirements mapped to 6 phases
+
+Progress: [░░░░░░░░░░] 0%
+
+## Performance Metrics
+
+**Velocity:**
+- Total plans completed: 0
+- Average duration: —
+- Total execution time: 0 hours
+
+**By Phase:**
+
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| - | - | - | - |
+
+**Recent Trend:**
+- Last 5 plans: —
+- Trend: —
+
+*Updated after each plan completion*
+
+## Accumulated Context
+
+### Decisions
+
+Decisions are logged in PROJECT.md Key Decisions table.
+Recent decisions affecting current work:
+
+- Init: Start with bug fixes (form + audit), not pixel-perfect — bugs block users now
+- Init: Figma MCP will be used for sverka in phases 2, 3, 5
+- Init: Stack not changed in this milestone scope (audit is documentation only)
+
+### Pending Todos
+
+None yet.
+
+### Blockers/Concerns
+
+- CONCERNS: `/privacy` page missing — FORM-01 fix requires either creating the page or converting link to modal
+- CONCERNS: boneyard-js + CSS transitions may need Safari-specific vendor prefix audit before Phase 4
+- CONCERNS: `business-goals.tsx` (1300 lines) and `services-section-below-1024.tsx` (1000 lines) are fragile — Phase 3 edits carry higher regression risk
+
+## Deferred Items
+
+| Category | Item | Status | Deferred At |
+|----------|------|--------|-------------|
+| Tech Debt | Unify 5 consultation modal components (REFAC-01) | v2 | Init |
+| Tech Debt | Split business-goals.tsx per-breakpoint (REFAC-02) | v2 | Init |
+| Tech Debt | Split services-section-below-1024.tsx (REFAC-03) | v2 | Init |
+| Tech Debt | Move shared form types to model file (REFAC-04) | v2 | Init |
+| Feature | Form submission to CRM/Telegram/n8n (FUNC-01) | v2 | Init |
+
+## Session Continuity
+
+Last session: 2026-04-22
+Stopped at: Roadmap and STATE.md created — project ready for Phase 1 planning
+Resume file: None
