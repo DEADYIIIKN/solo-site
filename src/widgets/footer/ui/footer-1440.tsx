@@ -226,7 +226,7 @@ export function Footer1440({
           {/* Row 3, Col 2 — Privacy */}
           <a
             className="self-start font-normal leading-[1.2] text-[14px] no-underline transition-opacity hover:opacity-70"
-            href="#"
+            href="/privacy"
             style={{ color: "#9c9c9c" }}
           >
             {footerContent.privacy}
