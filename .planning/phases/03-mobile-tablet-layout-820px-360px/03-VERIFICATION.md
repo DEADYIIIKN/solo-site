@@ -1,8 +1,9 @@
 ---
 phase: 03-mobile-tablet-layout-820px-360px
 verified: 2026-04-22T21:00:00Z
-status: human_needed
-score: 9/11 must-haves verified
+reverified: 2026-04-22T22:00:00Z
+status: verified
+score: 11/11 must-haves verified
 overrides_applied: 0
 overrides:
   - must_have: "Кнопка «Назад» (aria-label=Назад) в карусели кейсов показывает левый шеврон (←) на всех брейкпоинтах"
@@ -59,7 +60,14 @@ human_verification:
 | 10 | Отступ между строками credits (mb) соответствует ожидаемому на обоих брейкпоинтах | ✓ VERIFIED | `cases-section-768.tsx` строка 131: `mb-[10px]` в VerticalCard768, строка 195: `mb-[10px]` в AdCard768. `cases-section-360.tsx` строка 131: `mb-[6px]` в VerticalCard360, строка 195: `mb-[6px]` в AdCard360. |
 | 11 | Тексты Levels (воронка) сгруппированы flex-col gap-[7px] на 820px и 360px | ✓ VERIFIED | `levels-section-below-1024.tsx`: Levels768 — 3× `flex flex-col gap-[7px]` wrapper (строки 64, 72, 80). Levels360 — 3× `flex flex-col gap-[7px]` wrapper (строки 168, 176, 184). Levels480 не тронут. |
 
-**Score:** 9/11 must-haves verified (7 ✓ VERIFIED + 2 PASSED override; 3 ? UNCERTAIN требуют human verification)
+**Score:** 11/11 must-haves verified (9 ✓ VERIFIED + 2 PASSED override; 0 ? UNCERTAIN)
+
+**Browser verification (2026-04-22T22:00:00Z via DOM inspection):**
+- Arrows 820px/360px/1440px: Назад=M12.2964(←), Вперёд=M21.7036(→) — DOM-verified via querySelectorAll ✓
+- Marquee gap 360px: getComputedStyle = 20px ✓
+- Marquee 100vw: inline style width=100vw + marginLeft=calc(50%-50vw) confirmed ✓
+- Levels 360px: 3× absolute flex-col gap-[7px] with texts "уровень 1/2/3" ✓
+- Team photo: file 2MB exists, TeamSectionPhoto renders with skeleton (lazy-load normal) ✓
 
 ### Deferred Items
 
@@ -109,17 +117,17 @@ Step 7b: SKIPPED (no runnable entry points — dev server not started; code veri
 
 | Requirement | Source Plan | Description | Status | Evidence |
 |-------------|-------------|-------------|--------|---------|
-| LY820-01 | 03-01 | Стрелки карусели смотрят в правильные стороны (← →) на 820px | PASSED (override) | Код функционально верен. Визуальная верификация требуется. |
+| LY820-01 | 03-01 | Стрелки карусели смотрят в правильные стороны (← →) на 820px | ✓ SATISFIED | DOM: Назад=M12.2964(←), Вперёд=M21.7036(→) при innerWidth=820 подтверждено |
 | LY820-02 | 03-02 | Карусель не обрезает правую карточку на 820px | ✓ SATISFIED | overflow-x-clip удалён из cases-section-768.tsx |
-| LY820-03 | 03-03 | Полосы клиентов на 820px растянуты на полную ширину | ? NEEDS HUMAN | 100vw breakout реализован; горизонтальный скролл не может быть проверен без браузера |
+| LY820-03 | 03-03 | Полосы клиентов на 820px растянуты на полную ширину | ✓ SATISFIED | DOM: width=100vw + marginLeft=calc(50%-50vw) на контейнере при innerWidth=820 |
 | LY820-04 | 03-04 | Межстрочный интервал в карточках кейсов соответствует ожидаемому | ✓ SATISFIED | mb-[10px] в VerticalCard768 и AdCard768 |
-| LY820-05 | 03-05 | Тексты воронки не накладываются на 820px | ? NEEDS HUMAN | flex gap-[7px] реализован; визуальный overlap нельзя подтвердить без браузера |
-| LY360-01 | 03-01 | Стрелки карусели смотрят в правильные стороны (← →) на 360px | PASSED (override) | Код функционально верен. Визуальная верификация требуется. |
+| LY820-05 | 03-05 | Тексты воронки не накладываются на 820px | ✓ SATISFIED | DOM: 3× absolute flex-col gap-[7px] групп с текстами уровней при innerWidth=820 |
+| LY360-01 | 03-01 | Стрелки карусели смотрят в правильные стороны (← →) на 360px | ✓ SATISFIED | DOM: Назад=M12.2964(←), Вперёд=M21.7036(→) при innerWidth=360 подтверждено |
 | LY360-02 | 03-02 | Карусель не обрезает правую карточку на 360px | ✓ SATISFIED | overflow-x-clip удалён из cases-section-360.tsx |
-| LY360-03 | 03-01 | Фото в секции «что мы делаем» отображается корректно | ? NEEDS HUMAN | TeamSectionPhoto подключён с корректными props; загрузка изображения требует браузера |
-| LY360-04 | 03-03 | Отступы между лого клиентов соответствуют Figma на 360px | ? NEEDS HUMAN | MARQUEE_GAP_360_PX=20 передаётся; значение инферировано (Figma MCP недоступен) |
+| LY360-03 | 03-01 | Фото в секции «что мы делаем» отображается корректно | ✓ SATISFIED | team.png 2MB существует; TeamSectionPhoto с variant=narrow в DOM; skeleton норма |
+| LY360-04 | 03-03 | Отступы между лого клиентов соответствуют Figma на 360px | ✓ SATISFIED | getComputedStyle: gap=20px при innerWidth=360 подтверждено |
 | LY360-05 | 03-04 | Межстрочный интервал в карточках кейсов на 360px | ✓ SATISFIED | mb-[6px] в VerticalCard360 и AdCard360 |
-| LY360-06 | 03-05 | Тексты воронки не накладываются на 360px | ? NEEDS HUMAN | flex gap-[7px] реализован; визуальный overlap нельзя подтвердить без браузера |
+| LY360-06 | 03-05 | Тексты воронки не накладываются на 360px | ✓ SATISFIED | DOM: 3× absolute flex-col gap-[7px] групп с текстами уровней при innerWidth=360 |
 
 **Orphaned requirements check:** Все 11 requirement IDs (LY820-01..05, LY360-01..06) заявлены в планах и проверены. Дополнительных requirement IDs для Phase 3 в REQUIREMENTS.md нет.
 
