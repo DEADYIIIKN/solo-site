@@ -1,11 +1,10 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useState } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { teamSectionAssets } from "@/widgets/team/model/team.data";
 
 type TeamSectionPhotoProps = {
@@ -29,51 +28,45 @@ export function TeamSectionPhoto({
   variant = "default",
 }: TeamSectionPhotoProps) {
   const narrow = variant === "narrow";
-  const [loaded, setLoaded] = useState(false);
 
   return (
-    <BoneyardSkeleton
-      loading={!loaded}
-      name={narrow ? "team-section-photo-narrow" : "team-section-photo-default"}
+    <motion.div
+      className={cn(
+        "relative overflow-hidden",
+        narrow ? "bg-white" : "isolate bg-[#0d0300]",
+        roundedClassName,
+        frameClassName,
+        className,
+      )}
+      initial={{ opacity: 0 }}
+      style={style}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.1 }}
+      whileInView={{ opacity: 1 }}
     >
-      <div
-        className={cn(
-          "relative overflow-hidden",
-          narrow ? "bg-white" : "isolate bg-[#0d0300]",
-          roundedClassName,
-          frameClassName,
-          className,
-        )}
-        style={style}
-      >
-        {narrow ? (
-          <div className={cn("absolute inset-y-0 left-[-9%] w-[118%]", imageWrapperClassName)}>
-            <Image
-              alt="Команда SOLO"
-              className={cn("object-cover object-center", imageClassName)}
-              draggable={false}
-              fill
-              loading="lazy"
-              onError={() => setLoaded(true)}
-              onLoad={() => setLoaded(true)}
-              sizes="(max-width: 479px) 387px, (max-width: 767px) 440px, 520px"
-              src={teamSectionAssets.teamPhoto}
-            />
-          </div>
-        ) : (
+      {narrow ? (
+        <div className={cn("absolute inset-y-0 left-[-9%] w-[118%]", imageWrapperClassName)}>
           <Image
             alt="Команда SOLO"
-            className={cn("object-cover object-[center_26%]", imageClassName)}
+            className={cn("object-cover object-center", imageClassName)}
             draggable={false}
             fill
             loading="lazy"
-            onError={() => setLoaded(true)}
-            onLoad={() => setLoaded(true)}
-            sizes="(max-width: 1023px) 100vw, 50vw"
+            sizes="(max-width: 479px) 387px, (max-width: 767px) 440px, 520px"
             src={teamSectionAssets.teamPhoto}
           />
-        )}
-      </div>
-    </BoneyardSkeleton>
+        </div>
+      ) : (
+        <Image
+          alt="Команда SOLO"
+          className={cn("object-cover object-[center_26%]", imageClassName)}
+          draggable={false}
+          fill
+          loading="lazy"
+          sizes="(max-width: 1023px) 100vw, 50vw"
+          src={teamSectionAssets.teamPhoto}
+        />
+      )}
+    </motion.div>
   );
 }
