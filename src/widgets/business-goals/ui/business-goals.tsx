@@ -495,7 +495,7 @@ function MobileBusinessGoals({
               <img
                 alt="Назад"
                 className={cn("max-w-none", isFirst ? "opacity-40" : "opacity-100")}
-                src={businessGoalsAssets.mobileArrowLeft}
+                src={businessGoalsAssets.mobileArrowRight}
                 style={{
                   height: `${config.arrowIconSize}px`,
                   maxWidth: "none",
@@ -520,7 +520,7 @@ function MobileBusinessGoals({
               <img
                 alt="Вперед"
                 className={cn("max-w-none", isLast ? "opacity-40" : "opacity-100")}
-                src={businessGoalsAssets.mobileArrowRight}
+                src={businessGoalsAssets.mobileArrowLeft}
                 style={{
                   height: `${config.arrowIconSize}px`,
                   maxWidth: "none",
