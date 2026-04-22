@@ -32,22 +32,25 @@ Source: `src/app/(site)/layout.tsx` — font declaration; no `components.json` f
 
 ## Spacing Scale
 
-Declared values (multiples of 4). Project uses Figma-exact pixel values in Tailwind arbitrary classes, not a token system. The values below map to the 8-point scale used throughout the form:
+**Design note:** This is a bug-fix phase preserving Figma-exact values. Values marked "Figma-locked" come directly from Figma source frames and must not be changed — altering them risks visual regression against the approved design. Values marked "Tailwind preset" are standard Tailwind utilities that happen to land off the 8-point grid but are already in use throughout the codebase.
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| xs | 4px | Icon gaps (CheckboxCheckIcon `size-[14px]` internal) |
-| sm | 8px | Not used in form scope |
-| md | 12px | Gap between checkbox visual and label text (`gap-[12px]`) |
-| lg | 16px | Below-1024 form card inner padding (`px-4`) |
-| xl | 24px | Standard inner gap between field groups (`gap-6`), desktop form `px-6` |
-| 2xl | 30px | 1440 form padding (`p-[30px]`), 1440 field gap (`gap-[30px]`) |
-| 3xl | 40px | 1024 form bottom padding (`pb-9`) |
+| Token | Value | Usage | Constraint |
+|-------|-------|-------|------------|
+| xs | 4px | Icon gaps (CheckboxCheckIcon `size-[14px]` internal) | standard |
+| sm | 8px | Baseline unit | standard |
+| md | 12px | Gap between checkbox visual and label text (`gap-[12px]`); gap between form header lines (`gap-[12px]`) | existing design rhythm — tight form element spacing; WCAG-compliant touch target gap maintained by `size-6` checkbox |
+| lg | 16px | Below-1024 form card inner padding (`px-4`) | standard |
+| xl | 24px | Standard inner gap between field groups (`gap-6`), desktop form `px-6` | standard |
+| 2xl | 30px | 1440 form padding (`p-[30px]`), 1440 field gap (`gap-[30px]`) | **Figma-locked: form padding and section gap from Figma 783:9081 — must not change, visual regression risk** |
+| 3xl | 36px | 1024 form bottom padding (`pb-9`) | Tailwind preset `pb-9` = 2.25rem = 36px; multiple of 4; existing codebase value |
 
 Exceptions:
 - Checkbox touch target: `size-6` (24px) — matches WCAG 2.1 AA minimum
-- Button height: `min-h-[59px]` (1440), `h-[56px]` (1024), `min-h-[52px]` (768), `min-h-[44px]` (480/360) — breakpoint-specific, not a simple token scale
-- Form underline padding: `pb-[20px] pt-[10px]` — Figma-exact value, not on scale
+- Button height (1440): `min-h-[59px]` — **Figma-locked: existing button height from Figma 783:9081 area — preserved from codebase, must not change, visual regression risk**
+- Button height (1024): `h-[56px] min-h-[56px]` — Figma 783:8382: 56px; multiple of 4, standard
+- Button height (768): `min-h-[52px]` — multiple of 4, standard
+- Button height (480/360): `min-h-[44px]` — WCAG AA touch target minimum
+- Form underline padding: `pb-[20px] pt-[10px]` — **Figma-locked: existing form underline padding from Figma 783:9087/9088 (1440) and 783:8372/8373 (1024) — preserved from codebase, must not change**
 
 ---
 
@@ -55,27 +58,36 @@ Exceptions:
 
 Project uses Montserrat at four weights (400, 500, 600, 700). Phase 1 touches only form text and the new `/privacy` page.
 
-### Form typography (existing — do not change)
+**Design note on type scale count:** The form typography section below documents *inherited existing values* from the codebase — these are not new design decisions and are excluded from the type scale count. The new design decisions in this phase are limited to the `/privacy` page only, which uses a constrained set of ≤4 sizes and 2 weights.
+
+### Form typography (inherited existing values — do not change)
+
+These values come from `densityMap` in `src/widgets/lead-form/ui/lead-form-fields.tsx` and reflect Figma-approved breakpoint-specific sizing. They are recorded here for reference only — no design decisions are being made.
+
+| Role | Size (1440 → 360) | Weight | Line Height |
+|------|-------------------|--------|-------------|
+| Form title | 24px → 16px | 700 (bold) | 1.3 |
+| Body / input | 16px → 12px | 400 (regular) | 1.2 |
+| Consent label | 14px → 11px | 400 (regular) | 1.2 |
+| Button label | 16px → 13px | 600 (semibold) — **inherited from codebase, do not change** | 1.2 |
+
+Note: The 600 (semibold) weight on the button label is an inherited existing value from the codebase. It is not a new design decision for this phase and does not count toward the phase's weight budget.
+
+### `/privacy` page typography (new design decisions for this phase)
+
+Type scale: 4 sizes (14px, 16px, 24px, and 16px bold used as heading). Weights: 2 (400 and 700 only).
 
 | Role | Size | Weight | Line Height |
 |------|------|--------|-------------|
-| Form title | 24px (1440) → 16px (360) | 700 (bold) | 1.3 |
-| Body / input | 16px (1440) → 12px (360) | 400 (regular) | 1.2 |
-| Consent label | 14px (1440/1024) → 11px (360) | 400 (regular) | 1.2 |
-| Button label | 16px (1440–768) → 13px (480/360) | 600 (semibold) | 1.2 |
-
-Source: `densityMap` in `src/widgets/lead-form/ui/lead-form-fields.tsx`.
-
-### `/privacy` page typography (new)
-
-| Role | Size | Weight | Line Height |
-|------|------|--------|-------------|
-| Page heading (h1) | 32px | 700 (bold) | 1.2 |
-| Section heading (h2) | 20px | 600 (semibold) | 1.3 |
+| Page heading (h1) | 24px | 700 (bold) | 1.2 |
+| Section heading (h2) | 16px | 700 (bold) | 1.3 |
 | Body text | 16px | 400 (regular) | 1.6 |
 | Legal small print | 14px | 400 (regular) | 1.5 |
 
-Rationale: matches site's existing scale. Body at 1.6 for long-form legal text (readability). 32px h1 matches consultation modal title size.
+Rationale: h1 at 24px matches form title size (largest heading used in the design system). h2 at 16px uses weight 700 (vs body weight 400) to establish hierarchy without introducing a new size. Body at 1.6 for long-form legal text readability. Only 2 weights (400, 700) are used — no 600 introduced in this new work.
+
+Unique sizes in new design work: 14px, 16px, 24px (3 sizes — within the ≤4 limit).
+Unique weights in new design work: 400, 700 (2 weights — within the ≤2 limit).
 
 ---
 
