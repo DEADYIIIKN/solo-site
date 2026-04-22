@@ -2,11 +2,11 @@
 
 /* eslint-disable @next/next/no-img-element -- svg стрелки и иконка просмотров */
 
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { DarkSurfaceGrid } from "@/shared/ui/dark-surface-grid";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import {
@@ -155,23 +155,24 @@ function VerticalCard({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-vertical-card-1440">
-      <article
-        className="group relative h-[510px] w-[283px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
-        onClick={onOpenDetail}
-        onKeyDown={(e) => {
-          if (!onOpenDetail) return;
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onOpenDetail();
-          }
-        }}
-        role={onOpenDetail ? "button" : undefined}
-        tabIndex={onOpenDetail ? 0 : undefined}
-      >
+    <motion.article
+      className="group relative h-[510px] w-[283px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      onClick={onOpenDetail}
+      onKeyDown={(e) => {
+        if (!onOpenDetail) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpenDetail();
+        }
+      }}
+      role={onOpenDetail ? "button" : undefined}
+      tabIndex={onOpenDetail ? 0 : undefined}
+    >
         <Image
           alt=""
           className={cn(
@@ -179,8 +180,6 @@ function VerticalCard({
             casesCardHoverEase,
           )}
           fill
-          onError={() => setImageLoaded(true)}
-          onLoad={() => setImageLoaded(true)}
           sizes="283px"
           src={image}
         />
@@ -218,8 +217,7 @@ function VerticalCard({
           ))}
         </div>
       </div>
-      </article>
-    </BoneyardSkeleton>
+      </motion.article>
   );
 }
 
@@ -234,23 +232,24 @@ function AdCard({
   credits: readonly string[];
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-ad-card-1440">
-      <article
-        className="group relative h-[320px] w-[575px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
-        onClick={onOpenDetail}
-        onKeyDown={(e) => {
-          if (!onOpenDetail) return;
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onOpenDetail();
-          }
-        }}
-        role={onOpenDetail ? "button" : undefined}
-        tabIndex={onOpenDetail ? 0 : undefined}
-      >
+    <motion.article
+      className="group relative h-[320px] w-[575px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      onClick={onOpenDetail}
+      onKeyDown={(e) => {
+        if (!onOpenDetail) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpenDetail();
+        }
+      }}
+      role={onOpenDetail ? "button" : undefined}
+      tabIndex={onOpenDetail ? 0 : undefined}
+    >
         <Image
           alt=""
           className={cn(
@@ -258,8 +257,6 @@ function AdCard({
             casesCardHoverEase,
           )}
           fill
-          onError={() => setImageLoaded(true)}
-          onLoad={() => setImageLoaded(true)}
           sizes="575px"
           src={image}
         />
@@ -281,8 +278,7 @@ function AdCard({
           ))}
         </div>
       </div>
-      </article>
-    </BoneyardSkeleton>
+      </motion.article>
   );
 }
 
