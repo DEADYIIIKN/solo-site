@@ -52,7 +52,7 @@ export function FirstScreenHero1440({ onConsultationCtaClick }: FirstScreenHero1
           бренда
         </p>
 
-        <p className="absolute left-[162px] top-[698px] whitespace-nowrap text-[24px] font-bold leading-[1.2] text-white">
+        <p className="absolute left-[162px] top-[703px] whitespace-nowrap text-[24px] font-bold leading-[1.2] text-white">
           {firstScreenContent.geoLabel}
         </p>
 

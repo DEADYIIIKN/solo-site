@@ -8,6 +8,8 @@
 
 | Breakpoint | Section | Type | Figma value | Current code value | File:line | Status |
 |------------|---------|------|-------------|--------------------|-----------|--------|
+| 1440 | hero | size | geo label top=703 | top=698 → 703 | src/widgets/first-screen/ui/first-screen-hero-1440.tsx:55 | fixed |
+| 1440 | hero | — | video/subtitle/titles/CTA/geo-glow match Figma 783:9656 | matches | src/widgets/first-screen/ui/first-screen-hero-1440.tsx | ok |
 
 ## Breakpoint 1180px
 
