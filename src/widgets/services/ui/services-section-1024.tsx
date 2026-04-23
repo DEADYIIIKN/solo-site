@@ -214,14 +214,14 @@ function VerticalCard1024() {
           />
         </div>
         <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[28px] font-bold leading-[0.9] tracking-[-0.56px] text-white"
+          className="absolute z-[3] m-0 max-w-[681px] text-[32px] font-bold leading-[0.9] tracking-[-0.64px] text-white"
           style={{ left: V_HERO_1024.title.left, top: V_HERO_1024.title.top }}
         >
           <span className="font-normal italic">{v.titleItalic}</span>
           <span>{v.titleBold}</span>
         </p>
         <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[15px] font-normal leading-[1.2] text-white"
+          className="absolute z-[3] m-0 max-w-[681px] text-[16px] font-normal leading-[1.2] text-white"
           style={{ left: V_HERO_1024.subtitle.left, top: V_HERO_1024.subtitle.top }}
         >
           {v.subtitle}
