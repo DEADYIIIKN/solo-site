@@ -77,6 +77,9 @@
 
 | Breakpoint | Section | Type | Figma value | Current code value | File:line | Status |
 |------------|---------|------|-------------|--------------------|-----------|--------|
+| 360 | first-screen | — | frame 360×600; title1 «видеоконтент» 16/120 w=328 italic 44; title2 «под бизнес-задачи бренда» 16/167 w=328 bold 24; subtitle 26/276 w=256 13px leading-1.2; CTA circular 194/317 140×140; geo ellipse110 66/518 42×42; ellipse113 83/535 8×8; text «Работаем по всей России» 99/535 (Figma 783:10576) | DOM измерения: title1 16/120 328×39.6; title2 16/167 328×43.2; subtitle 26/276 256×46.8; geo-text 99/531 (line-box pad −4, glyph совпадает); CTA/ellipses 1:1 | src/widgets/first-screen/ui/first-screen-hero-360.tsx | matches |
+| 360 | first-screen | size | menu icon 40×40 at (284,8) (Figma 803:13640) | button size-[44px] at (284,6) — +4px tap-target upscale | src/widgets/first-screen/ui/first-screen-mobile-menu.tsx | deferred (accessibility tap target, intentional +4px > WCAG 44×44 min) |
+| 360 | first-screen | size | СОЛО логотип 102×18 at (36,19) (Figma 803:13633 Group 138 1) | `<img>` rendered 113×20 at (32,18) — шире на ~11px | src/widgets/first-screen/ui/first-screen-mobile-menu.tsx | deferred (SVG asset `/assets/figma/footer-1440/logo.svg` включает дополнительный glyph — требует отдельного 360-asset или обрезки) |
 
 ## Deferred Items Summary
 
