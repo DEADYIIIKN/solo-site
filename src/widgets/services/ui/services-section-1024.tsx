@@ -189,55 +189,53 @@ function VerticalCard1024() {
   const points = [...v.points];
 
   return (
-    <article className="relative h-[520px] w-[785px] shrink-0 overflow-hidden rounded-[20px] bg-[#0d0300]">
+    <article
+      className="relative h-[520px] w-[785px] shrink-0 overflow-hidden rounded-[20px] bg-[#0d0300]"
+      data-services-hero="vertical"
+    >
       <div
-        className="relative z-[1] mx-[10px] mt-[10px] h-[280px] w-[765px] overflow-visible rounded-[20px]"
-        data-services-hero="vertical"
+        aria-hidden
+        className="absolute left-[10px] top-[10px] z-[0] h-[280px] w-[765px] overflow-hidden rounded-[20px] bg-gradient-to-b from-[#424242] to-[#141414] opacity-70"
+      />
+      <div
+        className="pointer-events-none absolute z-[1] h-[240px] w-[286px]"
+        style={{
+          left: V_HERO_1024.illustration.left,
+          top: V_HERO_1024.illustration.top,
+        }}
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 z-0 rounded-[20px] bg-gradient-to-b from-[#424242] to-[#141414] opacity-70"
-        />
-        <div
-          className="pointer-events-none absolute z-[1] h-[240px] w-[286px]"
-          style={{
-            left: V_HERO_1024.illustration.left,
-            top: V_HERO_1024.illustration.top,
-          }}
-        >
-          <img
-            alt=""
-            className="block h-full w-full object-contain object-right"
-            height={V_HERO_1024.illustration.h}
-            src={services1440Assets.verticalIllustration}
-            width={V_HERO_1024.illustration.w}
-          />
-        </div>
-        <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[32px] font-bold leading-[0.9] tracking-[-0.64px] text-white"
-          style={{ left: V_HERO_1024.title.left, top: V_HERO_1024.title.top }}
-        >
-          <span className="font-normal italic">{v.titleItalic}</span>
-          <span>{v.titleBold}</span>
-        </p>
-        <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[16px] font-normal leading-[1.2] text-white"
-          style={{ left: V_HERO_1024.subtitle.left, top: V_HERO_1024.subtitle.top }}
-        >
-          {v.subtitle}
-        </p>
-        <ConsultationButton1024
-          style={{ left: V_HERO_1024.cta.left, top: V_HERO_1024.cta.top }}
-          variant="orange"
-        />
-        <Services1024PackageRow />
-        <Services1024PackageCaption
-          packageBold={v.packageBold}
-          packageLead={v.packageLead}
-          packageTrail={v.packageTrail}
-          style={{ left: V_HERO_1024.packageText.left, top: V_HERO_1024.packageText.top }}
+        <img
+          alt=""
+          className="block h-full w-full object-contain object-right"
+          height={V_HERO_1024.illustration.h}
+          src={services1440Assets.verticalIllustration}
+          width={V_HERO_1024.illustration.w}
         />
       </div>
+      <p
+        className="absolute z-[3] m-0 max-w-[681px] text-[32px] font-bold leading-[0.9] tracking-[-0.64px] text-white"
+        style={{ left: V_HERO_1024.title.left, top: V_HERO_1024.title.top }}
+      >
+        <span className="font-normal italic">{v.titleItalic}</span>
+        <span>{v.titleBold}</span>
+      </p>
+      <p
+        className="absolute z-[3] m-0 max-w-[681px] text-[16px] font-normal leading-[1.2] text-white"
+        style={{ left: V_HERO_1024.subtitle.left, top: V_HERO_1024.subtitle.top }}
+      >
+        {v.subtitle}
+      </p>
+      <ConsultationButton1024
+        style={{ left: V_HERO_1024.cta.left, top: V_HERO_1024.cta.top }}
+        variant="orange"
+      />
+      <Services1024PackageRow />
+      <Services1024PackageCaption
+        packageBold={v.packageBold}
+        packageLead={v.packageLead}
+        packageTrail={v.packageTrail}
+        style={{ left: V_HERO_1024.packageText.left, top: V_HERO_1024.packageText.top }}
+      />
 
       <div
         className="pointer-events-none absolute left-[30px] z-[1] w-[725px]"
