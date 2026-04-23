@@ -99,14 +99,17 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null): 
     if (!pinElement) return;
 
     let alive = true;
-    let tickRafId = 0;
-    let tickCoalesced = false;
+    let rafId = 0;
     let rangeStart = 0;
     let rangeEnd = 0;
     let rangeReady = false;
+    /**
+     * Safari-parity: pin виден (грубо — ±1 экран). Continuous rAF, но tick делает работу
+     * только когда pin в окрестности вьюпорта, чтобы не жечь CPU вне секции.
+     */
+    let nearViewport = true;
 
     const applyProgress = (next: number) => {
-      /* MotionValue.set сам deduplицирует равные значения; эпсилон-фильтр больше не нужен. */
       progress.set(next);
     };
 
@@ -127,6 +130,9 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null): 
 
     const tick = () => {
       if (!alive) return;
+      rafId = requestAnimationFrame(tick);
+
+      if (!nearViewport) return;
 
       if (
         window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -138,13 +144,10 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null): 
       }
 
       const el = pinElement;
-      const scrollY = window.scrollY;
       if (el.offsetHeight < 2) return;
+      if (!rangeReady) recalculateRange();
 
-      if (!rangeReady) {
-        recalculateRange();
-      }
-
+      const scrollY = window.scrollY;
       const start = rangeStart;
       const end = rangeEnd;
 
@@ -158,31 +161,25 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null): 
         scrollY < start ? "before" : scrollY > end ? "after" : "active";
       setPhase(nextPhase);
 
-      /* Линейный 0…1 по документному скроллу. Карточки по сегментам — линейно (см. philosophyCardStackLocalT). */
       const rawLinear = (scrollY - start) / (end - start);
       applyProgress(Math.min(1, Math.max(0, rawLinear)));
     };
 
-    /** Один tick на кадр: иначе ResizeObserver + cancelAnimationFrame «голодали» RAF в dev */
-    const scheduleTick = () => {
-      if (tickCoalesced) return;
-      tickCoalesced = true;
-      tickRafId = requestAnimationFrame(() => {
-        tickCoalesced = false;
-        tick();
-      });
-    };
+    /**
+     * Safari-parity (D-07 revision 2): читаем `window.scrollY` каждый кадр через continuous rAF,
+     * не через `scroll`-event. Safari во время inertial/momentum-скролла батчит scroll-events
+     * (иногда 1 событие на ~5 кадров), из-за чего MotionValue обновлялся рывками. Continuous rAF
+     * читает сразу позицию композитора — tick всегда идёт в такт дисплея, плавность как в Chrome.
+     * IntersectionObserver гейтит работу: вне окрестности pin rAF-loop крутится, но ничего не делает.
+     */
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        nearViewport = entry.isIntersecting;
+      },
+      { rootMargin: "200% 0px 200% 0px" },
+    );
+    io.observe(pinElement);
 
-    tick();
-    requestAnimationFrame(() => {
-      requestAnimationFrame(tick);
-    });
-
-    window.addEventListener("scroll", scheduleTick, { passive: true });
-    window.addEventListener("resize", scheduleTick, { passive: true });
-    const vv = window.visualViewport;
-    vv?.addEventListener("resize", scheduleTick, { passive: true });
-    /* Один scheduleTick на кадр при resize layout — без лавины вызовов от RO */
     let roRaf = false;
     const ro = new ResizeObserver(() => {
       if (roRaf) return;
@@ -190,21 +187,25 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null): 
       requestAnimationFrame(() => {
         roRaf = false;
         recalculateRange();
-        scheduleTick();
       });
     });
     ro.observe(pinElement);
 
+    const onResize = () => recalculateRange();
+    window.addEventListener("resize", onResize, { passive: true });
+    const vv = window.visualViewport;
+    vv?.addEventListener("resize", onResize, { passive: true });
+
     recalculateRange();
+    rafId = requestAnimationFrame(tick);
 
     return () => {
       alive = false;
-      tickCoalesced = false;
-      cancelAnimationFrame(tickRafId);
-      window.removeEventListener("scroll", scheduleTick);
-      window.removeEventListener("resize", scheduleTick);
-      vv?.removeEventListener("resize", scheduleTick);
+      cancelAnimationFrame(rafId);
+      io.disconnect();
       ro.disconnect();
+      window.removeEventListener("resize", onResize);
+      vv?.removeEventListener("resize", onResize);
       lastPhaseRef.current = "before";
     };
   }, [pinElement, progress]);
