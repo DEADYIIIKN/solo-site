@@ -32,11 +32,12 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
       slug: "site-settings",
       overrideAccess: true,
     });
+    const showNews = Boolean((raw as Record<string, unknown>).showNews ?? DEFAULTS.showNews);
     return {
-      showSecrets: Boolean((raw as Record<string, unknown>).showSecrets ?? DEFAULTS.showSecrets),
+      showSecrets: showNews,
       showShowreel: Boolean((raw as Record<string, unknown>).showShowreel ?? DEFAULTS.showShowreel),
       showTeam: Boolean((raw as Record<string, unknown>).showTeam ?? DEFAULTS.showTeam),
-      showNews: Boolean((raw as Record<string, unknown>).showNews ?? DEFAULTS.showNews),
+      showNews,
       showCases: Boolean((raw as Record<string, unknown>).showCases ?? DEFAULTS.showCases),
       showServices: Boolean((raw as Record<string, unknown>).showServices ?? DEFAULTS.showServices),
       showLevels: Boolean((raw as Record<string, unknown>).showLevels ?? DEFAULTS.showLevels),
