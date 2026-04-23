@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useTransform } from "motion/react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
@@ -88,8 +88,22 @@ export function PhilosophyClients1440() {
   }, []);
   const { progress, pinPhase } = usePhilosophyPinScrollProgress(pinEl);
 
-  const enterY = (i: number) => philosophyCardEnterTranslateY(progress, i, CARD_ENTER_OFFSET_Y_1440[i]);
-  const isCardInteractive = (i: number) => i < 2 || philosophyCardStackLocalT(progress, i) > 0;
+  /**
+   * Safari-parity (D-07 motion-value drop-in): `progress` — `MotionValue<number>`.
+   * Per-card `y` и `pointerEvents` — MotionValues через `useTransform`; motion пишет в DOM по rAF,
+   * без React re-render всего поддерева на каждом кадре (Safari иначе стопорит стопку при скролле).
+   */
+  const y0 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 0, CARD_ENTER_OFFSET_Y_1440[0]));
+  const y1 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 1, CARD_ENTER_OFFSET_Y_1440[1]));
+  const y2 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 2, CARD_ENTER_OFFSET_Y_1440[2]));
+  const y3 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 3, CARD_ENTER_OFFSET_Y_1440[3]));
+  const y4 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 4, CARD_ENTER_OFFSET_Y_1440[4]));
+
+  const pe0 = useTransform(progress, () => "auto" as const);
+  const pe1 = useTransform(progress, () => "auto" as const);
+  const pe2 = useTransform(progress, (g) => (philosophyCardStackLocalT(g, 2) > 0 ? "auto" : "none"));
+  const pe3 = useTransform(progress, (g) => (philosophyCardStackLocalT(g, 3) > 0 ? "auto" : "none"));
+  const pe4 = useTransform(progress, (g) => (philosophyCardStackLocalT(g, 4) > 0 ? "auto" : "none"));
 
   return (
     /* Без overflow-x на этом предке — иначе ломается pin; горизонталь — у .page-shell на узкой ширине */
@@ -128,7 +142,7 @@ export function PhilosophyClients1440() {
               <SectionEyebrow label={philosophyClients1440Content.philosophyEyebrow} top={130} />
 
         {/* 01 Креатив */}
-        <div
+        <motion.div
           data-philosophy-card="0"
           className={`${CARD} z-[1] bg-[#0d0300]`}
           style={{
@@ -137,8 +151,8 @@ export function PhilosophyClients1440() {
             width: 640,
             height: 340,
             borderRadius: 20,
-            transform: `translate3d(0, ${enterY(0)}px, 0)`,
-            pointerEvents: isCardInteractive(0) ? "auto" : "none",
+            y: y0,
+            pointerEvents: pe0,
           }}
         >
           <div className="philosophy-scroll-card-layer pointer-events-none absolute inset-0 overflow-hidden">
@@ -182,10 +196,10 @@ export function PhilosophyClients1440() {
           <div className={`${BODY} left-[calc(50%-290px)] w-[570px] text-white`}>
             <CardBodyText inverted parts={c1.body.parts} />
           </div>
-        </div>
+        </motion.div>
 
         {/* 02 Стратегия */}
-        <div
+        <motion.div
           data-philosophy-card="1"
           className={`${CARD} z-[2] bg-[#fff4ee]`}
           style={{
@@ -194,8 +208,8 @@ export function PhilosophyClients1440() {
             width: 640,
             height: 340,
             borderRadius: 20,
-            transform: `translate3d(0, ${enterY(1)}px, 0)`,
-            pointerEvents: isCardInteractive(1) ? "auto" : "none",
+            y: y1,
+            pointerEvents: pe1,
           }}
         >
           {STRATEGY_BARS.map((b, i) => (
@@ -219,7 +233,7 @@ export function PhilosophyClients1440() {
           <div className={`${BODY} left-[calc(50%-61px)] w-[341px]`}>
             <CardBodyText parts={c2.body.parts} />
           </div>
-        </div>
+        </motion.div>
 
         {/* 03 Команда */}
         <motion.div
@@ -231,8 +245,8 @@ export function PhilosophyClients1440() {
             width: 640,
             height: 340,
             borderRadius: 20,
-            transform: `translate3d(0, ${enterY(2)}px, 0)`,
-            pointerEvents: isCardInteractive(2) ? "auto" : "none",
+            y: y2,
+            pointerEvents: pe2,
           }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -259,7 +273,7 @@ export function PhilosophyClients1440() {
         </motion.div>
 
         {/* 04 Прозрачность */}
-        <div
+        <motion.div
           data-philosophy-card="3"
           className={`${CARD} z-[4]`}
           style={{
@@ -270,8 +284,8 @@ export function PhilosophyClients1440() {
             borderRadius: 20,
             backgroundImage: philosophyCard04RadialBg,
             backgroundSize: "100% 100%",
-            transform: `translate3d(0, ${enterY(3)}px, 0)`,
-            pointerEvents: isCardInteractive(3) ? "auto" : "none",
+            y: y3,
+            pointerEvents: pe3,
           }}
         >
           <p className={`${NUM} text-white`}>{c4.id}</p>
@@ -281,10 +295,10 @@ export function PhilosophyClients1440() {
           <div className={`${BODY} left-1/2 w-[442px] -translate-x-1/2 text-center text-white`}>
             <CardBodyText inverted parts={c4.body.parts} />
           </div>
-        </div>
+        </motion.div>
 
         {/* 05 Аутентичность */}
-        <div
+        <motion.div
           data-philosophy-card="4"
           className={`${CARD} z-[5] bg-[#0d0300]`}
           style={{
@@ -293,8 +307,8 @@ export function PhilosophyClients1440() {
             width: 640,
             height: 340,
             borderRadius: 20,
-            transform: `translate3d(0, ${enterY(4)}px, 0)`,
-            pointerEvents: isCardInteractive(4) ? "auto" : "none",
+            y: y4,
+            pointerEvents: pe4,
           }}
         >
           <div
@@ -346,7 +360,7 @@ export function PhilosophyClients1440() {
           <div className={`${BODY} left-[calc(50%-290px)] z-[1] w-[580px] text-white`}>
             <CardBodyText inverted parts={c5.body.parts} />
           </div>
-        </div>
+        </motion.div>
             </div>
           </div>
         </div>

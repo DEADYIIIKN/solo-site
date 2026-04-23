@@ -1,5 +1,6 @@
 "use client";
 
+import { useMotionValue, type MotionValue } from "motion/react";
 import { useLayoutEffect, useRef, useState } from "react";
 
 /**
@@ -76,15 +77,22 @@ export function getPhilosophyPinScrollRange(pinEl: HTMLElement): { start: number
 
 /**
  * Прогресс 0→1 только пока скроллим «высоту» pin-блока (макет 1440).
- * `pinPhase`: `active` — кадр через `position:fixed` к viewport.
- * Анимация и pin только если {@link philosophyPinViewportAllowsScrollPin}; иначе — `prefers-reduced-motion` или
- * узкий viewport: `progress` 1 и фаза `static` (финальная стопка без скролл-анимации).
+ *
+ * Safari-parity (D-07 motion-value drop-in): `progress` — `MotionValue<number>`, не React state.
+ * Иначе каждый кадр скролла = setState = полный ре-рендер поддерева потребителя, Safari'овский
+ * event loop не справляется (в отличие от Chrome compositor), и все 5 карточек + ленты под ними
+ * дергаются. MotionValue обновляется через rAF и пишется в DOM (transform) напрямую.
+ *
+ * `pinPhase`: `active` — слой через `position:sticky`. Смена фазы — дискретное событие, остаётся React state.
+ * Если `prefers-reduced-motion` или узкий viewport: `progress` 1 и фаза `static` (финальная стопка).
  */
-export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
-  const [progress, setProgress] = useState(0);
+export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null): {
+  progress: MotionValue<number>;
+  pinPhase: PhilosophyPinPhase;
+} {
+  const progress = useMotionValue(0);
   /** Начало «before», не «static»: static в паре с progress 1 = финальная стопка; до первого tick путаницы меньше */
   const [pinPhase, setPinPhase] = useState<PhilosophyPinPhase>("before");
-  const lastProgressRef = useRef<number | null>(null);
   const lastPhaseRef = useRef<PhilosophyPinPhase>("before");
 
   useLayoutEffect(() => {
@@ -98,11 +106,8 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
     let rangeReady = false;
 
     const applyProgress = (next: number) => {
-      const prev = lastProgressRef.current;
-      /* Порог мельче — меньше «ступенек» при скролле; без лишних setState при совпадении */
-      if (prev !== null && Math.abs(prev - next) < 1e-5) return;
-      lastProgressRef.current = next;
-      setProgress(next);
+      /* MotionValue.set сам deduplицирует равные значения; эпсилон-фильтр больше не нужен. */
+      progress.set(next);
     };
 
     const setPhase = (next: PhilosophyPinPhase) => {
@@ -200,10 +205,9 @@ export function usePhilosophyPinScrollProgress(pinElement: HTMLElement | null) {
       window.removeEventListener("resize", scheduleTick);
       vv?.removeEventListener("resize", scheduleTick);
       ro.disconnect();
-      lastProgressRef.current = null;
       lastPhaseRef.current = "before";
     };
-  }, [pinElement]);
+  }, [pinElement, progress]);
 
   return { progress, pinPhase };
 }
