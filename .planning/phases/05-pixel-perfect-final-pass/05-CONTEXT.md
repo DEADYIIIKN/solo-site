@@ -50,6 +50,13 @@
 - **D-10:** **Изображения/ассеты — сверка по наличию и корректности.** Проверка что правильные SVG-пути используются (особенно после свопа стрелок в Phase 3), фотографии актуальные, иконки соответствуют Figma.
 - **D-11:** **Note по sub-pixel rendering:** браузерный render может давать суб-пиксельные различия при одинаковом CSS — это НЕ отклонение. Отклонение — это когда значение в коде отличается от значения в Figma. Visual screenshot diff используется для обнаружения, но источник истины для фикса — это число из Figma vs число в коде.
 
+### Sverka lessons-learned (из Wave 2, 1180 breakpoint)
+
+- **D-16:** **Figma `display:contents` flattening.** Если `get_design_context` обёртывает frame как `<div className="absolute contents ...">`, то координаты всех детей **в coords родителя этого frame**, не в local. Метаданные `x=30, y=30` в таком child — это координаты в родительской карточке, не в wrapping inner container. Обязательно сверять DOM positions от **корня article**, не от inner wrapper. Пример: services 1024 commercial card — title/subtitle/button были внутри `mx-10 mt-15` inner, рендерились со сдвигом `(+10,+15)` от Figma coords, и sverka это пропустила.
+- **D-17:** **Inter-frame bottom padding.** Figma frames имеют фиксированную `height` с пустым местом ПОСЛЕ контента (пример: frame 8 h=700, cards заканчиваются на y=580 → 120px design gap до следующего frame). Это legitimate design intent, не canvas artifact. Sverka должна включать probe: `frame.height - last-content.bottom = intended section pb` и сверять с CSS padding-bottom секции.
+- **D-18:** **Overlap-scenario gap probe.** Секции с pin-scroll / translate-based card overlap (services, levels) требуют явного probe видимого зазора между элементами в финальном (after-slide) положении: `next-card.top - prev-card.last-visible-content.bottom`. Визуальная сверка screenshot этого не ловит — нужен DOM probe после scroll в pin-end.
+- **D-19:** **CSS line-box vs Figma glyph-bbox для многострочных заголовков.** `leading < 1.0` + multiline → CSS line-box на 6-8px выше Figma `height` (из-за ascender/descender padding). `getBoundingClientRect().height` ≠ Figma h. Если gap в макете ≤20px (title bottom → next element top), **обязателен визуальный probe глифов**, не line-box. Применять ко всем многострочным заголовкам с tight leading, не только footer.
+
 ### Discovery + Fix flow
 
 - **D-12:** **Discovery и Fix в одной фазе.** Найденное отклонение сразу фиксится в том же wave/plan, если правка локальная (одно свойство CSS, одна константа, один SVG path). Фаза закрывается только когда все 4 success criteria TRUE на живом сайте.

@@ -20,6 +20,18 @@ wave: 2
 |---|---|---|---|
 | team | stats 48→38px font, leading-none→leading-[1.4], gap 6→16, grid→flex justify-between | 783:8923 | dbf6390 |
 | services | vertical hero title 28→32px tracking -0.56→-0.64; subtitle 15→16px (wrap «Вертикальный видеоконтент / для социальных сетей») | 783:8503/8502 | 3a57758 |
+| services | CTA text 14→16/px-8→40, '02' right 10→20 | 783:8467/8463 | 4469837 |
+| services | CTA vertical padding pt-22/pb-20, '02' right→0 post-restructure | 783:8467/8463 | 83034ab |
+| services | commercial card restructure (title/subtitle/button/SVG в card coords, D-16) | 783:8460 | 125709a |
+| services | vertical card restructure (title/subtitle/button/SVG/package в card coords) | 783:8421 | 1c30905 |
+| cases | inter-frame bottom pb-10→pb-120 (D-17) | 783:8569 | e0b2a66 |
+
+## Lessons learned (propagated to 05-CONTEXT.md)
+
+- **D-16:** Figma `display:contents` flattening — дети `<div className="absolute contents">` frame в coords родителя, не local. Sverka должна сверять DOM positions от корня article, не inner wrapper.
+- **D-17:** Inter-frame bottom padding — `frame.height - last-content.bottom` = legitimate section pb, не canvas artifact. Probe обязателен.
+- **D-18:** Overlap-scenario gap probe — секции с pin-scroll / translate overlap требуют DOM probe видимого зазора после scroll в pin-end.
+- **D-19:** CSS line-box vs Figma glyph-bbox для многострочных заголовков с tight leading (~6-8px diff); при gap ≤20px — визуальный probe глифов.
 
 ## Sections verified `ok` (no deviation)
 
