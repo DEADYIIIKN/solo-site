@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: Phase 5 context gathered
-last_updated: "2026-04-23T11:53:07.443Z"
-last_activity: "2026-04-23 -- Phase 4 closed (Safari + Animations: motion migration + atomic boneyard teardown)"
+last_updated: "2026-04-23T11:57:26.196Z"
+last_activity: 2026-04-23 -- Phase 05 execution started
 progress:
   total_phases: 6
   completed_phases: 4
-  total_plans: 23
-  completed_plans: 18
+  total_plans: 24
+  completed_plans: 21
   percent: 78
 ---
 
@@ -21,13 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** Phase 5 — Pixel-Perfect Final Pass (next)
+**Current focus:** Phase 05 — pixel-perfect-final-pass
 
 ## Current Position
 
-Phase: 4 — COMPLETE (2026-04-23)
+Phase: 05 (pixel-perfect-final-pass) — EXECUTING
+Plan: 4 of 6 (Wave 4 — 360 sverka)
 Next: Phase 5 (Pixel-Perfect Final Pass) — not started
-Last activity: 2026-04-23 -- Phase 4 closed (Safari + Animations: motion migration + atomic boneyard teardown)
+Last activity: 2026-04-23 -- Phase 05 execution started
 
 Progress: [███████░░░] 67%
 

@@ -6,10 +6,10 @@
 <domain>
 ## Phase Boundary
 
-Финальный pixel-perfect проход по всем секциям страницы на 4 брейкпоинтах (1440 / 1180 / 820 / 360) против Figma листа «Адаптивы актуальные». Цель — закрыть PX-01..PX-04 так, чтобы Figma MCP sverka на каждом брейкпоинте не находила визуальных отклонений сверх tolerance.
+Финальный pixel-perfect проход по всем секциям страницы на 5 брейкпоинтах (1440 / 1180 / 820 / 480 / 360) против Figma листа «Адаптивы актуальные». Цель — закрыть PX-01..PX-05 так, чтобы Figma MCP sverka на каждом брейкпоинте не находила визуальных отклонений сверх tolerance.
 
 **В scope:**
-- Сверка всех секций (hero, business-goals, services, cases, team, philosophy-clients, levels, footer, форма) на всех 4 брейкпоинтах
+- Сверка всех секций (hero, business-goals, services, cases, team, philosophy-clients, levels, footer, форма) на всех 5 брейкпоинтах
 - Static-состояние секций (default visual, как на Figma)
 - Параметры сверки: размеры/отступы, типографика, цвета/тени, изображения/ассеты
 - Фиксы найденных отклонений прямо в этой фазе
@@ -28,7 +28,7 @@
 
 ### Методология sverka
 
-- **D-01:** **Порядок обхода — по брейкпоинтам.** Сначала все секции на 1440px → затем 1180px → 820px → 360px. Преимущество: `preview_resize` держится длительно на одном viewport, меньше переключений контекста между viewport-специфичными компонентами.
+- **D-01:** **Порядок обхода — по брейкпоинтам.** Сначала все секции на 1440px → затем 1180px → 820px → 480px → 360px. Преимущество: `preview_resize` держится длительно на одном viewport, меньше переключений контекста между viewport-специфичными компонентами.
 - **D-02:** **Формат сравнения — Figma MCP + preview_screenshot + get_variable_defs.** Для каждой секции на каждом брейкпоинте:
   1. `mcp__Figma__get_screenshot` на соответствующий Figma-нод (лист «Адаптивы актуальные»)
   2. `mcp__Figma__get_variable_defs` / `get_design_context` для точных числовых значений (gap, padding, font-size, color tokens)
@@ -39,7 +39,7 @@
 
 ### Output
 
-- **D-05:** **Единый `05-SVERKA-REPORT.md`** в директории фазы. Формат — таблица отклонений с колонками: `Breakpoint | Section | Type (size/typography/color/asset) | Figma value | Current code value | File:line | Status (fixed/deferred/backlog)`. Один файл даёт единый источник истины по всем 4 брейкпоинтам и упрощает трекинг.
+- **D-05:** **Единый `05-SVERKA-REPORT.md`** в директории фазы. Формат — таблица отклонений с колонками: `Breakpoint | Section | Type (size/typography/color/asset) | Figma value | Current code value | File:line | Status (fixed/deferred/backlog)`. Один файл даёт единый источник истины по всем 5 брейкпоинтам и упрощает трекинг.
 - **D-06:** Отчёт обновляется инкрементально по мере прохождения брейкпоинтов. После завершения фазы — отчёт финализируется и остаётся как артефакт фазы.
 
 ### Tolerance и что считается отклонением
@@ -59,13 +59,13 @@
 
 ### Discovery + Fix flow
 
-- **D-12:** **Discovery и Fix в одной фазе.** Найденное отклонение сразу фиксится в том же wave/plan, если правка локальная (одно свойство CSS, одна константа, один SVG path). Фаза закрывается только когда все 4 success criteria TRUE на живом сайте.
+- **D-12:** **Discovery и Fix в одной фазе.** Найденное отклонение сразу фиксится в том же wave/plan, если правка локальная (одно свойство CSS, одна константа, один SVG path). Фаза закрывается только когда все 5 success criteria TRUE на живом сайте.
 - **D-13:** **Fix budget для одной правки — до 30 строк изменений в одном файле.** Если фикс требует большего (например рефакторинг absolute позиций всей секции levels) — отклонение документируется в `05-SVERKA-REPORT.md` со статусом `deferred`, заводится запись в «Deferred Ideas» и предлагается отдельная фаза / backlog item. Не тащим рефакторинг в Phase 5.
 - **D-14:** **Если критическая находка требует изменения паттерна** (например все карточки на 820px используют неверный token) — `[BLOCKING] checkpoint`: исполнитель останавливается, сообщает пользователю, пользователь принимает решение «фиксим сейчас / выносим».
 
 ### Порядок плана (structure, не обязательно wave count)
 
-- **D-15:** **Логическое разбиение по брейкпоинтам** (4 плана минимум: по одному на брейкпоинт) — так легче атомарно коммитить прогресс и откатывать при проблемах. Planner может добавить отдельный план на финальное обновление `05-SVERKA-REPORT.md` и verification.
+- **D-15:** **Логическое разбиение по брейкпоинтам** (5 планов минимум: по одному на брейкпоинт) — так легче атомарно коммитить прогресс и откатывать при проблемах. Planner может добавить отдельный план на финальное обновление `05-SVERKA-REPORT.md` и verification.
 
 ### Claude's Discretion
 
@@ -81,8 +81,8 @@
 **Downstream agents MUST read these before planning or implementing.**
 
 ### Requirements & Roadmap
-- `.planning/REQUIREMENTS.md` §Pixel-Perfect (Figma) — критерии PX-01..PX-04
-- `.planning/ROADMAP.md` §Phase 5 — goal и success criteria (Figma MCP sverka на 4 брейкпоинтах)
+- `.planning/REQUIREMENTS.md` §Pixel-Perfect (Figma) — критерии PX-01..PX-05
+- `.planning/ROADMAP.md` §Phase 5 — goal и success criteria (Figma MCP sverka на 5 брейкпоинтах)
 - `.planning/PROJECT.md` — общий контекст проекта, Figma URL
 
 ### Прошлые фазы (паттерны и контекст)

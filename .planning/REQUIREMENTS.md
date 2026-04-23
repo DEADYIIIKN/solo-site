@@ -58,6 +58,7 @@
 - [ ] **PX-02**: Все блоки на 1180px соответствуют дизайну Figma
 - [ ] **PX-03**: Все блоки на 820px соответствуют дизайну Figma
 - [ ] **PX-04**: Все блоки на 360px соответствуют дизайну Figma
+- [ ] **PX-05**: Все блоки на 480px соответствуют дизайну Figma
 
 ### Stack Audit
 
@@ -123,6 +124,7 @@
 | PX-02 | Phase 5 | Pending |
 | PX-03 | Phase 5 | Pending |
 | PX-04 | Phase 5 | Pending |
+| PX-05 | Phase 5 | Pending |
 | AUDIT-01 | Phase 1 | Pending |
 | AUDIT-02 | Phase 1 | Pending |
 | TEST-01 | Phase 6 | Pending |

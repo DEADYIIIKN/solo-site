@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 2: Desktop Layout (1440px + 1180px)** - Align desktop and iPad-horizontal breakpoints with Figma
 - [ ] **Phase 3: Mobile/Tablet Layout (820px + 360px)** - Align tablet-portrait and mobile breakpoints with Figma
 - [x] **Phase 4: Safari + Animations** - Make animations and transitions work identically in Safari and Chrome
-- [ ] **Phase 5: Pixel-Perfect Final Pass** - Full Figma sverka across all four breakpoints
+- [ ] **Phase 5: Pixel-Perfect Final Pass** - Full Figma sverka across all five breakpoints (1440/1180/820/480/360)
 - [ ] **Phase 6: Testing** - E2E, cross-browser, and unit test coverage for forms and animations
 
 ## Phase Details
@@ -94,15 +94,16 @@ Plans:
 - [x] 04-06-PLAN.md — Atomic teardown (Pattern E): delete BoneyardSkeleton + src/bones + layout import + boneyard-js from package.json
 
 ### Phase 5: Pixel-Perfect Final Pass
-**Goal**: Every visible section on all four breakpoints matches the Figma "Адаптивы актуальные" sheet at pixel level after Figma MCP sverka
+**Goal**: Every visible section on all five breakpoints matches the Figma "Адаптивы актуальные" sheet at pixel level after Figma MCP sverka
 **Depends on**: Phase 4
-**Requirements**: PX-01, PX-02, PX-03, PX-04
+**Requirements**: PX-01, PX-02, PX-03, PX-04, PX-05
 **Success Criteria** (what must be TRUE):
   1. A Figma MCP sverka pass on 1440px finds no visual deviations beyond accepted tolerance
   2. A Figma MCP sverka pass on 1180px finds no visual deviations beyond accepted tolerance
   3. A Figma MCP sverka pass on 820px finds no visual deviations beyond accepted tolerance
-  4. A Figma MCP sverka pass on 360px finds no visual deviations beyond accepted tolerance
-**Plans**: 5 plans
+  4. A Figma MCP sverka pass on 480px finds no visual deviations beyond accepted tolerance
+  5. A Figma MCP sverka pass on 360px finds no visual deviations beyond accepted tolerance
+**Plans**: 6 plans
 **UI hint**: yes
 
 Plans:
@@ -110,7 +111,8 @@ Plans:
 - [ ] 05-02-PLAN.md — Breakpoint 1180 sverka + fixes [BLOCKING user review]
 - [ ] 05-03-PLAN.md — Breakpoint 820 sverka + fixes [BLOCKING user review]
 - [ ] 05-04-PLAN.md — Breakpoint 360 sverka + fixes [BLOCKING user review]
-- [ ] 05-05-PLAN.md — Finalize SVERKA-REPORT + update planning artifacts [BLOCKING final UAT]
+- [ ] 05-05-PLAN.md — Breakpoint 480 sverka + fixes [BLOCKING user review]
+- [ ] 05-06-PLAN.md — Finalize SVERKA-REPORT + update planning artifacts [BLOCKING final UAT]
 
 ### Phase 6: Testing
 **Goal**: Key user journeys and components are covered by automated tests that will catch regressions in CI
@@ -133,5 +135,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Desktop Layout (1440px + 1180px) | 3/3 | Complete | 2026-04-22 |
 | 3. Mobile/Tablet Layout (820px + 360px) | 5/5 | Complete | 2026-04-22 |
 | 4. Safari + Animations | 6/6 | Complete | 2026-04-23 |
-| 5. Pixel-Perfect Final Pass | 0/5 | Not started | - |
+| 5. Pixel-Perfect Final Pass | 0/6 | In Progress | - |
 | 6. Testing | 0/TBD | Not started | - |
