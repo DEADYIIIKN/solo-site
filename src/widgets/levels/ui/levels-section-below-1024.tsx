@@ -14,10 +14,10 @@ function IntroText({
 }) {
   const { introBefore, introItalic, introAfter } = levelsCopy;
   return (
-    <p className={cn("m-0 text-[0px] font-bold leading-[0] text-[#0d0300]", className)}>
-      <span className={cn("leading-none", textClassName)}>{introBefore}</span>
-      <span className={cn("font-normal italic leading-none", textClassName)}>{introItalic}</span>
-      <span className={cn("leading-none", textClassName)}>{introAfter}</span>
+    <p className={cn("m-0 font-bold leading-[1.1] text-[#0d0300]", className)}>
+      <span className={textClassName}>{introBefore}</span>
+      <span className={cn("font-normal italic", textClassName)}>{introItalic}</span>
+      <span className={textClassName}>{introAfter}</span>
     </p>
   );
 }
@@ -31,10 +31,10 @@ function OutroText({
 }) {
   const { outroBefore, outroItalic, outroAfter } = levelsCopy;
   return (
-    <p className={cn("m-0 text-[0px] font-bold leading-[0] text-[#0d0300]", className)}>
-      <span className={cn("leading-none", textClassName)}>{outroBefore}</span>
-      <span className={cn("font-normal italic leading-none", textClassName)}>{outroItalic}</span>
-      <span className={cn("leading-none", textClassName)}>{outroAfter}</span>
+    <p className={cn("m-0 font-bold leading-[1.1] text-[#0d0300]", className)}>
+      <span className={textClassName}>{outroBefore}</span>
+      <span className={cn("font-normal italic", textClassName)}>{outroItalic}</span>
+      <span className={textClassName}>{outroAfter}</span>
     </p>
   );
 }
