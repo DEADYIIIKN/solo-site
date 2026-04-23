@@ -238,7 +238,7 @@ export function CasesSection1024({
       />
       <div className="relative flex w-full justify-center">
         <CasesSectionBackgroundGrid />
-        <div className="relative w-full max-w-[1024px] overflow-x-clip pb-10">
+        <div className="relative w-full max-w-[1024px] overflow-x-clip pb-[120px]">
           <div className="relative z-[1] px-10">
             <div className="grid items-start pt-[120px]" style={{ gridTemplateColumns: gridCols }}>
               <div className="flex min-w-0 justify-start">
