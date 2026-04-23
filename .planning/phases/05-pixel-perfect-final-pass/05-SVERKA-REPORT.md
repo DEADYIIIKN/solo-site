@@ -23,6 +23,9 @@
 | 1440 | team | typography | stat-value line-height: leading-none → leading-[1.4] (Figma 783:9613) | fixed | src/widgets/team/ui/team-section-1440.tsx:64 | fixed |
 | 1440 | team | size | stats gap между value и label: gap-[8px] → gap-[16px] (Figma) | fixed | src/widgets/team/ui/team-section-1440.tsx:60 | fixed |
 | 1440 | team | — | photo 1160×400 rounded-12, manifesto 50px italic mix, headline 40px 3-span construction, eyebrow row 80/140 — match Figma 783:9610/9607 | matches | src/widgets/team/ui/team-section-1440.tsx | ok |
+| 1440 | philosophy-clients | — | card positions {0:433/90, 1:563/171, 2:140/252, 3:325/333, 4:660/414} ×640/340 radius 20; eyebrow top=130/left=140; pre-stack 458 / hidden 930 соответствуют Figma 783:9294 | matches | src/widgets/philosophy-clients/ui/philosophy-clients-1440.tsx | ok |
+| 1440 | levels | size | intro y=140, step-labels {270, 390, 508}, outro bottom=730, frame h=810 (Figma 783:9122) — были смещены на −76px | shifted +76px; min-h 720→810 | src/widgets/levels/ui/levels-section-1440.tsx:47,51,100,113,125,138 | fixed |
+| 1440 | levels | — | bars left {715, 910, 1105} h {250, 370, 490} w=195 (Figma 783:9124) | matches | src/widgets/levels/ui/levels-section-1440.tsx:65-96 | ok |
 
 ## Breakpoint 1180px
 
