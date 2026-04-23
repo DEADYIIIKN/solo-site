@@ -7,8 +7,14 @@ import { teamSectionContent } from "@/widgets/team/model/team.data";
 import { TeamSectionPhoto } from "@/widgets/team/ui/team-section-photo";
 import { TeamStatValue, useInViewOnce } from "@/widgets/team/ui/team-shared";
 
-/** Figma 783:9611 — ширины колонок под порядок 5+, 3+, 177, 30+ */
-const TEAM_STATS_1440_COL_WIDTHS = ["w-[193px]", "w-[213px]", "w-[214px]", "w-[182px]"] as const;
+/** Figma 783:9611 — абсолютные позиции stats (data order: 5+, 3+, 177, 30+).
+ *  Визуальный порядок в макете: 5+@0, 3+@322, 30+@654, 177@945. */
+const TEAM_STATS_1440_LAYOUT = [
+  { left: 0, width: 193 },   // 5+ лет
+  { left: 322, width: 213 }, // 3+ млн
+  { left: 945, width: 214 }, // 177
+  { left: 654, width: 182 }, // 30+
+] as const;
 
 export function TeamSection1440() {
   const [headerRef, headerInView] = useInViewOnce<HTMLDivElement>();
@@ -52,26 +58,27 @@ export function TeamSection1440() {
           ref={statsRef}
           style={{ transitionDelay: statsInView ? "80ms" : "0ms" }}
         >
-          <div className="flex w-[1159px] max-w-full shrink-0 justify-between self-center">
-            {teamSectionContent.stats.map((stat, i) => (
-              <div
-                className={cn(
-                  "flex shrink-0 flex-col items-center gap-[8px] text-center text-[#0d0300]",
-                  TEAM_STATS_1440_COL_WIDTHS[i],
-                )}
-                key={stat.label}
-              >
-                <p className="w-full whitespace-nowrap text-center text-[60px] font-bold leading-none tracking-[-1.2px]">
-                  <TeamStatValue
-                    active={statsInView}
-                    format={stat.format}
-                    suffix={stat.suffix}
-                    target={stat.target}
-                  />
-                </p>
-                <p className="w-full text-[16px] font-normal leading-[1.2]">{stat.label}</p>
-              </div>
-            ))}
+          <div className="relative h-[120px] w-[1159px] max-w-full shrink-0 self-center">
+            {teamSectionContent.stats.map((stat, i) => {
+              const pos = TEAM_STATS_1440_LAYOUT[i];
+              return (
+                <div
+                  className="absolute top-0 flex flex-col items-center gap-[16px] text-center text-[#0d0300]"
+                  key={stat.label}
+                  style={{ left: `${pos.left}px`, width: `${pos.width}px` }}
+                >
+                  <p className="w-full whitespace-nowrap text-center text-[60px] font-bold leading-[1.4] tracking-[-1.2px]">
+                    <TeamStatValue
+                      active={statsInView}
+                      format={stat.format}
+                      suffix={stat.suffix}
+                      target={stat.target}
+                    />
+                  </p>
+                  <p className="w-full text-[16px] font-normal leading-[1.2]">{stat.label}</p>
+                </div>
+              );
+            })}
           </div>
 
           <TeamSectionPhoto frameClassName="h-[400px] w-[1160px] shrink-0" />
