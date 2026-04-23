@@ -49,10 +49,10 @@ export function TeamSection1024() {
           ref={statsRef}
           style={{ transitionDelay: statsInView ? "80ms" : "0ms" }}
         >
-          <div className="grid w-full grid-cols-4 gap-x-3">
+          <div className="flex w-full items-start justify-between">
             {teamSectionContent.stats.map((stat) => (
-              <div className="flex min-w-0 flex-col items-center gap-[6px] text-center text-[#0d0300]" key={stat.label}>
-                <p className="w-full whitespace-nowrap text-center text-[48px] font-bold leading-none tracking-[-0.8px]">
+              <div className="flex min-w-0 flex-col items-center gap-[16px] text-center text-[#0d0300]" key={stat.label}>
+                <p className="whitespace-nowrap text-center text-[38px] font-bold leading-[1.4] tracking-[-0.76px]">
                   <TeamStatValue
                     active={statsInView}
                     format={stat.format}
@@ -60,7 +60,7 @@ export function TeamSection1024() {
                     target={stat.target}
                   />
                 </p>
-                <p className="w-full text-[14px] font-normal leading-[1.2]">{stat.label}</p>
+                <p className="whitespace-nowrap text-center text-[14px] font-normal leading-[1.2]">{stat.label}</p>
               </div>
             ))}
           </div>
