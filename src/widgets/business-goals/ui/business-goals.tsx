@@ -1023,7 +1023,7 @@ export function BusinessGoals() {
           </SectionEyebrowRow>
         </div>
 
-        <div className="absolute left-[1220px] top-[140px] z-20 flex h-[34px] w-[80px] items-center gap-[12px]">
+        <div className="absolute left-[1300px] top-[174px] z-20 flex h-[34px] w-[80px] items-center gap-[12px]">
           <button
             aria-disabled={activeIndex === 0}
             className={`inline-flex size-[34px] items-center justify-center rounded-full border-0 p-0 transition-colors duration-300 ${
