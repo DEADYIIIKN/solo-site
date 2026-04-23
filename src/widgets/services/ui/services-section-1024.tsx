@@ -296,7 +296,7 @@ function CommercialCard1024() {
           />
         </div>
         <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[28px] font-bold leading-[0.9] tracking-[-0.56px] text-[#0d0300]"
+          className="absolute z-[3] m-0 max-w-[681px] text-[32px] font-bold leading-[0.9] tracking-[-0.64px] text-[#0d0300]"
           style={{ left: C_HERO_1024.title.left, top: C_HERO_1024.title.top }}
         >
           <span className="font-normal italic">{c.titleItalic}</span>
@@ -306,7 +306,7 @@ function CommercialCard1024() {
           </span>
         </p>
         <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[15px] font-normal leading-[1.2] text-[#0d0300]"
+          className="absolute z-[3] m-0 max-w-[681px] text-[16px] font-normal leading-[1.2] text-[#0d0300]"
           style={{ left: C_HERO_1024.subtitle.left, top: C_HERO_1024.subtitle.top }}
         >
           {c.subtitle}
