@@ -52,7 +52,6 @@ export function LevelsBarUnfold({
         transitionDuration: reduceMotion ? "0ms" : `${LEVELS_BAR_UNFOLD_DURATION_MS}ms`,
         transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
         transitionDelay: `${delayMs}ms`,
-        willChange: reduceMotion ? undefined : "clip-path",
       }}
     >
       <LevelsGradientBar width={width} height={height} opacityPct={opacityPct} />
