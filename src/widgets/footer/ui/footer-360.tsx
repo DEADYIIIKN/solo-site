@@ -93,7 +93,7 @@ export function Footer360({
           </div>
 
           {/* Blog cards slider */}
-          <div className="overflow-hidden">
+          <div className="overflow-visible">
             <div
               className="flex gap-[10px] transition-transform duration-300 ease-in-out"
               style={{ transform: `translateX(${-slideIndex * SLIDE_STEP}px)` }}
