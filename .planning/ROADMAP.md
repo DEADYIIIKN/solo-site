@@ -102,8 +102,15 @@ Plans:
   2. A Figma MCP sverka pass on 1180px finds no visual deviations beyond accepted tolerance
   3. A Figma MCP sverka pass on 820px finds no visual deviations beyond accepted tolerance
   4. A Figma MCP sverka pass on 360px finds no visual deviations beyond accepted tolerance
-**Plans**: TBD
+**Plans**: 5 plans
 **UI hint**: yes
+
+Plans:
+- [ ] 05-01-PLAN.md — Breakpoint 1440 sverka + fixes [BLOCKING user review]
+- [ ] 05-02-PLAN.md — Breakpoint 1180 sverka + fixes [BLOCKING user review]
+- [ ] 05-03-PLAN.md — Breakpoint 820 sverka + fixes [BLOCKING user review]
+- [ ] 05-04-PLAN.md — Breakpoint 360 sverka + fixes [BLOCKING user review]
+- [ ] 05-05-PLAN.md — Finalize SVERKA-REPORT + update planning artifacts [BLOCKING final UAT]
 
 ### Phase 6: Testing
 **Goal**: Key user journeys and components are covered by automated tests that will catch regressions in CI
@@ -126,5 +133,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Desktop Layout (1440px + 1180px) | 3/3 | Complete | 2026-04-22 |
 | 3. Mobile/Tablet Layout (820px + 360px) | 5/5 | Complete | 2026-04-22 |
 | 4. Safari + Animations | 6/6 | Complete | 2026-04-23 |
-| 5. Pixel-Perfect Final Pass | 0/TBD | Not started | - |
+| 5. Pixel-Perfect Final Pass | 0/5 | Not started | - |
 | 6. Testing | 0/TBD | Not started | - |
