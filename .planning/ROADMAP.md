@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 1: Quick Wins + Stack Audit** - Fix all form bugs blocking users, document stack and animation audit decisions
 - [ ] **Phase 2: Desktop Layout (1440px + 1180px)** - Align desktop and iPad-horizontal breakpoints with Figma
 - [ ] **Phase 3: Mobile/Tablet Layout (820px + 360px)** - Align tablet-portrait and mobile breakpoints with Figma
-- [ ] **Phase 4: Safari + Animations** - Make animations and transitions work identically in Safari and Chrome
+- [x] **Phase 4: Safari + Animations** - Make animations and transitions work identically in Safari and Chrome
 - [ ] **Phase 5: Pixel-Perfect Final Pass** - Full Figma sverka across all four breakpoints
 - [ ] **Phase 6: Testing** - E2E, cross-browser, and unit test coverage for forms and animations
 
@@ -86,12 +86,12 @@ Plans:
 **Plans**: 6 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Install motion@^12.38.0 and wire <MotionConfig reducedMotion="user"> in site layout
-- [ ] 04-02-PLAN.md — Migrate team-section-photo to motion.div fade (Pattern A, simplest consumer)
-- [ ] 04-03-PLAN.md — Migrate philosophy-clients-narrow-stack team card (card 03) to motion.div; useInViewOnce untouched
-- [ ] 04-04-PLAN.md — Migrate cases-section-360/480/768 cards (VerticalCard + AdCard) to motion.article — Pattern A + D
-- [ ] 04-05-PLAN.md — Migrate cases-section-1024/1440 and philosophy-clients-1024/1440 team card (Patterns A + B + C) + Safari UAT D-11 checkpoint + optional D-07 drop-in
-- [ ] 04-06-PLAN.md — Atomic teardown (Pattern E): delete BoneyardSkeleton + src/bones + layout import + boneyard-js from package.json
+- [x] 04-01-PLAN.md — Install motion@^12.38.0 and wire <MotionConfig reducedMotion="user"> in site layout
+- [x] 04-02-PLAN.md — Migrate team-section-photo to motion.div fade (Pattern A, simplest consumer)
+- [x] 04-03-PLAN.md — Migrate philosophy-clients-narrow-stack team card (card 03) to motion.div; useInViewOnce untouched
+- [x] 04-04-PLAN.md — Migrate cases-section-360/480/768 cards (VerticalCard + AdCard) to motion.article — Pattern A + D
+- [x] 04-05-PLAN.md — Migrate cases-section-1024/1440 and philosophy-clients-1024/1440 team card (Patterns A + B + C) + Safari UAT D-11 checkpoint + optional D-07 drop-in
+- [x] 04-06-PLAN.md — Atomic teardown (Pattern E): delete BoneyardSkeleton + src/bones + layout import + boneyard-js from package.json
 
 ### Phase 5: Pixel-Perfect Final Pass
 **Goal**: Every visible section on all four breakpoints matches the Figma "Адаптивы актуальные" sheet at pixel level after Figma MCP sverka
@@ -125,6 +125,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Quick Wins + Stack Audit | 4/4 | Complete | 2026-04-22 |
 | 2. Desktop Layout (1440px + 1180px) | 3/3 | Complete | 2026-04-22 |
 | 3. Mobile/Tablet Layout (820px + 360px) | 5/5 | Complete | 2026-04-22 |
-| 4. Safari + Animations | 0/6 | Not started | - |
+| 4. Safari + Animations | 6/6 | Complete | 2026-04-23 |
 | 5. Pixel-Perfect Final Pass | 0/TBD | Not started | - |
 | 6. Testing | 0/TBD | Not started | - |
