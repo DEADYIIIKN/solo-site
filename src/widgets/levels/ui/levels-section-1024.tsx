@@ -55,7 +55,7 @@ export function LevelsUnified1024() {
       </p>
 
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[415px] overflow-visible">
-        <div className="absolute left-[calc(75%-330px)] top-0 z-[1] flex items-start justify-center">
+        <div className="absolute left-[620px] top-0 z-[1] flex items-start justify-center">
           <LevelsBarUnfold
             delayMs={barStart(0)}
             height={235}
@@ -65,7 +65,7 @@ export function LevelsUnified1024() {
             width={182}
           />
         </div>
-        <div className="absolute left-[calc(75%-148px)] top-0 z-[2] flex items-start justify-center">
+        <div className="absolute left-[802px] top-0 z-[2] flex items-start justify-center">
           <LevelsBarUnfold
             delayMs={barStart(1)}
             height={321}
@@ -75,7 +75,7 @@ export function LevelsUnified1024() {
             width={182}
           />
         </div>
-        <div className="absolute left-[calc(75%+34px)] top-0 z-[3] flex items-start justify-center">
+        <div className="absolute left-[984px] top-0 z-[3] flex items-start justify-center">
           <LevelsBarUnfold
             delayMs={barStart(2)}
             height={415}
