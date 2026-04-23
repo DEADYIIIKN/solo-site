@@ -259,21 +259,20 @@ function AccordionCard({
         >
           {card.id}
         </p>
-        <div
-          className="pointer-events-none absolute left-1/2 top-1/2 z-20 overflow-visible"
+        <p
+          className={`pointer-events-none absolute left-1/2 z-20 m-0 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white ${is1024 ? "bottom-[20px]" : "bottom-[30px]"}`}
           style={{
+            writingMode: "sideways-lr",
             opacity: active ? 0 : 1,
             transform: active
-              ? `translate3d(calc(-50% + ${verticalLabelOffsetPx}px),-50%,0)`
-              : "translate3d(-50%,-50%,0)",
+              ? `translate3d(calc(-50% + ${verticalLabelOffsetPx}px),0,0)`
+              : "translate3d(-50%,0,0)",
             transition: `opacity 180ms ease-out, transform 420ms ${premiumEase}`,
             willChange: "opacity,transform",
           }}
         >
-          <p className="m-0 -rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
-            {card.label}
-          </p>
-        </div>
+          {card.label}
+        </p>
         <div
           className="absolute inset-0"
           style={{
@@ -284,8 +283,9 @@ function AccordionCard({
           }}
         >
           <div
-            className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : `left-[30px] bottom-[120px] ${cardIndex === 3 ? "w-[390px]" : "w-[470px]"} text-[50px] tracking-[-0.5px]`} lowercase leading-[0.9] text-white`}
+            className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : `left-[30px] top-[30px] text-[50px] tracking-[-0.5px]`} lowercase leading-[0.9] text-white`}
             style={{
+              width: is1024 ? undefined : `${[415, 646, 415, 646][cardIndex ?? 0]}px`,
               opacity: active ? 1 : 0,
               transform: active
                 ? "translate3d(0,0,0)"
@@ -294,13 +294,50 @@ function AccordionCard({
               willChange: "transform,opacity",
             }}
           >
-            <p className={`m-0 ${!is1024 && cardIndex === 3 ? "font-normal" : "font-bold"}`}>{card.titlePrimary}</p>
-            <p className="m-0 font-normal italic">{card.titleAccent}</p>
-            {"titleSuffix" in card && card.titleSuffix ? <p className="m-0 font-bold">{card.titleSuffix}</p> : null}
+            {is1024 ? (
+              <>
+                <p className={`m-0 ${cardIndex === 3 ? "font-normal" : "font-bold"}`}>{card.titlePrimary}</p>
+                <p className="m-0 font-normal italic">{card.titleAccent}</p>
+                {"titleSuffix" in card && card.titleSuffix ? <p className="m-0 font-bold">{card.titleSuffix}</p> : null}
+              </>
+            ) : cardIndex === 0 ? (
+              <>
+                <p className="m-0 font-bold">Система видеоконтента</p>
+                <p className="m-0 font-normal italic">для соцсетей</p>
+              </>
+            ) : cardIndex === 1 ? (
+              <>
+                <p className="m-0">
+                  <span className="font-bold">Видео для </span>
+                  <span className="font-normal italic">контекстной</span>
+                </p>
+                <p className="m-0">
+                  <span className="font-normal italic">и таргетированной</span>
+                  <span className="font-bold"> рекламы</span>
+                </p>
+              </>
+            ) : cardIndex === 2 ? (
+              <>
+                <p className="m-0">
+                  <span className="font-bold">Крупные </span>
+                  <span className="font-normal italic">рекламные</span>
+                </p>
+                <p className="m-0">
+                  <span className="font-normal italic">и имиджевые</span>
+                  <span className="font-bold"> ролики</span>
+                </p>
+              </>
+            ) : (
+              <p className="m-0 whitespace-normal">
+                <span className="font-normal italic">Полный цикл: </span>
+                <span className="font-bold">стратегия, креатив, съемка, аналитика</span>
+              </p>
+            )}
           </div>
           <p
-            className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}
+            className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[40px] left-[30px] text-[17px]"} font-normal leading-[1.2] text-white`}
             style={{
+              width: is1024 ? undefined : `${[281, 243, 292, 248][cardIndex ?? 0]}px`,
               opacity: active ? 1 : 0,
               transform: active ? "translate3d(0,0,0)" : "translate3d(0,10px,0)",
               transition: `transform 420ms ${premiumEase} 90ms, opacity 200ms ease-out 90ms`,
