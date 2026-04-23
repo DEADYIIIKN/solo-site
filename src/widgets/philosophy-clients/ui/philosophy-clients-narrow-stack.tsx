@@ -292,8 +292,8 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
             className={cn(
               "absolute -translate-x-1/2",
               is360
-                ? "left-[calc(50%-10.5px)] top-1/2 h-[244px] w-[439px] -translate-y-1/2"
-                : "left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-y-1/2",
+                ? "left-1/2 top-1/2 h-[244px] w-[439px] -translate-y-1/2"
+                : "left-1/2 top-1/2 h-[319px] w-[571px] -translate-y-1/2",
             )}
           >
             <Image
