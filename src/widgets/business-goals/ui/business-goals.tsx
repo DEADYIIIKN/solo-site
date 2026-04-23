@@ -967,12 +967,13 @@ export function BusinessGoals() {
     function updateCtaVisibility() {
       const section = document.getElementById("business-goals-section");
       if (!section || section.getClientRects().length === 0) {
-        setCtaVisible(false);
         return;
       }
 
       const rect = section.getBoundingClientRect();
-      setCtaVisible(rect.top <= window.innerHeight && rect.bottom > 0);
+      if (rect.top <= window.innerHeight && rect.bottom > 0) {
+        setCtaVisible(true);
+      }
     }
 
     function scheduleUpdate() {
