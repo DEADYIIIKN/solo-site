@@ -56,7 +56,7 @@ export function FirstScreenHero1440({ onConsultationCtaClick }: FirstScreenHero1
           {firstScreenContent.geoLabel}
         </p>
 
-        <div className="absolute left-[118px] top-[684px] size-[56px] overflow-visible">
+        <div className="absolute left-[118px] top-[690px] size-[56px] overflow-visible">
           <div className="absolute inset-[-214.29%] overflow-visible">
             <FirstScreenGeoGlow blur={60} cx={148} cy={148} filterId="geo-blur-1440" r={28} size={296} />
           </div>
