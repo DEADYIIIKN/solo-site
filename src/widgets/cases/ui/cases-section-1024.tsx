@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- svg стрелки и иконка просмотров */
 
-import { motion } from "motion/react";
+import { motion, useTransform } from "motion/react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
@@ -235,22 +235,38 @@ export function CasesSection1024({
   }, []);
 
   const { collapseProgress } = useCasesPinScrollProgress(pinEl);
-  const w = getCasesPinWeights(collapseProgress);
+
+  /**
+   * Safari-parity (D-07 motion-value drop-in): `collapseProgress` — `MotionValue<number>`.
+   * Все производные веса считаем через `useTransform`, чтобы style-props мотион-элементов
+   * обновлялись через rAF без ре-рендеров React (иначе Safari'овский main-thread стопорит скролл).
+   */
+  const vertStrip = useTransform(collapseProgress, (v) => getCasesPinWeights(v).vertStrip);
+  const vertArrows = useTransform(collapseProgress, (v) => getCasesPinWeights(v).vertArrows);
+  const divider = useTransform(collapseProgress, (v) => getCasesPinWeights(v).divider);
+  const adHeader = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adHeader);
+  const adStrip = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adStrip);
+  const adArrows = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adArrows);
 
   const vScroll = useCasesHorizontalCarousel(VERT_CARD_W, CASES_SCROLL_GAP_PX);
   const aScroll = useCasesHorizontalCarousel(AD_CARD_W, CASES_SCROLL_GAP_PX);
 
-  const vertStripH = w.vertStrip * VERTICAL_CAROUSEL_MAX_PX_1024;
-  const vertMt = w.vertStrip * 48;
-  const vertOpacity = w.vertStrip < 0.02 ? 0 : Math.min(1, w.vertStrip * 1.05);
-  const vertPointer = w.vertStrip > 0.08;
+  const vertStripH = useTransform(vertStrip, (v) => v * VERTICAL_CAROUSEL_MAX_PX_1024);
+  const vertMt = useTransform(vertStrip, (v) => v * 48);
+  const vertOpacity = useTransform(vertStrip, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
+  const vertPointerMV = useTransform(vertStrip, (v) => (v > 0.08 ? "auto" : "none"));
 
-  const adHeaderMaxH = w.adHeader * AD_HEADER_MAX_PX_1024;
-  const adHeaderOpacity = w.adHeader < 0.02 ? 0 : Math.min(1, w.adHeader * 1.05);
+  const adHeaderMaxH = useTransform(adHeader, (v) => v * AD_HEADER_MAX_PX_1024);
+  const adHeaderOpacity = useTransform(adHeader, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
 
-  const adStripMaxH = w.adStrip * AD_STRIP_MAX_PX_1024;
-  const adStripOpacity = w.adStrip < 0.02 ? 0 : Math.min(1, w.adStrip * 1.05);
-  const adStripPointer = w.adStrip > 0.12;
+  const adStripMaxH = useTransform(adStrip, (v) => v * AD_STRIP_MAX_PX_1024);
+  const adStripOpacity = useTransform(adStrip, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
+  const adStripPointerMV = useTransform(adStrip, (v) => (v > 0.12 ? "auto" : "none"));
+
+  const dividerMaxH = useTransform(divider, (v) => v * 56);
+  const dividerPaddingTop = useTransform(divider, (v) => v * 50);
+
+  const adArrowsMaxWidth = useTransform(adArrows, (v) => (v > 0.08 ? 88 : 0));
 
   const gridCols = `${CASES_1024_EYEBROW_COL_PX}px minmax(0, 1fr) auto`;
 
@@ -296,11 +312,11 @@ export function CasesSection1024({
                     italicPart={cases1440Copy.verticalTitleItalic}
                   />
                 </div>
-                <div
+                <motion.div
                   className="mt-[5px] shrink-0 justify-self-end"
                   style={{
-                    opacity: w.vertArrows,
-                    pointerEvents: vertPointer ? "auto" : "none",
+                    opacity: vertArrows,
+                    pointerEvents: vertPointerMV,
                   }}
                 >
                   <CasesSectionArrowsNav
@@ -309,16 +325,16 @@ export function CasesSection1024({
                     onPrev={vScroll.onPrev}
                     prevDisabled={vScroll.prevDisabled}
                   />
-                </div>
+                </motion.div>
               </div>
 
-              <div
+              <motion.div
                 className="relative z-[1] overflow-hidden"
                 style={{
                   marginTop: vertMt,
                   maxHeight: vertStripH,
                   opacity: vertOpacity,
-                  pointerEvents: vertPointer ? "auto" : "none",
+                  pointerEvents: vertPointerMV,
                 }}
               >
                 <div
@@ -338,20 +354,20 @@ export function CasesSection1024({
                     />
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
-              <div
+              <motion.div
                 className="relative z-[1] overflow-hidden"
                 style={{
-                  maxHeight: w.divider * 56,
-                  opacity: w.divider,
-                  paddingTop: 50 * w.divider,
+                  maxHeight: dividerMaxH,
+                  opacity: divider,
+                  paddingTop: dividerPaddingTop,
                 }}
               >
                 <div className="h-px w-full bg-white/25" aria-hidden />
-              </div>
+              </motion.div>
 
-              <div
+              <motion.div
                 className="relative z-[1] overflow-hidden"
                 style={{
                   maxHeight: adHeaderMaxH,
@@ -369,13 +385,13 @@ export function CasesSection1024({
                       italicPart={cases1440Copy.adTitleItalic}
                     />
                   </div>
-                  <div
+                  <motion.div
                     className="mt-[5px] shrink-0 justify-self-end"
                     style={{
-                      maxWidth: w.adArrows > 0.08 ? 88 : 0,
-                      opacity: w.adArrows,
+                      maxWidth: adArrowsMaxWidth,
+                      opacity: adArrows,
                       overflow: "hidden",
-                      pointerEvents: adStripPointer ? "auto" : "none",
+                      pointerEvents: adStripPointerMV,
                     }}
                   >
                     <CasesSectionArrowsNav
@@ -385,16 +401,16 @@ export function CasesSection1024({
                       onPrev={aScroll.onPrev}
                       prevDisabled={aScroll.prevDisabled}
                     />
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div
+              <motion.div
                 className="relative z-[1] overflow-hidden"
                 style={{
                   maxHeight: adStripMaxH,
                   opacity: adStripOpacity,
-                  pointerEvents: adStripPointer ? "auto" : "none",
+                  pointerEvents: adStripPointerMV,
                 }}
               >
                 <div
@@ -412,7 +428,7 @@ export function CasesSection1024({
                     />
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
