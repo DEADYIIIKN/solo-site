@@ -61,6 +61,17 @@
 
 | Breakpoint | Section | Type | Figma value | Current code value | File:line | Status |
 |------------|---------|------|-------------|--------------------|-----------|--------|
+| 820 | hero | — | logo+phone+burger top, italic «видеоконтент» + bold «под бизнес-задачи бренда», subtitle + круглый «бесплатная консультация» badge, geo label bottom (Figma 783:11973) | matches | src/widgets/first-screen/ui/first-screen-hero-768.tsx + first-screen-header-768.tsx + first-screen-768-section.tsx | ok |
+| 820 | business-goals | — | eyebrow «решаем бизнес-задачи...», arrows right, 2 cards (vertical hero + advertising) с обрезанием правой карточки (carousel) — match Figma 783:11947 | matches (layout="768" ветка) | src/widgets/business-goals/ui/business-goals.tsx | ok |
+| 820 | team | — | eyebrow «что мы делаем», headline «Создаем рекламу и контент для соцсетей, которые системно приводят клиентов в ваш бизнес.», team photo full-width, manifesto «Мы превращаем идеи в контент, который объединяет креатив и стратегию.» (Figma 886:1187) | matches | src/widgets/team/ui/team-section-768.tsx | ok |
+| 820 | philosophy-clients | — | eyebrow «наша философия» left, 5 stacked cards right с number+title+body (Креатив/Стратегия/Команда/Прозрачность/Аутентичность); eyebrow «клиенты» + 2 diagonal marquee strips (Figma 783:11849 + 783:11633) | matches | src/widgets/philosophy-clients/ui/philosophy-clients-768.tsx | ok |
+| 820 | cases | — | eyebrow «кейсы», «Вертикальный контент» italic+bold title, arrows nav, carousel 3+ vertical cards + views count + режиссер/DOP credits; «Рекламные кейсы» section с ad cards (Figma 783:12001) | matches | src/widgets/cases/ui/cases-section-768.tsx | ok |
+| 820 | services | — | eyebrow «услуги», 2 карточки (vertical «01» + commercial «02») с title italic+bold, subtitle, consultation button, bullets 5 grid (Figma 783:11560) | matches | src/widgets/services/ui/services-section-below-1024.tsx (layout="768") | ok |
+| 820 | levels | typography | intro/outro P: `text-[0px] leading-[0]` на parent + `leading-none` на spans → 3 строки intro коллапсируют в 40px box (height=40 при font-size 28), визуальное наложение строк (D-19) | remove `text-[0px] leading-[0]` + `leading-none`, use `leading-[1.1]` на p → 4 строки intro + 2 строки outro рендерятся раздельно | src/widgets/levels/ui/levels-section-below-1024.tsx:17,34 | fixed |
+| 820 | levels | — | intro «Мы в SOLO…» top-left, 3 gradient bars ascending с лейблами уровень 1/2/3, outro «Видеоконтент — это основа…» bottom-right (Figma 783:11542) | matches (после line-box фикса) | src/widgets/levels/ui/levels-section-below-1024.tsx | ok |
+| 820 | lead-form | — | frame 768×869, title «хотите обсудить, как мы можем помочь?» + «Мы покажем:» + 4 bullets col; form card right с «Это абсолютно бесплатно», имя/телефон fields, contact method buttons Позвонить/Telegram/WhatsApp, textarea, consent checkbox, submit «оставить заявку» (Figma 783:11496) | matches | src/widgets/lead-form/ui/lead-form-768.tsx + lead-form-below-1024.tsx (layout="768") | ok |
+| 820 | footer | — | logo+nav row (об агентстве/кейсы/услуги/новости), phone+email col, TG CTA «перейти в канал», legal row (ИП Лопатина + Политика конфиденциальности); blog «делимся секретами» + circular badge «бесплатная консультация» deferred (наследует 1180) | matches (blog/badge deferred) | src/widgets/footer/ui/footer-768.tsx | ok |
+| 820 | footer | — | blog section «делимся секретами» + floating circular badge — gated/не реализовано, наследует deferred 1180 | feature вне scope | — | deferred |
 
 ## Breakpoint 360px
 
