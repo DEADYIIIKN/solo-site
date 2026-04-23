@@ -383,7 +383,7 @@ export function CasesSection1440({
                 italicPart={cases1440Copy.verticalTitleItalic}
               />
             </div>
-            <div className="mt-2">
+            <div className="mt-[42px] translate-x-[80px]">
               <CasesArrowsNav
                 nextDisabled={vScroll.nextDisabled}
                 onNext={vScroll.onNext}
@@ -393,9 +393,9 @@ export function CasesSection1440({
             </div>
           </div>
 
-          <div className="relative z-[1] mt-12 px-[140px]">
+          <div className="relative z-[1] mt-[26px] px-[140px]">
             <div
-              className="flex min-w-0 w-full gap-2.5 overflow-x-auto overflow-y-hidden pt-2 no-scrollbar"
+              className="flex min-w-0 w-full gap-2.5 overflow-x-auto overflow-y-hidden no-scrollbar"
               dir="ltr"
               ref={vScroll.scrollRef}
             >
@@ -426,7 +426,7 @@ export function CasesSection1440({
                   italicPart={cases1440Copy.adTitleItalic}
                 />
               </div>
-              <div className="mt-2 shrink-0 justify-self-end">
+              <div className="mt-[42px] shrink-0 justify-self-end translate-x-[80px]">
                 <CasesArrowsNav
                   className="shrink-0"
                   nextDisabled={aScroll.nextDisabled}
@@ -440,7 +440,7 @@ export function CasesSection1440({
 
           <div className="relative z-[1] px-[140px]">
             <div
-              className="mt-12 flex min-w-0 w-full justify-start gap-2.5 overflow-x-auto overflow-y-hidden pt-2 pb-1 no-scrollbar"
+              className="mt-[26px] flex min-w-0 w-full justify-start gap-2.5 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
               dir="ltr"
               ref={aScroll.scrollRef}
             >
