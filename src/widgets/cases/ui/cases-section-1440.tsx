@@ -2,18 +2,13 @@
 
 /* eslint-disable @next/next/no-img-element -- svg стрелки и иконка просмотров */
 
-import { motion, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
 import { DarkSurfaceGrid } from "@/shared/ui/dark-surface-grid";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
-import {
-  getCasesPinWeights,
-  CASES_PIN_SCROLL_VH,
-  useCasesPinScrollProgress,
-} from "@/widgets/cases/lib/use-cases-pin-scroll-progress";
 import type { CasesAdCard, CasesVerticalCard } from "@/widgets/cases/model/cases.data";
 import {
   cases1440Assets,
@@ -24,8 +19,6 @@ import {
 } from "@/widgets/cases/model/cases.data";
 import { CasesAdDetailModal } from "@/widgets/cases/ui/cases-ad-detail-modal";
 import { CasesVerticalDetailModal } from "@/widgets/cases/ui/cases-vertical-detail-modal";
-
-const VERTICAL_CAROUSEL_MAX_PX = 534;
 
 function CasesTitle60({
   italicPart,
@@ -173,16 +166,16 @@ function VerticalCard({
       role={onOpenDetail ? "button" : undefined}
       tabIndex={onOpenDetail ? 0 : undefined}
     >
-        <Image
-          alt=""
-          className={cn(
-            "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
-            casesCardHoverEase,
-          )}
-          fill
-          sizes="283px"
-          src={image}
-        />
+      <Image
+        alt=""
+        className={cn(
+          "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
+          casesCardHoverEase,
+        )}
+        fill
+        sizes="283px"
+        src={image}
+      />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 bg-[#0d0300] mix-blend-color transition-opacity",
@@ -217,7 +210,7 @@ function VerticalCard({
           ))}
         </div>
       </div>
-      </motion.article>
+    </motion.article>
   );
 }
 
@@ -250,16 +243,16 @@ function AdCard({
       role={onOpenDetail ? "button" : undefined}
       tabIndex={onOpenDetail ? 0 : undefined}
     >
-        <Image
-          alt=""
-          className={cn(
-            "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
-            casesCardHoverEase,
-          )}
-          fill
-          sizes="575px"
-          src={image}
-        />
+      <Image
+        alt=""
+        className={cn(
+          "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
+          casesCardHoverEase,
+        )}
+        fill
+        sizes="575px"
+        src={image}
+      />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 bg-[#0d0300] mix-blend-color opacity-20 transition-opacity",
@@ -278,7 +271,7 @@ function AdCard({
           ))}
         </div>
       </div>
-      </motion.article>
+    </motion.article>
   );
 }
 
@@ -347,49 +340,19 @@ function useCasesCarouselScroll(mode: CarouselMode) {
   return { nextDisabled, onNext, onPrev, prevDisabled, scrollRef };
 }
 
+/**
+ * Phase 4 UAT (2026-04-23): pin-scroll collapse сняли — обе ленты всегда видны,
+ * анимируется только reveal-фэйд отдельных карточек через `motion.article`.
+ */
 export function CasesSection1440({
   verticalCards = casesVerticalCards1440,
   adCards = casesAdCards1440,
 }: CasesSectionCardsProps = {}) {
-  const [pinEl, setPinEl] = useState<HTMLDivElement | null>(null);
   const [detailCard, setDetailCard] = useState<CasesVerticalCard | null>(null);
   const [adDetailCard, setAdDetailCard] = useState<CasesAdCard | null>(null);
-  const setPinRef = useCallback((node: HTMLDivElement | null) => {
-    setPinEl(node);
-  }, []);
-
-  const { collapseProgress } = useCasesPinScrollProgress(pinEl);
-
-  /**
-   * Safari-parity (D-07 motion-value drop-in): `collapseProgress` — `MotionValue<number>`.
-   * Производные веса — через `useTransform`, style-props обновляются по rAF без React re-render.
-   */
-  const vertStrip = useTransform(collapseProgress, (v) => getCasesPinWeights(v).vertStrip);
-  const vertArrows = useTransform(collapseProgress, (v) => getCasesPinWeights(v).vertArrows);
-  const divider = useTransform(collapseProgress, (v) => getCasesPinWeights(v).divider);
-  const adHeader = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adHeader);
-  const adStrip = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adStrip);
-  const adArrows = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adArrows);
 
   const vScroll = useCasesCarouselScroll("vertical");
   const aScroll = useCasesCarouselScroll("advertising");
-
-  const vertStripH = useTransform(vertStrip, (v) => v * VERTICAL_CAROUSEL_MAX_PX);
-  const vertMt = useTransform(vertStrip, (v) => v * 48);
-  const vertOpacity = useTransform(vertStrip, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
-  const vertPointerMV = useTransform(vertStrip, (v) => (v > 0.08 ? "auto" : "none"));
-
-  const adHeaderMaxH = useTransform(adHeader, (v) => v * 160);
-  const adHeaderOpacity = useTransform(adHeader, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
-
-  const adStripMaxH = useTransform(adStrip, (v) => v * 420);
-  const adStripOpacity = useTransform(adStrip, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
-  const adStripPointerMV = useTransform(adStrip, (v) => (v > 0.12 ? "auto" : "none"));
-
-  const dividerMaxH = useTransform(divider, (v) => v * 56);
-  const dividerPaddingTop = useTransform(divider, (v) => v * 50);
-
-  const adArrowsMaxWidth = useTransform(adArrows, (v) => (v > 0.08 ? 88 : 0));
 
   return (
     <section className="cases-section-scope relative z-10 w-full bg-[#0d0300]" dir="ltr" id="cases-section-1440">
@@ -405,141 +368,92 @@ export function CasesSection1440({
         onClose={() => setAdDetailCard(null)}
         open={adDetailCard != null}
       />
-      <div
-        ref={setPinRef}
-        className="relative w-full"
-        data-cases-pin=""
-        style={{ minHeight: `${CASES_PIN_SCROLL_VH}vh` }}
-      >
-        <div className="sticky top-0 z-[1] relative flex min-h-screen w-full justify-center">
-          <DarkSurfaceGrid />
-          <div className="relative min-h-screen w-full max-w-[1440px] overflow-x-clip pb-6">
-            <div className="relative z-[1] grid grid-cols-[195px_minmax(0,1fr)_auto] items-start px-[140px] pt-[120px]">
-              <SectionEyebrowRow align="end" dotClassName="self-center">
-                <p className="m-0 whitespace-nowrap text-[17px] font-semibold lowercase leading-[1.2] text-white">
-                  {cases1440Copy.eyebrow}
-                </p>
-              </SectionEyebrowRow>
+      <div className="relative flex w-full justify-center">
+        <DarkSurfaceGrid />
+        <div className="relative w-full max-w-[1440px] overflow-x-clip pb-6">
+          <div className="relative z-[1] grid grid-cols-[195px_minmax(0,1fr)_auto] items-start px-[140px] pt-[120px]">
+            <SectionEyebrowRow align="end" dotClassName="self-center">
+              <p className="m-0 whitespace-nowrap text-[17px] font-semibold lowercase leading-[1.2] text-white">
+                {cases1440Copy.eyebrow}
+              </p>
+            </SectionEyebrowRow>
+            <div className="min-w-0 justify-self-start pr-4">
+              <CasesTitle60
+                boldPart={cases1440Copy.verticalTitleRest}
+                italicPart={cases1440Copy.verticalTitleItalic}
+              />
+            </div>
+            <div className="mt-2">
+              <CasesArrowsNav
+                nextDisabled={vScroll.nextDisabled}
+                onNext={vScroll.onNext}
+                onPrev={vScroll.onPrev}
+                prevDisabled={vScroll.prevDisabled}
+              />
+            </div>
+          </div>
+
+          <div className="relative z-[1] mt-12 px-[140px]">
+            <div
+              className="flex min-w-0 w-full gap-2.5 overflow-x-auto overflow-y-hidden pt-2 no-scrollbar"
+              dir="ltr"
+              ref={vScroll.scrollRef}
+            >
+              {verticalCards.map((c) => (
+                <VerticalCard
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setDetailCard(c)}
+                  overlayLight={c.overlayLight}
+                  titleLines={c.titleLines}
+                  views={c.views}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="relative z-[1] pt-[50px] px-[140px]">
+            <div className="ml-[195px] h-px w-full max-w-[1105px] bg-white/25" aria-hidden />
+          </div>
+
+          <div className="relative z-[1] px-[140px]">
+            <div className="grid grid-cols-[195px_minmax(0,1fr)_auto] items-start pt-[50px]">
+              <span className="min-h-px min-w-0 select-none" aria-hidden />
               <div className="min-w-0 justify-self-start pr-4">
                 <CasesTitle60
-                  boldPart={cases1440Copy.verticalTitleRest}
-                  italicPart={cases1440Copy.verticalTitleItalic}
+                  boldPart={cases1440Copy.adTitleRest}
+                  italicPart={cases1440Copy.adTitleItalic}
                 />
               </div>
-              <motion.div
-                className="mt-2"
-                style={{
-                  opacity: vertArrows,
-                  pointerEvents: vertPointerMV,
-                }}
-              >
+              <div className="mt-2 shrink-0 justify-self-end">
                 <CasesArrowsNav
-                  nextDisabled={vScroll.nextDisabled}
-                  onNext={vScroll.onNext}
-                  onPrev={vScroll.onPrev}
-                  prevDisabled={vScroll.prevDisabled}
+                  className="shrink-0"
+                  nextDisabled={aScroll.nextDisabled}
+                  onNext={aScroll.onNext}
+                  onPrev={aScroll.onPrev}
+                  prevDisabled={aScroll.prevDisabled}
                 />
-              </motion.div>
+              </div>
             </div>
+          </div>
 
-            <motion.div
-              className="relative z-[1] overflow-hidden px-[140px]"
-              style={{
-                marginTop: vertMt,
-                maxHeight: vertStripH,
-                opacity: vertOpacity,
-                pointerEvents: vertPointerMV,
-              }}
+          <div className="relative z-[1] px-[140px]">
+            <div
+              className="mt-12 flex min-w-0 w-full justify-start gap-2.5 overflow-x-auto overflow-y-hidden pt-2 pb-1 no-scrollbar"
+              dir="ltr"
+              ref={aScroll.scrollRef}
             >
-              <div
-                className="flex min-w-0 w-full gap-2.5 overflow-x-auto overflow-y-hidden pt-2 no-scrollbar"
-                dir="ltr"
-                ref={vScroll.scrollRef}
-              >
-                {verticalCards.map((c) => (
-                  <VerticalCard
-                    credits={c.credits}
-                    image={c.image}
-                    key={c.id}
-                    onOpenDetail={() => setDetailCard(c)}
-                    overlayLight={c.overlayLight}
-                    titleLines={c.titleLines}
-                    views={c.views}
-                  />
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="relative z-[1] overflow-hidden px-[140px]"
-              style={{
-                maxHeight: dividerMaxH,
-                opacity: divider,
-                paddingTop: dividerPaddingTop,
-              }}
-            >
-              <div className="ml-[195px] h-px w-full max-w-[1105px] bg-white/25" aria-hidden />
-            </motion.div>
-
-            <motion.div
-              className="relative z-[1] overflow-hidden px-[140px]"
-              style={{
-                maxHeight: adHeaderMaxH,
-                opacity: adHeaderOpacity,
-              }}
-            >
-              <div className="grid grid-cols-[195px_minmax(0,1fr)_auto] items-start pt-[50px]">
-                <span className="min-h-px min-w-0 select-none" aria-hidden />
-                <div className="min-w-0 justify-self-start pr-4">
-                  <CasesTitle60
-                    boldPart={cases1440Copy.adTitleRest}
-                    italicPart={cases1440Copy.adTitleItalic}
-                  />
-                </div>
-                <motion.div
-                  className="mt-2 shrink-0 justify-self-end"
-                  style={{
-                    maxWidth: adArrowsMaxWidth,
-                    opacity: adArrows,
-                    overflow: "hidden",
-                    pointerEvents: adStripPointerMV,
-                  }}
-                >
-                  <CasesArrowsNav
-                    className="shrink-0"
-                    nextDisabled={aScroll.nextDisabled}
-                    onNext={aScroll.onNext}
-                    onPrev={aScroll.onPrev}
-                    prevDisabled={aScroll.prevDisabled}
-                  />
-                </motion.div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="relative z-[1] overflow-hidden px-[140px]"
-              style={{
-                maxHeight: adStripMaxH,
-                opacity: adStripOpacity,
-                pointerEvents: adStripPointerMV,
-              }}
-            >
-              <div
-                className="mt-12 flex min-w-0 w-full justify-start gap-2.5 overflow-x-auto overflow-y-hidden pt-2 pb-1 no-scrollbar"
-                dir="ltr"
-                ref={aScroll.scrollRef}
-              >
-                {adCards.map((c) => (
-                  <AdCard
-                    credits={c.credits}
-                    image={c.image}
-                    key={c.id}
-                    onOpenDetail={() => setAdDetailCard(c)}
-                    title={c.title}
-                  />
-                ))}
-              </div>
-            </motion.div>
+              {adCards.map((c) => (
+                <AdCard
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setAdDetailCard(c)}
+                  title={c.title}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

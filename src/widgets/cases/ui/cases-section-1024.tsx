@@ -2,18 +2,13 @@
 
 /* eslint-disable @next/next/no-img-element -- svg стрелки и иконка просмотров */
 
-import { motion, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { useCasesHorizontalCarousel } from "@/widgets/cases/lib/use-cases-horizontal-carousel";
-import {
-  getCasesPinWeights,
-  CASES_PIN_SCROLL_VH,
-  useCasesPinScrollProgress,
-} from "@/widgets/cases/lib/use-cases-pin-scroll-progress";
 import type { CasesAdCard, CasesVerticalCard } from "@/widgets/cases/model/cases.data";
 import {
   cases1440Assets,
@@ -39,16 +34,6 @@ const VERT_CARD_H = 410;
 
 const AD_CARD_W = 466;
 const AD_CARD_H = 260;
-
-/** Макс. высота полосы вертикального карусели при collapse=0: отступ от шапки + карточка + pt/pb полосы. */
-const VERTICAL_CAROUSEL_STRIP_GAP_TOP_PX = 35;
-const VERTICAL_CAROUSEL_MAX_PX_1024 =
-  VERTICAL_CAROUSEL_STRIP_GAP_TOP_PX + VERT_CARD_H + 12;
-/** Заголовок «Рекламные кейсы» + стрелки. */
-const AD_HEADER_MAX_PX_1024 = 150;
-/** Лента рекламных карточек: mt под заголовком + карточка + полоса снизу. */
-const AD_STRIP_GAP_TOP_PX = 45;
-const AD_STRIP_MAX_PX_1024 = AD_STRIP_GAP_TOP_PX + AD_CARD_H + 8;
 
 function CasesTitle50({
   italicPart,
@@ -221,58 +206,24 @@ function AdCard1024({
 
 /**
  * Figma 783:8585 (вертикальный ряд) + 783:8569 (реклама): «Кейсы» 1024.
- * Логика показа/сворачивания слайдеров — как на 1440: pin-scroll + {@link getCasesPinWeights}.
+ *
+ * Phase 4 UAT (2026-04-23): pin-scroll collapse сняли — обе ленты всегда видны,
+ * анимируется только reveal-фэйд отдельных карточек через `motion.article`.
  */
 export function CasesSection1024({
   verticalCards = casesVerticalCards1440,
   adCards = casesAdCards1440,
 }: CasesSectionCardsProps = {}) {
-  const [pinEl, setPinEl] = useState<HTMLDivElement | null>(null);
   const [detailCard, setDetailCard] = useState<CasesVerticalCard | null>(null);
   const [adDetailCard, setAdDetailCard] = useState<CasesAdCard | null>(null);
-  const setPinRef = useCallback((node: HTMLDivElement | null) => {
-    setPinEl(node);
-  }, []);
-
-  const { collapseProgress } = useCasesPinScrollProgress(pinEl);
-
-  /**
-   * Safari-parity (D-07 motion-value drop-in): `collapseProgress` — `MotionValue<number>`.
-   * Все производные веса считаем через `useTransform`, чтобы style-props мотион-элементов
-   * обновлялись через rAF без ре-рендеров React (иначе Safari'овский main-thread стопорит скролл).
-   */
-  const vertStrip = useTransform(collapseProgress, (v) => getCasesPinWeights(v).vertStrip);
-  const vertArrows = useTransform(collapseProgress, (v) => getCasesPinWeights(v).vertArrows);
-  const divider = useTransform(collapseProgress, (v) => getCasesPinWeights(v).divider);
-  const adHeader = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adHeader);
-  const adStrip = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adStrip);
-  const adArrows = useTransform(collapseProgress, (v) => getCasesPinWeights(v).adArrows);
 
   const vScroll = useCasesHorizontalCarousel(VERT_CARD_W, CASES_SCROLL_GAP_PX);
   const aScroll = useCasesHorizontalCarousel(AD_CARD_W, CASES_SCROLL_GAP_PX);
-
-  const vertStripH = useTransform(vertStrip, (v) => v * VERTICAL_CAROUSEL_MAX_PX_1024);
-  const vertMt = useTransform(vertStrip, (v) => v * 48);
-  const vertOpacity = useTransform(vertStrip, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
-  const vertPointerMV = useTransform(vertStrip, (v) => (v > 0.08 ? "auto" : "none"));
-
-  const adHeaderMaxH = useTransform(adHeader, (v) => v * AD_HEADER_MAX_PX_1024);
-  const adHeaderOpacity = useTransform(adHeader, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
-
-  const adStripMaxH = useTransform(adStrip, (v) => v * AD_STRIP_MAX_PX_1024);
-  const adStripOpacity = useTransform(adStrip, (v) => (v < 0.02 ? 0 : Math.min(1, v * 1.05)));
-  const adStripPointerMV = useTransform(adStrip, (v) => (v > 0.12 ? "auto" : "none"));
-
-  const dividerMaxH = useTransform(divider, (v) => v * 56);
-  const dividerPaddingTop = useTransform(divider, (v) => v * 50);
-
-  const adArrowsMaxWidth = useTransform(adArrows, (v) => (v > 0.08 ? 88 : 0));
 
   const gridCols = `${CASES_1024_EYEBROW_COL_PX}px minmax(0, 1fr) auto`;
 
   return (
     <section className="cases-section-scope relative z-10 w-full bg-[#0d0300]" dir="ltr" id="cases-section-1024">
-      {/* Модалки деталей — та же вёрстка, что на 1440 (`layout="1024"` в компонентах модалок). */}
       <CasesVerticalDetailModal
         card={detailCard}
         layout="1024"
@@ -285,150 +236,95 @@ export function CasesSection1024({
         onClose={() => setAdDetailCard(null)}
         open={adDetailCard != null}
       />
-      <div
-        ref={setPinRef}
-        className="relative w-full"
-        data-cases-pin=""
-        style={{ minHeight: `${CASES_PIN_SCROLL_VH}vh` }}
-      >
-        <div className="sticky top-0 z-[1] relative flex min-h-screen w-full justify-center">
-          <CasesSectionBackgroundGrid />
-          <div className="relative min-h-screen w-full max-w-[1024px] overflow-x-clip pb-10">
-            <div className="relative z-[1] px-10">
+      <div className="relative flex w-full justify-center">
+        <CasesSectionBackgroundGrid />
+        <div className="relative w-full max-w-[1024px] overflow-x-clip pb-10">
+          <div className="relative z-[1] px-10">
+            <div className="grid items-start pt-[120px]" style={{ gridTemplateColumns: gridCols }}>
+              <div className="flex min-w-0 justify-start">
+                <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
+                  <p className="m-0 whitespace-nowrap text-[16px] font-semibold lowercase leading-[1.2] text-white">
+                    {cases1440Copy.eyebrow}
+                  </p>
+                </SectionEyebrowRow>
+              </div>
+              <div className="min-w-0 justify-self-start pr-4">
+                <CasesTitle50
+                  boldPart={cases1440Copy.verticalTitleRest}
+                  italicPart={cases1440Copy.verticalTitleItalic}
+                />
+              </div>
+              <div className="mt-[5px] shrink-0 justify-self-end">
+                <CasesSectionArrowsNav
+                  nextDisabled={vScroll.nextDisabled}
+                  onNext={vScroll.onNext}
+                  onPrev={vScroll.onPrev}
+                  prevDisabled={vScroll.prevDisabled}
+                />
+              </div>
+            </div>
+
+            <div className="relative z-[1] mt-12">
               <div
-                className="grid items-start pt-[120px]"
-                style={{ gridTemplateColumns: gridCols }}
+                className="mt-[35px] flex min-w-0 gap-3 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
+                dir="ltr"
+                ref={vScroll.scrollRef}
               >
-                <div className="flex min-w-0 justify-start">
-                  <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
-                    <p className="m-0 whitespace-nowrap text-[16px] font-semibold lowercase leading-[1.2] text-white">
-                      {cases1440Copy.eyebrow}
-                    </p>
-                  </SectionEyebrowRow>
-                </div>
+                {verticalCards.map((c) => (
+                  <VerticalCard1024
+                    credits={c.credits}
+                    image={c.image}
+                    key={c.id}
+                    onOpenDetail={() => setDetailCard(c)}
+                    overlayLight={c.overlayLight}
+                    titleLines={c.titleLines}
+                    views={c.views}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="relative z-[1] pt-[50px]">
+              <div className="h-px w-full bg-white/25" aria-hidden />
+            </div>
+
+            <div className="relative z-[1]">
+              <div className="grid items-start pt-10" style={{ gridTemplateColumns: gridCols }}>
+                <span className="min-h-px min-w-0 select-none" aria-hidden />
                 <div className="min-w-0 justify-self-start pr-4">
                   <CasesTitle50
-                    boldPart={cases1440Copy.verticalTitleRest}
-                    italicPart={cases1440Copy.verticalTitleItalic}
+                    boldPart={cases1440Copy.adTitleRest}
+                    italicPart={cases1440Copy.adTitleItalic}
                   />
                 </div>
-                <motion.div
-                  className="mt-[5px] shrink-0 justify-self-end"
-                  style={{
-                    opacity: vertArrows,
-                    pointerEvents: vertPointerMV,
-                  }}
-                >
+                <div className="mt-[5px] shrink-0 justify-self-end">
                   <CasesSectionArrowsNav
-                    nextDisabled={vScroll.nextDisabled}
-                    onNext={vScroll.onNext}
-                    onPrev={vScroll.onPrev}
-                    prevDisabled={vScroll.prevDisabled}
+                    className="shrink-0"
+                    nextDisabled={aScroll.nextDisabled}
+                    onNext={aScroll.onNext}
+                    onPrev={aScroll.onPrev}
+                    prevDisabled={aScroll.prevDisabled}
                   />
-                </motion.div>
+                </div>
               </div>
+            </div>
 
-              <motion.div
-                className="relative z-[1] overflow-hidden"
-                style={{
-                  marginTop: vertMt,
-                  maxHeight: vertStripH,
-                  opacity: vertOpacity,
-                  pointerEvents: vertPointerMV,
-                }}
+            <div className="relative z-[1]">
+              <div
+                className="mt-[45px] flex min-w-0 gap-3 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
+                dir="ltr"
+                ref={aScroll.scrollRef}
               >
-                <div
-                  className="mt-[35px] flex min-w-0 gap-3 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
-                  dir="ltr"
-                  ref={vScroll.scrollRef}
-                >
-                  {verticalCards.map((c) => (
-                    <VerticalCard1024
-                      credits={c.credits}
-                      image={c.image}
-                      key={c.id}
-                      onOpenDetail={() => setDetailCard(c)}
-                      overlayLight={c.overlayLight}
-                      titleLines={c.titleLines}
-                      views={c.views}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="relative z-[1] overflow-hidden"
-                style={{
-                  maxHeight: dividerMaxH,
-                  opacity: divider,
-                  paddingTop: dividerPaddingTop,
-                }}
-              >
-                <div className="h-px w-full bg-white/25" aria-hidden />
-              </motion.div>
-
-              <motion.div
-                className="relative z-[1] overflow-hidden"
-                style={{
-                  maxHeight: adHeaderMaxH,
-                  opacity: adHeaderOpacity,
-                }}
-              >
-                <div
-                  className="grid items-start pt-10"
-                  style={{ gridTemplateColumns: gridCols }}
-                >
-                  <span className="min-h-px min-w-0 select-none" aria-hidden />
-                  <div className="min-w-0 justify-self-start pr-4">
-                    <CasesTitle50
-                      boldPart={cases1440Copy.adTitleRest}
-                      italicPart={cases1440Copy.adTitleItalic}
-                    />
-                  </div>
-                  <motion.div
-                    className="mt-[5px] shrink-0 justify-self-end"
-                    style={{
-                      maxWidth: adArrowsMaxWidth,
-                      opacity: adArrows,
-                      overflow: "hidden",
-                      pointerEvents: adStripPointerMV,
-                    }}
-                  >
-                    <CasesSectionArrowsNav
-                      className="shrink-0"
-                      nextDisabled={aScroll.nextDisabled}
-                      onNext={aScroll.onNext}
-                      onPrev={aScroll.onPrev}
-                      prevDisabled={aScroll.prevDisabled}
-                    />
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="relative z-[1] overflow-hidden"
-                style={{
-                  maxHeight: adStripMaxH,
-                  opacity: adStripOpacity,
-                  pointerEvents: adStripPointerMV,
-                }}
-              >
-                <div
-                  className="mt-[45px] flex min-w-0 gap-3 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
-                  dir="ltr"
-                  ref={aScroll.scrollRef}
-                >
-                  {adCards.map((c) => (
-                    <AdCard1024
-                      credits={c.credits}
-                      image={c.image}
-                      key={c.id}
-                      onOpenDetail={() => setAdDetailCard(c)}
-                      title={c.title}
-                    />
-                  ))}
-                </div>
-              </motion.div>
+                {adCards.map((c) => (
+                  <AdCard1024
+                    credits={c.credits}
+                    image={c.image}
+                    key={c.id}
+                    onOpenDetail={() => setAdDetailCard(c)}
+                    title={c.title}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
