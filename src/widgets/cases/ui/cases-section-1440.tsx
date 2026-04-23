@@ -203,8 +203,8 @@ function VerticalCard({
           <p className="m-0 text-[40px] font-bold lowercase leading-[1.2]">{views}</p>
         </div>
         <div className="flex min-h-[37px] flex-col justify-end text-[14px] font-normal leading-[1.2]">
-          {credits.map((line) => (
-            <p className="m-0" key={line}>
+          {credits.map((line, i) => (
+            <p className={cn("m-0", i < credits.length - 1 && "mb-[10px]")} key={line}>
               {line}
             </p>
           ))}

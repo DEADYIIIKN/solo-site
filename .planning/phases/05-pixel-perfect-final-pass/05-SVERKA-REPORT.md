@@ -18,6 +18,7 @@
 | 1440 | cases | size | vertical scroll flex: pt-2→0 (убирает лишний зазор) | pt-2 removed | src/widgets/cases/ui/cases-section-1440.tsx:398 | fixed |
 | 1440 | cases | size | ad scroll flex: pt-2→0 | pt-2 removed | src/widgets/cases/ui/cases-section-1440.tsx:443 | fixed |
 | 1440 | cases | size | card-top gap after arrow row: mt-12→mt-[26px] (−22 компенсация роста row от mt-[42px]) | gap arrow→cards=60px match Figma | src/widgets/cases/ui/cases-section-1440.tsx:396,443 | fixed |
+| 1440 | cases | typography | vertical card 2-line credits: mb-[10px] between non-last lines (Figma 783:9293) — строки шли встык | added mb-[10px] for i < credits.length-1 | src/widgets/cases/ui/cases-section-1440.tsx:206 | fixed |
 | 1440 | cases | — | ad-секция inter-frame gap ≈290px в Figma (два артборда по 810) vs ~100px на сайте | design decision, не pixel error | — | deferred |
 | 1440 | team | size | stats columns: визуальный порядок Figma 783:9611 = 5+@0, 3+@322, 30+@654, 177@945 (w=193/213/182/214); код использовал justify-between → 30+/177 swapped + uniform gaps | replaced with absolute left+width per Figma 783:9611 | src/widgets/team/ui/team-section-1440.tsx:10,54 | fixed |
 | 1440 | team | typography | stat-value line-height: leading-none → leading-[1.4] (Figma 783:9613) | fixed | src/widgets/team/ui/team-section-1440.tsx:64 | fixed |
