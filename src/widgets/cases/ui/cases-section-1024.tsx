@@ -236,10 +236,10 @@ export function CasesSection1024({
         onClose={() => setAdDetailCard(null)}
         open={adDetailCard != null}
       />
-      <div className="relative flex w-full justify-center">
+      <div className="relative flex w-full flex-col items-stretch">
         <CasesSectionBackgroundGrid />
-        <div className="relative w-full max-w-[1024px] overflow-x-clip pb-[120px]">
-          <div className="relative z-[1] px-10">
+        <div className="relative w-full pb-[120px]">
+          <div className="relative z-[1] mx-auto w-full max-w-[1024px] px-10">
             <div className="grid items-start pt-[120px]" style={{ gridTemplateColumns: gridCols }}>
               <div className="flex min-w-0 justify-start">
                 <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
@@ -263,68 +263,70 @@ export function CasesSection1024({
                 />
               </div>
             </div>
+          </div>
 
-            <div className="relative z-[1] mt-12">
-              <div
-                className="mt-[35px] flex min-w-0 gap-3 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
-                dir="ltr"
-                ref={vScroll.scrollRef}
-              >
-                {verticalCards.map((c) => (
-                  <VerticalCard1024
-                    credits={c.credits}
-                    image={c.image}
-                    key={c.id}
-                    onOpenDetail={() => setDetailCard(c)}
-                    overlayLight={c.overlayLight}
-                    titleLines={c.titleLines}
-                    views={c.views}
-                  />
-                ))}
+          <div className="relative z-[1] mt-12">
+            <div
+              className="mt-[35px] flex min-w-0 gap-3 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
+              dir="ltr"
+              ref={vScroll.scrollRef}
+              style={{ paddingLeft: "calc((100% - 944px) / 2 + 40px)", paddingRight: "40px" }}
+            >
+              {verticalCards.map((c) => (
+                <VerticalCard1024
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setDetailCard(c)}
+                  overlayLight={c.overlayLight}
+                  titleLines={c.titleLines}
+                  views={c.views}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="relative z-[1] mx-auto w-full max-w-[1024px] px-10 pt-[50px]">
+            <div className="h-px w-full bg-white/25" aria-hidden />
+          </div>
+
+          <div className="relative z-[1] mx-auto w-full max-w-[1024px] px-10">
+            <div className="grid items-start pt-10" style={{ gridTemplateColumns: gridCols }}>
+              <span className="min-h-px min-w-0 select-none" aria-hidden />
+              <div className="min-w-0 justify-self-start pr-4">
+                <CasesTitle50
+                  boldPart={cases1440Copy.adTitleRest}
+                  italicPart={cases1440Copy.adTitleItalic}
+                />
+              </div>
+              <div className="mt-[5px] shrink-0 justify-self-end">
+                <CasesSectionArrowsNav
+                  className="shrink-0"
+                  nextDisabled={aScroll.nextDisabled}
+                  onNext={aScroll.onNext}
+                  onPrev={aScroll.onPrev}
+                  prevDisabled={aScroll.prevDisabled}
+                />
               </div>
             </div>
+          </div>
 
-            <div className="relative z-[1] pt-[50px]">
-              <div className="h-px w-full bg-white/25" aria-hidden />
-            </div>
-
-            <div className="relative z-[1]">
-              <div className="grid items-start pt-10" style={{ gridTemplateColumns: gridCols }}>
-                <span className="min-h-px min-w-0 select-none" aria-hidden />
-                <div className="min-w-0 justify-self-start pr-4">
-                  <CasesTitle50
-                    boldPart={cases1440Copy.adTitleRest}
-                    italicPart={cases1440Copy.adTitleItalic}
-                  />
-                </div>
-                <div className="mt-[5px] shrink-0 justify-self-end">
-                  <CasesSectionArrowsNav
-                    className="shrink-0"
-                    nextDisabled={aScroll.nextDisabled}
-                    onNext={aScroll.onNext}
-                    onPrev={aScroll.onPrev}
-                    prevDisabled={aScroll.prevDisabled}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="relative z-[1]">
-              <div
-                className="mt-[45px] flex min-w-0 gap-3 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
-                dir="ltr"
-                ref={aScroll.scrollRef}
-              >
-                {adCards.map((c) => (
-                  <AdCard1024
-                    credits={c.credits}
-                    image={c.image}
-                    key={c.id}
-                    onOpenDetail={() => setAdDetailCard(c)}
-                    title={c.title}
-                  />
-                ))}
-              </div>
+          <div className="relative z-[1]">
+            <div
+              className="mt-[45px] flex min-w-0 gap-3 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
+              dir="ltr"
+              ref={aScroll.scrollRef}
+              style={{ paddingLeft: "calc((100% - 944px) / 2 + 40px)", paddingRight: "40px" }}
+            >
+              {adCards.map((c) => (
+                <AdCard1024
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setAdDetailCard(c)}
+                  title={c.title}
+                />
+              ))}
             </div>
           </div>
         </div>

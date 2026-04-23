@@ -223,52 +223,53 @@ export function CasesSection360({
         open={adDetailCard != null}
       />
       <CasesSectionBackgroundGrid />
-      <div className="relative mx-auto w-full max-w-[360px] pb-[120px]">
-        <div className="relative z-[1] flex flex-col gap-[100px] px-4 pt-[70px]">
-          <div className="flex flex-col items-center gap-[50px]">
-            <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
-              <p className="m-0 whitespace-nowrap text-[14px] font-semibold lowercase leading-[1.2] text-white">
-                {cases1440Copy.eyebrow}
-              </p>
-            </SectionEyebrowRow>
+      <div className="relative w-full pb-[120px]">
+        <div className="relative z-[1] mx-auto w-full max-w-[360px] px-4 pt-[70px]">
+          <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
+            <p className="m-0 whitespace-nowrap text-[14px] font-semibold lowercase leading-[1.2] text-white">
+              {cases1440Copy.eyebrow}
+            </p>
+          </SectionEyebrowRow>
+        </div>
 
-            <div className="flex w-full min-w-0 flex-col gap-10">
-              <div className="flex w-full min-w-0 items-end justify-between gap-3">
-                <CasesTitle28
-                  boldPart={cases1440Copy.verticalTitleRest}
-                  italicPart={cases1440Copy.verticalTitleItalic}
+        <div className="relative z-[1] mt-[50px] flex flex-col gap-[100px]">
+          <div className="flex w-full min-w-0 flex-col gap-10">
+            <div className="mx-auto flex w-full min-w-0 max-w-[360px] items-end justify-between gap-3 px-4">
+              <CasesTitle28
+                boldPart={cases1440Copy.verticalTitleRest}
+                italicPart={cases1440Copy.verticalTitleItalic}
+              />
+              <div className="shrink-0 pb-0.5">
+                <CasesSectionArrowsNav
+                  nextDisabled={vScroll.nextDisabled}
+                  onNext={vScroll.onNext}
+                  onPrev={vScroll.onPrev}
+                  prevDisabled={vScroll.prevDisabled}
                 />
-                <div className="shrink-0 pb-0.5">
-                  <CasesSectionArrowsNav
-                    nextDisabled={vScroll.nextDisabled}
-                    onNext={vScroll.onNext}
-                    onPrev={vScroll.onPrev}
-                    prevDisabled={vScroll.prevDisabled}
-                  />
-                </div>
               </div>
-              <div
-                className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
-                dir="ltr"
-                ref={vScroll.scrollRef}
-              >
-                {verticalCards.map((c) => (
-                  <VerticalCard360
-                    credits={c.credits}
-                    image={c.image}
-                    key={c.id}
-                    onOpenDetail={() => setDetailCard(c)}
-                    overlayLight={c.overlayLight}
-                    titleLines={c.titleLines}
-                    views={c.views}
-                  />
-                ))}
-              </div>
+            </div>
+            <div
+              className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
+              dir="ltr"
+              ref={vScroll.scrollRef}
+              style={{ paddingLeft: "calc((100% - 328px) / 2 + 16px)", paddingRight: "16px" }}
+            >
+              {verticalCards.map((c) => (
+                <VerticalCard360
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setDetailCard(c)}
+                  overlayLight={c.overlayLight}
+                  titleLines={c.titleLines}
+                  views={c.views}
+                />
+              ))}
             </div>
           </div>
 
           <div className="flex min-w-0 flex-col gap-10">
-            <div className="flex w-full min-w-0 items-end justify-between gap-3">
+            <div className="mx-auto flex w-full min-w-0 max-w-[360px] items-end justify-between gap-3 px-4">
               <CasesTitle28
                 boldPart={cases1440Copy.adTitleRest}
                 italicPart={cases1440Copy.adTitleItalic}
@@ -286,6 +287,7 @@ export function CasesSection360({
               className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
               dir="ltr"
               ref={aScroll.scrollRef}
+              style={{ paddingLeft: "calc((100% - 328px) / 2 + 16px)", paddingRight: "16px" }}
             >
               {adCards.map((c) => (
                 <AdCard360

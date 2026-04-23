@@ -223,81 +223,81 @@ export function CasesSection480({
         open={adDetailCard != null}
       />
       <CasesSectionBackgroundGrid />
-      <div className="relative mx-auto w-full max-w-[480px] overflow-x-clip pb-[140px]">
-        <div className="relative z-[1] px-6 pt-20">
-          <div className="flex flex-col gap-[60px]">
-            <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
-              <p className="m-0 whitespace-nowrap text-[16px] font-semibold lowercase leading-[1.2] text-white">
-                {cases1440Copy.eyebrow}
-              </p>
-            </SectionEyebrowRow>
+      <div className="relative w-full pb-[140px]">
+        <div className="relative z-[1] mx-auto w-full max-w-[480px] px-6 pt-20">
+          <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
+            <p className="m-0 whitespace-nowrap text-[16px] font-semibold lowercase leading-[1.2] text-white">
+              {cases1440Copy.eyebrow}
+            </p>
+          </SectionEyebrowRow>
+        </div>
 
-            <div className="flex flex-col gap-[120px]">
-              <div className="flex min-w-0 flex-col gap-[50px]">
-                <div className="flex w-full min-w-0 items-end justify-between gap-4">
-                  <CasesTitle38
-                    boldPart={cases1440Copy.verticalTitleRest}
-                    italicPart={cases1440Copy.verticalTitleItalic}
-                  />
-                  <div className="shrink-0 pb-0.5">
-                    <CasesSectionArrowsNav
-                      nextDisabled={vScroll.nextDisabled}
-                      onNext={vScroll.onNext}
-                      onPrev={vScroll.onPrev}
-                      prevDisabled={vScroll.prevDisabled}
-                    />
-                  </div>
-                </div>
-                <div
-                  className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
-                  dir="ltr"
-                  ref={vScroll.scrollRef}
-                >
-                  {verticalCards.map((c) => (
-                    <VerticalCard480
-                      credits={c.credits}
-                      image={c.image}
-                      key={c.id}
-                      onOpenDetail={() => setDetailCard(c)}
-                      overlayLight={c.overlayLight}
-                      titleLines={c.titleLines}
-                      views={c.views}
-                    />
-                  ))}
-                </div>
+        <div className="relative z-[1] mt-[60px] flex flex-col gap-[120px]">
+          <div className="flex min-w-0 flex-col gap-[50px]">
+            <div className="mx-auto flex w-full min-w-0 max-w-[480px] items-end justify-between gap-4 px-6">
+              <CasesTitle38
+                boldPart={cases1440Copy.verticalTitleRest}
+                italicPart={cases1440Copy.verticalTitleItalic}
+              />
+              <div className="shrink-0 pb-0.5">
+                <CasesSectionArrowsNav
+                  nextDisabled={vScroll.nextDisabled}
+                  onNext={vScroll.onNext}
+                  onPrev={vScroll.onPrev}
+                  prevDisabled={vScroll.prevDisabled}
+                />
               </div>
+            </div>
+            <div
+              className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
+              dir="ltr"
+              ref={vScroll.scrollRef}
+              style={{ paddingLeft: "calc((100% - 432px) / 2 + 24px)", paddingRight: "24px" }}
+            >
+              {verticalCards.map((c) => (
+                <VerticalCard480
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setDetailCard(c)}
+                  overlayLight={c.overlayLight}
+                  titleLines={c.titleLines}
+                  views={c.views}
+                />
+              ))}
+            </div>
+          </div>
 
-              <div className="flex min-w-0 flex-col gap-[50px]">
-                <div className="flex w-full min-w-0 items-end justify-between gap-4">
-                  <CasesTitle38
-                    boldPart={cases1440Copy.adTitleRest}
-                    italicPart={cases1440Copy.adTitleItalic}
-                  />
-                  <div className="shrink-0 pb-0.5">
-                    <CasesSectionArrowsNav
-                      nextDisabled={aScroll.nextDisabled}
-                      onNext={aScroll.onNext}
-                      onPrev={aScroll.onPrev}
-                      prevDisabled={aScroll.prevDisabled}
-                    />
-                  </div>
-                </div>
-                <div
-                  className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
-                  dir="ltr"
-                  ref={aScroll.scrollRef}
-                >
-                  {adCards.map((c) => (
-                    <AdCard480
-                      credits={c.credits}
-                      image={c.image}
-                      key={c.id}
-                      onOpenDetail={() => setAdDetailCard(c)}
-                      title={c.title}
-                    />
-                  ))}
-                </div>
+          <div className="flex min-w-0 flex-col gap-[50px]">
+            <div className="mx-auto flex w-full min-w-0 max-w-[480px] items-end justify-between gap-4 px-6">
+              <CasesTitle38
+                boldPart={cases1440Copy.adTitleRest}
+                italicPart={cases1440Copy.adTitleItalic}
+              />
+              <div className="shrink-0 pb-0.5">
+                <CasesSectionArrowsNav
+                  nextDisabled={aScroll.nextDisabled}
+                  onNext={aScroll.onNext}
+                  onPrev={aScroll.onPrev}
+                  prevDisabled={aScroll.prevDisabled}
+                />
               </div>
+            </div>
+            <div
+              className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
+              dir="ltr"
+              ref={aScroll.scrollRef}
+              style={{ paddingLeft: "calc((100% - 432px) / 2 + 24px)", paddingRight: "24px" }}
+            >
+              {adCards.map((c) => (
+                <AdCard480
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setAdDetailCard(c)}
+                  title={c.title}
+                />
+              ))}
             </div>
           </div>
         </div>
