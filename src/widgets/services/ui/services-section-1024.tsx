@@ -47,7 +47,7 @@ const C_HERO_1024 = {
   title: { left: 30, top: 30 },
   subtitle: { left: 30, top: 82 },
   cta: { left: 30, top: 169 },
-  illustration: { top: 20, w: 307, h: 209, right: 10 },
+  illustration: { top: 20, w: 307, h: 209, right: 20 },
 } as const;
 
 function ConsultationButton1024({
@@ -62,7 +62,7 @@ function ConsultationButton1024({
   return (
     <button
       className={cn(
-        "absolute inline-flex h-[56px] w-[260px] items-center justify-center whitespace-nowrap rounded-[50px] border-0 px-8 text-[14px] font-semibold leading-[1.2] text-white transition-opacity hover:opacity-92",
+        "absolute inline-flex h-[56px] w-[260px] items-center justify-center whitespace-nowrap rounded-[50px] border-0 px-[40px] text-[16px] font-semibold leading-[1.2] text-white transition-opacity hover:opacity-92",
         variant === "orange" ? "bg-[#ff5c00]" : "bg-[#0d0300]",
         className,
       )}
