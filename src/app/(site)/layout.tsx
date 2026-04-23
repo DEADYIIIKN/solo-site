@@ -6,7 +6,6 @@ import { siteConfig } from "@/shared/config/site";
 import { SiteLoadOverlay } from "@/widgets/site-load";
 
 import { SiteMotionConfig } from "./motion-config-provider";
-import "@/bones/registry.js";
 
 import "../globals.css";
 
