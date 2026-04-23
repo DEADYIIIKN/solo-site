@@ -280,12 +280,13 @@ export function useServicesPinScrollProgress(
     pinElement.setAttribute("data-services-slide-progress", "0.0000");
 
     let alive = true;
-    let tickRafId = 0;
-    let tickCoalesced = false;
+    let rafId = 0;
     let lastProgressWritten = -1;
     let rangeStart = 0;
     let rangeEnd = 0;
     let rangeReady = false;
+    /** Safari-parity: tick работает только когда pin рядом с вьюпортом — CPU не жжёт вне секции. */
+    let nearViewport = true;
 
     const setPhase = (next: ServicesPinPhase) => {
       if (lastPhaseRef.current === next) return;
@@ -312,10 +313,10 @@ export function useServicesPinScrollProgress(
 
     const tick = () => {
       if (!alive) return;
+      rafId = requestAnimationFrame(tick);
 
-      if (!isServicesLayoutActiveForPin(viewport)) {
-        return;
-      }
+      if (!nearViewport) return;
+      if (!isServicesLayoutActiveForPin(viewport)) return;
 
       if (
         window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -327,16 +328,14 @@ export function useServicesPinScrollProgress(
       }
 
       const el = pinElement;
-      const scrollY = window.scrollY;
       if (el.offsetHeight < 2) {
         applyProgress(0);
         return;
       }
 
-      if (!rangeReady) {
-        recalculateRange();
-      }
+      if (!rangeReady) recalculateRange();
 
+      const scrollY = window.scrollY;
       const start = rangeStart;
       const end = rangeEnd;
 
@@ -354,24 +353,19 @@ export function useServicesPinScrollProgress(
       applyProgress(rawLinear);
     };
 
-    const scheduleTick = () => {
-      if (tickCoalesced) return;
-      tickCoalesced = true;
-      tickRafId = requestAnimationFrame(() => {
-        tickCoalesced = false;
-        tick();
-      });
-    };
-
-    tick();
-    requestAnimationFrame(() => {
-      requestAnimationFrame(tick);
-    });
-
-    window.addEventListener("scroll", scheduleTick, { passive: true });
-    window.addEventListener("resize", scheduleTick, { passive: true });
-    const vv = window.visualViewport;
-    vv?.addEventListener("resize", scheduleTick, { passive: true });
+    /**
+     * Safari-parity: continuous rAF вместо scroll-event scheduler. Safari во время inertial-скролла
+     * батчит `scroll` events (иногда 1 на ~5 кадров) — MotionValue/setState прыгает рывками.
+     * Continuous rAF читает `window.scrollY` каждый display-frame напрямую. IO-gate отключает работу
+     * tick вне окрестности pin (rAF-loop пустой).
+     */
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        nearViewport = entry.isIntersecting;
+      },
+      { rootMargin: "200% 0px 200% 0px" },
+    );
+    io.observe(pinElement);
 
     let roRaf = false;
     const ro = new ResizeObserver(() => {
@@ -380,22 +374,26 @@ export function useServicesPinScrollProgress(
       requestAnimationFrame(() => {
         roRaf = false;
         recalculateRange();
-        scheduleTick();
       });
     });
     ro.observe(pinElement);
 
+    const onResize = () => recalculateRange();
+    window.addEventListener("resize", onResize, { passive: true });
+    const vv = window.visualViewport;
+    vv?.addEventListener("resize", onResize, { passive: true });
+
     recalculateRange();
+    rafId = requestAnimationFrame(tick);
 
     return () => {
       alive = false;
-      tickCoalesced = false;
-      cancelAnimationFrame(tickRafId);
+      cancelAnimationFrame(rafId);
       pinElement.removeAttribute("data-services-slide-progress");
-      window.removeEventListener("scroll", scheduleTick);
-      window.removeEventListener("resize", scheduleTick);
-      vv?.removeEventListener("resize", scheduleTick);
+      io.disconnect();
       ro.disconnect();
+      window.removeEventListener("resize", onResize);
+      vv?.removeEventListener("resize", onResize);
       lastPhaseRef.current = "before";
     };
   }, [pinElement, viewport]);
