@@ -127,7 +127,7 @@ const leadFormBulletP1440 = "m-0 text-[17px] leading-[1.2] [&>span]:leading-[inh
 
 export function LeadFormBullets1440() {
   return (
-    <div className="grid w-full grid-cols-2 gap-x-5 gap-y-8">
+    <div className="grid w-[628px] grid-cols-2 gap-x-5 gap-y-8">
       <LeadFormBulletRow
         badgeClass="size-[30px]"
         n="01"

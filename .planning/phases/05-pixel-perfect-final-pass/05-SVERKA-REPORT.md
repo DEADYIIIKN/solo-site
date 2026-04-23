@@ -26,6 +26,10 @@
 | 1440 | philosophy-clients | — | card positions {0:433/90, 1:563/171, 2:140/252, 3:325/333, 4:660/414} ×640/340 radius 20; eyebrow top=130/left=140; pre-stack 458 / hidden 930 соответствуют Figma 783:9294 | matches | src/widgets/philosophy-clients/ui/philosophy-clients-1440.tsx | ok |
 | 1440 | levels | size | intro y=140, step-labels {270, 390, 508}, outro bottom=730, frame h=810 (Figma 783:9122) — были смещены на −76px | shifted +76px; min-h 720→810 | src/widgets/levels/ui/levels-section-1440.tsx:47,51,100,113,125,138 | fixed |
 | 1440 | levels | — | bars left {715, 910, 1105} h {250, 370, 490} w=195 (Figma 783:9124) | matches | src/widgets/levels/ui/levels-section-1440.tsx:65-96 | ok |
+| 1440 | footer | — | frame 1440×1243, content px-140 py-120, gap-200 blog↔bottom, gridCols 575/380 gap-205, rowGap 120, logo 136×24, nav 380×24 justify-between {100/53/57/70}, phone/email fontSize 40/leading-none, TG CTA 250×60, blog cards 480×270+title 24px leading-0.9 — match Figma 783:9034 | matches | src/widgets/footer/ui/footer-1440.tsx | ok |
+| 1440 | footer | — | line-box vs Figma glyph-bbox render: subtitle 17/leading-1.2 ~20.4 vs Figma h=12, phone/email 40/leading-none ~40 vs Figma h=28 (sub-pixel D-11) | — | — | ok |
+| 1440 | lead-form | size | bullets col-2 label x=504 (Figma 783:9112) | grid w-full (640) → w-[628px]: col2 shifted 511→505 (Δ=+1 within ±1px tolerance) | src/widgets/lead-form/ui/lead-form-bullets.tsx:130 | fixed |
+| 1440 | lead-form | — | title top=150/left=140/w=640, «Мы покажем:» top=310, bullets rows top 352/424, inputs card 470×608 top=120/left=830, circles 30/gap-10/labels 17px leading-1.2 — match Figma 783:9078 | matches | src/widgets/lead-form/ui/lead-form-1440.tsx | ok |
 
 ## Breakpoint 1180px
 
