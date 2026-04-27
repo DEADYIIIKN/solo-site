@@ -31,10 +31,10 @@
 **Depends on:** v1.1 shipped (Phase 7 ConsultationModal pattern переиспользуется)
 **Requirements:** TG-01, TG-02, TG-03, TG-04, TEST-06, TEST-07
 **Figma:** 783:9762 (1440) / 783:9750 (?) / 783:9729 (?) / 783:9708 (?) / 783:9687 (?) — точное breakpoint mapping уточнится через Figma MCP
-**Open questions** (для discuss-phase):
-- Activity detection: scroll/mousemove/keydown? page focus? combined?
-- Что показывать если `NEXT_PUBLIC_TG_CHANNEL_URL` не задан? — Тихий fallback (pop-up не показывается)
-- Где живёт компонент: `src/widgets/tg-popup/` или `src/widgets/first-screen/ui/` (рядом с ConsultationModal)?
+**Open questions resolved** (см. 10-CONTEXT.md):
+- Activity detection: scroll/mousemove/keydown/touchstart/pointermove + idle 30s + visibility gate (D1)
+- Silent skip когда NEXT_PUBLIC_TG_CHANNEL_URL пустой (D5)
+- Компонент живёт в src/widgets/tg-popup/ (D6 — отдельная widget-директория)
 **Success Criteria:**
 1. Pop-up появляется ровно через 60s активности (timer + activity events)
 2. Дизайн совпадает с Figma на всех 5 breakpoints (Figma MCP sverka на 1 брейкпоинте)
@@ -42,7 +42,11 @@
 4. Кнопка «Подписаться» открывает t.me/... в новой вкладке
 5. Если `NEXT_PUBLIC_TG_CHANNEL_URL` не задана — pop-up НЕ инициализируется (silent skip)
 6. E2E + unit покрывают timer / dismiss / sessionStorage
-**Plans:** TBD (определит /gsd-plan-phase 10)
+**Plans:** 4 plans
+- [ ] 10-01-PLAN.md — useActivityTimer хук + unit тесты (TG-01 foundation, TEST-07)
+- [ ] 10-02-PLAN.md — tg-popup-variants.ts + TgPopup base component (TG-02, TG-03, TG-04 UI)
+- [ ] 10-03-PLAN.md — TgPopupHost integration + layout register + footer env-var refactor (TG-01..04 wiring)
+- [ ] 10-04-PLAN.md — E2E spec для timer/dismiss/sessionStorage (TEST-06)
 
 #### Phase 11: Leads Admin List View
 **Goal:** В Payload admin → Заявки видны кастомные columns + filter/sort, не нужно открывать каждую запись.
@@ -121,7 +125,7 @@ Plans:
 | 7. Modal Unification | 4/4 | Complete | 2026-04-27 |
 | 8. Form Submission | 4/4 | Complete | 2026-04-27 |
 | 9. Lead-Form Pixel Cleanup | 1/1 | Complete | 2026-04-27 |
-| 10. TG Pop-up | 0/? | Planned | - |
+| 10. TG Pop-up | 0/4 | Planned | - |
 | 11. Leads Admin List View | 0/? | Planned | - |
 | 12. Leads CSV Export | 0/? | Planned | - |
 
