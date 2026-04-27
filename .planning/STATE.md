@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.1.2
 milestone_name: growth-and-ops
 last_shipped: v1.0
-status: phase-10-complete
-stopped_at: Phase 10 (TG popup) complete. Phase 11 next (admin list view).
-last_updated: "2026-04-27T00:00:00.000Z"
-last_activity: 2026-04-27 -- Phase 10 TG popup завершён (4 plans, 79/79 e2e green)
+status: milestone-v1.1.2-complete
+stopped_at: v1.1 + v1.1.2 ALL phases complete (Phases 7-12). Awaiting PR #5 merge.
+last_updated: "2026-04-28T00:00:00.000Z"
+last_activity: 2026-04-28 -- Phase 12 CSV export закончен; v1.1.2 готов к ship
 progress:
   total_phases: 6
-  completed_phases: 4
-  total_plans: 13
-  completed_plans: 13
-  percent: 66
+  completed_phases: 6
+  total_plans: 15
+  completed_plans: 15
+  percent: 100
 ---
 
 # Project State
@@ -22,17 +22,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.1.2 — Phase 10 (TG popup) done; Phase 11 (admin list view) next
+**Current focus:** v1.1 + v1.1.2 ALL phases complete — ready to ship PR #5
 
 ## Current Position
 
 Last shipped: **v1.0** (2026-04-27)
 Active branch: **release/v1.1** (combined v1.1 + v1.1.2 PR #5)
 v1.1: ✅ 3/3 phases (Phases 7-9) complete
-v1.1.2: ✅ Phase 10 done; Phase 11 + 12 pending
-Next: `/gsd-plan-phase 11` — admin leads list view (ADMIN-01/02)
+v1.1.2: ✅ 3/3 phases (Phases 10-12) complete
+Next: merge PR #5 → main → /gsd-complete-milestone v1.1.2
 
-Progress: [██████    ] 66% (4/6 phases overall in branch)
+Progress: [██████████] 100% (6/6 phases in branch)
 
 ## Performance Metrics
 

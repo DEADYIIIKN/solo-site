@@ -40,9 +40,9 @@
 
 ### Admin: Leads Management (ADMIN)
 
-- [ ] **ADMIN-01**: В Payload admin → Заявки list view отображаются columns: name, phone, source, contactMethod, forwardedToWebhook, createdAt. Поля видны без открытия каждой записи.
-- [ ] **ADMIN-02**: В leads list view доступен filter / sort: по дате (newest/oldest), по source, по forwardedToWebhook (yes/no/error).
-- [ ] **ADMIN-03**: В leads list view есть кнопка «Export to CSV» — скачивает CSV-файл со всеми (или filtered) leads. Колонки: id, name, phone, message, contactMethod, consent, source, forwardedToWebhook, webhookError, createdAt.
+- [x] **ADMIN-01**: В Payload admin → Заявки list view отображаются columns: name, phone, source, contactMethod, forwardedToWebhook, createdAt. Поля видны без открытия каждой записи.
+- [x] **ADMIN-02**: В leads list view доступен filter / sort: по дате (newest/oldest), по source, по forwardedToWebhook (yes/no/error).
+- [x] **ADMIN-03**: В leads list view есть кнопка «Export to CSV» — скачивает CSV-файл со всеми (или filtered) leads. Колонки: id, name, phone, message, contactMethod, consent, source, forwardedToWebhook, webhookError, createdAt.
 
 ### Testing (TEST)
 
@@ -68,9 +68,9 @@
 | TG-02 | 10 | Satisfied |
 | TG-03 | 10 | Satisfied |
 | TG-04 | 10 | Satisfied |
-| ADMIN-01 | 11 | Pending |
-| ADMIN-02 | 11 | Pending |
-| ADMIN-03 | 12 | Pending |
+| ADMIN-01 | 11 | Satisfied |
+| ADMIN-02 | 11 | Satisfied |
+| ADMIN-03 | 12 | Satisfied |
 | TEST-06 | 10 | Satisfied |
 | TEST-07 | 10 | Satisfied |
 
