@@ -225,6 +225,7 @@ export function TgPopup({
       <button
         aria-label="Закрыть"
         className="absolute inset-0 bg-[#0d0300]/80"
+        data-testid="tg-popup-backdrop"
         onClick={onDismiss}
         type="button"
       />

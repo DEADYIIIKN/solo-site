@@ -27,7 +27,22 @@ import { TgPopup } from "./tg-popup";
 import type { TgPopupVariant } from "./tg-popup-variants";
 
 const STORAGE_KEY = "tg-popup-dismissed";
-const TRIGGER_MS = 60_000;
+
+/**
+ * Возвращает timer duration в ms.
+ * Production default: 60_000 (60 секунд активности).
+ * E2E test override: `window.__TG_TEST_TRIGGER_MS__` — number, устанавливается
+ * через `page.addInitScript()` ТОЛЬКО в `tg-popup.spec.ts` (другие тесты не
+ * видят popup за их test runtime).
+ */
+function getTriggerMs(): number {
+  if (typeof window !== "undefined") {
+    const override = (window as { __TG_TEST_TRIGGER_MS__?: unknown })
+      .__TG_TEST_TRIGGER_MS__;
+    if (typeof override === "number" && override > 0) return override;
+  }
+  return 60_000;
+}
 
 export function TgPopupHost() {
   const ctaHref = process.env.NEXT_PUBLIC_TG_CHANNEL_URL ?? "";
@@ -62,9 +77,11 @@ function TgPopupHostActive({
   ctaHref: string;
 }) {
   const [open, setOpen] = useState(false);
+  // Считываем один раз на mount — overrides не должны меняться в runtime.
+  const triggerMs = getTriggerMs();
 
   useActivityTimer(
-    TRIGGER_MS,
+    triggerMs,
     useCallback(() => {
       setOpen(true);
     }, []),
