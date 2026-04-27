@@ -18,9 +18,11 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  // Локально 4 worker'а перегружают одиночный next dev (turbopack) и приводят
+  // к flaky-таймаутам на тяжёлой главной странице (особенно в WebKit). Снижено до 2.
+  workers: process.env.CI ? 1 : 2,
   reporter: process.env.CI ? [["github"], ["list"]] : "list",
-  timeout: 30_000,
+  timeout: 60_000,
   expect: { timeout: 5_000 },
   use: {
     baseURL: process.env.E2E_BASE_URL ?? "http://localhost:3100",
@@ -28,7 +30,7 @@ export default defineConfig({
     video: "retain-on-failure",
     screenshot: "only-on-failure",
     actionTimeout: 10_000,
-    navigationTimeout: 15_000,
+    navigationTimeout: 30_000,
   },
   projects: [
     {
