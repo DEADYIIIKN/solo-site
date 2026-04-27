@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: form-wiring-modal-refactor
 last_shipped: v1.0
-status: milestone-planned
-stopped_at: v1.1 roadmap created. Awaiting /gsd-plan-phase 7 to start execution.
+status: phase-7-complete
+stopped_at: Phase 7 complete (REFAC-01..03 satisfied + bonus FORM-01 fix). Awaiting PR merge → Phase 8 (FUNC-01).
 last_updated: "2026-04-27T00:00:00.000Z"
-last_activity: 2026-04-27 -- v1.1 milestone defined (3 phases, 10 requirements)
+last_activity: 2026-04-27 -- Phase 07 modal unification завершён (4 plans, sverka approved)
 progress:
   total_phases: 3
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  completed_phases: 1
+  total_plans: 4
+  completed_plans: 4
+  percent: 33
 ---
 
 # Project State
@@ -22,16 +22,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.1 — Form Wiring & Modal Refactor (Phase 7 next)
+**Current focus:** v1.1 — Phase 7 done; Phase 8 (FUNC-01 Form Submission) next
 
 ## Current Position
 
 Last shipped: **v1.0** (2026-04-27)
-Active milestone: **v1.1** (planning complete, execution not started)
-Phase: 7 (Modal Unification) — next up
-Next: `/gsd-plan-phase 7` — детальный плэн REFAC-01..03
+Active milestone: **v1.1** (1/3 phases complete)
+Phase: 7 (Modal Unification) — ✅ COMPLETE (REFAC-01..03 satisfied, bonus FORM-01 fix)
+Next: `/gsd-plan-phase 8` — FUNC-01..04 + TEST-04/05
 
-Progress: [          ] 0% (0/3 phases)
+Progress: [███       ] 33% (1/3 phases)
 
 ## Performance Metrics
 
