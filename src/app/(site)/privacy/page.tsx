@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getPayload } from "payload";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import config from "@payload-config";
 
 import { FooterSection } from "@/widgets/footer";
@@ -33,16 +35,29 @@ const PLACEHOLDER = `Политика конфиденциальности
 6. Контакты
 По вопросам обработки персональных данных обращайтесь по контактам, указанным на сайте.`;
 
+function hasContent(data: SerializedEditorState | null): data is SerializedEditorState {
+  if (!data) return false;
+  const children = data.root?.children;
+  if (!Array.isArray(children) || children.length === 0) return false;
+  // Lexical всегда содержит как минимум один пустой paragraph; считаем «есть контент»
+  // если хотя бы у одного блока дети непустые.
+  return children.some((node) => {
+    const c = (node as unknown as { children?: unknown[] }).children;
+    return Array.isArray(c) && c.length > 0;
+  });
+}
+
 export default async function PrivacyPage() {
   // Fetch Payload CMS content; fall back to static placeholder on any error.
-  let richTextContent: unknown = null;
+  let richTextContent: SerializedEditorState | null = null;
   try {
     const payload = await getPayload({ config });
     const raw = await payload.findGlobal({
       slug: "privacy-page",
       overrideAccess: true,
     });
-    richTextContent = (raw as Record<string, unknown>).content ?? null;
+    const content = (raw as Record<string, unknown>).content;
+    richTextContent = (content as SerializedEditorState | undefined) ?? null;
   } catch {
     // Payload not available or table not yet seeded — render placeholder below.
   }
@@ -58,14 +73,9 @@ export default async function PrivacyPage() {
             ← На главную
           </a>
 
-          {richTextContent != null ? (
-            // CMS content: render a prose container; Payload's RichText component
-            // requires a client boundary — use a simple pre-formatted fallback for now
-            // until rich text rendering is needed. The content will be editable in Payload admin.
-            <div className="text-white opacity-90 text-[16px] font-normal leading-[1.6]">
-              <p className="text-[14px] leading-[1.5] text-[#9c9c9c]">
-                Политика конфиденциальности в процессе подготовки.
-              </p>
+          {hasContent(richTextContent) ? (
+            <div className="prose prose-invert max-w-none text-white opacity-90 text-[16px] font-normal leading-[1.6]">
+              <RichText data={richTextContent} />
             </div>
           ) : (
             <div className="text-white opacity-90">
