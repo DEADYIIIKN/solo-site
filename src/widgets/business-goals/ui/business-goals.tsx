@@ -467,9 +467,9 @@ function MobileBusinessGoals({
             titleLeft: 12,
             descLeft: 12,
             cards: [
-              { titleTop: 182, titleWidth: 171, descWidth: 182, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
-              { titleTop: 12, titleWidth: 218, descWidth: 161, overlayClass: "bg-gradient-to-t from-[35.096%] from-transparent to-[rgba(13,3,0,0.2)]" },
-              { titleTop: 177, titleWidth: 147, descWidth: 216, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+              { titleTop: 182, titleWidth: 171, descWidth: 218, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+              { titleTop: 12, titleWidth: 218, descWidth: 218, overlayClass: "bg-gradient-to-t from-[35.096%] from-transparent to-[rgba(13,3,0,0.2)]" },
+              { titleTop: 177, titleWidth: 147, descWidth: 218, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
               { titleTop: 195, titleWidth: 218, descWidth: 218, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
             ] as const,
           };
@@ -666,11 +666,12 @@ function MobileBusinessGoals({
                         {titleBlock}
                       </div>
                       <p
-                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
                           bottom: "24px",
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
+                          lineHeight: 1.2,
                         }}
                       >
                         {card.description}
@@ -689,11 +690,12 @@ function MobileBusinessGoals({
                         {titleBlock}
                       </div>
                       <p
-                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
                           bottom: "24px",
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
+                          lineHeight: 1.2,
                         }}
                       >
                         {card.description}
@@ -712,11 +714,12 @@ function MobileBusinessGoals({
                         {titleBlock}
                       </div>
                       <p
-                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
                           bottom: "24px",
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
+                          lineHeight: 1.2,
                         }}
                       >
                         {card.description}
@@ -735,11 +738,12 @@ function MobileBusinessGoals({
                         {titleBlock}
                       </div>
                       <p
-                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
                           bottom: "24px",
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
+                          lineHeight: 1.2,
                         }}
                       >
                         {card.description}
