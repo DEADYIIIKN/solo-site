@@ -411,6 +411,7 @@ function MobileBusinessGoals({
           bodyFontClass: "text-[14px]",
           titleLeft: 20,
           descLeft: 20,
+          descBottom: 24,
           cards: [
             { titleTop: 361, titleWidth: 292, descWidth: 374, overlayClass: "bg-gradient-to-b from-[53.614%] from-transparent to-[rgba(13,3,0,0.6)]" },
             { titleTop: 20, titleWidth: 339, descWidth: 201, overlayClass: "bg-gradient-to-b from-[rgba(13,3,0,0.6)] via-1/2 via-transparent to-transparent" },
@@ -439,6 +440,7 @@ function MobileBusinessGoals({
             bodyFontClass: "text-[12px]",
             titleLeft: 16,
             descLeft: 16,
+            descBottom: 24,
             cards: [
               { titleTop: 266, titleWidth: 213, descWidth: 273, overlayClass: "bg-gradient-to-b from-[53.614%] from-transparent to-[rgba(13,3,0,0.6)]" },
               { titleTop: 16, titleWidth: 282, descWidth: 192, overlayClass: "bg-gradient-to-b from-[rgba(13,3,0,0.6)] via-1/2 via-transparent to-transparent" },
@@ -466,6 +468,7 @@ function MobileBusinessGoals({
             bodyFontClass: "text-[11px]",
             titleLeft: 12,
             descLeft: 12,
+            descBottom: 12,
             cards: [
               { titleTop: 182, titleWidth: 171, descWidth: 218, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
               { titleTop: 12, titleWidth: 218, descWidth: 218, overlayClass: "bg-gradient-to-t from-[35.096%] from-transparent to-[rgba(13,3,0,0.2)]" },
@@ -668,7 +671,7 @@ function MobileBusinessGoals({
                       <p
                         className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
-                          bottom: "24px",
+                          bottom: `${config.descBottom}px`,
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
                           lineHeight: 1.2,
@@ -692,7 +695,7 @@ function MobileBusinessGoals({
                       <p
                         className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
-                          bottom: "24px",
+                          bottom: `${config.descBottom}px`,
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
                           lineHeight: 1.2,
@@ -716,7 +719,7 @@ function MobileBusinessGoals({
                       <p
                         className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
-                          bottom: "24px",
+                          bottom: `${config.descBottom}px`,
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
                           lineHeight: 1.2,
@@ -740,7 +743,7 @@ function MobileBusinessGoals({
                       <p
                         className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
-                          bottom: "24px",
+                          bottom: `${config.descBottom}px`,
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
                           lineHeight: 1.2,
