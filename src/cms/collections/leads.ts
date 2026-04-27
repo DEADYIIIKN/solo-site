@@ -14,8 +14,21 @@ export const Leads: CollectionConfig = {
   admin: {
     useAsTitle: "phone",
     group: "Заявки",
-    defaultColumns: ["phone", "name", "contactMethod", "forwardedToWebhook", "createdAt"],
+    /* ADMIN-01: list view columns — name, phone, source, contactMethod,
+       forwardedToWebhook, createdAt (Phase 11). */
+    defaultColumns: [
+      "phone",
+      "name",
+      "source",
+      "contactMethod",
+      "forwardedToWebhook",
+      "createdAt",
+    ],
+    /* ADMIN-02: default sort — newest first.
+       Filter работает встроенно в Payload admin UI на всех полях. */
+    listSearchableFields: ["phone", "name", "source"],
   },
+  defaultSort: "-createdAt",
   access: {
     read: () => true,
   },
