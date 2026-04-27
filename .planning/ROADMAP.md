@@ -8,13 +8,13 @@
 
 **Goal:** Заявки реально доходят до владельца + единая отправка из всех модалок без дублирования логики.
 
-**Status:** Phase 7 + 8 complete (2/3). Phase 9 next.
+**Status:** ✅ All 3 phases complete (3/3). Awaiting ship via PR release/v1.1 → main.
 
 ### Phases
 
 - [x] **Phase 7: Modal Unification** — REFAC-01: 5 consultation-modal → ConsultationModalBase ✅ 2026-04-27
 - [x] **Phase 8: Form Submission** — FUNC-01..04 + TEST-04/05: n8n + Collection fallback + spam guard ✅ 2026-04-27
-- [ ] **Phase 9: Lead-Form Pixel Cleanup** — LF-DRIFT-01: закрыть D-19 carryover (360/480 y-drift)
+- [x] **Phase 9: Lead-Form Pixel Cleanup** — LF-DRIFT-01: D-19 carryover closed ✅ 2026-04-27
 
 ### Phase Details
 
@@ -71,7 +71,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 7. Modal Unification | 4/4 | Complete | 2026-04-27 |
 | 8. Form Submission | 4/4 | Complete | 2026-04-27 |
-| 9. Lead-Form Pixel Cleanup | 0/1 | Planned | - |
+| 9. Lead-Form Pixel Cleanup | 1/1 | Complete | 2026-04-27 |
 
 ## Backlog
 

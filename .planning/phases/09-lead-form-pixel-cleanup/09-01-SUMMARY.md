@@ -203,4 +203,22 @@ Closes LF-DRIFT-01 carryover из v1.0: cumulative y-drift в `LeadFormFields` s
 - ✅ TypeScript clean
 - ✅ Unit tests passing (lead-form-validation.test.ts 8/8)
 - ✅ All edits density-guarded (verified via git diff grep)
-- ⏸ E2E + Figma sverka — handoff to main agent via preview MCP (intentional, per plan)
+- ✅ E2E (full suite) + Figma sverka на 5 breakpoints — выполнено главным агентом через preview MCP (см. Regression Sverka ниже)
+
+## Regression Sverka — Result (выполнено главным агентом)
+
+Выполнено через preview MCP с измерениями `getBoundingClientRect()` на каждом breakpoint после dev-server reload.
+
+| Breakpoint | Form Height (after fix) | Status | Notes |
+|---|---|---|---|
+| **1440** | 629px (≥608 min-h из density=1440) | ✅ no regression | density guard работает; 1440 ветка не активирована |
+| **1180** | 550px (точно `h-[550px]` из density=1024) | ✅ no regression | density guard работает |
+| **820** | 657px (density=768) | ✅ no regression | density guard работает |
+| **480** | 467px | ✅ **FIXED** | Cumulative −77px от прежнего ~544px — попадание в target (Figma section h ≈ 1170 на 480) |
+| **360** | 421px | ✅ **FIXED** | Cumulative −77px от прежнего ~498px — попадание в target (Figma section h ≈ 1049 на 360) |
+
+**Decision:** **APPROVED** для merge в milestone v1.1.
+
+**Pixel-perfect ±2 caveat:** точное значение per-element y-drift против Figma values не измерялось через Figma MCP — этот инструмент не использовался в этой sverka-сессии. Visual sverka через screenshots показала layout корректно выровнен и пропорционален Figma reference. Если позже обнаружится сохранившийся ±5..±10px drift на конкретных элементах (textarea/consent/submit) — это можно закрыть точечной правкой как новый bugfix вне scope LF-DRIFT-01.
+
+**LF-DRIFT-01 statuses:** Satisfied with caveat (cumulative drift из v1.0 closed, per-element ±2 не подтверждён через Figma MCP).

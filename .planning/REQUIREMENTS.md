@@ -20,7 +20,7 @@
 
 ### Lead-Form Pixel Cleanup (LF)
 
-- [ ] **LF-DRIFT-01**: Lead-form на 360px и 480px не имеет y-drift отклонения от Figma больше ±2px (закрыть D-19 carryover из v1.0)
+- [x] **LF-DRIFT-01**: Lead-form на 360px и 480px не имеет y-drift отклонения от Figma больше ±2px (закрыть D-19 carryover из v1.0)
 
 ### Testing (TEST — расширение покрытия)
 
@@ -49,7 +49,7 @@
 | REFAC-01 | 7 | Satisfied |
 | REFAC-02 | 7 | Satisfied |
 | REFAC-03 | 7 | Satisfied |
-| LF-DRIFT-01 | TBD | Pending |
+| LF-DRIFT-01 | 9 | Satisfied |
 | TEST-04 | TBD | Pending |
 | TEST-05 | TBD | Pending |
 

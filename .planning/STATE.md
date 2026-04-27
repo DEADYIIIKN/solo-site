@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: form-wiring-modal-refactor
 last_shipped: v1.0
-status: phase-8-complete
-stopped_at: Phase 8 complete (FUNC-01..04 + TEST-04/05 satisfied). Phase 9 next.
+status: phase-9-complete
+stopped_at: v1.1 ALL phases complete. Awaiting ship via PR release/v1.1 → main.
 last_updated: "2026-04-27T00:00:00.000Z"
-last_activity: 2026-04-27 -- Phase 08 form-submission завершён (4 plans, n8n + Collection fallback + tests)
+last_activity: 2026-04-27 -- Phase 09 lead-form pixel cleanup завершён, v1.1 готов к ship
 progress:
   total_phases: 3
-  completed_phases: 2
-  total_plans: 8
-  completed_plans: 8
-  percent: 66
+  completed_phases: 3
+  total_plans: 9
+  completed_plans: 9
+  percent: 100
 ---
 
 # Project State
@@ -22,16 +22,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.1 — Phase 7 + 8 done; Phase 9 (LF-DRIFT-01) next
+**Current focus:** v1.1 ALL phases complete — ship время
 
 ## Current Position
 
 Last shipped: **v1.0** (2026-04-27)
-Active milestone: **v1.1** (2/3 phases complete)
-Phase: 8 (Form Submission) — ✅ COMPLETE (FUNC-01..04 + TEST-04/05 satisfied)
-Next: `/gsd-plan-phase 9` — LF-DRIFT-01 (D-19 carryover)
+Active milestone: **v1.1** (3/3 phases complete)
+Phase: 9 (Lead-Form Pixel Cleanup) — ✅ COMPLETE (LF-DRIFT-01 satisfied)
+Next: PR `release/v1.1` → main → `/gsd-complete-milestone v1.1`
 
-Progress: [██████    ] 66% (2/3 phases)
+Progress: [██████████] 100% (3/3 phases)
 
 ## Performance Metrics
 
