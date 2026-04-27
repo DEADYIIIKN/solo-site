@@ -180,14 +180,33 @@ function ConsultationBtn({
   );
 }
 
-function PackageGlow({ left, top }: { left: number; top: number; filterId?: string }) {
-  // Figma 783:10948 Ellipse 113 — 8×8 sharp orange dot. Halo (Ellipse 110, blur stdDeviation=50) практически невидим из-за сильного blur, в Figma reference (1:1) виден только sharp dot. Position (+17,+20): center в 42×42 frame с +3px Y-compensation для Montserrat line-box.
+function PackageGlow({ left, top, filterId }: { left: number; top: number; filterId: string }) {
+  // Figma 783:10947+10948 (1:1 with imgEllipse110 SVG): 42×42 frame + inset[-238.1%] (= 242×242) + inline SVG with circle r=21 + gaussianBlur stdDeviation=50 + separate 8×8 sharp dot.
   return (
-    <div
-      className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
-      data-services-package-glow=""
-      style={{ left: left + 17, top: top + 20 }}
-    />
+    <>
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+        data-services-package-glow=""
+        style={{ left, top }}
+      >
+        <div className="absolute inset-[-238.1%] overflow-visible">
+          <FirstScreenGeoGlow
+            blur={20}
+            cx={121}
+            cy={121}
+            dotR={0}
+            filterId={filterId}
+            pulse={false}
+            r={21}
+            size={242}
+          />
+        </div>
+      </div>
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+        style={{ left: left + 17, top: top + 20 }}
+      />
+    </>
   );
 }
 
