@@ -2,11 +2,11 @@
 
 import type { Dispatch, SetStateAction } from "react";
 
-import {
-  FirstScreenConsultationModal1440,
-  type FirstScreenConsultationFormState,
-  type FirstScreenConsultationModalTitleVariant
-} from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+import { FirstScreenConsultationModal1440 } from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+import type {
+  FirstScreenConsultationFormState,
+  FirstScreenConsultationModalTitleVariant
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 import { FirstScreenHeader1440 } from "@/widgets/first-screen/ui/first-screen-header";
 import { FirstScreenHero1440 } from "@/widgets/first-screen/ui/first-screen-hero-1440";
 

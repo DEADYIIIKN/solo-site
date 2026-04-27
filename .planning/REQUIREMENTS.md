@@ -14,9 +14,9 @@
 
 ### Modal Refactor (REFAC)
 
-- [ ] **REFAC-01**: 5 файлов `first-screen-consultation-modal-{1440,1024,768,480,360}.tsx` унифицированы в один `ConsultationModalBase` компонент с per-breakpoint variants через props или CSS
-- [ ] **REFAC-02**: Все 5 точек открытия модалки используют единый компонент; visual parity сохранена (Playwright `consultation-modal.spec.ts` проходит без правок)
-- [ ] **REFAC-03**: Submit handler централизован — один источник правды для всех 5 контекстов вызова (header CTA, hero CTA, services CTA, etc.)
+- [x] **REFAC-01**: 5 файлов `first-screen-consultation-modal-{1440,1024,768,480,360}.tsx` унифицированы в один `ConsultationModalBase` компонент с per-breakpoint variants через props или CSS
+- [x] **REFAC-02**: Все 5 точек открытия модалки используют единый компонент; visual parity сохранена (Playwright `consultation-modal.spec.ts` проходит без правок)
+- [x] **REFAC-03**: Submit handler централизован — один источник правды для всех 5 контекстов вызова (header CTA, hero CTA, services CTA, etc.)
 
 ### Lead-Form Pixel Cleanup (LF)
 
@@ -46,9 +46,9 @@
 | FUNC-02 | TBD | Pending |
 | FUNC-03 | TBD | Pending |
 | FUNC-04 | TBD | Pending |
-| REFAC-01 | TBD | Pending |
-| REFAC-02 | TBD | Pending |
-| REFAC-03 | TBD | Pending |
+| REFAC-01 | 7 | Satisfied |
+| REFAC-02 | 7 | Satisfied |
+| REFAC-03 | 7 | Satisfied |
 | LF-DRIFT-01 | TBD | Pending |
 | TEST-04 | TBD | Pending |
 | TEST-05 | TBD | Pending |

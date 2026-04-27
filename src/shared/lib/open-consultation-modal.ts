@@ -1,4 +1,4 @@
-import type { FirstScreenConsultationModalTitleVariant } from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+import type { FirstScreenConsultationModalTitleVariant } from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 
 export const OPEN_CONSULTATION_MODAL_EVENT = "open-consultation-modal" as const;
 

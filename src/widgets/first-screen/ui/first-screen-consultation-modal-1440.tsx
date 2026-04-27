@@ -8,14 +8,6 @@ import type {
 } from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 import { ConsultationModal } from "@/widgets/first-screen/ui/consultation-modal";
 
-// Re-exports для обратной совместимости. Удалить в Plan 07-04 после конверсии всех импортов.
-export type {
-  FirstScreenConsultationContactMethod,
-  FirstScreenConsultationFormState,
-  FirstScreenConsultationModalTitleVariant,
-} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
-export { defaultFirstScreenConsultationFormState } from "@/widgets/first-screen/model/first-screen-consultation-form-state";
-
 type FirstScreenConsultationModal1440Props = {
   open: boolean;
   onClose: () => void;
