@@ -1,17 +1,18 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: phase-6-complete
-stopped_at: Phase 6 complete — milestone v1.0 done
+milestone: none-active
+milestone_name: ""
+last_shipped: v1.0
+status: milestone-shipped
+stopped_at: v1.0 shipped, archived. Awaiting /gsd-new-milestone for next cycle.
 last_updated: "2026-04-27T00:00:00.000Z"
-last_activity: 2026-04-27 -- Phase 06 testing завершён (TEST-01/02/03)
+last_activity: 2026-04-27 -- v1.0 merged to main + archived to milestones/
 progress:
-  total_phases: 6
-  completed_phases: 6
-  total_plans: 27
-  completed_plans: 27
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
@@ -21,16 +22,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** Phase 06 — testing
+**Current focus:** Между milestone'ами — ждёт `/gsd-new-milestone`
 
 ## Current Position
 
-Phase: 06 (testing) — COMPLETE
-Plan: 3 of 3 (Wave 3 — Vitest unit tests)
-Next: Milestone v1.0 — final UAT / ship
-Last activity: 2026-04-27 -- Phase 06 завершён (Playwright E2E + cross-browser + Vitest unit)
+Last shipped: **v1.0** (2026-04-27)
+Phase: — (no active milestone)
+Next: `/gsd-new-milestone` — определить scope v1.1 / v2.0
+Last activity: 2026-04-27 -- v1.0 merged + archived
 
-Progress: [██████████] 100%
+Progress: idle (between milestones)
 
 ## Performance Metrics
 
