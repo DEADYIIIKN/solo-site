@@ -58,7 +58,10 @@
 1. Y-coordinates всех элементов lead-form на 360px и 480px в пределах ±2px от Figma values из 05-SVERKA-REPORT
 2. Phase 5 SVERKA не регрессит на других breakpoints (1440 / 1180 / 820)
 3. E2E + visual spec на main подтверждают отсутствие сдвигов
-**Plans:** TBD (определит /gsd-plan-phase 9)
+**Plans:** 1 plan
+
+Plans:
+- [ ] 09-01-PLAN.md — targeted lead-form y-drift fix на 360/480 (discovery + fix + regression sverka)
 
 ## Progress
 
@@ -68,7 +71,7 @@
 |-------|----------------|--------|-----------|
 | 7. Modal Unification | 4/4 | Complete | 2026-04-27 |
 | 8. Form Submission | 4/4 | Complete | 2026-04-27 |
-| 9. Lead-Form Pixel Cleanup | 0/? | Planned | - |
+| 9. Lead-Form Pixel Cleanup | 0/1 | Planned | - |
 
 ## Backlog
 
