@@ -1,14 +1,14 @@
 ---
 gsd_state_version: 1.0
-milestone: none-active
-milestone_name: ""
+milestone: v1.1
+milestone_name: form-wiring-modal-refactor
 last_shipped: v1.0
-status: milestone-shipped
-stopped_at: v1.0 shipped, archived. Awaiting /gsd-new-milestone for next cycle.
+status: milestone-planned
+stopped_at: v1.1 roadmap created. Awaiting /gsd-plan-phase 7 to start execution.
 last_updated: "2026-04-27T00:00:00.000Z"
-last_activity: 2026-04-27 -- v1.0 merged to main + archived to milestones/
+last_activity: 2026-04-27 -- v1.1 milestone defined (3 phases, 10 requirements)
 progress:
-  total_phases: 0
+  total_phases: 3
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -22,16 +22,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** Между milestone'ами — ждёт `/gsd-new-milestone`
+**Current focus:** v1.1 — Form Wiring & Modal Refactor (Phase 7 next)
 
 ## Current Position
 
 Last shipped: **v1.0** (2026-04-27)
-Phase: — (no active milestone)
-Next: `/gsd-new-milestone` — определить scope v1.1 / v2.0
-Last activity: 2026-04-27 -- v1.0 merged + archived
+Active milestone: **v1.1** (planning complete, execution not started)
+Phase: 7 (Modal Unification) — next up
+Next: `/gsd-plan-phase 7` — детальный плэн REFAC-01..03
 
-Progress: idle (between milestones)
+Progress: [          ] 0% (0/3 phases)
 
 ## Performance Metrics
 

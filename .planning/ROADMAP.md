@@ -4,9 +4,67 @@
 
 - ✅ **v1.0** (2026-04-22 → 2026-04-27) — Frontend Quality & Bug Fix · 6 phases / 27 plans · [archive](milestones/v1.0-ROADMAP.md)
 
-## Current Milestone
+## Current Milestone — v1.1: Form Wiring & Modal Refactor
 
-_None active — run `/gsd-new-milestone` to start the next cycle._
+**Goal:** Заявки реально доходят до владельца + единая отправка из всех модалок без дублирования логики.
+
+**Status:** Planning (roadmap created, requirements defined, awaiting `/gsd-plan-phase 7`)
+
+### Phases
+
+- [ ] **Phase 7: Modal Unification** — REFAC-01: 5 consultation-modal → ConsultationModalBase
+- [ ] **Phase 8: Form Submission** — FUNC-01..04 + TEST-04/05: реальная отправка + fallback + spam guard
+- [ ] **Phase 9: Lead-Form Pixel Cleanup** — LF-DRIFT-01: закрыть D-19 carryover (360/480 y-drift)
+
+### Phase Details
+
+#### Phase 7: Modal Unification (REFAC)
+**Goal:** 5 идентичных файлов `first-screen-consultation-modal-{1440,1024,768,480,360}.tsx` сведены в один `ConsultationModalBase` без потери visual parity.
+**Depends on:** v1.0 shipped
+**Requirements:** REFAC-01, REFAC-02, REFAC-03
+**Success Criteria:**
+1. Существует один компонент `ConsultationModalBase` (либо одна модалка с per-breakpoint variants), используемый из всех 5 точек открытия
+2. Playwright `consultation-modal.spec.ts` проходит без правок (visual / behavior parity)
+3. Submit handler централизован — один callback prop / один внутренний хук
+4. После рефакторинга нет дубликатов файлов `first-screen-consultation-modal-*.tsx` (либо они остаются как тонкие per-breakpoint обёртки над base)
+**Plans:** TBD (определит /gsd-plan-phase 7)
+
+#### Phase 8: Form Submission (FUNC)
+**Goal:** Заявки реально доходят до владельца через выбранный канал; при сбое — сохраняются локально; пользователь видит честный success/error state.
+**Depends on:** Phase 7 (один submit handler — проще обвязать FUNC-логикой)
+**Requirements:** FUNC-01, FUNC-02, FUNC-03, FUNC-04, TEST-04, TEST-05
+**Open questions** (решаются на discuss-phase):
+- Endpoint: Telegram bot / n8n webhook / CRM API?
+- Server route: Next.js API route + server action или только action?
+- Persistence fallback: Payload Collection «leads» или append-only log?
+- Rate limiting: in-memory (per-IP) или через Payload?
+**Success Criteria:**
+1. Submit happy path — заявка доставлена во внешний канал, success state показан пользователю
+2. Endpoint отвалился — данные сохранены локально (Payload Collection или log), пользователь видит success (заявка не потеряна) либо retry-state (по решению на discuss)
+3. Defense: client-side debounce + server-side rate limit (минимум — per-IP, конкретный лимит обсуждается)
+4. E2E spec покрывает happy + failure-path (через mock endpoint)
+5. Unit tests покрывают server-side handler (валидация, rate-limit, fallback)
+**Plans:** TBD (определит /gsd-plan-phase 8)
+
+#### Phase 9: Lead-Form Pixel Cleanup (LF)
+**Goal:** Закрыть D-19 carryover из v1.0 — y-drift на 360/480 в shared `LeadFormFields` ≤ ±2px от Figma.
+**Depends on:** Phase 8 (если submit handler перепишется — лучше делать pixel-tweaks после)
+**Requirements:** LF-DRIFT-01
+**Success Criteria:**
+1. Y-coordinates всех элементов lead-form на 360px и 480px в пределах ±2px от Figma values из 05-SVERKA-REPORT
+2. Phase 5 SVERKA не регрессит на других breakpoints (1440 / 1180 / 820)
+3. E2E + visual spec на main подтверждают отсутствие сдвигов
+**Plans:** TBD (определит /gsd-plan-phase 9)
+
+## Progress
+
+**Execution Order:** Phases 7 → 8 → 9 (sequential — каждая зависит от предыдущей)
+
+| Phase | Plans Complete | Status | Completed |
+|-------|----------------|--------|-----------|
+| 7. Modal Unification | 0/? | Planned | - |
+| 8. Form Submission | 0/? | Planned | - |
+| 9. Lead-Form Pixel Cleanup | 0/? | Planned | - |
 
 ## Backlog
 

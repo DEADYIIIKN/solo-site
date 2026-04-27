@@ -20,12 +20,26 @@
 - boneyard-js удалён, миграция на Framer Motion завершена
 - 5 breakpoints прошли Figma MCP sverka (с 4 deferred design decisions)
 
-## Next Milestone Goals (draft for /gsd-new-milestone)
+## Current Milestone: v1.1 — Form Wiring & Modal Refactor
 
-Кандидаты для v1.1 / v2.0 — обсудить в новом цикле:
+**Goal:** Заявки реально доходят до владельца + единая отправка из всех модалок без дублирования логики.
 
-**Tech debt (REFAC):**
-- REFAC-01: Унифицировать 5 консультационных модалей в `ConsultationModalBase`
+**Target features:**
+- **FUNC-01** — Реализовать отправку формы (Telegram bot / n8n webhook / CRM — endpoint TBD), включая локальный fallback log на случай отвалившегося endpoint
+- **REFAC-01** — Унифицировать 5 идентичных consultation-modal в `ConsultationModalBase` (готовит почву для одного submit handler)
+- **LF-DRIFT-01** — Закрыть deferred lead-form y-drift на 360/480 (D-19 carryover из v1.0)
+
+**Out of scope для v1.1:**
+- REFAC-02..04 (крупные рефакторинги business-goals / services / shared-types) — отложить в v1.2 «Tech Debt»
+- Footer blog secrets + consultation badge — отдельная feature-фаза с дизайном
+- Cases 1440 ad-section gap (D-17) — accepted design decision
+- Team 360 tagline wrap — fundamental font-metrics, нужен font swap
+
+## Backlog Candidates (for future milestones)
+
+Кандидаты для v1.2+ — обсудить в новом цикле:
+
+**Tech debt (REFAC) — отложено в v1.2:**
 - REFAC-02: Разбить `business-goals.tsx` (1300 строк) на per-breakpoint компоненты
 - REFAC-03: Разбить `services-section-below-1024.tsx` (1000 строк)
 - REFAC-04: Перенести shared form types в model-файл
