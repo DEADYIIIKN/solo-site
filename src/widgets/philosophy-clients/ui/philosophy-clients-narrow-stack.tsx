@@ -46,18 +46,19 @@ function CardBodyParts({
   return (
     <p
       className={cn(
-        "m-0 font-bold leading-[1.2] [&_span]:leading-[1.2]",
+        "m-0 font-bold",
         bodyClass,
         inverted ? "text-white" : "text-[#0d0300]",
       )}
+      style={{ lineHeight: 1.2 }}
     >
       {parts.map((part, i) =>
         part.emphasis === "italic" ? (
-          <span className="font-normal italic" key={i}>
+          <span className="font-normal italic" key={i} style={{ lineHeight: 1.2 }}>
             {part.text}
           </span>
         ) : (
-          <span key={i}>{part.text}</span>
+          <span key={i} style={{ lineHeight: 1.2 }}>{part.text}</span>
         ),
       )}
     </p>
