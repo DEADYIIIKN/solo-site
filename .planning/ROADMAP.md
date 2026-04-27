@@ -8,7 +8,7 @@
 
 **Goal:** Заявки реально доходят до владельца + единая отправка из всех модалок без дублирования логики.
 
-**Status:** Phase 7 complete (1/3). Phase 8 next.
+**Status:** Phase 7 complete (1/3). Phase 8 planned (4 plans), execution next.
 
 ### Phases
 
@@ -44,7 +44,11 @@
 3. Defense: client-side debounce + server-side rate limit (минимум — per-IP, конкретный лимит обсуждается)
 4. E2E spec покрывает happy + failure-path (через mock endpoint)
 5. Unit tests покрывают server-side handler (валидация, rate-limit, fallback)
-**Plans:** TBD (определит /gsd-plan-phase 8)
+**Plans:** 4 plans
+- [ ] 08-01-PLAN.md — Payload Collection «leads» + миграция (FUNC-02)
+- [ ] 08-02-PLAN.md — API route /api/leads: validate + rate-limit + Collection insert + n8n forward (FUNC-01/02/04)
+- [ ] 08-03-PLAN.md — Заменить TODO в lead-form-fields.tsx на fetch /api/leads + debounce + error UI (FUNC-01/03/04)
+- [ ] 08-04-PLAN.md — TEST-04 (E2E error path) + TEST-05 (unit rate-limit/validation)
 
 #### Phase 9: Lead-Form Pixel Cleanup (LF)
 **Goal:** Закрыть D-19 carryover из v1.0 — y-drift на 360/480 в shared `LeadFormFields` ≤ ±2px от Figma.
@@ -63,7 +67,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 7. Modal Unification | 4/4 | Complete | 2026-04-27 |
-| 8. Form Submission | 0/? | Planned | - |
+| 8. Form Submission | 0/4 | Planned | - |
 | 9. Lead-Form Pixel Cleanup | 0/? | Planned | - |
 
 ## Backlog
