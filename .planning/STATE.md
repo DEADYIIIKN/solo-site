@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-stopped_at: Phase 5 context gathered
-last_updated: "2026-04-23T11:57:26.196Z"
-last_activity: 2026-04-23 -- Phase 05 execution started
+status: phase-5-complete
+stopped_at: Phase 5 complete — pending final UAT
+last_updated: "2026-04-27T00:00:00.000Z"
+last_activity: 2026-04-27 -- Phase 05 finalize (Wave 6) completed
 progress:
   total_phases: 6
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 24
-  completed_plans: 21
-  percent: 78
+  completed_plans: 24
+  percent: 92
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** Phase 05 — pixel-perfect-final-pass
+**Current focus:** Phase 06 — testing
 
 ## Current Position
 
-Phase: 05 (pixel-perfect-final-pass) — EXECUTING
-Plan: 4 of 6 (Wave 4 — 360 sverka)
-Next: Phase 5 (Pixel-Perfect Final Pass) — not started
-Last activity: 2026-04-23 -- Phase 05 execution started
+Phase: 05 (pixel-perfect-final-pass) — COMPLETE
+Plan: 6 of 6 (Wave 6 — finalize)
+Next: Phase 6 (Testing) — not started
+Last activity: 2026-04-27 -- Phase 05 finalized — PX-01..PX-05 closed
 
-Progress: [███████░░░] 67%
+Progress: [█████████░] 92%
 
 ## Performance Metrics
 

@@ -54,11 +54,11 @@
 
 ### Pixel-Perfect (Figma)
 
-- [ ] **PX-01**: Все блоки на 1440px соответствуют дизайну Figma (лист «Адаптивы актуальные»)
-- [ ] **PX-02**: Все блоки на 1180px соответствуют дизайну Figma
-- [ ] **PX-03**: Все блоки на 820px соответствуют дизайну Figma
-- [ ] **PX-04**: Все блоки на 360px соответствуют дизайну Figma
-- [ ] **PX-05**: Все блоки на 480px соответствуют дизайну Figma
+- [x] **PX-01**: Все блоки на 1440px соответствуют дизайну Figma (лист «Адаптивы актуальные»)
+- [x] **PX-02**: Все блоки на 1180px соответствуют дизайну Figma
+- [x] **PX-03**: Все блоки на 820px соответствуют дизайну Figma
+- [x] **PX-04**: Все блоки на 360px соответствуют дизайну Figma
+- [x] **PX-05**: Все блоки на 480px соответствуют дизайну Figma
 
 ### Stack Audit
 
@@ -120,11 +120,11 @@
 | SAFARI-02 | Phase 4 | Pending |
 | ANI-01 | Phase 4 | Pending |
 | ANI-02 | Phase 4 | Pending |
-| PX-01 | Phase 5 | Pending |
-| PX-02 | Phase 5 | Pending |
-| PX-03 | Phase 5 | Pending |
-| PX-04 | Phase 5 | Pending |
-| PX-05 | Phase 5 | Pending |
+| PX-01 | Phase 5 | Complete |
+| PX-02 | Phase 5 | Complete |
+| PX-03 | Phase 5 | Complete |
+| PX-04 | Phase 5 | Complete |
+| PX-05 | Phase 5 | Complete |
 | AUDIT-01 | Phase 1 | Pending |
 | AUDIT-02 | Phase 1 | Pending |
 | TEST-01 | Phase 6 | Pending |
