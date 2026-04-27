@@ -152,32 +152,19 @@ function CommercialPointCell({
   );
 }
 
-/** «Пакеты…» — та же схема, что geo-glow в герое 480 (`first-screen-hero-480.tsx`). */
+/** «Пакеты…» — Figma 783:9214/9215: 42×42 мягкий halo + 8×8 sharp dot (compact, не размазанный). */
 function Services1440PackageRow() {
-  const rawId = useId().replace(/:/g, "");
-  const filterId = `services-pkg-glow-${rawId}`;
-
   return (
     <div
-      className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+      className="pointer-events-none absolute z-[2] size-[42px]"
       data-services-package-glow=""
       style={{
         left: V_HERO.packageGlowFrame.left,
         top: V_HERO.packageGlowFrame.top,
       }}
     >
-      <div className="absolute inset-[-238.1%] overflow-visible">
-        <FirstScreenGeoGlow
-          blur={50}
-          cx={121}
-          cy={121}
-          dotR={4}
-          filterId={filterId}
-          pulse={false}
-          r={21}
-          size={242}
-        />
-      </div>
+      <div className="absolute inset-0 rounded-full bg-[#ff5c00] opacity-30 blur-[6px]" />
+      <div className="absolute left-[17px] top-[17px] size-[8px] rounded-full bg-[#ff5c00]" />
     </div>
   );
 }

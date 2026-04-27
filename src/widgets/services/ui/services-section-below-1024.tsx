@@ -180,25 +180,17 @@ function ConsultationBtn({
   );
 }
 
-function PackageGlow({ left, top, filterId }: { left: number; top: number; filterId: string }) {
+function PackageGlow({ left, top }: { left: number; top: number; filterId?: string }) {
   return (
     <div
-      className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+      className="pointer-events-none absolute z-[2] size-[42px]"
       data-services-package-glow=""
       style={{ left, top }}
     >
-      <div className="absolute inset-[-238.1%] overflow-visible">
-        <FirstScreenGeoGlow
-          blur={50}
-          cx={121}
-          cy={121}
-          dotR={4}
-          filterId={filterId}
-          pulse={false}
-          r={21}
-          size={242}
-        />
-      </div>
+      {/* Figma 783:10945/10947 Ellipse 110 — 42×42 мягкий orange halo */}
+      <div className="absolute inset-0 rounded-full bg-[#ff5c00] opacity-30 blur-[6px]" />
+      {/* Figma Ellipse 113 — 8×8 сharp orange dot, центрирован */}
+      <div className="absolute left-[17px] top-[17px] size-[8px] rounded-full bg-[#ff5c00]" />
     </div>
   );
 }
