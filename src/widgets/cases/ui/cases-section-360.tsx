@@ -225,7 +225,7 @@ export function CasesSection360({
       <CasesSectionBackgroundGrid />
       <div className="relative w-full pb-[120px]">
         <div className="relative z-[1] mx-auto w-full max-w-[360px] px-4 pt-[70px]">
-          <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
+          <SectionEyebrowRow align="center" className="w-full justify-center" dotClassName="self-center" gapClassName="gap-2">
             <p className="m-0 whitespace-nowrap text-[14px] font-semibold lowercase leading-[1.2] text-white">
               {cases1440Copy.eyebrow}
             </p>

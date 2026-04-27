@@ -982,7 +982,7 @@ export function ServicesSectionBelow1024() {
               U360.cardsGap,
             )}
           >
-          <SectionEyebrowRow align="start" dotClassName="self-center" gapClassName="gap-[8px]">
+          <SectionEyebrowRow align="center" className="w-full justify-center" dotClassName="self-center" gapClassName="gap-[8px]">
             <p className={cn("m-0 whitespace-nowrap font-semibold lowercase text-[#0d0300]", U360.eyebrowText)}>
               {services1440Copy.eyebrow}
             </p>

@@ -34,7 +34,7 @@ export function PhilosophyClients360() {
                     titleInView ? philosophyNarrowRevealOn : philosophyNarrowRevealOff,
                   )}
                 >
-                  <SectionEyebrowRow align="start">
+                  <SectionEyebrowRow dotClassName="self-center">
                     <p className={sectionEyebrowTextMax479}>
                       {philosophyClients1440Content.philosophyEyebrow}
                     </p>
