@@ -89,8 +89,8 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     ctaButtonHeight: "h-[44px]",
     ctaFontSize: 13,
     ctaIconSize: 18,
-    imageWidth: "w-[260px]",
-    imageHeight: "h-[260px]",
+    imageWidth: "w-[215px]",
+    imageHeight: "h-[428px]",
   },
   "480": {
     layerVisibility: "min-[480px]:block min-[768px]:hidden",
@@ -111,8 +111,8 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     ctaButtonHeight: "h-[48px]",
     ctaFontSize: 14,
     ctaIconSize: 20,
-    imageWidth: "w-[280px]",
-    imageHeight: "h-[280px]",
+    imageWidth: "w-[227px]",
+    imageHeight: "h-[452px]",
   },
   "768": {
     layerVisibility: "min-[768px]:block min-[1024px]:hidden",
@@ -133,8 +133,8 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     ctaButtonHeight: "h-[52px]",
     ctaFontSize: 15,
     ctaIconSize: 22,
-    imageWidth: "w-[280px]",
-    imageHeight: "h-[336px]",
+    imageWidth: "w-[263px]",
+    imageHeight: "h-[523px]",
   },
   "1024": {
     layerVisibility: "min-[1024px]:block min-[1440px]:hidden",
@@ -155,8 +155,8 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     ctaButtonHeight: "h-[60px]",
     ctaFontSize: 16,
     ctaIconSize: 24,
-    imageWidth: "w-[300px]",
-    imageHeight: "h-[336px]",
+    imageWidth: "w-[263px]",
+    imageHeight: "h-[523px]",
   },
   "1440": {
     layerVisibility: "min-[1440px]:block",
@@ -177,7 +177,7 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     ctaButtonHeight: "h-[60px]",
     ctaFontSize: 17,
     ctaIconSize: 24,
-    imageWidth: "w-[400px]",
-    imageHeight: "h-[400px]",
+    imageWidth: "w-[315px]",
+    imageHeight: "h-[625px]",
   },
 };

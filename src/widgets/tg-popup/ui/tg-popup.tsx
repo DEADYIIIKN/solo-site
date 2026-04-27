@@ -70,12 +70,12 @@ function CloseButtonWrapperClass(size: 24 | 28 | 30 | 34) {
  * Telegram paper-plane icon. Используется внутри CTA-кнопки.
  * Простая inline-SVG, заливается currentColor (наследует text-white от button).
  */
-function TelegramIcon({ size }: { size: number }) {
+function TelegramIcon({ size, color = "currentColor" }: { size: number; color?: string }) {
   return (
     <svg
       aria-hidden
       className="shrink-0"
-      fill="currentColor"
+      fill={color}
       height={size}
       viewBox="0 0 24 24"
       width={size}
@@ -273,6 +273,18 @@ export function TgPopup({
             )}
             data-testid="tg-popup-card"
           >
+            {/* Subtle grid pattern (Figma Rectangle 173) — opacity 6%, clipped к card border */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 overflow-hidden rounded-[16px] opacity-[0.06]"
+              style={{
+                backgroundImage:
+                  "url('/assets/figma/tg-popup/card-grid-bg.png')",
+                backgroundSize: "780px auto",
+                backgroundPosition: "top left",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
             <div
               className={cn(
                 "flex min-w-0 flex-col",
@@ -308,7 +320,7 @@ export function TgPopup({
               </p>
               <a
                 className={cn(
-                  "inline-flex shrink-0 items-center justify-center gap-[10px] rounded-[50px] bg-[#ff5c00] text-center lowercase text-white transition-colors hover:bg-[#de4f00]",
+                  "inline-flex shrink-0 items-center justify-center gap-[10px] rounded-[50px] bg-[#0d0300] text-center lowercase transition-colors hover:bg-[#1a0d05]",
                   config.ctaButtonWidth,
                   config.ctaButtonHeight,
                 )}
@@ -317,6 +329,7 @@ export function TgPopup({
                 onClick={onDismiss}
                 rel="noopener noreferrer"
                 style={{
+                  color: "#ffffff",
                   fontFamily:
                     "var(--font-montserrat), Montserrat, sans-serif",
                   fontSize: config.ctaFontSize,
@@ -325,26 +338,55 @@ export function TgPopup({
                 }}
                 target="_blank"
               >
-                <TelegramIcon size={config.ctaIconSize} />
+                <TelegramIcon size={config.ctaIconSize} color="#ff5c00" />
                 <span>{ctaLabel}</span>
               </a>
             </div>
 
-            {/*
-              TODO(10-03): экспортировать phone mockup asset из Figma
-              783:9772/9773 → public/assets/figma/tg-popup/. Сейчас стоит
-              нейтральный placeholder тех же размеров, чтобы layout
-              был корректным на всех breakpoints.
-            */}
+            {/* Phone mockup — phone-frame.png (1480x1480 asset с phone в центре
+                и прозрачными полями) cropped через positioned <img> поверх
+                phone-content.jpg (TG screenshot) внутри screen area.
+                Положение копирует Figma 783:9773 (frame) + 783:9772 (content).
+                Tilt 1.68deg на родительском div. */}
             <div
               aria-hidden
               className={cn(
-                "shrink-0 rounded-[16px] bg-[#0d0300]/10",
+                "shrink-0 relative overflow-hidden",
                 config.imageWidth,
                 config.imageHeight,
               )}
-              data-testid="tg-popup-image-placeholder"
-            />
+              data-testid="tg-popup-image"
+              style={{ transform: "rotate(1.68deg)" }}
+            >
+              {/* Screen content под рамкой — 87% wide × 86% tall, центрирован */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt=""
+                className="absolute rounded-[28px] object-cover object-top"
+                src="/assets/figma/tg-popup/phone-content.jpg"
+                style={{
+                  width: "87%",
+                  height: "86%",
+                  left: "6.5%",
+                  top: "7%",
+                }}
+              />
+              {/* Phone frame — asset 1480x1480, scaled and positioned to show
+                  только phone portion (Figma magic numbers: w=258.74%, h=124.58%,
+                  left=-79.37%, top=-12.29%). */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                alt=""
+                className="absolute pointer-events-none max-w-none"
+                src="/assets/figma/tg-popup/phone-frame.png"
+                style={{
+                  width: "258.74%",
+                  height: "124.58%",
+                  left: "-79.37%",
+                  top: "-12.29%",
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
