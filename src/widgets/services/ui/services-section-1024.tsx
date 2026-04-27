@@ -133,30 +133,30 @@ function CommercialPointCell1024({
 }
 
 function Services1024PackageRow() {
+  const rawId = useId().replace(/:/g, "");
+  const filterId = `services1024-pkg-glow-${rawId}`;
   return (
-    <>
-      <div
-        className="pointer-events-none absolute z-[2] size-[42px]"
-        data-services-package-glow=""
-        style={{
-          left: V_HERO_1024.packageGlowFrame.left,
-          top: V_HERO_1024.packageGlowFrame.top,
-        }}
-      >
-        <div className="absolute inset-[-238.1%]">
-          <img alt="" className="block size-full max-w-none" src="/assets/figma/services-package-glow.svg" />
-        </div>
+    <div
+      className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+      data-services-package-glow=""
+      style={{
+        left: V_HERO_1024.packageGlowFrame.left,
+        top: V_HERO_1024.packageGlowFrame.top,
+      }}
+    >
+      <div className="absolute inset-[-238.1%] overflow-visible">
+        <FirstScreenGeoGlow
+          blur={30}
+          cx={121}
+          cy={121}
+          dotR={4}
+          filterId={filterId}
+          pulse={false}
+          r={21}
+          size={242}
+        />
       </div>
-      <div
-        className="pointer-events-none absolute z-[3] size-[8px]"
-        style={{
-          left: V_HERO_1024.packageGlowFrame.left + 17,
-          top: V_HERO_1024.packageGlowFrame.top + 20,
-        }}
-      >
-        <img alt="" className="block size-full" src="/assets/figma/services-package-dot.svg" />
-      </div>
-    </>
+    </div>
   );
 }
 
