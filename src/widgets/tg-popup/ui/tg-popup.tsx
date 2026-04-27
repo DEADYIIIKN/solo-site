@@ -70,19 +70,21 @@ function CloseButtonWrapperClass(size: 24 | 28 | 30 | 34) {
  * Telegram paper-plane icon. Используется внутри CTA-кнопки.
  * Простая inline-SVG, заливается currentColor (наследует text-white от button).
  */
-function TelegramIcon({ size, color = "currentColor" }: { size: number; color?: string }) {
+/**
+ * TG-icon в кнопке: оранжевый круг с белой бумажной самолётикой внутри.
+ * Использует выгруженный из Figma SVG-asset (Group 318 в 783:9769).
+ */
+function TelegramIcon({ size }: { size: number }) {
   return (
-    <svg
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      alt=""
       aria-hidden
       className="shrink-0"
-      fill={color}
       height={size}
-      viewBox="0 0 24 24"
+      src="/assets/figma/tg-popup/tg-icon.svg"
       width={size}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M21.426 1.443a1 1 0 0 0-1.052-.114L1.46 9.823a1 1 0 0 0 .054 1.834l4.86 1.892 1.964 6.41a1 1 0 0 0 1.752.302l3.092-3.834 5.07 3.747a1 1 0 0 0 1.582-.604l3.122-16.5a1 1 0 0 0-.422-1.05Zm-3.7 4.142L9.06 13.49a1 1 0 0 0-.292.578l-.43 2.962-1.222-3.99 10.61-7.455Z" />
-    </svg>
+    />
   );
 }
 
@@ -338,7 +340,7 @@ export function TgPopup({
                 }}
                 target="_blank"
               >
-                <TelegramIcon size={config.ctaIconSize} color="#ff5c00" />
+                <TelegramIcon size={config.ctaIconSize} />
                 <span>{ctaLabel}</span>
               </a>
             </div>
@@ -358,32 +360,44 @@ export function TgPopup({
               data-testid="tg-popup-image"
               style={{ transform: "rotate(1.68deg)" }}
             >
-              {/* Screen content под рамкой — 87% wide × 86% tall, центрирован */}
+              {/* Screen content внутри cropped рамки. Phone-frame asset 1480x1480
+                  scaled+positioned magic-numbers'ами выше делает crop, а в нём
+                  phone screen занимает ~74% w × 94% h (left ~13%, top ~3%) от
+                  contained box. Content — JPEG TG-чата, object-cover object-top
+                  чтобы видна верхушка чата. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt=""
-                className="absolute rounded-[28px] object-cover object-top"
+                className="absolute rounded-[34px] object-cover object-top"
                 src="/assets/figma/tg-popup/phone-content.jpg"
                 style={{
-                  width: "87%",
-                  height: "86%",
-                  left: "6.5%",
-                  top: "7%",
+                  /* Phone screen внутри cropped phone-frame: phone visible
+                     в container ≈ x:39-279, y:44-617 (для 315x625 размером).
+                     Screen с bezel-inset ≈ x:60-260, y:55-580.
+                     В процентах: left 19%, top 8.5%, width 64%, height 84%. */
+                  width: "64%",
+                  height: "84%",
+                  left: "19%",
+                  top: "8.5%",
+                  maxWidth: "none",
                 }}
               />
               {/* Phone frame — asset 1480x1480, scaled and positioned to show
                   только phone portion (Figma magic numbers: w=258.74%, h=124.58%,
-                  left=-79.37%, top=-12.29%). */}
+                  left=-79.37%, top=-12.29%).
+                  maxWidth:'none' inline переопределяет глобальное правило
+                  `img { max-width: 100% }` из globals.css. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt=""
-                className="absolute pointer-events-none max-w-none"
+                className="absolute pointer-events-none"
                 src="/assets/figma/tg-popup/phone-frame.png"
                 style={{
                   width: "258.74%",
                   height: "124.58%",
                   left: "-79.37%",
                   top: "-12.29%",
+                  maxWidth: "none",
                 }}
               />
             </div>
