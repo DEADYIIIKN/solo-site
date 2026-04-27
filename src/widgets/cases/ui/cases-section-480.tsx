@@ -252,7 +252,7 @@ export function CasesSection480({
               className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
               dir="ltr"
               ref={vScroll.scrollRef}
-              style={{ paddingLeft: "calc((100% - 432px) / 2 + 24px)", paddingRight: "24px" }}
+              style={{ paddingLeft: "calc((100% - 432px) / 2)", paddingRight: "24px" }}
             >
               {verticalCards.map((c) => (
                 <VerticalCard480
@@ -287,7 +287,7 @@ export function CasesSection480({
               className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
               dir="ltr"
               ref={aScroll.scrollRef}
-              style={{ paddingLeft: "calc((100% - 432px) / 2 + 24px)", paddingRight: "24px" }}
+              style={{ paddingLeft: "calc((100% - 432px) / 2)", paddingRight: "24px" }}
             >
               {adCards.map((c) => (
                 <AdCard480

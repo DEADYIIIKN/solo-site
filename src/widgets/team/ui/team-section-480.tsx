@@ -31,12 +31,12 @@ export function TeamSection480() {
             </p>
           </SectionEyebrowRow>
 
-          <p className="min-w-full text-center text-[0] text-[#0d0300]">
-            <span className="text-[23px] font-bold leading-none">
+          <p className="min-w-full text-center text-[0] text-[#0d0300]" style={{ lineHeight: 1 }}>
+            <span className="text-[23px] font-bold" style={{ lineHeight: 1 }}>
               Создаем рекламу и контент для соцсетей, которые{" "}
             </span>
-            <span className="text-[23px] font-normal italic leading-none">системно приводят клиентов</span>
-            <span className="text-[23px] font-bold leading-none"> в ваш бизнес.</span>
+            <span className="text-[23px] font-normal italic" style={{ lineHeight: 1 }}>системно приводят клиентов</span>
+            <span className="text-[23px] font-bold" style={{ lineHeight: 1 }}> в ваш бизнес.</span>
           </p>
         </div>
 
@@ -59,12 +59,13 @@ export function TeamSection480() {
               "text-[0] text-[#0d0300] transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
               manifestoInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
             )}
+            style={{ lineHeight: 0.9 }}
           >
-            <span className="text-[24px] font-bold leading-[0.9]">Мы </span>
-            <span className="text-[24px] font-normal italic leading-[0.9]">
+            <span className="text-[24px] font-bold" style={{ lineHeight: 0.9 }}>Мы </span>
+            <span className="text-[24px] font-normal italic" style={{ lineHeight: 0.9 }}>
               превращаем идеи в&nbsp;контент,{" "}
             </span>
-            <span className="text-[24px] font-bold leading-[0.9]">который объединяет креатив и стратегию.</span>
+            <span className="text-[24px] font-bold" style={{ lineHeight: 0.9 }}>который объединяет креатив и стратегию.</span>
           </p>
         </div>
         </div>
