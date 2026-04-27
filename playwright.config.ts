@@ -18,7 +18,7 @@ export default defineConfig({
   timeout: 30_000,
   expect: { timeout: 5_000 },
   use: {
-    baseURL: process.env.E2E_BASE_URL ?? "http://localhost:3000",
+    baseURL: process.env.E2E_BASE_URL ?? "http://localhost:3100",
     trace: "on-first-retry",
     video: "retain-on-failure",
     screenshot: "only-on-failure",
@@ -32,10 +32,14 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "pnpm dev:fast",
-    url: "http://localhost:3000",
+    /**
+     * Поднимаем dev на :3100, чтобы не конфликтовать с локальным dev (:3000).
+     * Включаем reuseExistingServer — если предыдущий запуск оставил сервер, его переиспользуем.
+     */
+    command: "pnpm exec next dev --turbopack -p 3100 -H 0.0.0.0",
+    url: "http://localhost:3100",
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    timeout: 180_000,
     stdout: "ignore",
     stderr: "pipe",
   },
