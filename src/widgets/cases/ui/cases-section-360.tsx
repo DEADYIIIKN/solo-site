@@ -233,7 +233,7 @@ export function CasesSection360({
         </div>
 
         <div className="relative z-[1] mt-[50px] flex flex-col gap-[100px]">
-          <div className="flex w-full min-w-0 flex-col gap-10">
+          <div className="flex w-full min-w-0 flex-col gap-[20px]">
             <div className="mx-auto flex w-full min-w-0 max-w-[360px] items-end justify-between gap-3 px-4">
               <CasesTitle28
                 boldPart={cases1440Copy.verticalTitleRest}
@@ -287,7 +287,7 @@ export function CasesSection360({
               className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
               dir="ltr"
               ref={aScroll.scrollRef}
-              style={{ paddingLeft: "calc((100% - 328px) / 2 + 16px)", paddingRight: "16px" }}
+              style={{ paddingLeft: "calc((100% - 328px) / 2)", paddingRight: "16px" }}
             >
               {adCards.map((c) => (
                 <AdCard360

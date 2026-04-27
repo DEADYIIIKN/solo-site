@@ -44,10 +44,10 @@ export const mobileMenuLayout360: MobileMenuLayoutConfig = {
   header: {
     className: "fixed inset-x-0 top-0 z-[800] hidden h-[56px] max-[479px]:block",
     innerClassName: "mx-auto flex h-full w-[328px] items-center justify-between px-[16px]",
-    logoClass: "relative h-[20px] w-[113px] shrink-0",
+    logoClass: "relative h-[18px] w-[102px] shrink-0",
     logoClosedSrc: firstScreenAssets.navbar.logo360,
     menuButtonClass:
-      "relative size-[44px] shrink-0 overflow-hidden rounded-[28px] border-0 bg-transparent p-0",
+      "relative size-[40px] shrink-0 overflow-hidden rounded-[28px] border-0 bg-transparent p-0",
     menuIconImgClass: "size-[18px]",
     menuIconSrc: firstScreenAssets.navbar.menu360
   },
