@@ -54,8 +54,13 @@ export type LeadFormFieldsDensity =
   /** Один столбец до 1023px: типографика через max-width breakpoints */
   | "below1024";
 
-/** Figma: 783:9087/9088 (1440), 783:8372/8373 (1024), 783:10346 (mobile) — Interface element: pb 20 pt 10 */
-function leadUnderlinePadding(): string {
+/** Figma: 783:9087/9088 (1440), 783:8372/8373 (1024), 783:10346 (mobile) — Interface element: pb 20 pt 10.
+ *  09-01 LF-DRIFT-01: на below1024 (≤767px) Figma 783:10314 (input h=38) / 783:10873 (input h=40)
+ *  требуют меньшего вертикального padding — pb=14 pt=6 даёт total ≈ text 1.2em + 20 ≈ 38..40px. */
+function leadUnderlinePadding(density: LeadFormFieldsDensity): string {
+  if (density === "below1024" || density === "480" || density === "360") {
+    return "pb-[14px] pt-[6px]";
+  }
   return "pb-[20px] pt-[10px]";
 }
 
@@ -211,7 +216,10 @@ export function LeadFormFields({
         "w-full px-[20px] pb-[24px] pt-[20px]",
       !embedInCard &&
         density === "below1024" &&
-        "w-full max-w-[520px] gap-6 p-6 max-[767px]:max-w-none max-[479px]:gap-6 max-[479px]:p-4",
+        /* 09-01 LF-DRIFT-01: max-[479px] gap-4 (16px) уменьшает cumulative drift на 360
+           между header «Это бесплатно» и middle-column (Figma «Это бесплатно» → name ≈ 60px,
+           что включает «Мы дадим...» body text 14.4 + gap-10 + name padding). */
+        "w-full max-w-[520px] gap-6 p-6 max-[767px]:max-w-none max-[479px]:gap-4 max-[479px]:p-4",
         className,
       )}
       onSubmit={async (e) => {
@@ -257,8 +265,12 @@ export function LeadFormFields({
         <div
           className={cn(
             "flex flex-col text-white",
-            /* Figma 783:9082 (1440) gap-12; 783:8367 (1024) gap-12; 783:11523 (768) gap-10 */
-            density === "768" || density === "480" || density === "360"
+            /* Figma 783:9082 (1440) gap-12; 783:8367 (1024) gap-12; 783:11523 (768) gap-10;
+               09-01: below1024 — gap-10 matches Figma 783:10314 / 783:10873 (mobile) */
+            density === "768" ||
+            density === "480" ||
+            density === "360" ||
+            density === "below1024"
               ? "gap-[10px]"
               : "gap-[12px]",
           )}
@@ -275,12 +287,18 @@ export function LeadFormFields({
       <div
         className={cn(
           "flex min-h-0 flex-col",
-          /* 783:9085 gap 30 (1440); 783:8370 gap 24 (1024) */
+          /* 783:9085 gap 30 (1440); 783:8370 gap 24 (1024).
+             09-01: below1024 на ≤479px — gap уменьшен до 20px для устранения cumulative drift
+             (Figma 783:10314 имеет более плотную упаковку rows). */
             embedInCard
-              ? "gap-6"
+              ? density === "below1024"
+                ? "gap-6 max-[479px]:gap-5"
+                : "gap-6"
               : density === "1440"
                 ? "gap-[30px]"
-                : "gap-6",
+                : density === "below1024"
+                  ? "gap-6 max-[479px]:gap-5"
+                  : "gap-6",
         )}
       >
         <div
@@ -292,7 +310,7 @@ export function LeadFormFields({
           <label
             className={cn(
               "flex min-h-0 min-w-0 flex-1 flex-col border-b border-solid transition-colors duration-150",
-              leadUnderlinePadding(),
+              leadUnderlinePadding(density),
               nameError ? "border-[#e63a24]" : "border-[#9c9c9c] focus-within:border-white",
             )}
           >
@@ -319,7 +337,7 @@ export function LeadFormFields({
           <label
             className={cn(
               "flex min-h-0 min-w-0 flex-1 flex-col border-b border-solid transition-colors duration-150",
-              leadUnderlinePadding(),
+              leadUnderlinePadding(density),
               phoneError ? "border-[#e63a24]" : "border-[#9c9c9c] focus-within:border-white",
             )}
           >
@@ -448,7 +466,12 @@ export function LeadFormFields({
         <label
           className={cn(
             "flex w-full flex-col box-border border-b border-solid border-[#9c9c9c] transition-colors duration-150 focus-within:border-white",
-            "pb-[30px] pt-[10px]",
+            /* 09-01 LF-DRIFT-01: below1024/480/360 — Figma textarea-end → checkbox gap≈24..29
+               (783:10314 textarea y=683+80=763, checkbox y=787 → 24).
+               Уменьшаем pb на mobile, чтобы не накапливать drift. */
+            density === "below1024" || density === "480" || density === "360"
+              ? "pb-[14px] pt-[6px]"
+              : "pb-[30px] pt-[10px]",
             d.messageH,
           )}
         >
