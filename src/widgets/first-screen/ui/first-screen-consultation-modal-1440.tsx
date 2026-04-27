@@ -335,6 +335,7 @@ export function FirstScreenConsultationModal1440({
                   >
                     <span className="sr-only">Ваше имя</span>
                     <input
+                      data-testid="consultation-modal-name"
                       aria-invalid={nameError}
                       autoComplete="name"
                       className={cn(
@@ -362,6 +363,7 @@ export function FirstScreenConsultationModal1440({
                   >
                     <span className="sr-only">Номер телефона</span>
                     <input
+                      data-testid="consultation-modal-phone"
                       aria-invalid={phoneError}
                       autoComplete="tel"
                       className={cn(
@@ -450,6 +452,7 @@ export function FirstScreenConsultationModal1440({
                 <label className="flex h-[100px] w-full flex-col box-border border-b border-solid border-[#9c9c9c] pb-[30px] pt-[10px] focus-within:border-[#0d0300]">
                   <span className="sr-only">Описание задачи</span>
                   <textarea
+                    data-testid="consultation-modal-message"
                     className="min-h-0 w-full flex-1 resize-none bg-transparent text-[16px] font-normal leading-[1.2] text-[#0d0300] outline-none placeholder:text-[#9c9c9c] focus-visible:outline-none focus-visible:outline-offset-0"
                     name="message"
                     onChange={(e) =>
@@ -463,6 +466,7 @@ export function FirstScreenConsultationModal1440({
                 {/* Figma 783:10080 Default / 783:10085 Selected (оранжевый + галочка) */}
                 <label className="flex min-w-0 cursor-pointer items-center gap-[12px] leading-[0]">
                   <input
+                    data-testid="consultation-modal-consent"
                     aria-invalid={consentError}
                     checked={consent}
                     className="sr-only"
@@ -498,7 +502,8 @@ export function FirstScreenConsultationModal1440({
               </div>
 
               <button
-                className="flex h-[60px] w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] pb-[20px] pt-[24px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]"
+                data-testid="consultation-modal-submit"
+                className="flex h-[60px] w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]"
                 style={{
                   fontFamily: "var(--font-montserrat), Montserrat, sans-serif",
                   fontSize: 17,
@@ -540,7 +545,7 @@ export function FirstScreenConsultationModal1440({
                 </div>
 
                 <button
-                  className="flex h-[60px] w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] pb-[20px] pt-[24px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]"
+                  className="flex h-[60px] w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]"
                   style={{
                     fontFamily: "var(--font-montserrat), Montserrat, sans-serif",
                     fontSize: 16,

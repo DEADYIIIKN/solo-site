@@ -93,7 +93,7 @@ export function Footer768({
           </div>
 
           {/* Blog cards slider */}
-          <div className="overflow-hidden">
+          <div className="overflow-visible">
             <div
               className="flex gap-[10px] transition-transform duration-300 ease-in-out"
               style={{ transform: `translateX(${-slideIndex * SLIDE_STEP}px)` }}
@@ -218,7 +218,7 @@ export function Footer768({
             </p>
             <a
               className="font-normal leading-[1.2] text-[14px] no-underline transition-opacity hover:opacity-70"
-              href="#"
+              href="/privacy"
               style={{ color: "#9c9c9c" }}
             >
               {footerContent.privacy}

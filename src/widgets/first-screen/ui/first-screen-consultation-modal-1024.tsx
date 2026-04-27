@@ -219,7 +219,7 @@ export function FirstScreenConsultationModal1024({
                 </p>
               </div>
               <button
-                className="flex h-[56px] w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] pb-[20px] pt-[22px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]"
+                className="flex h-[56px] w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]"
                 onClick={onClose}
                 style={{
                   fontFamily: "var(--font-montserrat), Montserrat, sans-serif",
@@ -440,7 +440,7 @@ export function FirstScreenConsultationModal1024({
             </div>
 
             <button
-              className="flex h-[56px] w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] pb-[20px] pt-[22px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]"
+              className="flex h-[56px] w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]"
               style={{
                 fontFamily: "var(--font-montserrat), Montserrat, sans-serif",
                 fontSize: 16,

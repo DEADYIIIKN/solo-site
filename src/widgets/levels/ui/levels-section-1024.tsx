@@ -39,11 +39,11 @@ export function LevelsUnified1024() {
   return (
     <div
       ref={ref}
-      className="relative mx-auto min-h-[560px] w-full max-w-[1024px] overflow-visible pb-4"
+      className="relative mx-auto min-h-[700px] w-full max-w-[1024px] overflow-visible pb-4"
     >
       <p
         className={cn(
-          "absolute left-[40px] top-[64px] z-[5] m-0 max-w-[575px] text-[24px] font-bold leading-none text-[#0d0300]",
+          "absolute left-[40px] top-[140px] z-[5] m-0 max-w-[575px] text-[24px] font-bold leading-[0.9] text-[#0d0300]",
           revealMove(),
         )}
         id="levels-intro-1024"
@@ -54,42 +54,45 @@ export function LevelsUnified1024() {
         <span>{introAfter}</span>
       </p>
 
+      {/* Flex-ряд убирает субпиксельные щели между барами (positions были .75px). Размеры 1:1 с Figma 783:8404. */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[415px] overflow-visible">
-        <div className="absolute left-[calc(75%-330px)] top-0 z-[1] flex items-start justify-center">
-          <LevelsBarUnfold
-            delayMs={barStart(0)}
-            height={235}
-            opacityPct={90}
-            reduceMotion={reduceMotion}
-            shown={shown}
-            width={182}
-          />
-        </div>
-        <div className="absolute left-[calc(75%-148px)] top-0 z-[2] flex items-start justify-center">
-          <LevelsBarUnfold
-            delayMs={barStart(1)}
-            height={321}
-            opacityPct={90}
-            reduceMotion={reduceMotion}
-            shown={shown}
-            width={182}
-          />
-        </div>
-        <div className="absolute left-[calc(75%+34px)] top-0 z-[3] flex items-start justify-center">
-          <LevelsBarUnfold
-            delayMs={barStart(2)}
-            height={415}
-            opacityPct={90}
-            reduceMotion={reduceMotion}
-            shown={shown}
-            width={182}
-          />
+        <div className="absolute left-[438px] top-0 flex items-start">
+          <div className="relative z-[1]">
+            <LevelsBarUnfold
+              delayMs={barStart(0)}
+              height={235}
+              opacityPct={90}
+              reduceMotion={reduceMotion}
+              shown={shown}
+              width={182}
+            />
+          </div>
+          <div className="relative z-[2]">
+            <LevelsBarUnfold
+              delayMs={barStart(1)}
+              height={321}
+              opacityPct={90}
+              reduceMotion={reduceMotion}
+              shown={shown}
+              width={182}
+            />
+          </div>
+          <div className="relative z-[3]">
+            <LevelsBarUnfold
+              delayMs={barStart(2)}
+              height={415}
+              opacityPct={90}
+              reduceMotion={reduceMotion}
+              shown={shown}
+              width={182}
+            />
+          </div>
         </div>
       </div>
 
       <div
         className={cn(
-          "absolute left-[calc(33.33%+49.67px)] top-[169px] z-[6] flex flex-col gap-[7px]",
+          "absolute left-[391px] top-[245px] z-[6] flex flex-col gap-[7px]",
           revealMove(),
         )}
         style={{ transitionDelay: `${whenBarDone(0)}ms` }}
@@ -101,7 +104,7 @@ export function LevelsUnified1024() {
       </div>
       <div
         className={cn(
-          "absolute left-[calc(50%+44px)] top-[255px] z-[6] flex flex-col gap-[7px]",
+          "absolute left-[556px] top-[331px] z-[6] flex flex-col gap-[7px]",
           revealMove(),
         )}
         style={{ transitionDelay: `${whenBarDone(1)}ms` }}
@@ -113,7 +116,7 @@ export function LevelsUnified1024() {
       </div>
       <div
         className={cn(
-          "absolute left-[calc(66.67%+38.33px)] top-[339px] z-[6] flex flex-col gap-[7px]",
+          "absolute left-[721px] top-[415px] z-[6] flex flex-col gap-[7px]",
           revealMove(),
         )}
         style={{ transitionDelay: `${whenBarDone(2)}ms` }}

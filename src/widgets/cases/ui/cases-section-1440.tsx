@@ -2,18 +2,13 @@
 
 /* eslint-disable @next/next/no-img-element -- svg стрелки и иконка просмотров */
 
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { DarkSurfaceGrid } from "@/shared/ui/dark-surface-grid";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
-import {
-  getCasesPinWeights,
-  CASES_PIN_SCROLL_VH,
-  useCasesPinScrollProgress,
-} from "@/widgets/cases/lib/use-cases-pin-scroll-progress";
 import type { CasesAdCard, CasesVerticalCard } from "@/widgets/cases/model/cases.data";
 import {
   cases1440Assets,
@@ -24,8 +19,6 @@ import {
 } from "@/widgets/cases/model/cases.data";
 import { CasesAdDetailModal } from "@/widgets/cases/ui/cases-ad-detail-modal";
 import { CasesVerticalDetailModal } from "@/widgets/cases/ui/cases-vertical-detail-modal";
-
-const VERTICAL_CAROUSEL_MAX_PX = 534;
 
 function CasesTitle60({
   italicPart,
@@ -155,35 +148,34 @@ function VerticalCard({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-vertical-card-1440">
-      <article
-        className="group relative h-[510px] w-[283px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
-        onClick={onOpenDetail}
-        onKeyDown={(e) => {
-          if (!onOpenDetail) return;
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onOpenDetail();
-          }
-        }}
-        role={onOpenDetail ? "button" : undefined}
-        tabIndex={onOpenDetail ? 0 : undefined}
-      >
-        <Image
-          alt=""
-          className={cn(
-            "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
-            casesCardHoverEase,
-          )}
-          fill
-          onError={() => setImageLoaded(true)}
-          onLoad={() => setImageLoaded(true)}
-          sizes="283px"
-          src={image}
-        />
+    <motion.article
+      className="group relative h-[510px] w-[283px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      onClick={onOpenDetail}
+      onKeyDown={(e) => {
+        if (!onOpenDetail) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpenDetail();
+        }
+      }}
+      role={onOpenDetail ? "button" : undefined}
+      tabIndex={onOpenDetail ? 0 : undefined}
+    >
+      <Image
+        alt=""
+        className={cn(
+          "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
+          casesCardHoverEase,
+        )}
+        fill
+        sizes="283px"
+        src={image}
+      />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 bg-[#0d0300] mix-blend-color transition-opacity",
@@ -211,15 +203,14 @@ function VerticalCard({
           <p className="m-0 text-[40px] font-bold lowercase leading-[1.2]">{views}</p>
         </div>
         <div className="flex min-h-[37px] flex-col justify-end text-[14px] font-normal leading-[1.2]">
-          {credits.map((line) => (
-            <p className="m-0" key={line}>
+          {credits.map((line, i) => (
+            <p className={cn("m-0", i < credits.length - 1 && "mb-[10px]")} key={line}>
               {line}
             </p>
           ))}
         </div>
       </div>
-      </article>
-    </BoneyardSkeleton>
+    </motion.article>
   );
 }
 
@@ -234,35 +225,34 @@ function AdCard({
   credits: readonly string[];
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-ad-card-1440">
-      <article
-        className="group relative h-[320px] w-[575px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
-        onClick={onOpenDetail}
-        onKeyDown={(e) => {
-          if (!onOpenDetail) return;
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onOpenDetail();
-          }
-        }}
-        role={onOpenDetail ? "button" : undefined}
-        tabIndex={onOpenDetail ? 0 : undefined}
-      >
-        <Image
-          alt=""
-          className={cn(
-            "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
-            casesCardHoverEase,
-          )}
-          fill
-          onError={() => setImageLoaded(true)}
-          onLoad={() => setImageLoaded(true)}
-          sizes="575px"
-          src={image}
-        />
+    <motion.article
+      className="group relative h-[320px] w-[575px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      onClick={onOpenDetail}
+      onKeyDown={(e) => {
+        if (!onOpenDetail) return;
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpenDetail();
+        }
+      }}
+      role={onOpenDetail ? "button" : undefined}
+      tabIndex={onOpenDetail ? 0 : undefined}
+    >
+      <Image
+        alt=""
+        className={cn(
+          "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
+          casesCardHoverEase,
+        )}
+        fill
+        sizes="575px"
+        src={image}
+      />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 bg-[#0d0300] mix-blend-color opacity-20 transition-opacity",
@@ -281,8 +271,7 @@ function AdCard({
           ))}
         </div>
       </div>
-      </article>
-    </BoneyardSkeleton>
+    </motion.article>
   );
 }
 
@@ -351,34 +340,19 @@ function useCasesCarouselScroll(mode: CarouselMode) {
   return { nextDisabled, onNext, onPrev, prevDisabled, scrollRef };
 }
 
+/**
+ * Phase 4 UAT (2026-04-23): pin-scroll collapse сняли — обе ленты всегда видны,
+ * анимируется только reveal-фэйд отдельных карточек через `motion.article`.
+ */
 export function CasesSection1440({
   verticalCards = casesVerticalCards1440,
   adCards = casesAdCards1440,
 }: CasesSectionCardsProps = {}) {
-  const [pinEl, setPinEl] = useState<HTMLDivElement | null>(null);
   const [detailCard, setDetailCard] = useState<CasesVerticalCard | null>(null);
   const [adDetailCard, setAdDetailCard] = useState<CasesAdCard | null>(null);
-  const setPinRef = useCallback((node: HTMLDivElement | null) => {
-    setPinEl(node);
-  }, []);
-
-  const { collapseProgress } = useCasesPinScrollProgress(pinEl);
-  const w = getCasesPinWeights(collapseProgress);
 
   const vScroll = useCasesCarouselScroll("vertical");
   const aScroll = useCasesCarouselScroll("advertising");
-
-  const vertStripH = w.vertStrip * VERTICAL_CAROUSEL_MAX_PX;
-  const vertMt = w.vertStrip * 48;
-  const vertOpacity = w.vertStrip < 0.02 ? 0 : Math.min(1, w.vertStrip * 1.05);
-  const vertPointer = w.vertStrip > 0.08;
-
-  const adHeaderMaxH = w.adHeader * 160;
-  const adHeaderOpacity = w.adHeader < 0.02 ? 0 : Math.min(1, w.adHeader * 1.05);
-
-  const adStripMaxH = w.adStrip * 420;
-  const adStripOpacity = w.adStrip < 0.02 ? 0 : Math.min(1, w.adStrip * 1.05);
-  const adStripPointer = w.adStrip > 0.12;
 
   return (
     <section className="cases-section-scope relative z-10 w-full bg-[#0d0300]" dir="ltr" id="cases-section-1440">
@@ -394,140 +368,91 @@ export function CasesSection1440({
         onClose={() => setAdDetailCard(null)}
         open={adDetailCard != null}
       />
-      <div
-        ref={setPinRef}
-        className="relative w-full"
-        data-cases-pin=""
-        style={{ minHeight: `${CASES_PIN_SCROLL_VH}vh` }}
-      >
-        <div className="sticky top-0 z-[1] relative flex min-h-screen w-full justify-center">
-          <DarkSurfaceGrid />
-          <div className="relative min-h-screen w-full max-w-[1440px] overflow-x-clip pb-6">
-            <div className="relative z-[1] grid grid-cols-[195px_minmax(0,1fr)_auto] items-start px-[140px] pt-[120px]">
-              <SectionEyebrowRow align="end" dotClassName="self-center">
-                <p className="m-0 whitespace-nowrap text-[17px] font-semibold lowercase leading-[1.2] text-white">
-                  {cases1440Copy.eyebrow}
-                </p>
-              </SectionEyebrowRow>
+      <div className="relative flex w-full justify-center">
+        <DarkSurfaceGrid />
+        <div className="relative w-full max-w-[1440px] overflow-x-clip pb-6">
+          <div className="relative z-[1] grid grid-cols-[195px_minmax(0,1fr)_auto] items-start px-[140px] pt-[120px]">
+            <SectionEyebrowRow align="end" dotClassName="self-center">
+              <p className="m-0 whitespace-nowrap text-[17px] font-semibold lowercase leading-[1.2] text-white">
+                {cases1440Copy.eyebrow}
+              </p>
+            </SectionEyebrowRow>
+            <div className="min-w-0 justify-self-start pr-4">
+              <CasesTitle60
+                boldPart={cases1440Copy.verticalTitleRest}
+                italicPart={cases1440Copy.verticalTitleItalic}
+              />
+            </div>
+            <div className="mt-[42px] translate-x-[80px]">
+              <CasesArrowsNav
+                nextDisabled={vScroll.nextDisabled}
+                onNext={vScroll.onNext}
+                onPrev={vScroll.onPrev}
+                prevDisabled={vScroll.prevDisabled}
+              />
+            </div>
+          </div>
+
+          <div className="relative z-[1] mt-[26px] px-[140px]">
+            <div
+              className="flex min-w-0 w-full gap-2.5 overflow-x-auto overflow-y-hidden no-scrollbar"
+              dir="ltr"
+              ref={vScroll.scrollRef}
+            >
+              {verticalCards.map((c) => (
+                <VerticalCard
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setDetailCard(c)}
+                  overlayLight={c.overlayLight}
+                  titleLines={c.titleLines}
+                  views={c.views}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="relative z-[1] pt-[50px] px-[140px]">
+            <div className="ml-[195px] h-px w-full max-w-[1105px] bg-white/25" aria-hidden />
+          </div>
+
+          <div className="relative z-[1] px-[140px]">
+            <div className="grid grid-cols-[195px_minmax(0,1fr)_auto] items-start pt-[50px]">
+              <span className="min-h-px min-w-0 select-none" aria-hidden />
               <div className="min-w-0 justify-self-start pr-4">
                 <CasesTitle60
-                  boldPart={cases1440Copy.verticalTitleRest}
-                  italicPart={cases1440Copy.verticalTitleItalic}
+                  boldPart={cases1440Copy.adTitleRest}
+                  italicPart={cases1440Copy.adTitleItalic}
                 />
               </div>
-              <div
-                className="mt-2"
-                style={{
-                  opacity: w.vertArrows,
-                  pointerEvents: vertPointer ? "auto" : "none",
-                }}
-              >
+              <div className="mt-[42px] shrink-0 justify-self-end translate-x-[80px]">
                 <CasesArrowsNav
-                  nextDisabled={vScroll.nextDisabled}
-                  onNext={vScroll.onNext}
-                  onPrev={vScroll.onPrev}
-                  prevDisabled={vScroll.prevDisabled}
+                  className="shrink-0"
+                  nextDisabled={aScroll.nextDisabled}
+                  onNext={aScroll.onNext}
+                  onPrev={aScroll.onPrev}
+                  prevDisabled={aScroll.prevDisabled}
                 />
               </div>
             </div>
+          </div>
 
+          <div className="relative z-[1] px-[140px]">
             <div
-              className="relative z-[1] overflow-hidden px-[140px]"
-              style={{
-                marginTop: vertMt,
-                maxHeight: vertStripH,
-                opacity: vertOpacity,
-                pointerEvents: vertPointer ? "auto" : "none",
-              }}
+              className="mt-[26px] flex min-w-0 w-full justify-start gap-2.5 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
+              dir="ltr"
+              ref={aScroll.scrollRef}
             >
-              <div
-                className="flex min-w-0 w-full gap-2.5 overflow-x-auto overflow-y-hidden pt-2 no-scrollbar"
-                dir="ltr"
-                ref={vScroll.scrollRef}
-              >
-                {verticalCards.map((c) => (
-                  <VerticalCard
-                    credits={c.credits}
-                    image={c.image}
-                    key={c.id}
-                    onOpenDetail={() => setDetailCard(c)}
-                    overlayLight={c.overlayLight}
-                    titleLines={c.titleLines}
-                    views={c.views}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div
-              className="relative z-[1] overflow-hidden px-[140px]"
-              style={{
-                maxHeight: w.divider * 56,
-                opacity: w.divider,
-                paddingTop: 50 * w.divider,
-              }}
-            >
-              <div className="ml-[195px] h-px w-full max-w-[1105px] bg-white/25" aria-hidden />
-            </div>
-
-            <div
-              className="relative z-[1] overflow-hidden px-[140px]"
-              style={{
-                maxHeight: adHeaderMaxH,
-                opacity: adHeaderOpacity,
-              }}
-            >
-              <div className="grid grid-cols-[195px_minmax(0,1fr)_auto] items-start pt-[50px]">
-                <span className="min-h-px min-w-0 select-none" aria-hidden />
-                <div className="min-w-0 justify-self-start pr-4">
-                  <CasesTitle60
-                    boldPart={cases1440Copy.adTitleRest}
-                    italicPart={cases1440Copy.adTitleItalic}
-                  />
-                </div>
-                <div
-                  className="mt-2 shrink-0 justify-self-end"
-                  style={{
-                    maxWidth: w.adArrows > 0.08 ? 88 : 0,
-                    opacity: w.adArrows,
-                    overflow: "hidden",
-                    pointerEvents: adStripPointer ? "auto" : "none",
-                  }}
-                >
-                  <CasesArrowsNav
-                    className="shrink-0"
-                    nextDisabled={aScroll.nextDisabled}
-                    onNext={aScroll.onNext}
-                    onPrev={aScroll.onPrev}
-                    prevDisabled={aScroll.prevDisabled}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="relative z-[1] overflow-hidden px-[140px]"
-              style={{
-                maxHeight: adStripMaxH,
-                opacity: adStripOpacity,
-                pointerEvents: adStripPointer ? "auto" : "none",
-              }}
-            >
-              <div
-                className="mt-12 flex min-w-0 w-full justify-start gap-2.5 overflow-x-auto overflow-y-hidden pt-2 pb-1 no-scrollbar"
-                dir="ltr"
-                ref={aScroll.scrollRef}
-              >
-                {adCards.map((c) => (
-                  <AdCard
-                    credits={c.credits}
-                    image={c.image}
-                    key={c.id}
-                    onOpenDetail={() => setAdDetailCard(c)}
-                    title={c.title}
-                  />
-                ))}
-              </div>
+              {adCards.map((c) => (
+                <AdCard
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setAdDetailCard(c)}
+                  title={c.title}
+                />
+              ))}
             </div>
           </div>
         </div>

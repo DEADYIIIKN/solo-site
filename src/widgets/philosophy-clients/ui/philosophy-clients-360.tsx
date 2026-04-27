@@ -12,6 +12,7 @@ import {
   philosophyNarrowRevealOn,
   philosophyNarrowRevealTransition,
 } from "@/widgets/philosophy-clients/ui/philosophy-clients-narrow-stack";
+import { MARQUEE_GAP_360_PX } from "@/widgets/philosophy-clients/ui/philosophy-clients-marquee-1024";
 
 /** Figma 783:10450 — карточки 328×220, типографика 12/28 */
 export function PhilosophyClients360() {
@@ -33,7 +34,7 @@ export function PhilosophyClients360() {
                     titleInView ? philosophyNarrowRevealOn : philosophyNarrowRevealOff,
                   )}
                 >
-                  <SectionEyebrowRow align="start">
+                  <SectionEyebrowRow dotClassName="self-center">
                     <p className={sectionEyebrowTextMax479}>
                       {philosophyClients1440Content.philosophyEyebrow}
                     </p>
@@ -46,6 +47,7 @@ export function PhilosophyClients360() {
           <PhilosophyClientsNarrowClientsBlock
             clientsEyebrowStyle="narrow"
             eyebrowPlClassName="flex w-full justify-center px-4"
+            marqueeGapPx={MARQUEE_GAP_360_PX}
           />
         </div>
       </section>

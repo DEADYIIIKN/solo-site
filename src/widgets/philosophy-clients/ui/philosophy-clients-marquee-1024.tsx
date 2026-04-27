@@ -6,8 +6,8 @@ import { useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { philosophyMarquee1440Assets } from "@/widgets/philosophy-clients/model/philosophy-clients-marquee.data";
 
-/** Figma 783:8703 / 783:8785 — gap между логотипами 60px, полоса 90px, padding 20px */
-const MARQUEE_GAP_PX = 60;
+/** Figma 783:10450 (360px) — gap между логотипами в маркизе на 360px */
+export const MARQUEE_GAP_360_PX = 20;
 
 function MarqueeImgSlot({
   src,
@@ -118,11 +118,13 @@ function MarqueeTrack({
   durationSec,
   stripClassName,
   trackBgClass,
+  gapPx = 60,
 }: {
   children: React.ReactNode;
   durationSec: number;
   stripClassName: string;
   trackBgClass: string;
+  gapPx?: number;
 }) {
   const segmentRef = useRef<HTMLDivElement>(null);
   const [shiftPx, setShiftPx] = useState(0);
@@ -133,8 +135,8 @@ function MarqueeTrack({
 
     let raf = 0;
     const commitWidth = (rawWidth: number) => {
-      const next = Math.round(rawWidth) + MARQUEE_GAP_PX;
-      if (next <= MARQUEE_GAP_PX) return;
+      const next = Math.round(rawWidth) + gapPx;
+      if (next <= gapPx) return;
       setShiftPx((prev) => {
         if (prev === 0) return next;
         if (Math.abs(prev - next) < 3) return prev;
@@ -166,11 +168,12 @@ function MarqueeTrack({
       ro.disconnect();
       window.removeEventListener("resize", measure);
     };
-  }, []);
+  }, [gapPx]);
 
   const style = {
     "--philosophy-marquee-duration": `${durationSec}s`,
     "--philosophy-marquee-shift": `${shiftPx}px`,
+    gap: gapPx,
   } as React.CSSProperties;
 
   return (
@@ -178,8 +181,8 @@ function MarqueeTrack({
       <div
         className={
           shiftPx > 0
-            ? `philosophy-marquee-track flex w-max gap-[60px] ${trackBgClass}`
-            : `flex w-max gap-[60px] ${trackBgClass}`
+            ? `philosophy-marquee-track flex w-max ${trackBgClass}`
+            : `flex w-max ${trackBgClass}`
         }
         style={style}
       >
@@ -195,7 +198,7 @@ function MarqueeTrack({
 }
 
 /** Figma 783:8703 / 783:8785 — ленты «клиенты» для брейкпоинта 1024 */
-export function PhilosophyClientsMarquee1024() {
+export function PhilosophyClientsMarquee1024({ gapPx = 60 }: { gapPx?: number } = {}) {
   const d = philosophyMarquee1440Assets.dark;
   const o = philosophyMarquee1440Assets.orange;
 
@@ -245,7 +248,7 @@ export function PhilosophyClientsMarquee1024() {
     <>
       <div className="absolute inset-x-0 top-0 z-[8] flex h-[157.577px] w-full max-w-full items-center justify-start overflow-hidden">
         <div className="philosophy-marquee-row-dark min-w-0 max-w-full flex-none">
-          <MarqueeTrack durationSec={85} stripClassName={darkStripClass} trackBgClass="bg-[#0d0300]">
+          <MarqueeTrack durationSec={85} stripClassName={darkStripClass} trackBgClass="bg-[#0d0300]" gapPx={gapPx}>
             {darkStrip}
           </MarqueeTrack>
         </div>
@@ -253,7 +256,7 @@ export function PhilosophyClientsMarquee1024() {
 
       <div className="absolute inset-x-0 top-[121px] z-[8] flex h-[130.41px] w-full max-w-full items-center justify-start overflow-hidden">
         <div className="philosophy-marquee-row-orange min-w-0 max-w-full flex-none">
-          <MarqueeTrack durationSec={72} stripClassName={orangeStripClass} trackBgClass="bg-[#ff5c00]">
+          <MarqueeTrack durationSec={72} stripClassName={orangeStripClass} trackBgClass="bg-[#ff5c00]" gapPx={gapPx}>
             {orangeStrip}
           </MarqueeTrack>
         </div>

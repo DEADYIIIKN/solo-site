@@ -148,6 +148,7 @@ function BusinessGoalsFloatingCta() {
 type AccordionCardProps = {
   active: boolean;
   card: (typeof businessGoalsContent.cards)[number];
+  cardIndex?: number;
   expandedImageClass: string;
   expandedImageStyle: { height: string; maxWidth: "none"; width: string };
   collapsedImageLeftPx: number;
@@ -165,6 +166,7 @@ type AccordionCardProps = {
 function AccordionCard({
   active,
   card,
+  cardIndex,
   collapsedImageLeftPx,
   collapsedImageWidthPx,
   expandedImageClass,
@@ -257,21 +259,20 @@ function AccordionCard({
         >
           {card.id}
         </p>
-        <div
-          className="pointer-events-none absolute left-1/2 top-1/2 z-20 overflow-visible"
+        <p
+          className={`pointer-events-none absolute left-1/2 z-20 m-0 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white ${is1024 ? "bottom-[20px]" : "bottom-[30px]"}`}
           style={{
+            writingMode: "sideways-lr",
             opacity: active ? 0 : 1,
             transform: active
-              ? `translate3d(calc(-50% + ${verticalLabelOffsetPx}px),-50%,0)`
-              : "translate3d(-50%,-50%,0)",
+              ? `translate3d(calc(-50% + ${verticalLabelOffsetPx}px),0,0)`
+              : "translate3d(-50%,0,0)",
             transition: `opacity 180ms ease-out, transform 420ms ${premiumEase}`,
             willChange: "opacity,transform",
           }}
         >
-          <p className="m-0 -rotate-90 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white">
-            {card.label}
-          </p>
-        </div>
+          {card.label}
+        </p>
         <div
           className="absolute inset-0"
           style={{
@@ -282,8 +283,9 @@ function AccordionCard({
           }}
         >
           <div
-            className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : "left-[30px] top-[30px] w-[470px] text-[50px] tracking-[-0.5px]"} lowercase leading-[0.9] text-white`}
+            className={`absolute ${is1024 ? "left-[20px] top-[20px] w-[460px] text-[40px] tracking-[-0.4px]" : `left-[30px] top-[30px] text-[50px] tracking-[-0.5px]`} lowercase leading-[0.9] text-white`}
             style={{
+              width: is1024 ? undefined : `${[415, 646, 415, 646][cardIndex ?? 0]}px`,
               opacity: active ? 1 : 0,
               transform: active
                 ? "translate3d(0,0,0)"
@@ -292,13 +294,50 @@ function AccordionCard({
               willChange: "transform,opacity",
             }}
           >
-            <p className="m-0 font-bold">{card.titlePrimary}</p>
-            <p className="m-0 font-normal italic">{card.titleAccent}</p>
-            {"titleSuffix" in card && card.titleSuffix ? <p className="m-0 font-bold">{card.titleSuffix}</p> : null}
+            {is1024 ? (
+              <>
+                <p className={`m-0 ${cardIndex === 3 ? "font-normal" : "font-bold"}`}>{card.titlePrimary}</p>
+                <p className="m-0 font-normal italic">{card.titleAccent}</p>
+                {"titleSuffix" in card && card.titleSuffix ? <p className="m-0 font-bold">{card.titleSuffix}</p> : null}
+              </>
+            ) : cardIndex === 0 ? (
+              <>
+                <p className="m-0 font-bold">Система видеоконтента</p>
+                <p className="m-0 font-normal italic">для соцсетей</p>
+              </>
+            ) : cardIndex === 1 ? (
+              <>
+                <p className="m-0">
+                  <span className="font-bold">Видео для </span>
+                  <span className="font-normal italic">контекстной</span>
+                </p>
+                <p className="m-0">
+                  <span className="font-normal italic">и таргетированной</span>
+                  <span className="font-bold"> рекламы</span>
+                </p>
+              </>
+            ) : cardIndex === 2 ? (
+              <>
+                <p className="m-0">
+                  <span className="font-bold">Крупные </span>
+                  <span className="font-normal italic">рекламные</span>
+                </p>
+                <p className="m-0">
+                  <span className="font-normal italic">и имиджевые</span>
+                  <span className="font-bold"> ролики</span>
+                </p>
+              </>
+            ) : (
+              <p className="m-0 whitespace-normal">
+                <span className="font-normal italic">Полный цикл: </span>
+                <span className="font-bold">стратегия, креатив, съемка, аналитика</span>
+              </p>
+            )}
           </div>
           <p
-            className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[30px] left-[30px] w-[292px] text-[17px]"} font-normal leading-[1.2] text-white`}
+            className={`absolute ${is1024 ? "bottom-[30px] left-[20px] w-[287px] text-[16px]" : "bottom-[40px] left-[30px] text-[17px]"} font-normal leading-[1.2] text-white`}
             style={{
+              width: is1024 ? undefined : `${[281, 243, 292, 248][cardIndex ?? 0]}px`,
               opacity: active ? 1 : 0,
               transform: active ? "translate3d(0,0,0)" : "translate3d(0,10px,0)",
               transition: `transform 420ms ${premiumEase} 90ms, opacity 200ms ease-out 90ms`,
@@ -372,6 +411,7 @@ function MobileBusinessGoals({
           bodyFontClass: "text-[14px]",
           titleLeft: 20,
           descLeft: 20,
+          descBottom: 24,
           cards: [
             { titleTop: 361, titleWidth: 292, descWidth: 374, overlayClass: "bg-gradient-to-b from-[53.614%] from-transparent to-[rgba(13,3,0,0.6)]" },
             { titleTop: 20, titleWidth: 339, descWidth: 201, overlayClass: "bg-gradient-to-b from-[rgba(13,3,0,0.6)] via-1/2 via-transparent to-transparent" },
@@ -400,6 +440,7 @@ function MobileBusinessGoals({
             bodyFontClass: "text-[12px]",
             titleLeft: 16,
             descLeft: 16,
+            descBottom: 24,
             cards: [
               { titleTop: 266, titleWidth: 213, descWidth: 273, overlayClass: "bg-gradient-to-b from-[53.614%] from-transparent to-[rgba(13,3,0,0.6)]" },
               { titleTop: 16, titleWidth: 282, descWidth: 192, overlayClass: "bg-gradient-to-b from-[rgba(13,3,0,0.6)] via-1/2 via-transparent to-transparent" },
@@ -427,10 +468,11 @@ function MobileBusinessGoals({
             bodyFontClass: "text-[11px]",
             titleLeft: 12,
             descLeft: 12,
+            descBottom: 12,
             cards: [
-              { titleTop: 182, titleWidth: 171, descWidth: 182, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
-              { titleTop: 12, titleWidth: 218, descWidth: 161, overlayClass: "bg-gradient-to-t from-[35.096%] from-transparent to-[rgba(13,3,0,0.2)]" },
-              { titleTop: 177, titleWidth: 147, descWidth: 216, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+              { titleTop: 182, titleWidth: 171, descWidth: 218, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
+              { titleTop: 12, titleWidth: 218, descWidth: 218, overlayClass: "bg-gradient-to-t from-[35.096%] from-transparent to-[rgba(13,3,0,0.2)]" },
+              { titleTop: 177, titleWidth: 147, descWidth: 218, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
               { titleTop: 195, titleWidth: 218, descWidth: 218, overlayClass: "bg-gradient-to-b from-[35.096%] from-transparent to-[rgba(13,3,0,0.6)]" },
             ] as const,
           };
@@ -451,7 +493,7 @@ function MobileBusinessGoals({
     config.trackGap * (config.cardWidths.length - 1);
 
   return (
-    <div className="relative bg-white" id={id}>
+    <div className="relative bg-white overflow-x-clip" id={id}>
       <div
         className="mx-auto"
         style={{
@@ -493,7 +535,7 @@ function MobileBusinessGoals({
               <img
                 alt="Назад"
                 className={cn("max-w-none", isFirst ? "opacity-40" : "opacity-100")}
-                src={businessGoalsAssets.mobileArrowLeft}
+                src={businessGoalsAssets.mobileArrowRight}
                 style={{
                   height: `${config.arrowIconSize}px`,
                   maxWidth: "none",
@@ -518,7 +560,7 @@ function MobileBusinessGoals({
               <img
                 alt="Вперед"
                 className={cn("max-w-none", isLast ? "opacity-40" : "opacity-100")}
-                src={businessGoalsAssets.mobileArrowRight}
+                src={businessGoalsAssets.mobileArrowLeft}
                 style={{
                   height: `${config.arrowIconSize}px`,
                   maxWidth: "none",
@@ -530,7 +572,7 @@ function MobileBusinessGoals({
         </div>
 
         <div style={{ padding: `${config.headerBottomGap}px ${config.horizontalPadding}px 0` }}>
-          <div className="overflow-hidden" style={{ width: `${config.visibleWidth}px` }}>
+          <div className="overflow-visible" style={{ width: `${config.visibleWidth}px` }}>
             <div
               className="flex items-start"
               style={{
@@ -627,11 +669,12 @@ function MobileBusinessGoals({
                         {titleBlock}
                       </div>
                       <p
-                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
-                          bottom: "24px",
+                          bottom: `${config.descBottom}px`,
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
+                          lineHeight: 1.2,
                         }}
                       >
                         {card.description}
@@ -650,11 +693,12 @@ function MobileBusinessGoals({
                         {titleBlock}
                       </div>
                       <p
-                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
-                          bottom: "24px",
+                          bottom: `${config.descBottom}px`,
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
+                          lineHeight: 1.2,
                         }}
                       >
                         {card.description}
@@ -673,11 +717,12 @@ function MobileBusinessGoals({
                         {titleBlock}
                       </div>
                       <p
-                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
-                          bottom: "24px",
+                          bottom: `${config.descBottom}px`,
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
+                          lineHeight: 1.2,
                         }}
                       >
                         {card.description}
@@ -696,11 +741,12 @@ function MobileBusinessGoals({
                         {titleBlock}
                       </div>
                       <p
-                        className={cn("absolute m-0 font-normal leading-[1.2] text-white", config.bodyFontClass)}
+                        className={cn("absolute m-0 font-normal text-white", config.bodyFontClass)}
                         style={{
-                          bottom: "24px",
+                          bottom: `${config.descBottom}px`,
                           left: `${config.descLeft}px`,
                           width: `${cardCfg.descWidth}px`,
+                          lineHeight: 1.2,
                         }}
                       >
                         {card.description}
@@ -928,12 +974,13 @@ export function BusinessGoals() {
     function updateCtaVisibility() {
       const section = document.getElementById("business-goals-section");
       if (!section || section.getClientRects().length === 0) {
-        setCtaVisible(false);
         return;
       }
 
       const rect = section.getBoundingClientRect();
-      setCtaVisible(rect.top <= window.innerHeight && rect.bottom > 0);
+      if (rect.top <= window.innerHeight && rect.bottom > 0) {
+        setCtaVisible(true);
+      }
     }
 
     function scheduleUpdate() {
@@ -984,7 +1031,7 @@ export function BusinessGoals() {
           </SectionEyebrowRow>
         </div>
 
-        <div className="absolute left-[1220px] top-[140px] z-20 flex h-[34px] w-[80px] items-center gap-[12px]">
+        <div className="absolute left-[1300px] top-[174px] z-20 flex h-[34px] w-[80px] items-center gap-[12px]">
           <button
             aria-disabled={activeIndex === 0}
             className={`inline-flex size-[34px] items-center justify-center rounded-full border-0 p-0 transition-colors duration-300 ${
@@ -1045,6 +1092,7 @@ export function BusinessGoals() {
               key={card.id}
               active={isActive}
               card={card}
+              cardIndex={index}
               collapsedImageLeftPx={
                 (collapsedWidths1440[index] * Number.parseFloat(visual.narrowImageLeftPercent)) / 100
               }

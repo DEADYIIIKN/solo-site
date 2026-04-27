@@ -174,6 +174,7 @@ export function LeadFormFields({
 
   return (
     <form
+      data-testid="lead-form"
       className={cn(
       !embedInCard &&
         cn(
@@ -260,6 +261,7 @@ export function LeadFormFields({
           >
             <span className="sr-only">Ваше имя</span>
             <input
+              data-testid="lead-form-name"
               aria-invalid={nameError}
               autoComplete="name"
               className={cn(
@@ -286,6 +288,7 @@ export function LeadFormFields({
           >
             <span className="sr-only">Номер телефона</span>
             <input
+              data-testid="lead-form-phone"
               aria-invalid={phoneError}
               autoComplete="tel"
               className={cn(
@@ -414,6 +417,7 @@ export function LeadFormFields({
         >
           <span className="sr-only">Описание задачи</span>
           <textarea
+            data-testid="lead-form-message"
             className={cn(
               "m-0 min-h-0 w-full flex-1 resize-none border-0 bg-transparent p-0 font-normal leading-[1.2] text-white outline-none placeholder:text-[#9c9c9c] focus-visible:outline-none focus-visible:outline-offset-0",
               d.input,
@@ -437,6 +441,7 @@ export function LeadFormFields({
           )}
         >
           <input
+            data-testid="lead-form-consent"
             aria-invalid={consentError}
             checked={consent}
             className="sr-only"
@@ -479,6 +484,8 @@ export function LeadFormFields({
                 className="underline decoration-solid [text-decoration-skip-ink:none]"
                 href="/privacy"
                 onClick={(e) => e.stopPropagation()}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Политикой конфиденциальности
               </a>
@@ -487,6 +494,7 @@ export function LeadFormFields({
         </div>
 
         <button
+          data-testid="lead-form-submit"
           className={cn(
             "flex w-full items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-10 font-semibold lowercase text-white transition-colors hover:bg-[#de4f00]",
             d.btn,

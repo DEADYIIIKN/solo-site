@@ -27,23 +27,13 @@ export const SiteSettings: GlobalConfig = {
           type: "row",
           fields: [
             {
-              name: "showSecrets",
-              type: "checkbox",
-              defaultValue: false,
-              label: "Секреты и статьи",
-              admin: {
-                description: "Слайдер «Делимся секретами» на главной",
-                width: "33%",
-              },
-            },
-            {
               name: "showShowreel",
               type: "checkbox",
               defaultValue: true,
               label: "Шоурил",
               admin: {
                 description: "Блок с видео-шоурилом",
-                width: "33%",
+                width: "50%",
               },
             },
             {
@@ -53,7 +43,7 @@ export const SiteSettings: GlobalConfig = {
               label: "Команда",
               admin: {
                 description: "Блок «Наша команда»",
-                width: "33%",
+                width: "50%",
               },
             },
           ],
@@ -67,7 +57,7 @@ export const SiteSettings: GlobalConfig = {
               defaultValue: true,
               label: "Новости",
               admin: {
-                description: "Страница новостей и ссылки на нее в навигации",
+                description: "Страница новостей, ссылки в навигации и блок «Делимся секретами» в футере",
                 width: "33%",
               },
             },

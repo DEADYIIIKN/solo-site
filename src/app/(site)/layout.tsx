@@ -4,7 +4,8 @@ import localFont from "next/font/local";
 import { publicSiteUrl } from "@/shared/config/public-site-url";
 import { siteConfig } from "@/shared/config/site";
 import { SiteLoadOverlay } from "@/widgets/site-load";
-import "@/bones/registry.js";
+
+import { SiteMotionConfig } from "./motion-config-provider";
 
 import "../globals.css";
 
@@ -109,8 +110,10 @@ export default function SiteLayout({
   return (
     <html dir="ltr" lang="ru">
       <body className={`${montserrat.variable} ${montserrat.className} page-shell`}>
-        {children}
-        <SiteLoadOverlay />
+        <SiteMotionConfig>
+          {children}
+          <SiteLoadOverlay />
+        </SiteMotionConfig>
       </body>
     </html>
   );

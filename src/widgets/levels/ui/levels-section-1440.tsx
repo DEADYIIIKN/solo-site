@@ -44,11 +44,11 @@ export function LevelsUnified1440() {
   return (
     <div
       ref={ref}
-      className="relative mx-auto min-h-[720px] w-full max-w-[1440px] overflow-visible pb-4"
+      className="relative mx-auto min-h-[810px] w-full max-w-[1440px] overflow-visible pb-4"
     >
       <p
         className={cn(
-          "absolute left-[140px] top-[64px] z-[5] m-0 max-w-[726px] text-[30px] font-bold leading-none text-[#0d0300]",
+          "absolute left-[140px] top-[140px] z-[5] m-0 max-w-[726px] text-[30px] font-bold leading-none text-[#0d0300]",
           revealMove(),
         )}
         id="levels-intro-1440"
@@ -97,7 +97,7 @@ export function LevelsUnified1440() {
 
       <div
         className={cn(
-          "absolute left-[calc(41.67%+35px)] top-[194px] z-[6] flex flex-col gap-[7px]",
+          "absolute left-[calc(41.67%+35px)] top-[270px] z-[6] flex flex-col gap-[7px]",
           revealMove(),
         )}
         id="levels-step1-1440"
@@ -110,7 +110,7 @@ export function LevelsUnified1440() {
       </div>
       <div
         className={cn(
-          "absolute left-[calc(58.33%-10px)] top-[314px] z-[6] flex flex-col gap-[7px]",
+          "absolute left-[calc(58.33%-10px)] top-[390px] z-[6] flex flex-col gap-[7px]",
           revealMove(),
         )}
         style={{ transitionDelay: `${whenBarDone(1)}ms` }}
@@ -122,7 +122,7 @@ export function LevelsUnified1440() {
       </div>
       <div
         className={cn(
-          "absolute left-[calc(75%-55px)] top-[432px] z-[6] flex flex-col gap-[7px]",
+          "absolute left-[calc(75%-55px)] top-[508px] z-[6] flex flex-col gap-[7px]",
           revealMove(),
         )}
         style={{ transitionDelay: `${whenBarDone(2)}ms` }}
@@ -135,7 +135,7 @@ export function LevelsUnified1440() {
 
       <div
         className={cn(
-          "absolute left-[140px] top-[654px] z-[6] w-[774px] -translate-y-full",
+          "absolute left-[140px] top-[730px] z-[6] w-[774px] -translate-y-full",
           revealFade(),
         )}
         style={{ transitionDelay: `${delay(3 * LEVELS_BAR_UNFOLD_DURATION_MS + 200)}ms` }}

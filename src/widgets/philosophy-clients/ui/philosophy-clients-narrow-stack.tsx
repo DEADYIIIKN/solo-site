@@ -1,11 +1,10 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useState } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { sectionEyebrowText480To1439, sectionEyebrowTextMax479 } from "@/shared/ui/section-eyebrow-text";
 import { useInViewOnce } from "@/widgets/team/ui/team-shared";
@@ -18,7 +17,10 @@ import {
   STRATEGY_BARS_432,
   strategyBarGradient,
 } from "@/widgets/philosophy-clients/model/philosophy-clients.data";
-import { PhilosophyClientsMarquee1024 } from "@/widgets/philosophy-clients/ui/philosophy-clients-marquee-1024";
+import {
+  MARQUEE_GAP_360_PX,
+  PhilosophyClientsMarquee1024,
+} from "@/widgets/philosophy-clients/ui/philosophy-clients-marquee-1024";
 
 type NarrowSize = "432" | "360";
 
@@ -44,18 +46,19 @@ function CardBodyParts({
   return (
     <p
       className={cn(
-        "m-0 font-bold leading-[1.2] [&_span]:leading-[1.2]",
+        "m-0 font-bold",
         bodyClass,
         inverted ? "text-white" : "text-[#0d0300]",
       )}
+      style={{ lineHeight: 1.2 }}
     >
       {parts.map((part, i) =>
         part.emphasis === "italic" ? (
-          <span className="font-normal italic" key={i}>
+          <span className="font-normal italic" key={i} style={{ lineHeight: 1.2 }}>
             {part.text}
           </span>
         ) : (
-          <span key={i}>{part.text}</span>
+          <span key={i} style={{ lineHeight: 1.2 }}>{part.text}</span>
         ),
       )}
     </p>
@@ -204,7 +207,6 @@ function CreativeBg360() {
  */
 export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
   const [stackRef, stackInView] = useInViewOnce<HTMLDivElement>();
-  const [teamCardLoaded, setTeamCardLoaded] = useState(false);
   const [c1, c2, c3, c4, c5] = philosophyClients1440Content.cards;
   const is360 = size === "360";
 
@@ -280,17 +282,19 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
 
       {/* 03 */}
       <div className={cardReveal()} style={cardRevealStyle(2)}>
-        <BoneyardSkeleton
-          loading={!teamCardLoaded}
-          name={is360 ? "philosophy-team-card-360" : "philosophy-team-card-432"}
+        <motion.div
+          className={cn(cardBox, "bg-[#0d0300]", h)}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
         >
-          <div className={cn(cardBox, "bg-[#0d0300]", h)}>
           <div
             className={cn(
               "absolute -translate-x-1/2",
               is360
-                ? "left-[calc(50%-10.5px)] top-1/2 h-[244px] w-[439px] -translate-y-1/2"
-                : "left-[calc(50%-10.5px)] top-[calc(50%-6.5px)] h-[319px] w-[571px] -translate-y-1/2",
+                ? "left-1/2 top-1/2 h-[244px] w-[439px] -translate-y-1/2"
+                : "left-1/2 top-1/2 h-[319px] w-[571px] -translate-y-1/2",
             )}
           >
             <Image
@@ -298,8 +302,6 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
               className="pointer-events-none object-cover"
               fill
               loading="lazy"
-              onError={() => setTeamCardLoaded(true)}
-              onLoad={() => setTeamCardLoaded(true)}
               sizes="(max-width: 479px) 439px, 571px"
               src={philosophyClients1440Assets.teamPhoto}
             />
@@ -318,8 +320,7 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
           <div className={cn("absolute z-[1] text-white", padLeftClass, bRest, is360 ? "w-[291px]" : "w-[371px]")}>
             <CardBodyParts bodyClass={bodyCls} inverted parts={c3.body.parts} />
           </div>
-          </div>
-        </BoneyardSkeleton>
+        </motion.div>
       </div>
 
       {/* 04 */}
@@ -383,10 +384,13 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
 export function PhilosophyClientsNarrowClientsBlock({
   eyebrowPlClassName,
   clientsEyebrowStyle = "default",
+  marqueeGapPx = 60,
 }: {
   eyebrowPlClassName: string;
   /** `narrow` — подпись 14px; точка та же 10×10, что и везде (`SectionTitleDot`) */
   clientsEyebrowStyle?: "default" | "narrow";
+  /** Gap между логотипами в маркизе (px). Default=60 для 768px+; передавайте MARQUEE_GAP_360_PX для 360px. */
+  marqueeGapPx?: number;
 }) {
   const [clientsRef, clientsInView] = useInViewOnce<HTMLDivElement>();
 
@@ -418,13 +422,17 @@ export function PhilosophyClientsNarrowClientsBlock({
         </div>
         <div
           className={cn(
-            "relative mt-8 h-[400px] w-full max-w-full overflow-x-clip",
+            "relative mt-8 h-[400px]",
             REVEAL,
             clientsInView ? REVEAL_ON : REVEAL_OFF,
           )}
-          style={{ transitionDelay: clientsInView ? "100ms" : "0ms" }}
+          style={{
+            width: "100vw",
+            marginLeft: "calc(50% - 50vw)",
+            transitionDelay: clientsInView ? "100ms" : "0ms",
+          }}
         >
-          <PhilosophyClientsMarquee1024 />
+          <PhilosophyClientsMarquee1024 gapPx={marqueeGapPx} />
         </div>
       </div>
     </>

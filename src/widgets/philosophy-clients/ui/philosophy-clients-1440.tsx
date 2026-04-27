@@ -1,10 +1,10 @@
 "use client";
 
+import { motion, useTransform } from "motion/react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { sectionEyebrowTextMin1440 } from "@/shared/ui/section-eyebrow-text";
 import {
@@ -83,14 +83,27 @@ const CARD_ENTER_OFFSET_Y_1440 = [
 export function PhilosophyClients1440() {
   const [c1, c2, c3, c4, c5] = philosophyClients1440Content.cards;
   const [pinEl, setPinEl] = useState<HTMLDivElement | null>(null);
-  const [teamCardLoaded, setTeamCardLoaded] = useState(false);
   const setPinRef = useCallback((node: HTMLDivElement | null) => {
     setPinEl(node);
   }, []);
   const { progress, pinPhase } = usePhilosophyPinScrollProgress(pinEl);
 
-  const enterY = (i: number) => philosophyCardEnterTranslateY(progress, i, CARD_ENTER_OFFSET_Y_1440[i]);
-  const isCardInteractive = (i: number) => i < 2 || philosophyCardStackLocalT(progress, i) > 0;
+  /**
+   * Safari-parity (D-07 motion-value drop-in): `progress` — `MotionValue<number>`.
+   * Per-card `y` и `pointerEvents` — MotionValues через `useTransform`; motion пишет в DOM по rAF,
+   * без React re-render всего поддерева на каждом кадре (Safari иначе стопорит стопку при скролле).
+   */
+  const y0 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 0, CARD_ENTER_OFFSET_Y_1440[0]));
+  const y1 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 1, CARD_ENTER_OFFSET_Y_1440[1]));
+  const y2 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 2, CARD_ENTER_OFFSET_Y_1440[2]));
+  const y3 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 3, CARD_ENTER_OFFSET_Y_1440[3]));
+  const y4 = useTransform(progress, (g) => philosophyCardEnterTranslateY(g, 4, CARD_ENTER_OFFSET_Y_1440[4]));
+
+  const pe0 = useTransform(progress, () => "auto" as const);
+  const pe1 = useTransform(progress, () => "auto" as const);
+  const pe2 = useTransform(progress, (g) => (philosophyCardStackLocalT(g, 2) > 0 ? "auto" : "none"));
+  const pe3 = useTransform(progress, (g) => (philosophyCardStackLocalT(g, 3) > 0 ? "auto" : "none"));
+  const pe4 = useTransform(progress, (g) => (philosophyCardStackLocalT(g, 4) > 0 ? "auto" : "none"));
 
   return (
     /* Без overflow-x на этом предке — иначе ломается pin; горизонталь — у .page-shell на узкой ширине */
@@ -129,7 +142,7 @@ export function PhilosophyClients1440() {
               <SectionEyebrow label={philosophyClients1440Content.philosophyEyebrow} top={130} />
 
         {/* 01 Креатив */}
-        <div
+        <motion.div
           data-philosophy-card="0"
           className={`${CARD} z-[1] bg-[#0d0300]`}
           style={{
@@ -138,8 +151,8 @@ export function PhilosophyClients1440() {
             width: 640,
             height: 340,
             borderRadius: 20,
-            transform: `translate3d(0, ${enterY(0)}px, 0)`,
-            pointerEvents: isCardInteractive(0) ? "auto" : "none",
+            y: y0,
+            pointerEvents: pe0,
           }}
         >
           <div className="philosophy-scroll-card-layer pointer-events-none absolute inset-0 overflow-hidden">
@@ -183,10 +196,10 @@ export function PhilosophyClients1440() {
           <div className={`${BODY} left-[calc(50%-290px)] w-[570px] text-white`}>
             <CardBodyText inverted parts={c1.body.parts} />
           </div>
-        </div>
+        </motion.div>
 
         {/* 02 Стратегия */}
-        <div
+        <motion.div
           data-philosophy-card="1"
           className={`${CARD} z-[2] bg-[#fff4ee]`}
           style={{
@@ -195,8 +208,8 @@ export function PhilosophyClients1440() {
             width: 640,
             height: 340,
             borderRadius: 20,
-            transform: `translate3d(0, ${enterY(1)}px, 0)`,
-            pointerEvents: isCardInteractive(1) ? "auto" : "none",
+            y: y1,
+            pointerEvents: pe1,
           }}
         >
           {STRATEGY_BARS.map((b, i) => (
@@ -220,47 +233,47 @@ export function PhilosophyClients1440() {
           <div className={`${BODY} left-[calc(50%-61px)] w-[341px]`}>
             <CardBodyText parts={c2.body.parts} />
           </div>
-        </div>
+        </motion.div>
 
         {/* 03 Команда */}
-        <BoneyardSkeleton loading={!teamCardLoaded} name="philosophy-team-card-1440">
-          <div
-            data-philosophy-card="2"
-            className={`${CARD} z-[3] bg-[#0d0300]`}
-            style={{
-              left: 140,
-              top: 252,
-              width: 640,
-              height: 340,
-              borderRadius: 20,
-              transform: `translate3d(0, ${enterY(2)}px, 0)`,
-              pointerEvents: isCardInteractive(2) ? "auto" : "none",
-            }}
-          >
-            <div className="absolute left-[calc(50%-91.5px)] top-[calc(50%-4px)] h-[460px] w-[823px] -translate-x-1/2 -translate-y-1/2">
-              <Image
-                alt=""
-                className="pointer-events-none object-cover"
-                fill
-                loading="lazy"
-                onError={() => setTeamCardLoaded(true)}
-                onLoad={() => setTeamCardLoaded(true)}
-                sizes="823px"
-                src={philosophyClients1440Assets.teamPhoto}
-              />
-            </div>
-            <p className={`${NUM} z-[1] text-white`}>{c3.id}</p>
-            <p className="absolute left-[calc(50%-84px)] top-[30px] z-[1] whitespace-nowrap text-[50px] font-bold leading-[0.9] tracking-[-1px] text-white">
-              {c3.title}
-            </p>
-            <div className={`${BODY} left-[calc(50%-84px)] z-[1] w-[374px] text-white`} style={{ top: 310 }}>
-              <CardBodyText inverted parts={c3.body.parts} />
-            </div>
+        <motion.div
+          data-philosophy-card="2"
+          className={`${CARD} z-[3] bg-[#0d0300]`}
+          style={{
+            left: 140,
+            top: 252,
+            width: 640,
+            height: 340,
+            borderRadius: 20,
+            y: y2,
+            pointerEvents: pe2,
+          }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
+        >
+          <div className="absolute left-[calc(50%-91.5px)] top-[calc(50%-4px)] h-[460px] w-[823px] -translate-x-1/2 -translate-y-1/2">
+            <Image
+              alt=""
+              className="pointer-events-none object-cover"
+              fill
+              loading="lazy"
+              sizes="823px"
+              src={philosophyClients1440Assets.teamPhoto}
+            />
           </div>
-        </BoneyardSkeleton>
+          <p className={`${NUM} z-[1] text-white`}>{c3.id}</p>
+          <p className="absolute left-[calc(50%-84px)] top-[30px] z-[1] whitespace-nowrap text-[50px] font-bold leading-[0.9] tracking-[-1px] text-white">
+            {c3.title}
+          </p>
+          <div className={`${BODY} left-[calc(50%-84px)] z-[1] w-[374px] text-white`} style={{ top: 310 }}>
+            <CardBodyText inverted parts={c3.body.parts} />
+          </div>
+        </motion.div>
 
         {/* 04 Прозрачность */}
-        <div
+        <motion.div
           data-philosophy-card="3"
           className={`${CARD} z-[4]`}
           style={{
@@ -271,8 +284,8 @@ export function PhilosophyClients1440() {
             borderRadius: 20,
             backgroundImage: philosophyCard04RadialBg,
             backgroundSize: "100% 100%",
-            transform: `translate3d(0, ${enterY(3)}px, 0)`,
-            pointerEvents: isCardInteractive(3) ? "auto" : "none",
+            y: y3,
+            pointerEvents: pe3,
           }}
         >
           <p className={`${NUM} text-white`}>{c4.id}</p>
@@ -282,10 +295,10 @@ export function PhilosophyClients1440() {
           <div className={`${BODY} left-1/2 w-[442px] -translate-x-1/2 text-center text-white`}>
             <CardBodyText inverted parts={c4.body.parts} />
           </div>
-        </div>
+        </motion.div>
 
         {/* 05 Аутентичность */}
-        <div
+        <motion.div
           data-philosophy-card="4"
           className={`${CARD} z-[5] bg-[#0d0300]`}
           style={{
@@ -294,8 +307,8 @@ export function PhilosophyClients1440() {
             width: 640,
             height: 340,
             borderRadius: 20,
-            transform: `translate3d(0, ${enterY(4)}px, 0)`,
-            pointerEvents: isCardInteractive(4) ? "auto" : "none",
+            y: y4,
+            pointerEvents: pe4,
           }}
         >
           <div
@@ -347,7 +360,7 @@ export function PhilosophyClients1440() {
           <div className={`${BODY} left-[calc(50%-290px)] z-[1] w-[580px] text-white`}>
             <CardBodyText inverted parts={c5.body.parts} />
           </div>
-        </div>
+        </motion.div>
             </div>
           </div>
         </div>

@@ -52,7 +52,7 @@ export default async function HomePage() {
   ]);
 
   return (
-    <main className="app-main">
+    <main className="app-main overflow-x-clip">
       {/* Без isolate/z-0: иначе stacking context первого блока оказывается под соседними секциями (sticky z-[40]) — навбар и fixed-модалки внутри блока не перекрывают страницу. */}
       <div className="relative overflow-x-clip bg-[#0d0300]">
         <DarkSurfaceGrid />

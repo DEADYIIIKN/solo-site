@@ -1,5 +1,6 @@
 "use client";
 
+import { useMotionValue, type MotionValue } from "motion/react";
 import { useLayoutEffect, useRef, useState } from "react";
 
 /**
@@ -102,11 +103,22 @@ export function computeCasesPinCollapseProgress(t: number): CasesPinCollapseProg
   return smootherstep01(Math.min(1, Math.max(0, k)));
 }
 
-export function useCasesPinScrollProgress(pinElement: HTMLElement | null) {
+/**
+ * Safari-parity (D-07 motion-value drop-in): `collapseProgress` возвращается как `MotionValue<number>`,
+ * а не React state. Pin-зона получает десятки обновлений в секунду при скролле; React setState на каждом кадре
+ * заставляет Safari'овский JS-event-loop ре-рендерить всё поддерево потребителя (карусели, заголовки,
+ * вся секция), и анимация «заедает». MotionValue обновляется через rAF и пишет в DOM напрямую без React
+ * re-render — так же как Chrome compositor вытягивает плавность сам.
+ *
+ * `pinPhase` остаётся React state: смена фазы — дискретное событие (3–4 раза за сессию), ре-рендер тут уместен.
+ */
+export function useCasesPinScrollProgress(pinElement: HTMLElement | null): {
+  collapseProgress: MotionValue<number>;
+  pinPhase: CasesPinPhase;
+} {
+  const collapseProgress = useMotionValue(0);
   const [pinPhase, setPinPhase] = useState<CasesPinPhase>("before");
-  const [collapseProgress, setCollapseProgress] = useState(0);
   const lastPhaseRef = useRef<CasesPinPhase>("before");
-  const lastProgressRef = useRef(0);
 
   useLayoutEffect(() => {
     if (!pinElement) return;
@@ -125,9 +137,8 @@ export function useCasesPinScrollProgress(pinElement: HTMLElement | null) {
     };
 
     const applyProgress = (next: number) => {
-      if (Math.abs(lastProgressRef.current - next) <= 0.00025) return;
-      lastProgressRef.current = next;
-      setCollapseProgress(next);
+      /* MotionValue.set внутренне deduplицирует одинаковые значения; не нужен эпсилон-фильтр как раньше. */
+      collapseProgress.set(next);
     };
 
     const applySnap = (target: number) => {
@@ -230,9 +241,8 @@ export function useCasesPinScrollProgress(pinElement: HTMLElement | null) {
       vv?.removeEventListener("resize", scheduleTick);
       ro.disconnect();
       lastPhaseRef.current = "before";
-      lastProgressRef.current = 0;
     };
-  }, [pinElement]);
+  }, [pinElement, collapseProgress]);
 
   return { collapseProgress, pinPhase };
 }

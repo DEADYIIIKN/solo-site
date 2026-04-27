@@ -41,7 +41,7 @@ export function LeadFormBelow1024() {
           {/* Верхний контент на светлом фоне — заголовок, «Это бесплатно», буллеты */}
           <div
             className={cn(
-              "flex flex-col gap-6 text-[#0d0300]",
+              "flex flex-col gap-4 text-[#0d0300] max-[479px]:gap-3",
               "px-4 pt-6",
               "min-[480px]:px-6 min-[480px]:pt-[30px]",
             )}
@@ -91,7 +91,7 @@ export function LeadFormBelow1024() {
             Разделитель между контентом и тёмной карточкой.
             Figma 480: gap-40 (fff4ee flex gap-40). Figma 360: ~30px визуально.
           */}
-          <div className="h-[30px] min-[480px]:h-[40px]" />
+          <div className="h-[12px] min-[480px]:h-[40px]" />
 
           {/*
             Тёмная форм-карточка edge-to-edge внутри fff4ee — только поля (embedInCard).

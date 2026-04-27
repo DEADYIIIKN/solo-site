@@ -181,25 +181,34 @@ function ConsultationBtn({
 }
 
 function PackageGlow({ left, top, filterId }: { left: number; top: number; filterId: string }) {
+  // Figma 783:10947+10948: halo (Ellipse 110, blurred orange circle) + sharp 8×8 dot (Ellipse 113).
+  // Halo рендерится inline SVG (FirstScreenGeoGlow). Sharp dot — отдельный <div> с CSS-позицией,
+  // чтобы оптически выровнять с центром текста (Montserrat line-box на 3px шире чем Figma glyph-bbox).
   return (
-    <div
-      className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
-      data-services-package-glow=""
-      style={{ left, top }}
-    >
-      <div className="absolute inset-[-238.1%] overflow-visible">
-        <FirstScreenGeoGlow
-          blur={50}
-          cx={121}
-          cy={121}
-          dotR={4}
-          filterId={filterId}
-          pulse={false}
-          r={21}
-          size={242}
-        />
+    <>
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+        data-services-package-glow=""
+        style={{ left, top }}
+      >
+        <div className="absolute inset-[-238.1%] overflow-visible">
+          <FirstScreenGeoGlow
+            blur={30}
+            cx={121}
+            cy={121}
+            dotR={0}
+            filterId={filterId}
+            pulse={false}
+            r={21}
+            size={242}
+          />
+        </div>
       </div>
-    </div>
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+        style={{ left: left + 17, top: top + 20 }}
+      />
+    </>
   );
 }
 
@@ -697,10 +706,10 @@ function CommercialCard480() {
         }}
       >
         <span>{c.titleItalic}</span>
-        <span className="font-bold not-italic">
-          {c.titleBoldLine1}
-          {c.titleBoldLine2}
-        </span>
+        <br />
+        <span className="font-bold not-italic">{c.titleBoldLine1.trim()}</span>
+        <br />
+        <span className="font-bold not-italic">{c.titleBoldLine2}</span>
       </p>
       <p
         className="absolute z-[3] m-0 font-normal leading-[1.2] text-[#0d0300]"
@@ -873,10 +882,10 @@ function CommercialCard360() {
         }}
       >
         <span>{c.titleItalic}</span>
-        <span className="font-bold not-italic">
-          {c.titleBoldLine1}
-          {c.titleBoldLine2}
-        </span>
+        <br />
+        <span className="font-bold not-italic">{c.titleBoldLine1.trim()}</span>
+        <br />
+        <span className="font-bold not-italic">{c.titleBoldLine2}</span>
       </p>
       <p
         className="absolute z-[3] m-0 font-normal leading-[1.2] text-[#0d0300]"
@@ -982,7 +991,7 @@ export function ServicesSectionBelow1024() {
               U360.cardsGap,
             )}
           >
-          <SectionEyebrowRow align="start" dotClassName="self-center" gapClassName="gap-[8px]">
+          <SectionEyebrowRow align="center" className="w-full justify-center" dotClassName="self-center" gapClassName="gap-[8px]">
             <p className={cn("m-0 whitespace-nowrap font-semibold lowercase text-[#0d0300]", U360.eyebrowText)}>
               {services1440Copy.eyebrow}
             </p>

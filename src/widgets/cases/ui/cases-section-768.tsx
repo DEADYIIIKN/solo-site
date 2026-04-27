@@ -3,10 +3,10 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Image from "next/image";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 import { cn } from "@/shared/lib/utils";
-import { BoneyardSkeleton } from "@/shared/ui/boneyard-skeleton";
 import { SectionEyebrowRow } from "@/shared/ui/section-eyebrow-row";
 import { useCasesHorizontalCarousel } from "@/widgets/cases/lib/use-cases-horizontal-carousel";
 import type { CasesAdCard, CasesVerticalCard } from "@/widgets/cases/model/cases.data";
@@ -71,12 +71,10 @@ function VerticalCard768({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-vertical-card-768">
-    <article
+    <motion.article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[8px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
       onClick={onOpenDetail}
       onKeyDown={(e) => {
         if (!onOpenDetail) return;
@@ -88,6 +86,9 @@ function VerticalCard768({
       role={onOpenDetail ? "button" : undefined}
       style={{ height: VERT_CARD_H, width: VERT_CARD_W }}
       tabIndex={onOpenDetail ? 0 : undefined}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.15 }}
+      whileInView={{ opacity: 1 }}
     >
       <Image
         alt=""
@@ -96,8 +97,6 @@ function VerticalCard768({
           casesCardHoverEase,
         )}
         fill
-        onError={() => setImageLoaded(true)}
-        onLoad={() => setImageLoaded(true)}
         sizes={`${VERT_CARD_W}px`}
         src={image}
       />
@@ -127,15 +126,14 @@ function VerticalCard768({
           <p className="m-0 text-[34px] font-bold lowercase leading-[1.2]">{views}</p>
         </div>
         <div className="flex min-h-[32px] flex-col justify-end text-[13px] font-normal leading-[1.2]">
-          {credits.map((line) => (
-            <p className="m-0" key={line}>
+          {credits.map((line, i) => (
+            <p className={cn("m-0", i < credits.length - 1 && "mb-[10px]")} key={line}>
               {line}
             </p>
           ))}
         </div>
       </div>
-    </article>
-    </BoneyardSkeleton>
+    </motion.article>
   );
 }
 
@@ -150,12 +148,10 @@ function AdCard768({
   credits: readonly string[];
   onOpenDetail?: () => void;
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
   return (
-    <BoneyardSkeleton loading={!imageLoaded} name="cases-ad-card-768">
-    <article
+    <motion.article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[8px] bg-[#0d0300]"
+      initial={{ opacity: 0 }}
       onClick={onOpenDetail}
       onKeyDown={(e) => {
         if (!onOpenDetail) return;
@@ -167,6 +163,9 @@ function AdCard768({
       role={onOpenDetail ? "button" : undefined}
       style={{ height: AD_CARD_H, width: AD_CARD_W }}
       tabIndex={onOpenDetail ? 0 : undefined}
+      transition={{ duration: 0.22, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.15 }}
+      whileInView={{ opacity: 1 }}
     >
       <Image
         alt=""
@@ -175,8 +174,6 @@ function AdCard768({
           casesCardHoverEase,
         )}
         fill
-        onError={() => setImageLoaded(true)}
-        onLoad={() => setImageLoaded(true)}
         sizes={`${AD_CARD_W}px`}
         src={image}
       />
@@ -198,8 +195,7 @@ function AdCard768({
           ))}
         </div>
       </div>
-    </article>
-    </BoneyardSkeleton>
+    </motion.article>
   );
 }
 
@@ -211,6 +207,8 @@ export function CasesSection768({
   const [adDetailCard, setAdDetailCard] = useState<CasesAdCard | null>(null);
   const vScroll = useCasesHorizontalCarousel(VERT_CARD_W, CASES_SCROLL_GAP_PX);
   const aScroll = useCasesHorizontalCarousel(AD_CARD_W, CASES_SCROLL_GAP_PX);
+
+  const scrollerPaddingLeft = "calc((100% - 672px) / 2 + 48px)";
 
   return (
     <section className="cases-section-scope relative z-10 w-full bg-[#0d0300]" dir="ltr" id="cases-section-768">
@@ -227,77 +225,77 @@ export function CasesSection768({
         open={adDetailCard != null}
       />
       <CasesSectionBackgroundGrid />
-      <div className="relative mx-auto w-full max-w-[768px] overflow-x-clip pb-[140px]">
-        <div className="relative z-[1] px-12 pt-20">
-          <div className="flex flex-col gap-[50px]">
-            <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
-              <p className="m-0 whitespace-nowrap text-[16px] font-semibold lowercase leading-[1.2] text-white">
-                {cases1440Copy.eyebrow}
-              </p>
-            </SectionEyebrowRow>
+      <div className="relative w-full pb-[140px]">
+        <div className="relative z-[1] mx-auto w-full max-w-[768px] px-12 pt-20">
+          <SectionEyebrowRow align="end" dotClassName="self-center" gapClassName="gap-2">
+            <p className="m-0 whitespace-nowrap text-[16px] font-semibold lowercase leading-[1.2] text-white">
+              {cases1440Copy.eyebrow}
+            </p>
+          </SectionEyebrowRow>
+        </div>
 
-            <div className="flex flex-col gap-[120px]">
-              <div className="flex min-w-0 flex-col gap-[50px]">
-                <div className="flex w-full min-w-0 items-center justify-between gap-4">
-                  <CasesTitle44
-                    boldPart={cases1440Copy.verticalTitleRest}
-                    italicPart={cases1440Copy.verticalTitleItalic}
-                  />
-                  <CasesSectionArrowsNav
-                    nextDisabled={vScroll.nextDisabled}
-                    onNext={vScroll.onNext}
-                    onPrev={vScroll.onPrev}
-                    prevDisabled={vScroll.prevDisabled}
-                  />
-                </div>
-                <div
-                  className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
-                  dir="ltr"
-                  ref={vScroll.scrollRef}
-                >
-                  {verticalCards.map((c) => (
-                    <VerticalCard768
-                      credits={c.credits}
-                      image={c.image}
-                      key={c.id}
-                      onOpenDetail={() => setDetailCard(c)}
-                      overlayLight={c.overlayLight}
-                      titleLines={c.titleLines}
-                      views={c.views}
-                    />
-                  ))}
-                </div>
-              </div>
+        <div className="relative z-[1] mt-[50px] flex flex-col gap-[120px]">
+          <div className="flex min-w-0 flex-col gap-[50px]">
+            <div className="mx-auto flex w-full min-w-0 max-w-[768px] items-center justify-between gap-4 px-12">
+              <CasesTitle44
+                boldPart={cases1440Copy.verticalTitleRest}
+                italicPart={cases1440Copy.verticalTitleItalic}
+              />
+              <CasesSectionArrowsNav
+                nextDisabled={vScroll.nextDisabled}
+                onNext={vScroll.onNext}
+                onPrev={vScroll.onPrev}
+                prevDisabled={vScroll.prevDisabled}
+              />
+            </div>
+            <div
+              className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 pt-2 no-scrollbar"
+              dir="ltr"
+              ref={vScroll.scrollRef}
+              style={{ paddingLeft: scrollerPaddingLeft, paddingRight: "48px" }}
+            >
+              {verticalCards.map((c) => (
+                <VerticalCard768
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setDetailCard(c)}
+                  overlayLight={c.overlayLight}
+                  titleLines={c.titleLines}
+                  views={c.views}
+                />
+              ))}
+            </div>
+          </div>
 
-              <div className="flex min-w-0 flex-col gap-[50px]">
-                <div className="flex w-full min-w-0 items-center justify-between gap-4">
-                  <CasesTitle44
-                    boldPart={cases1440Copy.adTitleRest}
-                    italicPart={cases1440Copy.adTitleItalic}
-                  />
-                  <CasesSectionArrowsNav
-                    nextDisabled={aScroll.nextDisabled}
-                    onNext={aScroll.onNext}
-                    onPrev={aScroll.onPrev}
-                    prevDisabled={aScroll.prevDisabled}
-                  />
-                </div>
-                <div
-                  className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
-                  dir="ltr"
-                  ref={aScroll.scrollRef}
-                >
-                  {adCards.map((c) => (
-                    <AdCard768
-                      credits={c.credits}
-                      image={c.image}
-                      key={c.id}
-                      onOpenDetail={() => setAdDetailCard(c)}
-                      title={c.title}
-                    />
-                  ))}
-                </div>
-              </div>
+          <div className="flex min-w-0 flex-col gap-[50px]">
+            <div className="mx-auto flex w-full min-w-0 max-w-[768px] items-center justify-between gap-4 px-12">
+              <CasesTitle44
+                boldPart={cases1440Copy.adTitleRest}
+                italicPart={cases1440Copy.adTitleItalic}
+              />
+              <CasesSectionArrowsNav
+                nextDisabled={aScroll.nextDisabled}
+                onNext={aScroll.onNext}
+                onPrev={aScroll.onPrev}
+                prevDisabled={aScroll.prevDisabled}
+              />
+            </div>
+            <div
+              className="flex min-w-0 gap-4 overflow-x-auto overflow-y-hidden pb-1 no-scrollbar"
+              dir="ltr"
+              ref={aScroll.scrollRef}
+              style={{ paddingLeft: scrollerPaddingLeft, paddingRight: "48px" }}
+            >
+              {adCards.map((c) => (
+                <AdCard768
+                  credits={c.credits}
+                  image={c.image}
+                  key={c.id}
+                  onOpenDetail={() => setAdDetailCard(c)}
+                  title={c.title}
+                />
+              ))}
             </div>
           </div>
         </div>

@@ -42,12 +42,12 @@ const V_HERO_1024 = {
   illustration: { left: 469, top: 30, w: 286, h: 240 },
 } as const;
 
-/** Figma — герой коммерческой карточки 765×240. Иллюстрация с отступом от правого края героя. */
+/** Figma 783:8460 — карточка 785×480. Координаты в card coords (Group 268 flattened via contents). */
 const C_HERO_1024 = {
   title: { left: 30, top: 30 },
   subtitle: { left: 30, top: 82 },
   cta: { left: 30, top: 169 },
-  illustration: { top: 20, w: 307, h: 209, right: 10 },
+  illustration: { top: 20, w: 307, h: 209, left: 458 },
 } as const;
 
 function ConsultationButton1024({
@@ -62,7 +62,7 @@ function ConsultationButton1024({
   return (
     <button
       className={cn(
-        "absolute inline-flex h-[56px] w-[260px] items-center justify-center whitespace-nowrap rounded-[50px] border-0 px-8 text-[14px] font-semibold leading-[1.2] text-white transition-opacity hover:opacity-92",
+        "absolute flex h-[56px] w-[260px] flex-col items-center justify-start whitespace-nowrap rounded-[50px] border-0 px-[40px] pb-[20px] pt-[22px] text-[16px] font-semibold leading-[1.2] text-white transition-opacity hover:opacity-92",
         variant === "orange" ? "bg-[#ff5c00]" : "bg-[#0d0300]",
         className,
       )}
@@ -135,29 +135,37 @@ function CommercialPointCell1024({
 function Services1024PackageRow() {
   const rawId = useId().replace(/:/g, "");
   const filterId = `services1024-pkg-glow-${rawId}`;
-
   return (
-    <div
-      className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
-      data-services-package-glow=""
-      style={{
-        left: V_HERO_1024.packageGlowFrame.left,
-        top: V_HERO_1024.packageGlowFrame.top,
-      }}
-    >
-      <div className="absolute inset-[-238.1%] overflow-visible">
-        <FirstScreenGeoGlow
-          blur={50}
-          cx={121}
-          cy={121}
-          dotR={4}
-          filterId={filterId}
-          pulse={false}
-          r={21}
-          size={242}
-        />
+    <>
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+        data-services-package-glow=""
+        style={{
+          left: V_HERO_1024.packageGlowFrame.left,
+          top: V_HERO_1024.packageGlowFrame.top,
+        }}
+      >
+        <div className="absolute inset-[-238.1%] overflow-visible">
+          <FirstScreenGeoGlow
+            blur={30}
+            cx={121}
+            cy={121}
+            dotR={0}
+            filterId={filterId}
+            pulse={false}
+            r={21}
+            size={242}
+          />
+        </div>
       </div>
-    </div>
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+        style={{
+          left: V_HERO_1024.packageGlowFrame.left + 17,
+          top: V_HERO_1024.packageGlowFrame.top + 20,
+        }}
+      />
+    </>
   );
 }
 
@@ -189,55 +197,53 @@ function VerticalCard1024() {
   const points = [...v.points];
 
   return (
-    <article className="relative h-[520px] w-[785px] shrink-0 overflow-hidden rounded-[20px] bg-[#0d0300]">
+    <article
+      className="relative h-[520px] w-[785px] shrink-0 overflow-hidden rounded-[20px] bg-[#0d0300]"
+      data-services-hero="vertical"
+    >
       <div
-        className="relative z-[1] mx-[10px] mt-[10px] h-[280px] w-[765px] overflow-visible rounded-[20px]"
-        data-services-hero="vertical"
+        aria-hidden
+        className="absolute left-[10px] top-[10px] z-[0] h-[280px] w-[765px] overflow-hidden rounded-[20px] bg-gradient-to-b from-[#424242] to-[#141414] opacity-70"
+      />
+      <div
+        className="pointer-events-none absolute z-[1] h-[240px] w-[286px]"
+        style={{
+          left: V_HERO_1024.illustration.left,
+          top: V_HERO_1024.illustration.top,
+        }}
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 z-0 rounded-[20px] bg-gradient-to-b from-[#424242] to-[#141414] opacity-70"
-        />
-        <div
-          className="pointer-events-none absolute z-[1] h-[240px] w-[286px]"
-          style={{
-            left: V_HERO_1024.illustration.left,
-            top: V_HERO_1024.illustration.top,
-          }}
-        >
-          <img
-            alt=""
-            className="block h-full w-full object-contain object-right"
-            height={V_HERO_1024.illustration.h}
-            src={services1440Assets.verticalIllustration}
-            width={V_HERO_1024.illustration.w}
-          />
-        </div>
-        <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[28px] font-bold leading-[0.9] tracking-[-0.56px] text-white"
-          style={{ left: V_HERO_1024.title.left, top: V_HERO_1024.title.top }}
-        >
-          <span className="font-normal italic">{v.titleItalic}</span>
-          <span>{v.titleBold}</span>
-        </p>
-        <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[15px] font-normal leading-[1.2] text-white"
-          style={{ left: V_HERO_1024.subtitle.left, top: V_HERO_1024.subtitle.top }}
-        >
-          {v.subtitle}
-        </p>
-        <ConsultationButton1024
-          style={{ left: V_HERO_1024.cta.left, top: V_HERO_1024.cta.top }}
-          variant="orange"
-        />
-        <Services1024PackageRow />
-        <Services1024PackageCaption
-          packageBold={v.packageBold}
-          packageLead={v.packageLead}
-          packageTrail={v.packageTrail}
-          style={{ left: V_HERO_1024.packageText.left, top: V_HERO_1024.packageText.top }}
+        <img
+          alt=""
+          className="block h-full w-full object-contain object-right"
+          height={V_HERO_1024.illustration.h}
+          src={services1440Assets.verticalIllustration}
+          width={V_HERO_1024.illustration.w}
         />
       </div>
+      <p
+        className="absolute z-[3] m-0 max-w-[681px] text-[32px] font-bold leading-[0.9] tracking-[-0.64px] text-white"
+        style={{ left: V_HERO_1024.title.left, top: V_HERO_1024.title.top }}
+      >
+        <span className="font-normal italic">{v.titleItalic}</span>
+        <span>{v.titleBold}</span>
+      </p>
+      <p
+        className="absolute z-[3] m-0 max-w-[681px] text-[16px] font-normal leading-[1.2] text-white"
+        style={{ left: V_HERO_1024.subtitle.left, top: V_HERO_1024.subtitle.top }}
+      >
+        {v.subtitle}
+      </p>
+      <ConsultationButton1024
+        style={{ left: V_HERO_1024.cta.left, top: V_HERO_1024.cta.top }}
+        variant="orange"
+      />
+      <Services1024PackageRow />
+      <Services1024PackageCaption
+        packageBold={v.packageBold}
+        packageLead={v.packageLead}
+        packageTrail={v.packageTrail}
+        style={{ left: V_HERO_1024.packageText.left, top: V_HERO_1024.packageText.top }}
+      />
 
       <div
         className="pointer-events-none absolute left-[30px] z-[1] w-[725px]"
@@ -270,52 +276,49 @@ function CommercialCard1024() {
   const points = [...c.points];
 
   return (
-    <article className="relative h-[480px] w-[785px] shrink-0 overflow-hidden rounded-[20px] bg-[#fff4ee] shadow-[0_-8px_40px_rgba(13,3,0,0.12)]">
+    <article
+      className="relative h-[480px] w-[785px] shrink-0 overflow-hidden rounded-[20px] bg-[#fff4ee] shadow-[0_-8px_40px_rgba(13,3,0,0.12)]"
+      data-services-hero="commercial"
+    >
       <div
-        className="relative z-[1] mx-[10px] mt-[15px] h-[240px] w-[765px] overflow-hidden rounded-[20px]"
-        data-services-hero="commercial"
+        aria-hidden
+        className="absolute left-[10px] top-[15px] z-[0] h-[240px] w-[765px] overflow-hidden rounded-[20px] bg-gradient-to-t from-[#ff5c00] from-[19%] to-[rgba(255,154,68,0.3)] opacity-70"
+      />
+      <div
+        className="pointer-events-none absolute z-[1] h-[209px] w-[307px] overflow-hidden"
+        style={{
+          top: C_HERO_1024.illustration.top,
+          left: C_HERO_1024.illustration.left,
+        }}
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 z-0 rounded-[20px] bg-gradient-to-t from-[#ff5c00] from-[19%] to-[rgba(255,154,68,0.3)] opacity-70"
-        />
-        <div
-          className="pointer-events-none absolute z-[1] h-[209px] w-[307px]"
-          style={{
-            top: C_HERO_1024.illustration.top,
-            right: C_HERO_1024.illustration.right,
-            left: "auto",
-          }}
-        >
-          <img
-            alt=""
-            className="block h-full w-full object-contain object-right"
-            height={C_HERO_1024.illustration.h}
-            src={services1440Assets.commercialIllustration}
-            width={C_HERO_1024.illustration.w}
-          />
-        </div>
-        <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[28px] font-bold leading-[0.9] tracking-[-0.56px] text-[#0d0300]"
-          style={{ left: C_HERO_1024.title.left, top: C_HERO_1024.title.top }}
-        >
-          <span className="font-normal italic">{c.titleItalic}</span>
-          <span>
-            {c.titleBoldLine1}
-            {c.titleBoldLine2}
-          </span>
-        </p>
-        <p
-          className="absolute z-[3] m-0 max-w-[681px] text-[15px] font-normal leading-[1.2] text-[#0d0300]"
-          style={{ left: C_HERO_1024.subtitle.left, top: C_HERO_1024.subtitle.top }}
-        >
-          {c.subtitle}
-        </p>
-        <ConsultationButton1024
-          style={{ left: C_HERO_1024.cta.left, top: C_HERO_1024.cta.top }}
-          variant="black"
+        <img
+          alt=""
+          className="block h-full w-full object-contain object-right"
+          height={C_HERO_1024.illustration.h}
+          src={services1440Assets.commercialIllustration}
+          width={C_HERO_1024.illustration.w}
         />
       </div>
+      <p
+        className="absolute z-[3] m-0 max-w-[681px] text-[32px] font-bold leading-[0.9] tracking-[-0.64px] text-[#0d0300]"
+        style={{ left: C_HERO_1024.title.left, top: C_HERO_1024.title.top }}
+      >
+        <span className="font-normal italic">{c.titleItalic}</span>
+        <span>
+          {c.titleBoldLine1}
+          {c.titleBoldLine2}
+        </span>
+      </p>
+      <p
+        className="absolute z-[3] m-0 max-w-[681px] text-[16px] font-normal leading-[1.2] text-[#0d0300]"
+        style={{ left: C_HERO_1024.subtitle.left, top: C_HERO_1024.subtitle.top }}
+      >
+        {c.subtitle}
+      </p>
+      <ConsultationButton1024
+        style={{ left: C_HERO_1024.cta.left, top: C_HERO_1024.cta.top }}
+        variant="black"
+      />
 
       <div
         className="pointer-events-none absolute left-[30px] z-[1] w-[725px]"
