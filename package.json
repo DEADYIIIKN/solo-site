@@ -38,7 +38,11 @@
     "audit:services-1440": "node scripts/services-1440-check.mjs",
     "audit:levels": "node scripts/levels-layout-audit.mjs",
     "audit:services-scroll": "node scripts/services-scroll-smoke.mjs",
-    "audit:services-white": "node scripts/services-white-column-audit.mjs"
+    "audit:services-white": "node scripts/services-white-column-audit.mjs",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:install": "playwright install chromium"
   },
   "dependencies": {
     "@libsql/client": "0.14.0",
