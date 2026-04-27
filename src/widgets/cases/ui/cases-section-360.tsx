@@ -268,7 +268,7 @@ export function CasesSection360({
             </div>
           </div>
 
-          <div className="flex min-w-0 flex-col gap-10">
+          <div className="flex min-w-0 flex-col gap-[30px]">
             <div className="mx-auto flex w-full min-w-0 max-w-[360px] items-end justify-between gap-3 px-4">
               <CasesTitle28
                 boldPart={cases1440Copy.adTitleRest}
