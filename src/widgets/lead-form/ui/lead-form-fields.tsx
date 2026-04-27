@@ -153,11 +153,17 @@ export function LeadFormFields({
   className,
   /** Только поля: без шапки «Это бесплатно» и без внешней тёмной карточки (Figma 783:10315 / 783:10874). */
   embedInCard = false,
+  source,
 }: {
   density: LeadFormFieldsDensity;
   contactLayout: "radio" | "pill";
   className?: string;
   embedInCard?: boolean;
+  /**
+   * Источник заявки для аналитики, передаётся в API /api/leads.
+   * Примеры: "lead-form", "hero-cta", "header-cta", "services-cta", "consultation-modal".
+   */
+  source: string;
 }) {
   const d = densityMap[density];
   const consentId = useId();
@@ -166,6 +172,8 @@ export function LeadFormFields({
   );
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const { name, phone, message, contactMethod, consent } = formState;
 
   const nameError = submitAttempted && !name.trim();
@@ -206,14 +214,43 @@ export function LeadFormFields({
         "w-full max-w-[520px] gap-6 p-6 max-[767px]:max-w-none max-[479px]:gap-6 max-[479px]:p-4",
         className,
       )}
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
         setSubmitAttempted(true);
         if (!name.trim() || !isConsultationPhoneValid(phone) || !consent) return;
-        /* TODO: отправка заявки */
-        setSuccessOpen(true);
-        setFormState(defaultFirstScreenConsultationFormState);
-        setSubmitAttempted(false);
+        if (submitting) return;
+        setSubmitting(true);
+        setSubmitError(null);
+        // Client-side debounce (D3): защита от двойного клика; разлочиваем через 5с минимум.
+        const debounceTimer = setTimeout(() => setSubmitting(false), 5000);
+        try {
+          const res = await fetch("/api/leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: name.trim(),
+              phone,
+              message,
+              consent,
+              contactMethod,
+              source,
+            }),
+          });
+          if (res.ok) {
+            // 2xx — success даже если accepted:false (rate-limit) per D4 compromise
+            setSuccessOpen(true);
+            setFormState(defaultFirstScreenConsultationFormState);
+            setSubmitAttempted(false);
+          } else {
+            // 4xx/5xx — true error UX (D4: только 500 реально показывается на проде)
+            setSubmitError("Не удалось отправить заявку. Попробуйте ещё раз.");
+          }
+        } catch {
+          setSubmitError("Проблема со связью. Попробуйте ещё раз.");
+        } finally {
+          clearTimeout(debounceTimer);
+          setSubmitting(false);
+        }
       }}
     >
       {!embedInCard && (
@@ -493,16 +530,28 @@ export function LeadFormFields({
           </label>
         </div>
 
+        {submitError && (
+          <p
+            role="alert"
+            data-testid="lead-form-error"
+            className={cn("m-0 leading-[1.2] text-[#e63a24]", d.consent)}
+          >
+            {submitError}
+          </p>
+        )}
+
         <button
           data-testid="lead-form-submit"
+          disabled={submitting}
           className={cn(
             "flex w-full items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-10 font-semibold lowercase text-white transition-colors hover:bg-[#de4f00]",
+            "disabled:cursor-not-allowed disabled:opacity-60",
             d.btn,
             d.btnH,
           )}
           type="submit"
         >
-          оставить заявку
+          {submitting ? "отправляем…" : "оставить заявку"}
         </button>
       </div>
 

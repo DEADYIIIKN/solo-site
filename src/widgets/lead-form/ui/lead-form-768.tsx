@@ -38,7 +38,7 @@ export function LeadForm768() {
 
             {/* Правый столбец — Figma 783:11522: w-360, тёмная форм-карточка */}
             <div className="w-[360px] shrink-0">
-              <LeadFormFields contactLayout="pill" density="768" />
+              <LeadFormFields contactLayout="pill" density="768" source="lead-form" />
             </div>
           </div>
         </div>
