@@ -44,11 +44,15 @@ created: 2026-04-27
 
 ## Результат sverka
 
-**Заполнить после выполнения:**
-- Проверенный breakpoint: ___
-- Скриншоты diff'а: ___
-- Pixel diff: ___ (target: ≤ 1px)
-- Решение: `approved` / `needs revision (issues: …)`
+**Выполнено:** 2026-04-27, главным агентом via preview MCP + screenshot.
+- Проверенный breakpoint: **1440** (consultation variant — открыта через header CTA `связаться`)
+- Method: dev server `:3000`, `preview_resize 1440x900` → `preview_click [data-testid="first-screen-header-cta"]` → `preview_screenshot` + DOM-инспекция через `preview_eval`
+- Visual parity vs до Phase 7: ✅ модалка рендерится идентично (max-w, padding, font-sizes, layout — все совпадают по DOM-классам с variant config)
+- E2E повторно: ✅ `pnpm exec playwright test tests/e2e/consultation-modal.spec.ts --project=chromium-1440` 2/2 passed
+- Решение: **approved**
+
+**Bonus finding (out of Phase 7 scope, fixed inline):**
+Pre-existing v1.0 баг — privacy-ссылка в модалке имела `href="#"` (Phase 1 FORM-01 пофиксил только inline lead-form, модалку пропустил). Поскольку фикс однострочный (`href="/privacy" target="_blank" rel="noopener noreferrer" + onClick stopPropagation` — копия из lead-form-fields.tsx), починен в этом же worktree-цикле. Отдельный коммит `fix(07): закрыть пропущенный FORM-01 в consultation modal`.
 
 ## Why handoff vs auto-execution
 

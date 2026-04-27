@@ -658,7 +658,10 @@ export function ConsultationModal({
                       соответствии с{" "}
                       <a
                         className="underline decoration-solid [text-decoration-skip-ink:none]"
-                        href="#"
+                        href="/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         Политикой конфиденциальности
                       </a>
