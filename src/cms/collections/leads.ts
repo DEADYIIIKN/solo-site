@@ -14,6 +14,8 @@ export const Leads: CollectionConfig = {
   admin: {
     useAsTitle: "phone",
     group: "Заявки",
+    description:
+      "Все заявки с лендинга. Скачать CSV: /api/leads/export (Phase 12 ADMIN-03)",
     /* ADMIN-01: list view columns — name, phone, source, contactMethod,
        forwardedToWebhook, createdAt (Phase 11). */
     defaultColumns: [
