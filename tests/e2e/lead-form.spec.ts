@@ -58,3 +58,89 @@ test.describe("lead-form / submission flow", () => {
     await expect(form.getByTestId("lead-form-name")).toHaveValue("");
   });
 });
+
+/**
+ * TEST-04: error path и silent webhook failure через Playwright `page.route` mock.
+ * Эти тесты не зависят от живого `/api/leads` — мы перехватываем запрос и фулфиллим
+ * нужным статусом, чтобы покрыть три ветки UX:
+ *  1. happy: 200 → success modal
+ *  2. true server error: 500 → inline error UI, success modal не открывается
+ *  3. silent webhook failure (D4 compromise): сервер вернул 200 даже если webhook упал
+ *     (lead сохранён локально) → клиент видит обычный success modal
+ *
+ * NB: route mock устанавливается ДО goto(), чтобы перехватить любой submit.
+ */
+test.describe("lead-form / submission flow — mocked /api/leads (TEST-04)", () => {
+  test("happy path with mocked 200 — success modal появляется", async ({ page }) => {
+    await page.route("**/api/leads", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true, accepted: true, leadId: "e2e-mock-1" }),
+      }),
+    );
+    await page.goto("/");
+    await scrollToLeadForm(page);
+
+    const form = page.getByTestId("lead-form").first();
+    await fillLeadFormValid(form);
+    await toggleConsent(form.getByTestId("lead-form-consent"));
+    await form.getByTestId("lead-form-submit").click();
+
+    await expect(page.getByText("скоро вернемся!").first()).toBeVisible({ timeout: 5_000 });
+    // inline-ошибка не должна появляться при mocked 200
+    await expect(form.getByTestId("lead-form-error")).toHaveCount(0);
+  });
+
+  test("true 500 → inline error, success modal НЕ открывается", async ({ page }) => {
+    await page.route("**/api/leads", (route) =>
+      route.fulfill({
+        status: 500,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: false, error: "server" }),
+      }),
+    );
+    await page.goto("/");
+    await scrollToLeadForm(page);
+
+    const form = page.getByTestId("lead-form").first();
+    await fillLeadFormValid(form);
+    await toggleConsent(form.getByTestId("lead-form-consent"));
+    await form.getByTestId("lead-form-submit").click();
+
+    // inline error UI: data-testid="lead-form-error" с текстом из lead-form-fields.tsx:246
+    await expect(form.getByTestId("lead-form-error")).toBeVisible({ timeout: 5_000 });
+    await expect(form.getByTestId("lead-form-error")).toContainText(
+      "Не удалось отправить заявку",
+    );
+    // success modal не должна появиться
+    await expect(page.getByText("скоро вернемся!", { exact: false })).toHaveCount(0);
+  });
+
+  test("silent webhook failure (D4) — сервер всё равно 200, user видит success", async ({ page }) => {
+    // D4 compromise: API route возвращает 200 даже при сбое webhook (lead сохранён
+    // локально в Collection). Клиент видит ровно тот же 200, что и happy path.
+    await page.route("**/api/leads", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({
+          ok: true,
+          accepted: true,
+          leadId: "e2e-fallback-1",
+          // server-side флаг про webhook не передаётся клиенту по дизайну (D4)
+        }),
+      }),
+    );
+    await page.goto("/");
+    await scrollToLeadForm(page);
+
+    const form = page.getByTestId("lead-form").first();
+    await fillLeadFormValid(form);
+    await toggleConsent(form.getByTestId("lead-form-consent"));
+    await form.getByTestId("lead-form-submit").click();
+
+    await expect(page.getByText("скоро вернемся!").first()).toBeVisible({ timeout: 5_000 });
+    await expect(form.getByTestId("lead-form-error")).toHaveCount(0);
+  });
+});
