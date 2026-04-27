@@ -11,6 +11,7 @@ import {
   isConsultationPhoneValid,
 } from "@/widgets/first-screen/model/first-screen-consultation-form";
 import {
+  defaultFirstScreenConsultationFormState,
   type FirstScreenConsultationContactMethod,
   type FirstScreenConsultationFormState,
   type FirstScreenConsultationModalTitleVariant,
@@ -135,6 +136,8 @@ export function ConsultationModal({
 
   const { name, phone, message, contactMethod, consent } = formState;
   const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   /** form → leave (fade out) → success (fade in) */
   const [successStep, setSuccessStep] = useState<"form" | "leave" | "success">(
     "form",
@@ -145,6 +148,8 @@ export function ConsultationModal({
   const nameError = submitAttempted && !name.trim();
   const phoneError = submitAttempted && !isConsultationPhoneValid(phone);
   const consentError = submitAttempted && !consent;
+
+  const sourceKey = `consultation-modal-${titleVariant}`;
 
   useEffect(() => {
     if (open) {
@@ -325,7 +330,7 @@ export function ConsultationModal({
                   transitionTimingFunction: FORM_SUCCESS_EASE,
                 }}
                 data-testid="consultation-modal-card"
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
                   setSubmitAttempted(true);
                   if (
@@ -334,7 +339,43 @@ export function ConsultationModal({
                     !consent
                   )
                     return;
-                  setSuccessStep("leave");
+                  if (submitting) return;
+                  setSubmitting(true);
+                  setSubmitError(null);
+                  const debounceTimer = setTimeout(
+                    () => setSubmitting(false),
+                    5000,
+                  );
+                  try {
+                    const res = await fetch("/api/leads", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        name: name.trim(),
+                        phone,
+                        message,
+                        consent,
+                        contactMethod,
+                        source: sourceKey,
+                      }),
+                    });
+                    if (res.ok) {
+                      setSuccessStep("leave");
+                      setFormState(defaultFirstScreenConsultationFormState);
+                      setSubmitAttempted(false);
+                    } else {
+                      setSubmitError(
+                        "Не удалось отправить заявку. Попробуйте ещё раз.",
+                      );
+                    }
+                  } catch {
+                    setSubmitError(
+                      "Проблема со связью. Попробуйте ещё раз.",
+                    );
+                  } finally {
+                    clearTimeout(debounceTimer);
+                    setSubmitting(false);
+                  }
                 }}
               >
                 {config.titleLayout === "stacked" ? (
@@ -650,9 +691,10 @@ export function ConsultationModal({
                     </span>
                     <span
                       className={cn(
-                        "min-w-0 flex-1 font-normal leading-[1.2] text-[#0d0300] opacity-90",
+                        "min-w-0 flex-1 font-normal text-[#0d0300] opacity-90",
                         config.consentTextSize,
                       )}
+                      style={{ lineHeight: 1.2 }}
                     >
                       Согласен(на) на обработку персональных данных в
                       соответствии с{" "}
@@ -672,7 +714,7 @@ export function ConsultationModal({
                 <button
                   data-testid="consultation-modal-submit"
                   className={cn(
-                    "flex w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] text-center lowercase text-white transition-colors hover:bg-[#de4f00]",
+                    "flex w-full shrink-0 items-center justify-center rounded-[50px] bg-[#ff5c00] px-[40px] text-center lowercase text-white transition-colors hover:bg-[#de4f00] disabled:cursor-not-allowed disabled:opacity-60",
                     config.submitButtonHeight,
                   )}
                   style={{
@@ -683,9 +725,18 @@ export function ConsultationModal({
                     lineHeight: 1.2,
                   }}
                   type="submit"
+                  disabled={submitting}
                 >
-                  оставить заявку
+                  {submitting ? "отправляем…" : "оставить заявку"}
                 </button>
+                {submitError && (
+                  <p
+                    role="alert"
+                    className="m-0 text-center text-[14px] font-normal leading-[1.3] text-[#e63a24]"
+                  >
+                    {submitError}
+                  </p>
+                )}
               </form>
             )}
 
