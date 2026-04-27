@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: Mobile/Tablet Layout (820px + 360px)** - Align tablet-portrait and mobile breakpoints with Figma
 - [x] **Phase 4: Safari + Animations** - Make animations and transitions work identically in Safari and Chrome
 - [x] **Phase 5: Pixel-Perfect Final Pass** - Full Figma sverka across all five breakpoints (1440/1180/820/480/360)
-- [ ] **Phase 6: Testing** - E2E, cross-browser, and unit test coverage for forms and animations
+- [x] **Phase 6: Testing** - E2E, cross-browser, and unit test coverage for forms and animations
 
 ## Phase Details
 
@@ -125,9 +125,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 06-01-PLAN.md — Playwright setup + lead-form / case-form E2E specs (TEST-01)
-- [ ] 06-02-PLAN.md — Multi-browser Playwright config + cross-browser carousel specs (TEST-02)
-- [ ] 06-03-PLAN.md — Vitest setup + unit tests phone-format / validation / useInViewOnce (TEST-03)
+- [x] 06-01-PLAN.md — Playwright setup + lead-form / case-form E2E specs (TEST-01)
+- [x] 06-02-PLAN.md — Multi-browser Playwright config + cross-browser carousel specs (TEST-02)
+- [x] 06-03-PLAN.md — Vitest setup + unit tests phone-format / validation / useInViewOnce (TEST-03)
 
 ## Progress
 

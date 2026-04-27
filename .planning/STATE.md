@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: phase-5-complete
-stopped_at: Phase 5 complete — pending final UAT
+status: phase-6-complete
+stopped_at: Phase 6 complete — milestone v1.0 done
 last_updated: "2026-04-27T00:00:00.000Z"
-last_activity: 2026-04-27 -- Phase 05 finalize (Wave 6) completed
+last_activity: 2026-04-27 -- Phase 06 testing завершён (TEST-01/02/03)
 progress:
   total_phases: 6
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 27
-  completed_plans: 24
-  percent: 89
+  completed_plans: 27
+  percent: 100
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-22)
 
 ## Current Position
 
-Phase: 05 (pixel-perfect-final-pass) — COMPLETE
-Plan: 6 of 6 (Wave 6 — finalize)
-Next: Phase 6 (Testing) — not started
-Last activity: 2026-04-27 -- Phase 05 finalized — PX-01..PX-05 closed
+Phase: 06 (testing) — COMPLETE
+Plan: 3 of 3 (Wave 3 — Vitest unit tests)
+Next: Milestone v1.0 — final UAT / ship
+Last activity: 2026-04-27 -- Phase 06 завершён (Playwright E2E + cross-browser + Vitest unit)
 
-Progress: [█████████░] 92%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
