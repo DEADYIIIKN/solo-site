@@ -21,16 +21,16 @@ export function FirstScreenHeader1440({
 }: FirstScreenHeader1440Props) {
   const navbarSurface = useNavbarSurface(82);
   const isLightTheme = navbarSurface === "light-surface";
-  const isHeroTransparent = navbarSurface === "hero-transparent";
-  const headerBackgroundColor = isHeroTransparent ? "transparent" : isLightTheme ? "#ffffff" : "#0d0300";
   const navLinks = getFirstScreenNavLinks(showNews);
 
+  /* Figma 783:9669: 1440 navbar 1160×82. Подложки в Figma нет, но применяем
+     тот же gray-translucent + backdrop-blur паттерн. Rounded-bl/br-24
+     (progressive scale: 12→16→20→20→24). */
   const header = (
     <header
-      className="fixed inset-x-0 top-0 z-[800] hidden h-[82px] min-[1440px]:block transition-[background-color] duration-[180ms] ease-[var(--ease-standard)]"
-      style={{ backgroundColor: headerBackgroundColor }}
+      className="fixed inset-x-0 top-0 z-[800] hidden h-[82px] min-[1440px]:block bg-transparent"
     >
-      <div className="mx-auto flex h-full w-[1160px] items-center justify-between px-[40px]">
+      <div className="mx-auto flex h-full w-[1160px] items-center justify-between rounded-bl-[24px] rounded-br-[24px] bg-[#9c9c9c]/[0.12] px-[40px] backdrop-blur-[4px]">
         <div className="relative h-[24px] w-[283px] shrink-0">
           <div className="absolute left-0 top-0 h-[24px] w-[136px]">
             <img
