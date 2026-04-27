@@ -130,7 +130,7 @@ export function Footer360({
         </div>}
 
         {/* ── Bottom info — single column centered ───── */}
-        <div className="flex flex-col items-center gap-[60px]">
+        <div className="flex flex-col items-center gap-[40px]">
 
           {/* Logo centered */}
           <img
@@ -158,8 +158,8 @@ export function Footer360({
           </nav>
 
           {/* Phone & Email */}
-          <div className="flex flex-col items-center gap-[36px]">
-            <div className="flex flex-col items-center gap-[12px]">
+          <div className="flex flex-col items-center gap-[20px]">
+            <div className="flex flex-col items-center gap-[8px]">
               <p className="m-0 font-normal leading-[1.2] text-[11px] text-[#9c9c9c]">
                 {footerContent.phoneSubtitle}
               </p>
