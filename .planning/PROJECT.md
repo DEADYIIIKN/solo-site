@@ -11,18 +11,19 @@
 ## Current State
 
 ✅ **Milestone v1.0 shipped** (2026-04-27) — Frontend Quality & Bug Fix
+✅ **Milestone v1.1.2 shipped** (2026-04-28) — Form Wiring + Modal Refactor + Growth & Ops
 
-См. [milestones/v1.0-ROADMAP.md](milestones/v1.0-ROADMAP.md) и [v1.0-MILESTONE-AUDIT.md](v1.0-MILESTONE-AUDIT.md).
+**v1.1.2 highlights:**
+- 6 phases (7-12) / 14 plans / 89 commits / 2 days
+- 17/17 v1 requirements satisfied
+- 45 unit + 79 E2E (chromium + webkit + mobile-safari) — passing on main
+- Form submission live: n8n webhook + Payload Collection fallback + rate-limit
+- 5 consultation modals → 1 ConsultationModal (−2336 LOC дубликатов)
+- TG popup per-breakpoint (1440/1024/768/480/360) Figma 1:1
+- Leads admin: custom columns + filter/sort + CSV export
+- Navbar surface unified (gray translucent + backdrop-blur) на всех 5 viewports
 
-- 6 phases / 27 plans / 215 commits / 5 days
-- 31/31 v1 requirements complete (с 2 override + 1 UX decision)
-- 26 unit + 49 E2E (chromium + webkit + mobile-safari) — passing on main
-- boneyard-js удалён, миграция на Framer Motion завершена
-- 5 breakpoints прошли Figma MCP sverka (с 4 deferred design decisions)
-
-## Shipped (within current dev cycle)
-
-- ✅ **v1.1** awaiting merge in [PR #5](https://github.com/DEADYIIIKN/solo-site/pull/5) — Form Wiring & Modal Refactor (3 phases / 9 plans)
+См. [milestones/v1.1.2-ROADMAP.md](milestones/v1.1.2-ROADMAP.md), [milestones/v1.0-ROADMAP.md](milestones/v1.0-ROADMAP.md).
 
 ## Current Milestone: v1.1.2 — Growth & Ops
 
