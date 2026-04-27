@@ -181,18 +181,27 @@ function ConsultationBtn({
 }
 
 function PackageGlow({ left, top }: { left: number; top: number; filterId?: string }) {
-  // Figma 783:10947+10948: 8×8 sharp orange dot с visible orange glow halo (через box-shadow).
-  // Box-shadow создаёт мягкий orange halo расходящийся от точки — визуально аналогично blur SVG но с гарантированной видимостью.
+  // Figma 783:10947+10948 — 1:1 reference (get_design_context):
+  // <div className="relative size-full"> Ellipse 110 (42×42 frame, inner inset[-238.1%] containing SVG halo)
+  // <div ... size-[8px]> Ellipse 113 (8×8 sharp dot at center)
   return (
-    <div
-      className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
-      data-services-package-glow=""
-      style={{
-        left: left + 17,
-        top: top + 20,
-        boxShadow: "0 0 12px 4px rgba(255, 92, 0, 0.9), 0 0 24px 8px rgba(255, 92, 0, 0.5)",
-      }}
-    />
+    <>
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px]"
+        data-services-package-glow=""
+        style={{ left, top }}
+      >
+        <div className="absolute inset-[-238.1%]">
+          <img alt="" className="block size-full max-w-none" src="/assets/figma/services-package-glow.svg" />
+        </div>
+      </div>
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px]"
+        style={{ left: left + 17, top: top + 20 }}
+      >
+        <img alt="" className="block size-full" src="/assets/figma/services-package-dot.svg" />
+      </div>
+    </>
   );
 }
 

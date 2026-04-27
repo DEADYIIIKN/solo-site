@@ -152,18 +152,32 @@ function CommercialPointCell({
   );
 }
 
-/** «Пакеты…» — Figma 783:9214/9215: 8×8 sharp orange dot с visible orange glow halo через box-shadow. */
+/** «Пакеты…» — Figma 783:9214/9215 (1:1 get_design_context): SVG halo с inset[-238.1%] + 8×8 sharp dot SVG. */
 function Services1440PackageRow() {
   return (
-    <div
-      className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
-      data-services-package-glow=""
-      style={{
-        left: V_HERO.packageGlowFrame.left + 17,
-        top: V_HERO.packageGlowFrame.top + 20,
-        boxShadow: "0 0 12px 4px rgba(255, 92, 0, 0.9), 0 0 24px 8px rgba(255, 92, 0, 0.5)",
-      }}
-    />
+    <>
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px]"
+        data-services-package-glow=""
+        style={{
+          left: V_HERO.packageGlowFrame.left,
+          top: V_HERO.packageGlowFrame.top,
+        }}
+      >
+        <div className="absolute inset-[-238.1%]">
+          <img alt="" className="block size-full max-w-none" src="/assets/figma/services-package-glow.svg" />
+        </div>
+      </div>
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px]"
+        style={{
+          left: V_HERO.packageGlowFrame.left + 17,
+          top: V_HERO.packageGlowFrame.top + 20,
+        }}
+      >
+        <img alt="" className="block size-full" src="/assets/figma/services-package-dot.svg" />
+      </div>
+    </>
   );
 }
 
