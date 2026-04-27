@@ -174,19 +174,17 @@ export function FirstScreenMobileMenu({
   );
 
   const isLightSurface = surfaceTheme === "light-surface";
-  const headerBackgroundColor = isLightSurface ? "#ffffff" : "#0d0300";
 
   const layer = (
     <>
       <header
         className={cn(
           header.className,
-          "transition-[background-color] ease-[var(--ease-standard)]",
+          /* Header сам прозрачный — surface (bg-blur + rounded) живёт
+             в `innerClassName` (Figma 803:13630 / 783:10591 — gray 12%
+             opacity + backdrop-blur 4px + rounded-b-12). */
+          "bg-transparent",
         )}
-        style={{
-          backgroundColor: headerBackgroundColor,
-          transitionDuration: `${HEADER_THEME_TRANSITION_MS}ms`,
-        }}
       >
         <div className={header.innerClassName}>
           <div className={header.logoClass}>
