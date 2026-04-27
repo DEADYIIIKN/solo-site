@@ -152,39 +152,25 @@ function CommercialPointCell({
   );
 }
 
-/** «Пакеты…» — Figma 783:9214/9215 (Ellipse 110 + 113): 42×42 frame with -238.1% inset blurred halo SVG (viewBox 242×242, r=21, stdDeviation=50) + 8×8 sharp orange dot центрирован. */
+/** «Пакеты…» — Figma 783:9214/9215: 42×42 orange halo (CSS blur) + 8×8 sharp dot центрирован. */
 function Services1440PackageRow() {
-  const rawId = useId().replace(/:/g, "");
-  const filterId = `services-pkg-glow-${rawId}`;
-
   return (
     <>
       <div
-        className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+        className="pointer-events-none absolute z-[2] size-[42px]"
         data-services-package-glow=""
         style={{
           left: V_HERO.packageGlowFrame.left,
           top: V_HERO.packageGlowFrame.top,
         }}
       >
-        <div className="absolute inset-[-238.1%] overflow-visible">
-          <FirstScreenGeoGlow
-            blur={50}
-            cx={121}
-            cy={121}
-            dotR={0}
-            filterId={filterId}
-            pulse={false}
-            r={21}
-            size={242}
-          />
-        </div>
+        <div className="absolute inset-0 rounded-full bg-[#ff5c00] blur-[10px] opacity-80" />
       </div>
       <div
         className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
         style={{
           left: V_HERO.packageGlowFrame.left + 17,
-          top: V_HERO.packageGlowFrame.top + 17,
+          top: V_HERO.packageGlowFrame.top + 20,
         }}
       />
     </>
