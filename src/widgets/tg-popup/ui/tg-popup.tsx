@@ -29,7 +29,6 @@ export type TgPopupProps = {
 const MODAL_TRANSITION_MS = 320;
 
 function CloseIcon({ size }: { size: 24 | 28 | 30 | 34 }) {
-  // Статические классы — Tailwind JIT их подхватит.
   const sizeClass =
     size === 24
       ? "size-[24px]"
@@ -66,14 +65,6 @@ function CloseButtonWrapperClass(size: 24 | 28 | 30 | 34) {
         : "size-[34px]";
 }
 
-/**
- * Telegram paper-plane icon. Используется внутри CTA-кнопки.
- * Простая inline-SVG, заливается currentColor (наследует text-white от button).
- */
-/**
- * TG-icon в кнопке: оранжевый круг с белой бумажной самолётикой внутри.
- * Использует выгруженный из Figma SVG-asset (Group 318 в 783:9769).
- */
 function TelegramIcon({ size }: { size: number }) {
   return (
     /* eslint-disable-next-line @next/next/no-img-element */
@@ -83,6 +74,7 @@ function TelegramIcon({ size }: { size: number }) {
       className="shrink-0"
       height={size}
       src="/assets/figma/tg-popup/tg-icon.svg"
+      style={{ maxWidth: "none" }}
       width={size}
     />
   );
@@ -96,21 +88,17 @@ const DEFAULT_SUBTITLE =
 const DEFAULT_CTA_LABEL = "перейти в канал";
 
 /**
- * TG-канал pop-up. UI shell — overlay + dismiss handlers + CTA.
+ * TG-канал pop-up. UI shell с absolute-positioned детьми внутри card,
+ * 1:1 матчящие Figma координаты per-breakpoint (см. tg-popup-variants.ts).
  *
  * Behaviour:
- * - Open / close через opacity transition (320ms cubic-bezier, тот же что в ConsultationModal).
+ * - Open / close через opacity transition (320ms cubic-bezier).
  * - Dismiss: ✕ button / overlay click / ESC keydown — все три триггерят onDismiss.
- * - CTA — `<a href={ctaHref} target="_blank" rel="noopener noreferrer" onClick={onDismiss}>`,
- *   открывает канал в новой вкладке + закрывает popup (D2 — single dismiss event).
+ * - CTA — `<a target="_blank" onClick={onDismiss}>`, открывает канал в новой
+ *   вкладке + закрывает popup.
  *
  * Контент по умолчанию (Figma D4 locked):
  *   «секреты *эффективного* видео» + subtitle + «перейти в канал».
- *
- * Per-breakpoint dimensions берутся из `tgPopupVariants[variant]`.
- *
- * Phone mockup asset (правый/нижний блок) — placeholder; экспорт ассета из
- * Figma 783:9772/9773 → public/assets/figma/tg-popup/ запланирован в 10-03.
  */
 export function TgPopup({
   variant,
@@ -199,16 +187,26 @@ export function TgPopup({
 
   // Если title не передан — рендерим Figma-locked layout с italic середины.
   const titleNode = title ? (
-    <span>{title}</span>
+    <span style={{ display: "inline-block", lineHeight: 0.9 }}>{title}</span>
   ) : (
     <>
-      <span>{DEFAULT_TITLE_PREFIX}</span>
-      <span className="font-normal italic">{DEFAULT_TITLE_ITALIC}</span>
-      <span>{DEFAULT_TITLE_SUFFIX}</span>
+      <span style={{ display: "inline", lineHeight: 0.9 }}>
+        {DEFAULT_TITLE_PREFIX}
+      </span>
+      <span
+        className="font-normal italic"
+        style={{ display: "inline", lineHeight: 0.9 }}
+      >
+        {DEFAULT_TITLE_ITALIC}
+      </span>
+      <span style={{ display: "inline", lineHeight: 0.9 }}>
+        {DEFAULT_TITLE_SUFFIX}
+      </span>
     </>
   );
 
-  const layout = config.layout;
+  const { title: t, subtitle: s, button: b, phone: p } = config;
+  const fontFamily = "var(--font-montserrat), Montserrat, sans-serif";
 
   const layer = (
     <div
@@ -245,11 +243,11 @@ export function TgPopup({
       >
         <div
           className={cn(
-            "relative flex w-full min-w-0 flex-col",
+            "relative flex min-w-0 flex-col",
             config.columnItems,
             config.columnGap,
-            config.maxWidth,
           )}
+          style={{ width: config.cardW }}
         >
           <button
             className={cn(
@@ -263,143 +261,151 @@ export function TgPopup({
             <CloseIcon size={config.closeIconSize} />
           </button>
 
+          {/* Card — фиксированный размер W×H из Figma, absolute children. */}
           <div
-            className={cn(
-              "relative z-0 flex w-full min-w-0 rounded-[16px] bg-[#fafaf7] shadow-none",
-              layout === "horizontal"
-                ? "flex-row items-center"
-                : "flex-col items-center",
-              config.cardMinHeight,
-              config.cardPadding,
-              config.cardInnerGap,
-            )}
+            className="relative overflow-hidden rounded-[16px] bg-[#fafaf7] shadow-none"
             data-testid="tg-popup-card"
+            style={{ width: config.cardW, height: config.cardH }}
           >
-            {/* Subtle grid pattern (Figma Rectangle 173) — opacity 6%, clipped к card border */}
+            {/* Subtle grid pattern (Figma Rectangle 173) — opacity 6%. */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 overflow-hidden rounded-[16px] opacity-[0.06]"
+              className="pointer-events-none absolute inset-0"
               style={{
                 backgroundImage:
                   "url('/assets/figma/tg-popup/card-grid-bg.png')",
-                backgroundSize: "780px auto",
+                backgroundSize: config.bgSize,
                 backgroundPosition: "top left",
                 backgroundRepeat: "no-repeat",
+                opacity: 0.06,
               }}
             />
-            <div
-              className={cn(
-                "flex min-w-0 flex-col",
-                layout === "horizontal"
-                  ? "flex-1 items-start text-left"
-                  : "items-center text-center",
-                config.textBlockGap,
-              )}
-            >
-              <p
-                className="font-bold lowercase leading-[0.9] text-[#0d0300]"
-                id={titleId}
-                style={{
-                  fontFamily:
-                    "var(--font-montserrat), Montserrat, sans-serif",
-                  fontSize: config.titleSize,
-                }}
-              >
-                {titleNode}
-              </p>
-              <p
-                className={cn(
-                  "font-normal leading-[1.2] text-[#0d0300]",
-                  config.subtitleMaxWidth,
-                )}
-                style={{
-                  fontFamily:
-                    "var(--font-montserrat), Montserrat, sans-serif",
-                  fontSize: config.subtitleSize,
-                }}
-              >
-                {subtitle}
-              </p>
-              <a
-                className={cn(
-                  "inline-flex shrink-0 items-center justify-center gap-[10px] rounded-[50px] bg-[#0d0300] text-center lowercase transition-colors hover:bg-[#1a0d05]",
-                  config.ctaButtonWidth,
-                  config.ctaButtonHeight,
-                )}
-                data-testid="tg-popup-cta"
-                href={ctaHref}
-                onClick={onDismiss}
-                rel="noopener noreferrer"
-                style={{
-                  color: "#ffffff",
-                  fontFamily:
-                    "var(--font-montserrat), Montserrat, sans-serif",
-                  fontSize: config.ctaFontSize,
-                  fontWeight: 600,
-                  lineHeight: 1.2,
-                }}
-                target="_blank"
-              >
-                <TelegramIcon size={config.ctaIconSize} />
-                <span>{ctaLabel}</span>
-              </a>
-            </div>
 
-            {/* Phone mockup — phone-frame.png (1480x1480 asset с phone в центре
-                и прозрачными полями) cropped через positioned <img> поверх
-                phone-content.jpg (TG screenshot) внутри screen area.
-                Положение копирует Figma 783:9773 (frame) + 783:9772 (content).
-                Tilt 1.68deg на родительском div. */}
+            {/* Title */}
+            <p
+              className="absolute m-0 font-bold lowercase text-[#0d0300]"
+              id={titleId}
+              style={{
+                left: t.x,
+                top: t.y,
+                width: t.w,
+                fontFamily,
+                fontSize: t.size,
+                lineHeight: 0.9,
+              }}
+            >
+              {titleNode}
+            </p>
+
+            {/* Subtitle */}
+            <p
+              className="absolute m-0 font-normal text-[#0d0300]"
+              style={{
+                left: s.x,
+                top: s.y,
+                width: s.w,
+                fontFamily,
+                fontSize: s.size,
+                lineHeight: 1.2,
+              }}
+            >
+              {subtitle}
+            </p>
+
+            {/* CTA pill */}
+            <a
+              className="absolute inline-flex items-center justify-center rounded-[50px] bg-[#0d0300] text-center lowercase transition-colors hover:bg-[#1a0d05]"
+              data-testid="tg-popup-cta"
+              href={ctaHref}
+              onClick={onDismiss}
+              rel="noopener noreferrer"
+              style={{
+                left: b.x,
+                top: b.y,
+                width: b.w,
+                height: b.h,
+                gap: b.gapInner,
+                color: "#ffffff",
+                fontFamily,
+                fontSize: b.fontSize,
+                fontWeight: 600,
+                lineHeight: 1.2,
+              }}
+              target="_blank"
+            >
+              <TelegramIcon size={b.iconSize} />
+              <span>{ctaLabel}</span>
+            </a>
+
+            {/* Phone — content layer (TG screenshot inside rounded crop). */}
             <div
               aria-hidden
-              className={cn(
-                "shrink-0 relative overflow-hidden",
-                config.imageWidth,
-                config.imageHeight,
-              )}
-              data-testid="tg-popup-image"
-              style={{ transform: "rotate(1.68deg)" }}
+              className="absolute"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: p.outerW,
+                height: p.outerH,
+              }}
             >
-              {/* Screen content внутри cropped рамки. Phone-frame asset 1480x1480
-                  scaled+positioned magic-numbers'ами выше делает crop, а в нём
-                  phone screen занимает ~74% w × 94% h (left ~13%, top ~3%) от
-                  contained box. Content — JPEG TG-чата, object-cover object-top
-                  чтобы видна верхушка чата. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                alt=""
-                className="absolute rounded-[34px] object-cover object-top"
-                src="/assets/figma/tg-popup/phone-content.jpg"
-                style={{
-                  /* Phone screen внутри cropped phone-frame: phone visible
-                     в container ≈ x:39-279, y:44-617 (для 315x625 размером).
-                     Screen с bezel-inset ≈ x:60-260, y:55-580.
-                     В процентах: left 19%, top 8.5%, width 64%, height 84%. */
-                  width: "64%",
-                  height: "84%",
-                  left: "19%",
-                  top: "8.5%",
-                  maxWidth: "none",
-                }}
-              />
-              {/* Phone frame — asset 1480x1480, scaled and positioned to show
-                  только phone portion (Figma magic numbers: w=258.74%, h=124.58%,
-                  left=-79.37%, top=-12.29%).
-                  maxWidth:'none' inline переопределяет глобальное правило
-                  `img { max-width: 100% }` из globals.css. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                alt=""
-                className="absolute pointer-events-none"
-                src="/assets/figma/tg-popup/phone-frame.png"
-                style={{
-                  width: "258.74%",
-                  height: "124.58%",
-                  left: "-79.37%",
-                  top: "-12.29%",
-                  maxWidth: "none",
-                }}
-              />
+              <div className="flex h-full w-full items-center justify-center">
+                <div className="flex-none rotate-[1.68deg]">
+                  <div
+                    className="relative overflow-hidden"
+                    style={{
+                      width: p.contentInnerW,
+                      height: p.contentInnerH,
+                      borderRadius: p.contentRadius,
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover object-top"
+                      src="/assets/figma/tg-popup/phone-content.jpg"
+                      style={{ maxWidth: "none" }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Phone — frame layer (1480×1480 PNG cropped via magic numbers). */}
+            <div
+              aria-hidden
+              className="absolute"
+              data-testid="tg-popup-image"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: p.outerW,
+                height: p.outerH,
+              }}
+            >
+              <div className="flex h-full w-full items-center justify-center">
+                <div className="flex-none rotate-[1.68deg]">
+                  <div
+                    className="relative"
+                    style={{ width: p.frameInnerW, height: p.frameInnerH }}
+                  >
+                    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        alt=""
+                        className="absolute"
+                        src="/assets/figma/tg-popup/phone-frame.png"
+                        style={{
+                          width: p.frameImgWidth,
+                          height: p.frameImgHeight,
+                          left: p.frameImgLeft,
+                          top: p.frameImgTop,
+                          maxWidth: "none",
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
