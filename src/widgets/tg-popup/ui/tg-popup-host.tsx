@@ -41,7 +41,7 @@ function getTriggerMs(): number {
       .__TG_TEST_TRIGGER_MS__;
     if (typeof override === "number" && override > 0) return override;
   }
-  return 60_000;
+  return 2_000; // TEMP for visual iteration; revert to 60_000 before final commit
 }
 
 export function TgPopupHost() {

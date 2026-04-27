@@ -267,17 +267,17 @@ export function TgPopup({
             data-testid="tg-popup-card"
             style={{ width: config.cardW, height: config.cardH }}
           >
-            {/* Subtle grid pattern (Figma Rectangle 173) — opacity 6%. */}
+            {/* Grid pattern via CSS gradients — чистые 30×30 cells.
+                rgba(13,3,0,0.06) — Figma color #0d0300 с 6% прозрачностью
+                встроен прямо в линии (без opacity на wrapper). */}
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0"
               style={{
                 backgroundImage:
-                  "url('/assets/figma/tg-popup/card-grid-bg.png')",
-                backgroundSize: config.bgSize,
-                backgroundPosition: "top left",
-                backgroundRepeat: "no-repeat",
-                opacity: 0.06,
+                  "linear-gradient(to right, rgba(13, 3, 0, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(13, 3, 0, 0.06) 1px, transparent 1px)",
+                backgroundSize: "30px 30px",
+                backgroundPosition: "0 0",
               }}
             />
 
@@ -342,15 +342,18 @@ export function TgPopup({
               </span>
             </a>
 
-            {/* Phone — content layer (TG screenshot inside rounded crop). */}
+            {/* Phone — content layer (TG screenshot inside rounded crop).
+                Position via left (1440/1024/768) или right (480/360 — Figma). */}
             <div
               aria-hidden
               className="absolute"
               style={{
-                left: p.x,
-                top: p.y,
-                width: p.outerW,
-                height: p.outerH,
+                ...(p.contentXRight !== undefined
+                  ? { right: p.contentXRight }
+                  : { left: p.contentX }),
+                top: p.contentY,
+                width: p.contentOuterW,
+                height: p.contentOuterH,
               }}
             >
               <div className="flex h-full w-full items-center justify-center">
@@ -381,7 +384,9 @@ export function TgPopup({
               className="absolute"
               data-testid="tg-popup-image"
               style={{
-                left: p.x,
+                ...(p.xRight !== undefined
+                  ? { right: p.xRight }
+                  : { left: p.x }),
                 top: p.y,
                 width: p.outerW,
                 height: p.outerH,

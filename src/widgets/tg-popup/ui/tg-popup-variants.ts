@@ -37,12 +37,21 @@ export type TgPopupButtonConfig = {
 };
 
 export type TgPopupPhoneConfig = {
-  /** Положение outer-группы phone в координатах card. */
-  x: number;
+  /** Положение FRAME outer-группы phone в координатах card.
+   *  Если задан `xRight` — используется right-anchor вместо left-anchor (480/360). */
+  x?: number;
+  xRight?: number;
   y: number;
-  /** Размер outer-группы (контейнер flexbox для центрирования rotated content). */
+  /** Размер FRAME outer-группы (контейнер для центрирования rotated frame). */
   outerW: number;
   outerH: number;
+  /** Положение CONTENT outer-группы (TG screenshot) в координатах card.
+   *  Аналогично — left или right anchor. */
+  contentX?: number;
+  contentXRight?: number;
+  contentY: number;
+  contentOuterW: number;
+  contentOuterH: number;
   /** Размер inner content area (rounded-[34px] cropped TG screen). */
   contentInnerW: number;
   contentInnerH: number;
@@ -120,6 +129,10 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
       y: 28.5,
       outerW: 315,
       outerH: 625,
+      contentX: 535.29,
+      contentY: 44.65,
+      contentOuterW: 290,
+      contentOuterH: 548,
       contentInnerW: 274,
       contentInnerH: 540,
       frameInnerW: 297,
@@ -140,7 +153,7 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     closeIconSize: 30,
     cardW: 668,
     cardH: 392,
-    title: { x: 31, y: 31, w: 314, size: 36 },
+    title: { x: 31, y: 31, w: 314, size: 38 },
     subtitle: { x: 31, y: 156, w: 314, size: 14 },
     button: {
       x: 30,
@@ -156,6 +169,10 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
       y: 32,
       outerW: 263,
       outerH: 523,
+      contentX: 399.6,
+      contentY: 45.6,
+      contentOuterW: 242,
+      contentOuterH: 459,
       contentInnerW: 229,
       contentInnerH: 452,
       frameInnerW: 248,
@@ -176,7 +193,7 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     closeIconSize: 30,
     cardW: 668,
     cardH: 392,
-    title: { x: 31, y: 31, w: 314, size: 36 },
+    title: { x: 31, y: 31, w: 314, size: 38 },
     subtitle: { x: 31, y: 156, w: 314, size: 13 },
     button: {
       x: 30,
@@ -192,6 +209,10 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
       y: 32,
       outerW: 263,
       outerH: 523,
+      contentX: 399.6,
+      contentY: 45.6,
+      contentOuterW: 242,
+      contentOuterH: 459,
       contentInnerW: 229,
       contentInnerH: 452,
       frameInnerW: 248,
@@ -212,7 +233,7 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     closeIconSize: 28,
     cardW: 330,
     cardH: 571,
-    title: { x: 16, y: 16, w: 296, size: 32 },
+    title: { x: 16, y: 16, w: 296, size: 38 },
     subtitle: { x: 16, y: 131, w: 277, size: 14 },
     button: {
       x: 16,
@@ -221,24 +242,32 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
       h: 48,
       gapInner: 10,
       iconSize: 42,
-      fontSize: 15,
+      fontSize: 14,
     },
     phone: {
-      x: 95,
-      y: 254,
-      outerW: 227,
-      outerH: 452,
-      contentInnerW: 198,
-      contentInnerH: 391,
-      frameInnerW: 214,
-      frameInnerH: 446,
+      /* Figma 783:9716: right-[20.14px] top-[254.5px] w-[227.77px] h-[452.146px] */
+      xRight: 20.14,
+      y: 254.5,
+      outerW: 227.77,
+      outerH: 452.146,
+      /* Figma 783:9717 (content outer): right-[28.19px] top-[266.17px] w-[209.753] h-[395.999] */
+      contentXRight: 28.19,
+      contentY: 266.17,
+      contentOuterW: 209.753,
+      contentOuterH: 395.999,
+      /* Figma 783:9717 inner (rotated): w-[198.365] h-[390.338] rounded-[34px] */
+      contentInnerW: 198.365,
+      contentInnerH: 390.338,
+      /* Figma 783:9718 inner: w-[214.753] h-[446.026] */
+      frameInnerW: 214.753,
+      frameInnerH: 446.026,
       frameImgWidth: FRAME_IMG.width,
       frameImgHeight: FRAME_IMG.height,
       frameImgLeft: FRAME_IMG.left,
       frameImgTop: FRAME_IMG.top,
-      contentRadius: 24,
+      contentRadius: 34,
     },
-    bgSize: "289.8px 502.0px",
+    bgSize: "778.2px 415.8px",
   },
   "360": {
     layerVisibility: "max-[479px]:block",
@@ -248,32 +277,42 @@ export const tgPopupVariants: Record<TgPopupVariant, TgPopupVariantConfig> = {
     closeIconSize: 24,
     cardW: 328,
     cardH: 528,
-    title: { x: 16, y: 16, w: 296, size: 28 },
-    subtitle: { x: 16, y: 112, w: 215, size: 13 },
+    title: { x: 16, y: 16, w: 296, size: 32 },
+    /* Figma 783:9693: text-[12px] (не 13). */
+    subtitle: { x: 16, y: 112, w: 215, size: 12 },
     button: {
       x: 16,
       y: 162,
       w: 184,
       h: 44,
-      gapInner: 10,
+      /* Figma 783:9699: gap-[6px] (не 10). */
+      gapInner: 6,
       iconSize: 38,
       fontSize: 14,
     },
     phone: {
-      x: 108,
+      /* Figma 783:9695: right-[15.78px] top-[234px] w-[215.806] h-[428.394] */
+      xRight: 15.78,
       y: 234,
-      outerW: 215,
-      outerH: 428,
-      contentInnerW: 187,
-      contentInnerH: 370,
-      frameInnerW: 203,
-      frameInnerH: 422,
+      outerW: 215.806,
+      outerH: 428.394,
+      /* Figma 783:9696 (content outer): right-[23.41] top-[245.06] w-[198.734] h-[375.197] */
+      contentXRight: 23.41,
+      contentY: 245.06,
+      contentOuterW: 198.734,
+      contentOuterH: 375.197,
+      /* Figma 783:9696 inner: w-[187.945] h-[369.833] rounded-[34px] */
+      contentInnerW: 187.945,
+      contentInnerH: 369.833,
+      /* Figma 783:9697 inner: w-[203.472] h-[422.596] */
+      frameInnerW: 203.472,
+      frameInnerH: 422.596,
       frameImgWidth: FRAME_IMG.width,
       frameImgHeight: FRAME_IMG.height,
       frameImgLeft: FRAME_IMG.left,
       frameImgTop: FRAME_IMG.top,
-      contentRadius: 22,
+      contentRadius: 34,
     },
-    bgSize: "288.0px 464.0px",
+    bgSize: "778.2px 415.8px",
   },
 };
