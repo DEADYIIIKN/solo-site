@@ -26,7 +26,7 @@
 
 ---
 
-## v1.2 Requirements
+## v1.1.2 Requirements
 
 **Defined:** 2026-04-27
 **Milestone Goal:** Дать пользователю канал подписки на TG (lead nurturing) + базовые admin-инструменты для работы с лидами.
@@ -49,7 +49,7 @@
 - [ ] **TEST-06**: E2E spec для TG pop-up: после 60s активности pop-up появляется → click «Подписаться» открывает t.me URL → click ✕ закрывает + sessionStorage установлен.
 - [ ] **TEST-07**: Unit-тест activity tracker (60s timer + activity detection: scroll/mousemove/keydown).
 
-## Out of Scope (v1.2)
+## Out of Scope (v1.1.2)
 
 | Feature | Reason |
 |---|---|
@@ -74,10 +74,10 @@
 | TEST-06 | 10 | Pending |
 | TEST-07 | 10 | Pending |
 
-**Coverage v1.2:**
+**Coverage v1.1.2:**
 - 9 requirements total
 - Mapped to phases 10/11/12
 - Unmapped: 0 ✓
 
 ---
-*v1.2 Requirements defined: 2026-04-27*
+*v1.1.2 Requirements defined: 2026-04-27*

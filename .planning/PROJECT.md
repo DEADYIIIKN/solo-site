@@ -24,7 +24,7 @@
 
 - ✅ **v1.1** awaiting merge in [PR #5](https://github.com/DEADYIIIKN/solo-site/pull/5) — Form Wiring & Modal Refactor (3 phases / 9 plans)
 
-## Current Milestone: v1.2 — Growth & Ops
+## Current Milestone: v1.1.2 — Growth & Ops
 
 **Goal:** Дать пользователю канал подписки на TG (lead nurturing) + базовые admin-инструменты для работы с лидами.
 
@@ -35,7 +35,7 @@
 - **ADMIN-02** — Filter / sort в leads admin (по дате, по source, по forwarded status)
 - **ADMIN-03** — CSV export — кнопка в leads list, скачивает all/filtered
 
-**Out of scope для v1.2 (email уведомления решаются через n8n flow):**
+**Out of scope для v1.1.2 (email уведомления решаются через n8n flow):**
 - Email-уведомления при новом лиде (n8n берёт на себя)
 - REFAC-02/03/04 (отложены — нет forcing function, см. v1.1 discuss)
 - Footer blog secrets + consultation badge — отдельная feature-фаза с дизайном

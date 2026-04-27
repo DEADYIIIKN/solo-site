@@ -1,7 +1,7 @@
 ---
 phase: 10-tg-popup
 created: 2026-04-27
-milestone: v1.2
+milestone: v1.1.2
 discuss_mode: discuss (4 направленных вопроса через AskUserQuestion + Figma node-ids от пользователя)
 ---
 
@@ -130,7 +130,7 @@ dismiss():
 
 ## Deferred Ideas (вне Phase 10)
 
-- **Множественные кампании TG-popup** (A/B test разных текстов) — не нужно для v1.2
+- **Множественные кампании TG-popup** (A/B test разных текстов) — не нужно для v1.1.2
 - **Shared ModalBase из ConsultationModal + TgPopup** — yak-shaving, отложить до 3-й модалки
 - **Timer на подключение через WebSocket** (триггер от сервера) — overkill
 - **Локализация контента** — RU only

@@ -12,7 +12,7 @@
 - [x] **Phase 8: Form Submission** ✅ 2026-04-27
 - [x] **Phase 9: Lead-Form Pixel Cleanup** ✅ 2026-04-27
 
-## Current Milestone — v1.2: Growth & Ops
+## Current Milestone — v1.1.2: Growth & Ops
 
 **Goal:** Дать пользователю канал подписки на TG (lead nurturing) + базовые admin-инструменты для работы с лидами.
 
@@ -114,7 +114,7 @@ Plans:
 
 ## Progress
 
-**Execution Order:** v1.1 (7→8→9) → ship → v1.2 (10 → 11 → 12, последовательно)
+**Execution Order:** v1.1 (7→8→9) → ship → v1.1.2 (10 → 11 → 12, последовательно)
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
