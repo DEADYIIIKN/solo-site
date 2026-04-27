@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { publicSiteUrl } from "@/shared/config/public-site-url";
 import { siteConfig } from "@/shared/config/site";
 import { SiteLoadOverlay } from "@/widgets/site-load";
+import { TgPopupHost } from "@/widgets/tg-popup";
 
 import { SiteMotionConfig } from "./motion-config-provider";
 
@@ -113,6 +114,7 @@ export default function SiteLayout({
         <SiteMotionConfig>
           {children}
           <SiteLoadOverlay />
+          <TgPopupHost />
         </SiteMotionConfig>
       </body>
     </html>
