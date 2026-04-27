@@ -181,29 +181,34 @@ function ConsultationBtn({
 }
 
 function PackageGlow({ left, top, filterId }: { left: number; top: number; filterId: string }) {
-  // Figma 783:10947+10948: 42×42 frame at -238.1% inset containing inline SVG halo
-  // (circle r=21, gaussianBlur stdDeviation=50, viewBox 242×242).
-  // Inline SVG required — браузеры не применяют SVG filter feGaussianBlur при rendering через <img> tag.
-  // Same approach как FirstScreenGeoGlow в hero (там halo viduen и работает).
+  // Figma 783:10947+10948: halo (Ellipse 110, blurred orange circle) + sharp 8×8 dot (Ellipse 113).
+  // Halo рендерится inline SVG (FirstScreenGeoGlow). Sharp dot — отдельный <div> с CSS-позицией,
+  // чтобы оптически выровнять с центром текста (Montserrat line-box на 3px шире чем Figma glyph-bbox).
   return (
-    <div
-      className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
-      data-services-package-glow=""
-      style={{ left, top }}
-    >
-      <div className="absolute inset-[-238.1%] overflow-visible">
-        <FirstScreenGeoGlow
-          blur={30}
-          cx={121}
-          cy={121}
-          dotR={4}
-          filterId={filterId}
-          pulse={false}
-          r={21}
-          size={242}
-        />
+    <>
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+        data-services-package-glow=""
+        style={{ left, top }}
+      >
+        <div className="absolute inset-[-238.1%] overflow-visible">
+          <FirstScreenGeoGlow
+            blur={30}
+            cx={121}
+            cy={121}
+            dotR={0}
+            filterId={filterId}
+            pulse={false}
+            r={21}
+            size={242}
+          />
+        </div>
       </div>
-    </div>
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+        style={{ left: left + 17, top: top + 20 }}
+      />
+    </>
   );
 }
 

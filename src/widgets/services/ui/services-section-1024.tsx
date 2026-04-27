@@ -136,27 +136,36 @@ function Services1024PackageRow() {
   const rawId = useId().replace(/:/g, "");
   const filterId = `services1024-pkg-glow-${rawId}`;
   return (
-    <div
-      className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
-      data-services-package-glow=""
-      style={{
-        left: V_HERO_1024.packageGlowFrame.left,
-        top: V_HERO_1024.packageGlowFrame.top,
-      }}
-    >
-      <div className="absolute inset-[-238.1%] overflow-visible">
-        <FirstScreenGeoGlow
-          blur={30}
-          cx={121}
-          cy={121}
-          dotR={4}
-          filterId={filterId}
-          pulse={false}
-          r={21}
-          size={242}
-        />
+    <>
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+        data-services-package-glow=""
+        style={{
+          left: V_HERO_1024.packageGlowFrame.left,
+          top: V_HERO_1024.packageGlowFrame.top,
+        }}
+      >
+        <div className="absolute inset-[-238.1%] overflow-visible">
+          <FirstScreenGeoGlow
+            blur={30}
+            cx={121}
+            cy={121}
+            dotR={0}
+            filterId={filterId}
+            pulse={false}
+            r={21}
+            size={242}
+          />
+        </div>
       </div>
-    </div>
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+        style={{
+          left: V_HERO_1024.packageGlowFrame.left + 17,
+          top: V_HERO_1024.packageGlowFrame.top + 20,
+        }}
+      />
+    </>
   );
 }
 

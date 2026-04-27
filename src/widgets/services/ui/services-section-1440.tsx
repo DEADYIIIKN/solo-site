@@ -152,32 +152,41 @@ function CommercialPointCell({
   );
 }
 
-/** «Пакеты…» — Figma 783:9214/9215: inline SVG halo (FirstScreenGeoGlow, blur=50, r=21) + sharp dot из dotR=4. */
+/** «Пакеты…» — Figma 783:9214/9215: inline SVG halo (Ellipse 110) + sharp 8×8 CSS dot (оптически центрирован с текстом). */
 function Services1440PackageRow() {
   const rawId = useId().replace(/:/g, "");
   const filterId = `services-pkg-glow-${rawId}`;
   return (
-    <div
-      className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
-      data-services-package-glow=""
-      style={{
-        left: V_HERO.packageGlowFrame.left,
-        top: V_HERO.packageGlowFrame.top,
-      }}
-    >
-      <div className="absolute inset-[-238.1%] overflow-visible">
-        <FirstScreenGeoGlow
-          blur={30}
-          cx={121}
-          cy={121}
-          dotR={4}
-          filterId={filterId}
-          pulse={false}
-          r={21}
-          size={242}
-        />
+    <>
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+        data-services-package-glow=""
+        style={{
+          left: V_HERO.packageGlowFrame.left,
+          top: V_HERO.packageGlowFrame.top,
+        }}
+      >
+        <div className="absolute inset-[-238.1%] overflow-visible">
+          <FirstScreenGeoGlow
+            blur={30}
+            cx={121}
+            cy={121}
+            dotR={0}
+            filterId={filterId}
+            pulse={false}
+            r={21}
+            size={242}
+          />
+        </div>
       </div>
-    </div>
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+        style={{
+          left: V_HERO.packageGlowFrame.left + 17,
+          top: V_HERO.packageGlowFrame.top + 20,
+        }}
+      />
+    </>
   );
 }
 
