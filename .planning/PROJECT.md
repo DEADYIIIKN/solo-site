@@ -20,37 +20,49 @@
 - boneyard-js удалён, миграция на Framer Motion завершена
 - 5 breakpoints прошли Figma MCP sverka (с 4 deferred design decisions)
 
-## Current Milestone: v1.1 — Form Wiring & Modal Refactor
+## Shipped (within current dev cycle)
 
-**Goal:** Заявки реально доходят до владельца + единая отправка из всех модалок без дублирования логики.
+- ✅ **v1.1** awaiting merge in [PR #5](https://github.com/DEADYIIIKN/solo-site/pull/5) — Form Wiring & Modal Refactor (3 phases / 9 plans)
+
+## Current Milestone: v1.2 — Growth & Ops
+
+**Goal:** Дать пользователю канал подписки на TG (lead nurturing) + базовые admin-инструменты для работы с лидами.
 
 **Target features:**
-- **FUNC-01** — Реализовать отправку формы (Telegram bot / n8n webhook / CRM — endpoint TBD), включая локальный fallback log на случай отвалившегося endpoint
-- **REFAC-01** — Унифицировать 5 идентичных consultation-modal в `ConsultationModalBase` (готовит почву для одного submit handler)
-- **LF-DRIFT-01** — Закрыть deferred lead-form y-drift на 360/480 (D-19 carryover из v1.0)
+- **TG-01** — Pop-up уведомление о TG-канале, появляется через 60s активности на сайте (sessionStorage dismiss, dismissable). Per-breakpoint dismiss модалка по дизайну Figma (783:9762 / 9750 / 9729 / 9708 / 9687)
+- **TG-02** — TG channel URL через env var `NEXT_PUBLIC_TG_CHANNEL_URL` (значение от пользователя)
+- **ADMIN-01** — Custom columns в Payload admin для leads list view (source, date, forwarded, contactMethod)
+- **ADMIN-02** — Filter / sort в leads admin (по дате, по source, по forwarded status)
+- **ADMIN-03** — CSV export — кнопка в leads list, скачивает all/filtered
 
-**Out of scope для v1.1:**
-- REFAC-02..04 (крупные рефакторинги business-goals / services / shared-types) — отложить в v1.2 «Tech Debt»
+**Out of scope для v1.2 (email уведомления решаются через n8n flow):**
+- Email-уведомления при новом лиде (n8n берёт на себя)
+- REFAC-02/03/04 (отложены — нет forcing function, см. v1.1 discuss)
 - Footer blog secrets + consultation badge — отдельная feature-фаза с дизайном
-- Cases 1440 ad-section gap (D-17) — accepted design decision
-- Team 360 tagline wrap — fundamental font-metrics, нужен font swap
+- Cases 1440 gap (D-17), team 360 tagline wrap — accepted design decisions
 
 ## Backlog Candidates (for future milestones)
 
-Кандидаты для v1.2+ — обсудить в новом цикле:
+**Polish (deferred design decisions из v1.0/v1.1):**
+- Footer blog secrets + consultation badge (нужен дизайн)
+- Cases 1440 ad-section gap (D-17 accepted, можно вернуться)
+- Team 360 tagline wrap (font swap)
+- LF-DRIFT residual ±5..10px micro-fixes (если выявятся в реальной sverka)
 
-**Tech debt (REFAC) — отложено в v1.2:**
-- REFAC-02: Разбить `business-goals.tsx` (1300 строк) на per-breakpoint компоненты
+**SEO & Analytics:**
+- Meta-tags + Open Graph для сайта
+- sitemap.xml / robots.txt / structured data
+- Yandex Metrica + Google Analytics + conversion goal «отправил заявку»
+
+**Reliability:**
+- Sentry / error tracking
+- Custom 404 page
+- Retry-queue для failed n8n webhooks
+
+**Tech debt (без forcing function — открыть только если появится боль):**
+- REFAC-02: Разбить `business-goals.tsx` (1300 строк)
 - REFAC-03: Разбить `services-section-below-1024.tsx` (1000 строк)
-- REFAC-04: Перенести shared form types в model-файл
-
-**Functionality (FUNC):**
-- FUNC-01: Реализовать отправку формы в CRM/Telegram/n8n (сейчас TODO)
-
-**Deferred design decisions (из v1.0):**
-- Footer blog secrets + consultation badge (CMS-flag, нужен дизайн badge)
-- Lead-form 360/480 cumulative y-drift (D-19 — потенциально требует font-fix)
-- Team 360 tagline wrap (Montserrat font-metrics)
+- REFAC-04: Shared form types в model-файл
 
 **Backlog (999.x):**
 - 999.1: carousel-services-arrows e2e (когда появится карусель в услугах)

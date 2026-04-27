@@ -4,17 +4,66 @@
 
 - ✅ **v1.0** (2026-04-22 → 2026-04-27) — Frontend Quality & Bug Fix · 6 phases / 27 plans · [archive](milestones/v1.0-ROADMAP.md)
 
-## Current Milestone — v1.1: Form Wiring & Modal Refactor
+## v1.1: Form Wiring & Modal Refactor — awaiting merge ([PR #5](https://github.com/DEADYIIIKN/solo-site/pull/5))
 
-**Goal:** Заявки реально доходят до владельца + единая отправка из всех модалок без дублирования логики.
+**Status:** ✅ All 3 phases complete (3/3). PR #5 ждёт merge → main.
 
-**Status:** ✅ All 3 phases complete (3/3). Awaiting ship via PR release/v1.1 → main.
+- [x] **Phase 7: Modal Unification** ✅ 2026-04-27
+- [x] **Phase 8: Form Submission** ✅ 2026-04-27
+- [x] **Phase 9: Lead-Form Pixel Cleanup** ✅ 2026-04-27
+
+## Current Milestone — v1.2: Growth & Ops
+
+**Goal:** Дать пользователю канал подписки на TG (lead nurturing) + базовые admin-инструменты для работы с лидами.
+
+**Status:** Planned (3 phases).
 
 ### Phases
 
-- [x] **Phase 7: Modal Unification** — REFAC-01: 5 consultation-modal → ConsultationModalBase ✅ 2026-04-27
-- [x] **Phase 8: Form Submission** — FUNC-01..04 + TEST-04/05: n8n + Collection fallback + spam guard ✅ 2026-04-27
-- [x] **Phase 9: Lead-Form Pixel Cleanup** — LF-DRIFT-01: D-19 carryover closed ✅ 2026-04-27
+- [ ] **Phase 10: TG Pop-up** — TG-01..04 + TEST-06/07: per-breakpoint pop-up уведомление о канале с 60s-trigger
+- [ ] **Phase 11: Leads Admin List View** — ADMIN-01/02: custom columns + filter/sort
+- [ ] **Phase 12: Leads CSV Export** — ADMIN-03: «Export to CSV» в leads list
+
+### Phase Details
+
+#### Phase 10: TG Pop-up
+**Goal:** На сайте появляется pop-up с предложением подписаться на TG-канал после 60s активности. Per-breakpoint (5 brkp), dismiss → sessionStorage.
+**Depends on:** v1.1 shipped (Phase 7 ConsultationModal pattern переиспользуется)
+**Requirements:** TG-01, TG-02, TG-03, TG-04, TEST-06, TEST-07
+**Figma:** 783:9762 (1440) / 783:9750 (?) / 783:9729 (?) / 783:9708 (?) / 783:9687 (?) — точное breakpoint mapping уточнится через Figma MCP
+**Open questions** (для discuss-phase):
+- Activity detection: scroll/mousemove/keydown? page focus? combined?
+- Что показывать если `NEXT_PUBLIC_TG_CHANNEL_URL` не задан? — Тихий fallback (pop-up не показывается)
+- Где живёт компонент: `src/widgets/tg-popup/` или `src/widgets/first-screen/ui/` (рядом с ConsultationModal)?
+**Success Criteria:**
+1. Pop-up появляется ровно через 60s активности (timer + activity events)
+2. Дизайн совпадает с Figma на всех 5 breakpoints (Figma MCP sverka на 1 брейкпоинте)
+3. Dismiss через ✕ / overlay click / ESC; повторно не показывается до закрытия вкладки (sessionStorage)
+4. Кнопка «Подписаться» открывает t.me/... в новой вкладке
+5. Если `NEXT_PUBLIC_TG_CHANNEL_URL` не задана — pop-up НЕ инициализируется (silent skip)
+6. E2E + unit покрывают timer / dismiss / sessionStorage
+**Plans:** TBD (определит /gsd-plan-phase 10)
+
+#### Phase 11: Leads Admin List View
+**Goal:** В Payload admin → Заявки видны кастомные columns + filter/sort, не нужно открывать каждую запись.
+**Depends on:** v1.1 shipped (Collection «leads» создан в Phase 8)
+**Requirements:** ADMIN-01, ADMIN-02
+**Success Criteria:**
+1. Columns в list view: name, phone, source, contactMethod, forwardedToWebhook, createdAt
+2. Sort по дате (default: newest first)
+3. Filter по source (dropdown), forwardedToWebhook (3 states), createdAt (range или preset «сегодня/неделя/месяц»)
+**Plans:** TBD (определит /gsd-plan-phase 11)
+
+#### Phase 12: Leads CSV Export
+**Goal:** Кнопка «Export to CSV» в leads list скачивает CSV (всех или filtered).
+**Depends on:** Phase 11 (filter работает — exporter должен respect-ить filter state)
+**Requirements:** ADMIN-03
+**Success Criteria:**
+1. Кнопка видна в leads list view (Payload custom view component)
+2. Скачивает CSV-файл с колонками: id, name, phone, message, contactMethod, consent, source, forwardedToWebhook, webhookError, createdAt
+3. Учитывает active filter (если применён)
+4. UTF-8 BOM для корректного открытия в Excel русских букв
+**Plans:** TBD (определит /gsd-plan-phase 12)
 
 ### Phase Details
 
@@ -65,13 +114,16 @@ Plans:
 
 ## Progress
 
-**Execution Order:** Phases 7 → 8 → 9 (sequential — каждая зависит от предыдущей)
+**Execution Order:** v1.1 (7→8→9) → ship → v1.2 (10 → 11 → 12, последовательно)
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 7. Modal Unification | 4/4 | Complete | 2026-04-27 |
 | 8. Form Submission | 4/4 | Complete | 2026-04-27 |
 | 9. Lead-Form Pixel Cleanup | 1/1 | Complete | 2026-04-27 |
+| 10. TG Pop-up | 0/? | Planned | - |
+| 11. Leads Admin List View | 0/? | Planned | - |
+| 12. Leads CSV Export | 0/? | Planned | - |
 
 ## Backlog
 
