@@ -15,7 +15,7 @@ import type {
   FirstScreenConsultationContactMethod,
   FirstScreenConsultationFormState,
   FirstScreenConsultationModalTitleVariant,
-} from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 
 type FirstScreenConsultationModal480Props = {
   open: boolean;

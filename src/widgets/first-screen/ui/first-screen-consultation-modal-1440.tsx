@@ -10,29 +10,20 @@ import {
   formatConsultationPhone,
   isConsultationPhoneValid,
 } from "@/widgets/first-screen/model/first-screen-consultation-form";
+import {
+  type FirstScreenConsultationContactMethod,
+  type FirstScreenConsultationFormState,
+  type FirstScreenConsultationModalTitleVariant,
+  defaultFirstScreenConsultationFormState,
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 
-/** «связаться» в шапке — задача; круглый CTA — бесплатная консультация */
-export type FirstScreenConsultationModalTitleVariant = "task" | "consultation";
-export type FirstScreenConsultationContactMethod =
-  | "call"
-  | "telegram"
-  | "whatsapp";
-export type FirstScreenConsultationFormState = {
-  name: string;
-  phone: string;
-  message: string;
-  contactMethod: FirstScreenConsultationContactMethod;
-  consent: boolean;
+// Re-exports для обратной совместимости. Удалить в Plan 07-04 после конверсии всех импортов.
+export type {
+  FirstScreenConsultationContactMethod,
+  FirstScreenConsultationFormState,
+  FirstScreenConsultationModalTitleVariant,
 };
-
-export const defaultFirstScreenConsultationFormState: FirstScreenConsultationFormState =
-  {
-    name: "",
-    phone: "",
-    message: "",
-    contactMethod: "call",
-    consent: false,
-  };
+export { defaultFirstScreenConsultationFormState };
 
 type FirstScreenConsultationModal1440Props = {
   open: boolean;
