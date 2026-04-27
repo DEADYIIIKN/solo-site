@@ -141,4 +141,15 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 3. Mobile/Tablet Layout (820px + 360px) | 5/5 | Complete | 2026-04-22 |
 | 4. Safari + Animations | 6/6 | Complete | 2026-04-23 |
 | 5. Pixel-Perfect Final Pass | 6/6 | Complete | 2026-04-27 |
-| 6. Testing | 0/3 | Planned | - |
+| 6. Testing | 3/3 | Complete | 2026-04-27 |
+
+## Backlog
+
+### Phase 999.1: carousel-services-arrows — extend e2e when carousel appears (BACKLOG)
+
+**Goal:** Когда секция «Услуги» получит горизонтальную карусель (BUG-09/10 либо отдельная UX-задача), расширить `tests/e2e/carousel-services.spec.ts` проверкой arrows next/prev и смены слайдов на 360/480/820. Сейчас spec покрывает только smoke render + CTA, потому что каруселей в услугах нет ни на одном брейкпоинте.
+**Requirements:** TBD
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (promote with /gsd-review-backlog when ready)
