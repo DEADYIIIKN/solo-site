@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { validLead } from "./_fixtures";
+import { toggleConsent, validLead } from "./_fixtures";
 
 /**
  * E2E spec для модальной формы (consultation modal), открываемой из header CTA первого экрана.
@@ -18,6 +18,14 @@ import { validLead } from "./_fixtures";
  *  - закрытие модалки
  */
 test.describe("cases / consultation-modal submission flow", () => {
+  // Spec написан под desktop (1440) header CTA «связаться». На mobile-safari (iPhone 13)
+  // используется другой header без data-testid="first-screen-header-cta". Расширение mobile
+  // submission-flow — отдельная задача (TEST-02 покрывает рендер mobile через cross-browser smoke).
+  test.skip(
+    ({ browserName, viewport }) => Boolean(viewport && viewport.width < 1024),
+    "consultation-modal flow проверяется на desktop projects; mobile cross-browser покрыт cross-browser.spec.ts",
+  );
+
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
     // ждём пока первый экран отрендерится (useViewportLayout → hydrate)
@@ -35,8 +43,8 @@ test.describe("cases / consultation-modal submission flow", () => {
     await card.getByTestId("consultation-modal-phone").fill(validLead.phone);
     await card.getByTestId("consultation-modal-message").fill(validLead.message);
 
-    // 3. Toggle consent (input sr-only → клик по тексту лейбла)
-    await card.getByText("Согласен(на) на обработку").click();
+    // 3. Toggle consent (cross-browser-safe — input sr-only)
+    await toggleConsent(card.getByTestId("consultation-modal-consent"));
     await expect(card.getByTestId("consultation-modal-consent")).toBeChecked();
 
     // 4. Submit → success step

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { fillLeadFormValid, scrollToLeadForm, validLead } from "./_fixtures";
+import { fillLeadFormValid, scrollToLeadForm, toggleConsent, validLead } from "./_fixtures";
 
 /**
  * E2E spec для главной lead-form (LeadFormSection в конце страницы).
@@ -32,8 +32,8 @@ test.describe("lead-form / submission flow", () => {
     const consent = form.getByTestId("lead-form-consent");
 
     await expect(consent).not.toBeChecked();
-    // input скрыт (sr-only), кликаем через label.click() — DOM соответствует htmlFor связке
-    await form.getByText("Согласен(на) на обработку").click();
+    // input скрыт (sr-only) → кликаем напрямую с force (cross-browser-safe, см. _fixtures).
+    await toggleConsent(consent);
     await expect(consent).toBeChecked();
   });
 
@@ -41,8 +41,8 @@ test.describe("lead-form / submission flow", () => {
     const form = page.getByTestId("lead-form").first();
     await fillLeadFormValid(form);
 
-    // toggle consent
-    await form.getByText("Согласен(на) на обработку").click();
+    // toggle consent (cross-browser-safe)
+    await toggleConsent(form.getByTestId("lead-form-consent"));
     await expect(form.getByTestId("lead-form-consent")).toBeChecked();
 
     await form.getByTestId("lead-form-submit").click();
