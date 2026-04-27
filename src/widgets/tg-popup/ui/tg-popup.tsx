@@ -312,9 +312,10 @@ export function TgPopup({
               {subtitle}
             </p>
 
-            {/* CTA pill */}
+            {/* CTA pill — Figma 783:9769: outer rounded-[50px] pill, inner
+                KingButton flex w-full items-center с left-aligned icon+text. */}
             <a
-              className="absolute inline-flex items-center justify-center rounded-[50px] bg-[#0d0300] text-center lowercase transition-colors hover:bg-[#1a0d05]"
+              className="absolute flex flex-col items-center justify-center rounded-[50px] bg-[#0d0300] px-[5px] lowercase transition-colors hover:bg-[#1a0d05]"
               data-testid="tg-popup-cta"
               href={ctaHref}
               onClick={onDismiss}
@@ -324,7 +325,6 @@ export function TgPopup({
                 top: b.y,
                 width: b.w,
                 height: b.h,
-                gap: b.gapInner,
                 color: "#ffffff",
                 fontFamily,
                 fontSize: b.fontSize,
@@ -333,8 +333,13 @@ export function TgPopup({
               }}
               target="_blank"
             >
-              <TelegramIcon size={b.iconSize} />
-              <span>{ctaLabel}</span>
+              <span
+                className="flex w-full shrink-0 items-center overflow-hidden"
+                style={{ gap: b.gapInner }}
+              >
+                <TelegramIcon size={b.iconSize} />
+                <span className="whitespace-nowrap">{ctaLabel}</span>
+              </span>
             </a>
 
             {/* Phone — content layer (TG screenshot inside rounded crop). */}
