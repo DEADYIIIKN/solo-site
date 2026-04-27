@@ -180,18 +180,34 @@ function ConsultationBtn({
   );
 }
 
-function PackageGlow({ left, top }: { left: number; top: number; filterId?: string }) {
+function PackageGlow({ left, top, filterId }: { left: number; top: number; filterId: string }) {
   return (
-    <div
-      className="pointer-events-none absolute z-[2] size-[42px]"
-      data-services-package-glow=""
-      style={{ left, top }}
-    >
-      {/* Figma 783:10945/10947 Ellipse 110 — 42×42 мягкий orange halo */}
-      <div className="absolute inset-0 rounded-full bg-[#ff5c00] opacity-30 blur-[6px]" />
-      {/* Figma Ellipse 113 — 8×8 сharp orange dot, центрирован */}
-      <div className="absolute left-[17px] top-[17px] size-[8px] rounded-full bg-[#ff5c00]" />
-    </div>
+    <>
+      {/* Figma 783:10947 Ellipse 110 — 42×42 frame with -238.1% inset blurred halo SVG (1:1 with Figma asset db289658... viewBox 242×242, circle r=21, stdDeviation=50) */}
+      <div
+        className="pointer-events-none absolute z-[2] size-[42px] overflow-visible"
+        data-services-package-glow=""
+        style={{ left, top }}
+      >
+        <div className="absolute inset-[-238.1%] overflow-visible">
+          <FirstScreenGeoGlow
+            blur={50}
+            cx={121}
+            cy={121}
+            dotR={0}
+            filterId={filterId}
+            pulse={false}
+            r={21}
+            size={242}
+          />
+        </div>
+      </div>
+      {/* Figma 783:10948 Ellipse 113 — 8×8 sharp orange dot, центрирован в 42×42 frame (left+17, top+17) */}
+      <div
+        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+        style={{ left: left + 17, top: top + 17 }}
+      />
+    </>
   );
 }
 
