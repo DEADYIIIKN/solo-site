@@ -20,23 +20,24 @@ export function LeadFormTitle({
    */
   breakMode?: "natural" | "two-line" | "comma-break";
 }) {
-  const leading = "leading-[0.9]";
+  const lhStyle = { lineHeight: 0.9 } as const;
 
   if (breakMode === "two-line") {
     return (
       <h2
         className={cn(
           "m-0 flex max-w-[640px] flex-col gap-0 font-bold lowercase text-[#0d0300]",
-          "[&>span]:m-0 [&>span]:block [&>span]:min-h-0 [&>span]:p-0 [&>span]:leading-[0.9]",
+          "[&>span]:m-0 [&>span]:block [&>span]:min-h-0 [&>span]:p-0",
           className,
         )}
+        style={lhStyle}
       >
-        <span>
-          <span>Хотите </span>
-          <span className="font-normal italic">обсудить,</span>
-          <span> как</span>
+        <span style={lhStyle}>
+          <span style={lhStyle}>Хотите </span>
+          <span className="font-normal italic" style={lhStyle}>обсудить,</span>
+          <span style={lhStyle}> как</span>
         </span>
-        <span>мы можем помочь?</span>
+        <span style={lhStyle}>мы можем помочь?</span>
       </h2>
     );
   }
@@ -47,8 +48,8 @@ export function LeadFormTitle({
         className={cn(
           "m-0 max-w-[640px] font-bold lowercase text-[#0d0300]",
           className,
-          leading,
         )}
+        style={lhStyle}
       >
         <span>Хотите </span>
         <span className="font-normal italic">обсудить,</span>
@@ -63,8 +64,8 @@ export function LeadFormTitle({
       className={cn(
         "m-0 max-w-[640px] font-bold lowercase text-[#0d0300]",
         className,
-        leading,
       )}
+      style={lhStyle}
     >
       <span>Хотите </span>
       <span className="font-normal italic">обсудить,</span>
@@ -111,10 +112,11 @@ export function LeadFormBulletRow({
       </div>
       <div
         className={cn(
-          "min-w-0 [&_p]:leading-[1.2]",
+          "min-w-0",
           onDark ? "text-white" : "text-[#0d0300]",
           contentClassName,
         )}
+        style={{ lineHeight: 1.2 }}
       >
         {children}
       </div>
