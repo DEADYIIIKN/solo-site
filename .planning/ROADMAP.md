@@ -20,7 +20,7 @@
 
 ### Phases
 
-- [ ] **Phase 10: TG Pop-up** — TG-01..04 + TEST-06/07: per-breakpoint pop-up уведомление о канале с 60s-trigger
+- [x] **Phase 10: TG Pop-up** — TG-01..04 + TEST-06/07: per-breakpoint pop-up + 60s trigger ✅ 2026-04-27
 - [ ] **Phase 11: Leads Admin List View** — ADMIN-01/02: custom columns + filter/sort
 - [ ] **Phase 12: Leads CSV Export** — ADMIN-03: «Export to CSV» в leads list
 
@@ -125,7 +125,7 @@ Plans:
 | 7. Modal Unification | 4/4 | Complete | 2026-04-27 |
 | 8. Form Submission | 4/4 | Complete | 2026-04-27 |
 | 9. Lead-Form Pixel Cleanup | 1/1 | Complete | 2026-04-27 |
-| 10. TG Pop-up | 0/4 | Planned | - |
+| 10. TG Pop-up | 4/4 | Complete | 2026-04-27 |
 | 11. Leads Admin List View | 0/? | Planned | - |
 | 12. Leads CSV Export | 0/? | Planned | - |
 

@@ -1,18 +1,18 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.1
-milestone_name: form-wiring-modal-refactor
+milestone: v1.1.2
+milestone_name: growth-and-ops
 last_shipped: v1.0
-status: phase-9-complete
-stopped_at: v1.1 ALL phases complete. Awaiting ship via PR release/v1.1 → main.
+status: phase-10-complete
+stopped_at: Phase 10 (TG popup) complete. Phase 11 next (admin list view).
 last_updated: "2026-04-27T00:00:00.000Z"
-last_activity: 2026-04-27 -- Phase 09 lead-form pixel cleanup завершён, v1.1 готов к ship
+last_activity: 2026-04-27 -- Phase 10 TG popup завершён (4 plans, 79/79 e2e green)
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
-  percent: 100
+  total_phases: 6
+  completed_phases: 4
+  total_plans: 13
+  completed_plans: 13
+  percent: 66
 ---
 
 # Project State
@@ -22,16 +22,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.1 ALL phases complete — ship время
+**Current focus:** v1.1.2 — Phase 10 (TG popup) done; Phase 11 (admin list view) next
 
 ## Current Position
 
 Last shipped: **v1.0** (2026-04-27)
-Active milestone: **v1.1** (3/3 phases complete)
-Phase: 9 (Lead-Form Pixel Cleanup) — ✅ COMPLETE (LF-DRIFT-01 satisfied)
-Next: PR `release/v1.1` → main → `/gsd-complete-milestone v1.1`
+Active branch: **release/v1.1** (combined v1.1 + v1.1.2 PR #5)
+v1.1: ✅ 3/3 phases (Phases 7-9) complete
+v1.1.2: ✅ Phase 10 done; Phase 11 + 12 pending
+Next: `/gsd-plan-phase 11` — admin leads list view (ADMIN-01/02)
 
-Progress: [██████████] 100% (3/3 phases)
+Progress: [██████    ] 66% (4/6 phases overall in branch)
 
 ## Performance Metrics
 

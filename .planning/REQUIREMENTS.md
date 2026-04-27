@@ -33,10 +33,10 @@
 
 ### TG Pop-up (TG)
 
-- [ ] **TG-01**: На сайте появляется pop-up уведомление с предложением подписаться на TG-канал. Триггер: 60 секунд активности пользователя на сайте (page focused + scroll/mousemove activity).
-- [ ] **TG-02**: Pop-up использует per-breakpoint дизайн из Figma (783:9762 / 9750 / 9729 / 9708 / 9687 — 5 breakpoints). Реализован по тому же паттерну, что и `ConsultationModal` (variant lookup + base component).
-- [ ] **TG-03**: Pop-up dismiss-аем через крестик / клик по overlay / ESC. После dismiss — больше не показывается в этой сессии браузера (sessionStorage).
-- [ ] **TG-04**: Кнопка «Подписаться» открывает TG-канал в новой вкладке. URL берётся из env var `NEXT_PUBLIC_TG_CHANNEL_URL` (значение от пользователя). Если переменная пустая — pop-up НЕ показывается вообще (тихий fallback).
+- [x] **TG-01**: На сайте появляется pop-up уведомление с предложением подписаться на TG-канал. Триггер: 60 секунд активности пользователя на сайте (page focused + scroll/mousemove activity).
+- [x] **TG-02**: Pop-up использует per-breakpoint дизайн из Figma (783:9762 / 9750 / 9729 / 9708 / 9687 — 5 breakpoints). Реализован по тому же паттерну, что и `ConsultationModal` (variant lookup + base component).
+- [x] **TG-03**: Pop-up dismiss-аем через крестик / клик по overlay / ESC. После dismiss — больше не показывается в этой сессии браузера (sessionStorage).
+- [x] **TG-04**: Кнопка «Подписаться» открывает TG-канал в новой вкладке. URL берётся из env var `NEXT_PUBLIC_TG_CHANNEL_URL` (значение от пользователя). Если переменная пустая — pop-up НЕ показывается вообще (тихий fallback).
 
 ### Admin: Leads Management (ADMIN)
 
@@ -46,8 +46,8 @@
 
 ### Testing (TEST)
 
-- [ ] **TEST-06**: E2E spec для TG pop-up: после 60s активности pop-up появляется → click «Подписаться» открывает t.me URL → click ✕ закрывает + sessionStorage установлен.
-- [ ] **TEST-07**: Unit-тест activity tracker (60s timer + activity detection: scroll/mousemove/keydown).
+- [x] **TEST-06**: E2E spec для TG pop-up: после 60s активности pop-up появляется → click «Подписаться» открывает t.me URL → click ✕ закрывает + sessionStorage установлен.
+- [x] **TEST-07**: Unit-тест activity tracker (60s timer + activity detection: scroll/mousemove/keydown).
 
 ## Out of Scope (v1.1.2)
 
@@ -64,15 +64,15 @@
 
 | Requirement | Phase | Status |
 |---|---|---|
-| TG-01 | 10 | Pending |
-| TG-02 | 10 | Pending |
-| TG-03 | 10 | Pending |
-| TG-04 | 10 | Pending |
+| TG-01 | 10 | Satisfied |
+| TG-02 | 10 | Satisfied |
+| TG-03 | 10 | Satisfied |
+| TG-04 | 10 | Satisfied |
 | ADMIN-01 | 11 | Pending |
 | ADMIN-02 | 11 | Pending |
 | ADMIN-03 | 12 | Pending |
-| TEST-06 | 10 | Pending |
-| TEST-07 | 10 | Pending |
+| TEST-06 | 10 | Satisfied |
+| TEST-07 | 10 | Satisfied |
 
 **Coverage v1.1.2:**
 - 9 requirements total
