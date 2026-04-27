@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { OPEN_CONSULTATION_MODAL_EVENT } from "@/shared/lib/open-consultation-modal";
 import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 import {
-  defaultFirstScreenConsultationFormState
-} from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
-import type { FirstScreenConsultationModalTitleVariant } from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+  defaultFirstScreenConsultationFormState,
+  type FirstScreenConsultationModalTitleVariant,
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 import { FirstScreen360Section } from "@/widgets/first-screen/ui/first-screen-360-section";
 import { FirstScreen480Section } from "@/widgets/first-screen/ui/first-screen-480-section";
 import { FirstScreen768Section } from "@/widgets/first-screen/ui/first-screen-768-section";

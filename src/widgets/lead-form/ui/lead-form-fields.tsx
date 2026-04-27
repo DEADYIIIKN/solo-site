@@ -13,7 +13,7 @@ import {
   type FirstScreenConsultationContactMethod,
   type FirstScreenConsultationFormState,
   defaultFirstScreenConsultationFormState,
-} from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 
 const contactOptions: {
   id: FirstScreenConsultationContactMethod;
