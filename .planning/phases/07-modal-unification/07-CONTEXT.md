@@ -28,7 +28,8 @@ discuss_mode: auto-decisions (auto-mode active, user pre-approved scope in conve
 
 **Why:**
 - Diff между 5 модалками — точечные классы, не разная разметка → variant table идеально ложится.
-- Phase 8 (FUNC-01..04) хочет «один submit handler» — единый компонент даёт его естественно.
+- Снижение дублирования: 2433 строк → ~700 (один base + variants config + 5 тонких wrapper'ов).
+- Готовность к новым модалкам того же паттерна (например, TG-channel модалка из backlog): новая модалка добавляется как ещё один variant, не пять копий.
 - Per-breakpoint sections рендерят модалку через `useViewportLayout()` — в рантайме всё равно одна. Стоимость условного рендеринга нулевая.
 - Re-exports сохраняют 13 callsites без изменений → review surface сужается до самого base + variant config.
 
@@ -52,13 +53,13 @@ discuss_mode: auto-decisions (auto-mode active, user pre-approved scope in conve
 **Why:**
 - Тесты (Playwright `consultation-modal.spec.ts` + Vitest `phone-format`/`lead-form-validation`) уже покрывают behavior — есть страховка от регрессий.
 - Прогрессивная миграция (один breakpoint per PR) растянет процесс на 5 PR с одинаковой логикой review — затраты выше выгоды.
-- Phase 8 ждёт единый submit handler — раздельная миграция блокировала бы её.
+- Скоуп Phase 7 атомарен: рефакторинг без поведенческих изменений — нет смысла размазывать по нескольким PR.
 
 ### D4 — Submit handler shape — without changes (для Phase 7)
 
 **Choice:** Оставляем текущий callback prop pattern (`onCloseModal`, `setFormState`, etc. через props из Section). **Никакого нового hook / context provider в Phase 7.**
 
-**Why:** Phase 7 = чистый рефакторинг (no functional change). Изменение submit shape — задача Phase 8 (FUNC-01..04). Миксовать рефакторинг и new functionality нарушает «small atomic changes» принцип.
+**Why:** Phase 7 = чистый рефакторинг (no functional change). Submit handler уже централизован в `lead-form-fields.tsx` (один `onSubmit` — TODO на строке 213) и не требует касания при унификации обёрток модалки. Реальная отправка формы — задача Phase 8 (FUNC-01..04), там и точечная правка одного места.
 
 ### D5 — Visual parity guard
 
