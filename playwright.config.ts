@@ -1,12 +1,17 @@
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * Playwright config — Phase 6 Wave 1 (TEST-01).
+ * Playwright config — Phase 6 Wave 2 (TEST-02 cross-browser).
  *
  * Цели:
- * - Локальный запуск через `npm run test:e2e` (chromium-only).
- * - Auto-start dev server на :3000 (reuseExistingServer, чтобы не блокировать локального dev).
+ * - Локальный запуск через `npm run test:e2e` (chromium-1440 + webkit-1440 + mobile-safari).
+ * - Auto-start dev server на :3100 (reuseExistingServer, чтобы не блокировать локальный dev).
  * - retries=0 локально, =1 в CI; trace = on-first-retry.
+ *
+ * Projects:
+ * - chromium-1440 — основной desktop (Chrome).
+ * - webkit-1440 — Safari desktop (TEST-02 cross-browser).
+ * - mobile-safari — iPhone 13 viewport (Safari iOS, ~390x844). Покрывает реальные мобильные брейкпоинты.
  */
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -29,6 +34,14 @@ export default defineConfig({
     {
       name: "chromium-1440",
       use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: "webkit-1440",
+      use: { ...devices["Desktop Safari"], viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: "mobile-safari",
+      use: { ...devices["iPhone 13"] },
     },
   ],
   webServer: {
