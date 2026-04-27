@@ -199,7 +199,7 @@ export function Footer1440({
             </p>
             <a
               className="flex h-[60px] w-[250px] shrink-0 items-center overflow-hidden rounded-[50px] bg-white px-[5px] no-underline transition-opacity hover:opacity-90"
-              href="https://t.me/soloproduction"
+              href={process.env.NEXT_PUBLIC_TG_CHANNEL_URL ?? "https://t.me/soloproduction"}
               rel="noopener noreferrer"
               target="_blank"
             >
