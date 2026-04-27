@@ -706,10 +706,10 @@ function CommercialCard480() {
         }}
       >
         <span>{c.titleItalic}</span>
-        <span className="font-bold not-italic">
-          {c.titleBoldLine1}
-          {c.titleBoldLine2}
-        </span>
+        <br />
+        <span className="font-bold not-italic">{c.titleBoldLine1.trim()}</span>
+        <br />
+        <span className="font-bold not-italic">{c.titleBoldLine2}</span>
       </p>
       <p
         className="absolute z-[3] m-0 font-normal leading-[1.2] text-[#0d0300]"
@@ -882,10 +882,10 @@ function CommercialCard360() {
         }}
       >
         <span>{c.titleItalic}</span>
-        <span className="font-bold not-italic">
-          {c.titleBoldLine1}
-          {c.titleBoldLine2}
-        </span>
+        <br />
+        <span className="font-bold not-italic">{c.titleBoldLine1.trim()}</span>
+        <br />
+        <span className="font-bold not-italic">{c.titleBoldLine2}</span>
       </p>
       <p
         className="absolute z-[3] m-0 font-normal leading-[1.2] text-[#0d0300]"
