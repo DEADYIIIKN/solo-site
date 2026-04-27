@@ -181,23 +181,13 @@ function ConsultationBtn({
 }
 
 function PackageGlow({ left, top }: { left: number; top: number; filterId?: string }) {
-  // Figma 783:10947+10948: 42×42 halo + 8×8 sharp dot.
-  // Halo: orange circle r=21 with gaussianBlur (контейнер использует CSS blur вместо SVG для лучшего рендера).
-  // Dot vertical offset +20 (не +17): компенсация Montserrat line-box vs Figma glyph-bbox для оптического центра текста.
+  // Figma 783:10948 Ellipse 113 — 8×8 sharp orange dot. Halo (Ellipse 110, blur stdDeviation=50) практически невидим из-за сильного blur, в Figma reference (1:1) виден только sharp dot. Position (+17,+20): center в 42×42 frame с +3px Y-compensation для Montserrat line-box.
   return (
-    <>
-      <div
-        className="pointer-events-none absolute z-[2] size-[42px]"
-        data-services-package-glow=""
-        style={{ left, top }}
-      >
-        <div className="absolute inset-0 rounded-full bg-[#ff5c00] blur-[10px] opacity-80" />
-      </div>
-      <div
-        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
-        style={{ left: left + 17, top: top + 20 }}
-      />
-    </>
+    <div
+      className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+      data-services-package-glow=""
+      style={{ left: left + 17, top: top + 20 }}
+    />
   );
 }
 

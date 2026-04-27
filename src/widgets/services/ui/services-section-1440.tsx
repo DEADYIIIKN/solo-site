@@ -152,28 +152,17 @@ function CommercialPointCell({
   );
 }
 
-/** «Пакеты…» — Figma 783:9214/9215: 42×42 orange halo (CSS blur) + 8×8 sharp dot центрирован. */
+/** «Пакеты…» — Figma 783:9215 Ellipse 113: 8×8 sharp orange dot. Halo Ellipse 110 (gaussianBlur stdDeviation=50) визуально не виден в Figma reference 1:1. */
 function Services1440PackageRow() {
   return (
-    <>
-      <div
-        className="pointer-events-none absolute z-[2] size-[42px]"
-        data-services-package-glow=""
-        style={{
-          left: V_HERO.packageGlowFrame.left,
-          top: V_HERO.packageGlowFrame.top,
-        }}
-      >
-        <div className="absolute inset-0 rounded-full bg-[#ff5c00] blur-[10px] opacity-80" />
-      </div>
-      <div
-        className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
-        style={{
-          left: V_HERO.packageGlowFrame.left + 17,
-          top: V_HERO.packageGlowFrame.top + 20,
-        }}
-      />
-    </>
+    <div
+      className="pointer-events-none absolute z-[3] size-[8px] rounded-full bg-[#ff5c00]"
+      data-services-package-glow=""
+      style={{
+        left: V_HERO.packageGlowFrame.left + 17,
+        top: V_HERO.packageGlowFrame.top + 20,
+      }}
+    />
   );
 }
 
