@@ -50,6 +50,10 @@ export default defineConfig({
     /**
      * Поднимаем dev на :3100, чтобы не конфликтовать с локальным dev (:3000).
      * Включаем reuseExistingServer — если предыдущий запуск оставил сервер, его переиспользуем.
+     *
+     * TG-popup TRIGGER_MS — production default 60s. tg-popup.spec.ts override
+     * через `window.__TG_TEST_TRIGGER_MS__` (page.addInitScript) — только в
+     * том spec, чтобы popup не появлялся в других тестах за их runtime.
      */
     command: "pnpm exec next dev --turbopack -p 3100 -H 0.0.0.0",
     url: "http://localhost:3100",

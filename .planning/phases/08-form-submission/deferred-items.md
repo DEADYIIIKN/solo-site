@@ -1,0 +1,1 @@
+- 2026-04-27 (08-04): pre-existing E2E test "happy path — форма отправляется, появляется success modal" (lead-form.spec.ts:40) — fails в worktree env, не зависит от 08-04 изменений. Скорее всего нужен реальный /api/leads endpoint live (Payload+n8n). Проверить на main после merge.

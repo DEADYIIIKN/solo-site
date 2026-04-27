@@ -43,7 +43,10 @@ export const mobileMenuLayout360: MobileMenuLayoutConfig = {
   visibilityClass: "hidden max-[479px]:block",
   header: {
     className: "fixed inset-x-0 top-0 z-[800] hidden h-[56px] max-[479px]:block",
-    innerClassName: "mx-auto flex h-full w-[328px] items-center justify-between px-[16px]",
+    /* Figma 803:13630 / 783:10591 — gray bg 12% opacity + backdrop-blur 4px,
+       rounded только bottom corners 12px. Inner div центрирован, 328 wide. */
+    innerClassName:
+      "mx-auto flex h-full w-[328px] items-center justify-between rounded-bl-[12px] rounded-br-[12px] bg-[#9c9c9c]/[0.12] px-[16px] backdrop-blur-[4px]",
     logoClass: "relative h-[18px] w-[102px] shrink-0",
     logoClosedSrc: firstScreenAssets.navbar.logo360,
     menuButtonClass:
@@ -66,8 +69,10 @@ export const mobileMenuLayout360: MobileMenuLayoutConfig = {
 export const mobileMenuLayout480: MobileMenuLayoutConfig = {
   visibilityClass: "hidden min-[480px]:block min-[768px]:hidden",
   header: {
-    className: "fixed inset-x-0 top-0 z-[800] hidden h-[60px] min-[480px]:block min-[768px]:hidden",
-    innerClassName: "mx-auto flex h-full w-[432px] items-center justify-between px-[24px]",
+    /* Figma 783:11367: h-68 w-432 rounded-bl-[16px] rounded-br-[16px] */
+    className: "fixed inset-x-0 top-0 z-[800] hidden h-[68px] min-[480px]:block min-[768px]:hidden",
+    innerClassName:
+      "mx-auto flex h-full w-[432px] items-center justify-between rounded-bl-[16px] rounded-br-[16px] bg-[#9c9c9c]/[0.12] px-[30px] backdrop-blur-[4px]",
     logoClass: "relative h-[22px] w-[124px] shrink-0",
     logoClosedSrc: firstScreenAssets.navbar.logo480,
     menuButtonClass:
@@ -76,10 +81,10 @@ export const mobileMenuLayout480: MobileMenuLayoutConfig = {
     menuIconSrc: firstScreenAssets.navbar.menu480
   },
   overlay: {
-    topBarClass: "absolute inset-x-0 top-0 h-[60px] bg-white",
+    topBarClass: "absolute inset-x-0 top-0 h-[68px] bg-white",
     whitePanelClass: "absolute inset-x-0 top-0 bottom-0 bg-white",
-    navBarRowClass: "absolute inset-x-0 top-0 h-[60px]",
-    navBarInnerClassName: "mx-auto flex h-full w-[432px] items-center justify-between px-[24px]",
+    navBarRowClass: "absolute inset-x-0 top-0 h-[68px]",
+    navBarInnerClassName: "mx-auto flex h-full w-[432px] items-center justify-between px-[30px]",
     logoMenuDarkClass: "relative h-[22px] w-[124px] shrink-0",
     logoMenuDarkSrc: logoMenuDarkShared,
     closeButtonClass:
@@ -90,8 +95,10 @@ export const mobileMenuLayout480: MobileMenuLayoutConfig = {
 export const mobileMenuLayout768: MobileMenuLayoutConfig = {
   visibilityClass: "hidden min-[768px]:block min-[1024px]:hidden",
   header: {
-    className: "fixed inset-x-0 top-0 z-[800] hidden h-[64px] min-[768px]:block min-[1024px]:hidden",
-    innerClassName: "mx-auto flex h-full w-[672px] items-center justify-between px-[30px]",
+    /* Figma 783:11985: h-76 w-672 rounded-bl-[20px] rounded-br-[20px] */
+    className: "fixed inset-x-0 top-0 z-[800] hidden h-[76px] min-[768px]:block min-[1024px]:hidden",
+    innerClassName:
+      "mx-auto flex h-full w-[672px] items-center justify-between rounded-bl-[20px] rounded-br-[20px] bg-[#9c9c9c]/[0.12] px-[32px] backdrop-blur-[4px]",
     logoClass: "relative h-[24px] w-[136px] shrink-0",
     logoClosedSrc: firstScreenAssets.navbar.logo768,
     menuButtonClass:
@@ -100,10 +107,10 @@ export const mobileMenuLayout768: MobileMenuLayoutConfig = {
     menuIconSrc: firstScreenAssets.navbar.menu768
   },
   overlay: {
-    topBarClass: "absolute inset-x-0 top-0 h-[64px] bg-white",
+    topBarClass: "absolute inset-x-0 top-0 h-[76px] bg-white",
     whitePanelClass: "absolute inset-x-0 top-0 bottom-0 bg-white",
-    navBarRowClass: "absolute inset-x-0 top-0 h-[64px]",
-    navBarInnerClassName: "mx-auto flex h-full w-[672px] items-center justify-between px-[30px]",
+    navBarRowClass: "absolute inset-x-0 top-0 h-[76px]",
+    navBarInnerClassName: "mx-auto flex h-full w-[672px] items-center justify-between px-[32px]",
     logoMenuDarkClass: "relative h-[24px] w-[136px] shrink-0",
     logoMenuDarkSrc: logoMenuDarkShared,
     closeButtonClass:

@@ -13,7 +13,7 @@ import {
   type FirstScreenConsultationContactMethod,
   type FirstScreenConsultationFormState,
   defaultFirstScreenConsultationFormState,
-} from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 
 const contactOptions: {
   id: FirstScreenConsultationContactMethod;
@@ -54,8 +54,13 @@ export type LeadFormFieldsDensity =
   /** Один столбец до 1023px: типографика через max-width breakpoints */
   | "below1024";
 
-/** Figma: 783:9087/9088 (1440), 783:8372/8373 (1024), 783:10346 (mobile) — Interface element: pb 20 pt 10 */
-function leadUnderlinePadding(): string {
+/** Figma: 783:9087/9088 (1440), 783:8372/8373 (1024), 783:10346 (mobile) — Interface element: pb 20 pt 10.
+ *  09-01 LF-DRIFT-01: на below1024 (≤767px) Figma 783:10314 (input h=38) / 783:10873 (input h=40)
+ *  требуют меньшего вертикального padding — pb=14 pt=6 даёт total ≈ text 1.2em + 20 ≈ 38..40px. */
+function leadUnderlinePadding(density: LeadFormFieldsDensity): string {
+  if (density === "below1024" || density === "480" || density === "360") {
+    return "pb-[14px] pt-[6px]";
+  }
   return "pb-[20px] pt-[10px]";
 }
 
@@ -153,11 +158,17 @@ export function LeadFormFields({
   className,
   /** Только поля: без шапки «Это бесплатно» и без внешней тёмной карточки (Figma 783:10315 / 783:10874). */
   embedInCard = false,
+  source,
 }: {
   density: LeadFormFieldsDensity;
   contactLayout: "radio" | "pill";
   className?: string;
   embedInCard?: boolean;
+  /**
+   * Источник заявки для аналитики, передаётся в API /api/leads.
+   * Примеры: "lead-form", "hero-cta", "header-cta", "services-cta", "consultation-modal".
+   */
+  source: string;
 }) {
   const d = densityMap[density];
   const consentId = useId();
@@ -166,6 +177,8 @@ export function LeadFormFields({
   );
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const { name, phone, message, contactMethod, consent } = formState;
 
   const nameError = submitAttempted && !name.trim();
@@ -203,25 +216,61 @@ export function LeadFormFields({
         "w-full px-[20px] pb-[24px] pt-[20px]",
       !embedInCard &&
         density === "below1024" &&
-        "w-full max-w-[520px] gap-6 p-6 max-[767px]:max-w-none max-[479px]:gap-6 max-[479px]:p-4",
+        /* 09-01 LF-DRIFT-01: max-[479px] gap-4 (16px) уменьшает cumulative drift на 360
+           между header «Это бесплатно» и middle-column (Figma «Это бесплатно» → name ≈ 60px,
+           что включает «Мы дадим...» body text 14.4 + gap-10 + name padding). */
+        "w-full max-w-[520px] gap-6 p-6 max-[767px]:max-w-none max-[479px]:gap-4 max-[479px]:p-4",
         className,
       )}
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
         setSubmitAttempted(true);
         if (!name.trim() || !isConsultationPhoneValid(phone) || !consent) return;
-        /* TODO: отправка заявки */
-        setSuccessOpen(true);
-        setFormState(defaultFirstScreenConsultationFormState);
-        setSubmitAttempted(false);
+        if (submitting) return;
+        setSubmitting(true);
+        setSubmitError(null);
+        // Client-side debounce (D3): защита от двойного клика; разлочиваем через 5с минимум.
+        const debounceTimer = setTimeout(() => setSubmitting(false), 5000);
+        try {
+          const res = await fetch("/api/leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: name.trim(),
+              phone,
+              message,
+              consent,
+              contactMethod,
+              source,
+            }),
+          });
+          if (res.ok) {
+            // 2xx — success даже если accepted:false (rate-limit) per D4 compromise
+            setSuccessOpen(true);
+            setFormState(defaultFirstScreenConsultationFormState);
+            setSubmitAttempted(false);
+          } else {
+            // 4xx/5xx — true error UX (D4: только 500 реально показывается на проде)
+            setSubmitError("Не удалось отправить заявку. Попробуйте ещё раз.");
+          }
+        } catch {
+          setSubmitError("Проблема со связью. Попробуйте ещё раз.");
+        } finally {
+          clearTimeout(debounceTimer);
+          setSubmitting(false);
+        }
       }}
     >
       {!embedInCard && (
         <div
           className={cn(
             "flex flex-col text-white",
-            /* Figma 783:9082 (1440) gap-12; 783:8367 (1024) gap-12; 783:11523 (768) gap-10 */
-            density === "768" || density === "480" || density === "360"
+            /* Figma 783:9082 (1440) gap-12; 783:8367 (1024) gap-12; 783:11523 (768) gap-10;
+               09-01: below1024 — gap-10 matches Figma 783:10314 / 783:10873 (mobile) */
+            density === "768" ||
+            density === "480" ||
+            density === "360" ||
+            density === "below1024"
               ? "gap-[10px]"
               : "gap-[12px]",
           )}
@@ -238,12 +287,18 @@ export function LeadFormFields({
       <div
         className={cn(
           "flex min-h-0 flex-col",
-          /* 783:9085 gap 30 (1440); 783:8370 gap 24 (1024) */
+          /* 783:9085 gap 30 (1440); 783:8370 gap 24 (1024).
+             09-01: below1024 на ≤479px — gap уменьшен до 20px для устранения cumulative drift
+             (Figma 783:10314 имеет более плотную упаковку rows). */
             embedInCard
-              ? "gap-6"
+              ? density === "below1024"
+                ? "gap-6 max-[479px]:gap-5"
+                : "gap-6"
               : density === "1440"
                 ? "gap-[30px]"
-                : "gap-6",
+                : density === "below1024"
+                  ? "gap-6 max-[479px]:gap-5"
+                  : "gap-6",
         )}
       >
         <div
@@ -255,7 +310,7 @@ export function LeadFormFields({
           <label
             className={cn(
               "flex min-h-0 min-w-0 flex-1 flex-col border-b border-solid transition-colors duration-150",
-              leadUnderlinePadding(),
+              leadUnderlinePadding(density),
               nameError ? "border-[#e63a24]" : "border-[#9c9c9c] focus-within:border-white",
             )}
           >
@@ -282,7 +337,7 @@ export function LeadFormFields({
           <label
             className={cn(
               "flex min-h-0 min-w-0 flex-1 flex-col border-b border-solid transition-colors duration-150",
-              leadUnderlinePadding(),
+              leadUnderlinePadding(density),
               phoneError ? "border-[#e63a24]" : "border-[#9c9c9c] focus-within:border-white",
             )}
           >
@@ -411,7 +466,12 @@ export function LeadFormFields({
         <label
           className={cn(
             "flex w-full flex-col box-border border-b border-solid border-[#9c9c9c] transition-colors duration-150 focus-within:border-white",
-            "pb-[30px] pt-[10px]",
+            /* 09-01 LF-DRIFT-01: below1024/480/360 — Figma textarea-end → checkbox gap≈24..29
+               (783:10314 textarea y=683+80=763, checkbox y=787 → 24).
+               Уменьшаем pb на mobile, чтобы не накапливать drift. */
+            density === "below1024" || density === "480" || density === "360"
+              ? "pb-[14px] pt-[6px]"
+              : "pb-[30px] pt-[10px]",
             d.messageH,
           )}
         >
@@ -493,16 +553,28 @@ export function LeadFormFields({
           </label>
         </div>
 
+        {submitError && (
+          <p
+            role="alert"
+            data-testid="lead-form-error"
+            className={cn("m-0 leading-[1.2] text-[#e63a24]", d.consent)}
+          >
+            {submitError}
+          </p>
+        )}
+
         <button
           data-testid="lead-form-submit"
+          disabled={submitting}
           className={cn(
             "flex w-full items-center justify-center rounded-[50px] border-0 bg-[#ff5c00] px-10 font-semibold lowercase text-white transition-colors hover:bg-[#de4f00]",
+            "disabled:cursor-not-allowed disabled:opacity-60",
             d.btn,
             d.btnH,
           )}
           type="submit"
         >
-          оставить заявку
+          {submitting ? "отправляем…" : "оставить заявку"}
         </button>
       </div>
 

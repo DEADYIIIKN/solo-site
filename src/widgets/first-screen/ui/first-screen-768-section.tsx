@@ -6,7 +6,7 @@ import { FirstScreenConsultationModal768 } from "@/widgets/first-screen/ui/first
 import type {
   FirstScreenConsultationFormState,
   FirstScreenConsultationModalTitleVariant
-} from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 import { FirstScreenHeader768 } from "@/widgets/first-screen/ui/first-screen-header-768";
 import { FirstScreenHero768 } from "@/widgets/first-screen/ui/first-screen-hero-768";
 

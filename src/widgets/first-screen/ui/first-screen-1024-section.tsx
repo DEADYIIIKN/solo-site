@@ -8,7 +8,7 @@ import {
 import type {
   FirstScreenConsultationFormState,
   FirstScreenConsultationModalTitleVariant
-} from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 import { FirstScreenHeader1024 } from "@/widgets/first-screen/ui/first-screen-header-1024";
 import { FirstScreenHero1024 } from "@/widgets/first-screen/ui/first-screen-hero-1024";
 

@@ -9,6 +9,7 @@ import sharp from "sharp";
 import { publicSiteUrl } from "./shared/config/public-site-url.ts";
 import { CasesAdvertising } from "./cms/collections/cases-advertising.ts";
 import { CasesVertical } from "./cms/collections/cases-vertical.ts";
+import { Leads } from "./cms/collections/leads.ts";
 import { Media } from "./cms/collections/media.ts";
 import { SecretsPost } from "./cms/collections/secrets-post.ts";
 import { Users } from "./cms/collections/users.ts";
@@ -49,7 +50,7 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Users, Media, CasesVertical, CasesAdvertising, SecretsPost],
+  collections: [Users, Media, CasesVertical, CasesAdvertising, SecretsPost, Leads],
   globals: [SiteSettings, PrivacyPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

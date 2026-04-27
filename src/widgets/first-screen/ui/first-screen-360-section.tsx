@@ -6,7 +6,7 @@ import { FirstScreenConsultationModal360 } from "@/widgets/first-screen/ui/first
 import type {
   FirstScreenConsultationFormState,
   FirstScreenConsultationModalTitleVariant
-} from "@/widgets/first-screen/ui/first-screen-consultation-modal-1440";
+} from "@/widgets/first-screen/model/first-screen-consultation-form-state";
 import { FirstScreenHeader360 } from "@/widgets/first-screen/ui/first-screen-header-360";
 import { FirstScreenHero360 } from "@/widgets/first-screen/ui/first-screen-hero-360";
 

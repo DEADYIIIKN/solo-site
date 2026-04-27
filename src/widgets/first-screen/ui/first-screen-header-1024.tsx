@@ -21,15 +21,16 @@ export function FirstScreenHeader1024({
 }: FirstScreenHeader1024Props) {
   const navbarSurface = useNavbarSurface(72);
   const isLightTheme = navbarSurface === "light-surface";
-  const isHeroTransparent = navbarSurface === "hero-transparent";
   const navLinks = getFirstScreenNavLinks(showNews);
 
+  /* Figma 783:9016: 1024 navbar 944×72. Подложки в Figma нет, но применяем
+     тот же gray-translucent + backdrop-blur паттерн как у mobile. Размеры из
+     Figma element size: rounded-bl/br-20 (по progressive scale между 768→1440). */
   const header = (
     <header
-      className="fixed inset-x-0 top-0 z-[800] hidden h-[72px] min-[1024px]:block min-[1440px]:hidden transition-[background-color] duration-[180ms] ease-[var(--ease-standard)]"
-      style={{ backgroundColor: isHeroTransparent ? "transparent" : isLightTheme ? "#ffffff" : "#0d0300" }}
+      className="fixed inset-x-0 top-0 z-[800] hidden h-[72px] min-[1024px]:block min-[1440px]:hidden bg-transparent"
     >
-      <div className="mx-auto flex h-full w-[944px] items-center justify-between px-[30px] py-[15px]">
+      <div className="mx-auto flex h-full w-[944px] items-center justify-between rounded-bl-[20px] rounded-br-[20px] bg-[#9c9c9c]/[0.12] px-[30px] py-[15px] backdrop-blur-[4px]">
         <div className="relative h-[24px] w-[136px] shrink-0">
           <img
             alt="СОЛО"
