@@ -109,16 +109,17 @@ describe("useActivityTimer", () => {
 
   it("НЕ вызывает onElapsed если 30+ секунд нет активности (idle gate)", () => {
     const onElapsed = vi.fn();
-    render(<Probe durationMs={5_000} onElapsed={onElapsed} />);
+    // duration намного больше idle threshold — чтобы убедиться что idle gate
+    // действительно останавливает accumulator (а не просто ещё не достигли target)
+    render(<Probe durationMs={120_000} onElapsed={onElapsed} />);
 
     // Один раз отметим активность чтобы lastActivityAt был свежим
     dispatchActivity("mousemove");
 
-    // Прокручиваем 60s БЕЗ событий — система должна войти в idle после 30s
-    // Накопленный за первые ~30s tick'ов время не должен достичь 5s
-    // потому что после первого тика idleMs быстро превысит 30s.
-    // Точная проверка: за 60s без активности onElapsed не вызывается.
-    advance(60_000);
+    // Прокручиваем 5 минут БЕЗ событий. После первых ~30 тиков
+    // idleMs >= 30s и accumulator перестаёт расти. За 300s он может
+    // накопить максимум ~30s — намного меньше 120s duration.
+    advance(300_000);
 
     expect(onElapsed).not.toHaveBeenCalled();
   });
@@ -177,21 +178,25 @@ describe("useActivityTimer", () => {
 
   it("после возобновления активности accumulator продолжает (не сбрасывается)", () => {
     const onElapsed = vi.fn();
-    render(<Probe durationMs={5_000} onElapsed={onElapsed} />);
+    // durationMs=120s — выше idle ceiling, чтобы можно было корректно проверить
+    // что после idle accumulator продолжает а не сбрасывается.
+    render(<Probe durationMs={120_000} onElapsed={onElapsed} />);
 
-    // Фаза 1: 3 тика активности — accumulator = 3s (< 5s, не fired)
-    for (let i = 0; i < 3; i += 1) {
+    // Фаза 1: 60 тиков активности — accumulator ≈ 60s (< 120s, не fired)
+    for (let i = 0; i < 60; i += 1) {
       dispatchActivity("mousemove");
       advance(1_000);
     }
     expect(onElapsed).not.toHaveBeenCalled();
 
-    // Фаза 2: idle 60s — accumulator паузится, не сбрасывается
-    advance(60_000);
+    // Фаза 2: 5 минут idle — accumulator паузится после первых ~30s,
+    // но НЕ сбрасывается. Накопит максимум ~30s от первых тиков idle = ~90s total.
+    advance(300_000);
     expect(onElapsed).not.toHaveBeenCalled();
 
-    // Фаза 3: возобновление активности — нужно ещё 2 тика чтобы достичь 5s
-    for (let i = 0; i < 2; i += 1) {
+    // Фаза 3: возобновление активности на 60 секунд — accumulator продолжает
+    // с предыдущего значения (~90s) и доходит до 120s.
+    for (let i = 0; i < 60; i += 1) {
       dispatchActivity("mousemove");
       advance(1_000);
     }
