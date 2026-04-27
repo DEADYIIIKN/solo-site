@@ -122,7 +122,12 @@ Plans:
   1. Playwright E2E tests cover form submission flow: field entry, checkbox toggle, and submit button state — and pass in CI
   2. Playwright multi-browser tests run against Safari and Chrome and pass for the main page load and carousel interactions
   3. Unit tests cover form validation functions (phone formatting, backspace handling, submit guard) and animation hooks
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — Playwright setup + lead-form / case-form E2E specs (TEST-01)
+- [ ] 06-02-PLAN.md — Multi-browser Playwright config + cross-browser carousel specs (TEST-02)
+- [ ] 06-03-PLAN.md — Vitest setup + unit tests phone-format / validation / useInViewOnce (TEST-03)
 
 ## Progress
 
@@ -136,4 +141,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 3. Mobile/Tablet Layout (820px + 360px) | 5/5 | Complete | 2026-04-22 |
 | 4. Safari + Animations | 6/6 | Complete | 2026-04-23 |
 | 5. Pixel-Perfect Final Pass | 6/6 | Complete | 2026-04-27 |
-| 6. Testing | 0/TBD | Not started | - |
+| 6. Testing | 0/3 | Planned | - |
