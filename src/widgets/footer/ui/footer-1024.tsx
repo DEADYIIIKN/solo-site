@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import { SiteNavLink } from "@/shared/ui/site-nav-link";
@@ -105,12 +106,13 @@ export function Footer1024({
                 >
                   {/* Card image */}
                   <div className="relative h-[217px] w-full overflow-hidden rounded-[12px]">
-                    <img
+                    <Image
                       alt=""
-                      className="absolute inset-0 size-full object-cover"
-                      height={217}
+                      className="object-cover"
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 1024px) 50vw, 480px"
                       src={post.image}
-                      width={386}
                     />
                   </div>
                   {/* Card title */}
