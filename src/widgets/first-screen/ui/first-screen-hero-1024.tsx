@@ -1,23 +1,16 @@
-"use client";
-
-import { useState } from "react";
-import Image from "next/image";
-
 import {
   firstScreenAssets,
   firstScreenContent
 } from "@/widgets/first-screen/model/first-screen.data";
 import { FirstScreenCta } from "@/widgets/first-screen/ui/first-screen-cta";
 import { FirstScreenGeoGlow } from "@/widgets/first-screen/ui/first-screen-geo-glow";
+import { FirstScreenHeroVideoPoster } from "@/widgets/first-screen/ui/first-screen-hero-video-poster";
 
 type FirstScreenHero1024Props = {
   onConsultationCtaClick?: () => void;
 };
 
 export function FirstScreenHero1024({ onConsultationCtaClick }: FirstScreenHero1024Props) {
-  // Poster JPG отдаётся как LCP element до момента готовности видео — закрывается onCanPlay.
-  const [videoReady, setVideoReady] = useState(false);
-
   return (
     <div className="absolute inset-0 overflow-visible">
       {/* image: 604,446 380x214 r12 */}
@@ -25,36 +18,12 @@ export function FirstScreenHero1024({ onConsultationCtaClick }: FirstScreenHero1
         className="absolute left-[604px] top-[446px] z-10 h-[214px] w-[380px] overflow-clip rounded-[12px]"
         data-showreel-source="1024"
       >
-        {!videoReady ? (
-          <Image
-            alt=""
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-            fetchPriority="high"
-            fill
-            priority
-            sizes="380px"
-            src={firstScreenAssets.heroImage}
-          />
-        ) : null}
-        {firstScreenAssets.heroVideoPreview ? (
-          <video
-            aria-label="BTS Ozon"
-            autoPlay
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-            loop
-            muted
-            onCanPlay={() => setVideoReady(true)}
-            playsInline
-            poster={firstScreenAssets.heroImage}
-            preload="auto"
-            src={firstScreenAssets.heroVideoPreview}
-          />
-        ) : (
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[#1a1410]"
-          />
-        )}
+        <FirstScreenHeroVideoPoster
+          ariaLabel="BTS Ozon"
+          posterSrc={firstScreenAssets.heroImage}
+          sizes="380px"
+          videoSrc={firstScreenAssets.heroVideoPreview}
+        />
       </div>
 
       {/* subtitle: 598,159 w386 */}
@@ -69,7 +38,7 @@ export function FirstScreenHero1024({ onConsultationCtaClick }: FirstScreenHero1
 
       {/* title "под бизнес-задачи бренда": 256,199 w728 */}
       <p className="absolute left-[256px] top-[199px] m-0 w-[728px] text-[70px] font-bold leading-[0.9] text-white" style={{ fontFamily: "var(--font-family-display)" }}>
-        <span className="whitespace-nowrap">под{"\u00A0"}бизнес-задачи</span>
+        <span className="whitespace-nowrap">под{" "}бизнес-задачи</span>
         <br />
         бренда
       </p>
