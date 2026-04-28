@@ -1,4 +1,6 @@
-@import "tailwindcss";
+/* Ограничиваем Tailwind 4 авто-сканом только src/. Иначе подхватывает
+   `bg-[url(...)]` из .planning/research/AUDIT-PSI.md и падает на next build. */
+@import "tailwindcss" source("../");
 
 @theme {
   --font-sans: "Montserrat", sans-serif;
