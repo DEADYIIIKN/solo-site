@@ -19,8 +19,8 @@
 
 ### Performance — Payload Media (P0.5)
 
-- [ ] **PERF-10**: `Media` collection в Payload получает `imageSizes` config (как минимум: `card-360`, `card-768`, `card-1440`, `hero-1440`). Upload автоматически генерирует resized variants. Старые загруженные media — миграция/regenerate command.
-- [ ] **PERF-11**: Все рендеры Payload media (cases, secrets-posts, future leads attachments) идут через `next/image` с правильным `sizes` атрибутом. Audit нашёл 0 raw `<img>` для Payload media — нет регрессии.
+- [x] **PERF-10**: `Media` collection в Payload получает `imageSizes` config (как минимум: `card-360`, `card-768`, `card-1440`, `hero-1440`). Upload автоматически генерирует resized variants. Старые загруженные media — миграция/regenerate command.
+- [x] **PERF-11**: Все рендеры Payload media (cases, secrets-posts, future leads attachments) идут через `next/image` с правильным `sizes` атрибутом. Audit нашёл 0 raw `<img>` для Payload media — нет регрессии.
 
 ### Performance — Bundle & Fonts (P1)
 
@@ -64,8 +64,8 @@
 | PERF-03 | Phase 13 — Static Media Optimization | Complete locally; final PSI in Phase 19 |
 | PERF-05 | Phase 13 — Static Media Optimization | Complete |
 | PERF-04 | Phase 14 — Cache & Delivery Layer | Complete locally; demo smoke pending deploy |
-| PERF-10 | Phase 15 — Payload Media Optimization | Pending |
-| PERF-11 | Phase 15 — Payload Media Optimization | Pending |
+| PERF-10 | Phase 15 — Payload Media Optimization | Complete locally; existing upload apply command documented |
+| PERF-11 | Phase 15 — Payload Media Optimization | Complete locally |
 | PERF-06 | Phase 16 — Bundle & Fonts | Pending |
 | PERF-07 | Phase 16 — Bundle & Fonts | Pending |
 | PERF-08 | Phase 16 — Bundle & Fonts | Pending |

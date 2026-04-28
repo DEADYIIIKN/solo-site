@@ -1,6 +1,64 @@
-import type { CollectionConfig } from "payload";
+import type { CollectionConfig, ImageSize } from "payload";
 
 const MEDIA_STATIC_DIR = process.env.PAYLOAD_UPLOAD_DIR || "media";
+
+const HIDDEN_IMAGE_SIZE_ADMIN = {
+  disableGroupBy: true,
+  disableListColumn: true,
+  disableListFilter: true,
+} as const;
+
+const IMAGE_FORMAT_OPTIONS = {
+  avif: {
+    format: "avif",
+    options: { quality: 72 },
+  },
+  webp: {
+    format: "webp",
+    options: { quality: 78 },
+  },
+} as const satisfies Record<string, NonNullable<ImageSize["formatOptions"]>>;
+
+const responsiveImageSize = ({
+  format,
+  name,
+  width,
+}: {
+  format: keyof typeof IMAGE_FORMAT_OPTIONS;
+  name: string;
+  width: number;
+}): ImageSize => ({
+  name: `${name}-${format}`,
+  width,
+  withoutEnlargement: true,
+  formatOptions: IMAGE_FORMAT_OPTIONS[format],
+  admin: HIDDEN_IMAGE_SIZE_ADMIN,
+});
+
+export const payloadMediaImageSizes: ImageSize[] = [
+  responsiveImageSize({ name: "card-360", width: 360, format: "avif" }),
+  responsiveImageSize({ name: "card-360", width: 360, format: "webp" }),
+  responsiveImageSize({ name: "card-768", width: 768, format: "avif" }),
+  responsiveImageSize({ name: "card-768", width: 768, format: "webp" }),
+  responsiveImageSize({ name: "card-1440", width: 1440, format: "avif" }),
+  responsiveImageSize({ name: "card-1440", width: 1440, format: "webp" }),
+  responsiveImageSize({ name: "hero-1440", width: 1440, format: "avif" }),
+  responsiveImageSize({ name: "hero-1440", width: 1440, format: "webp" }),
+];
+
+export function getMediaAdminThumbnail({ doc }: { doc: Record<string, unknown> }): false | string {
+  const sizes = doc.sizes;
+  if (sizes && typeof sizes === "object") {
+    const thumbnail = (sizes as Record<string, { url?: unknown }>)["card-360-webp"];
+    if (thumbnail && typeof thumbnail.url === "string" && thumbnail.url.length > 0) {
+      return thumbnail.url;
+    }
+  }
+
+  return typeof doc.url === "string" && doc.mimeType?.toString().startsWith("image/")
+    ? doc.url
+    : false;
+}
 
 /** Человекочитаемый alt из имени файла (без расширения). */
 function altFromFilename(filename: string): string {
@@ -49,6 +107,9 @@ export const Media: CollectionConfig = {
   upload: {
     staticDir: MEDIA_STATIC_DIR,
     mimeTypes: ["image/*", "video/*"],
+    imageSizes: payloadMediaImageSizes,
+    adminThumbnail: getMediaAdminThumbnail,
+    displayPreview: true,
     /** Массовая загрузка с экрана списка (drag-and-drop на таблицу). */
     bulkUpload: true,
     /** Файл на экране создания — сразу видно поле загрузки. */

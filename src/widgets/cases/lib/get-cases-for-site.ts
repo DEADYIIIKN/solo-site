@@ -1,38 +1,17 @@
 import { getPayload } from "payload";
 
 import config from "@payload-config";
+import {
+  PAYLOAD_CARD_1440_SIZES,
+  PAYLOAD_CARD_768_SIZES,
+  payloadMediaSrc,
+  type PayloadMediaLike,
+} from "@/shared/lib/payload-media";
 import type { CasesAdCard, CasesVerticalCard } from "@/widgets/cases/model/cases.data";
 import {
   casesAdCards1440,
   casesVerticalCards1440,
 } from "@/widgets/cases/model/cases.data";
-
-type MediaLike =
-  | {
-      url?: string | null;
-      sizes?: Record<string, { url?: string | null } | null> | null;
-    }
-  | number
-  | string
-  | null
-  | undefined;
-
-function mediaSrc(m: MediaLike): string {
-  if (m && typeof m === "object") {
-    if (typeof m.url === "string" && m.url.length > 0) {
-      return m.url;
-    }
-    const sizes = m.sizes;
-    if (sizes && typeof sizes === "object") {
-      for (const v of Object.values(sizes)) {
-        if (v && typeof v === "object" && typeof v.url === "string" && v.url.length > 0) {
-          return v.url;
-        }
-      }
-    }
-  }
-  return "";
-}
 
 /**
  * Данные кейсов для главной: из Payload, при ошибке или пустых коллекциях — статический fallback.
@@ -61,7 +40,10 @@ export async function getCasesForSite(): Promise<{
 
     const verticalMapped: CasesVerticalCard[] = verticalRes.docs
       .map((doc, index) => {
-        const image = mediaSrc(doc.image as MediaLike) || casesVerticalCards1440[index]?.image || "";
+        const image =
+          payloadMediaSrc(doc.image as PayloadMediaLike, PAYLOAD_CARD_768_SIZES) ||
+          casesVerticalCards1440[index]?.image ||
+          "";
         if (!image) return null;
         const titleLines = String(doc.title ?? "")
           .split("\n")
@@ -71,7 +53,7 @@ export async function getCasesForSite(): Promise<{
           ?.map((r) => r.line)
           .filter((x): x is string => Boolean(x));
         if (!titleLines.length || !credits?.length) return null;
-        const videoUrl = mediaSrc(doc.detailVideo as MediaLike);
+        const videoUrl = payloadMediaSrc(doc.detailVideo as PayloadMediaLike);
         const card: CasesVerticalCard = {
           id: String(doc.id),
           image,
@@ -89,7 +71,10 @@ export async function getCasesForSite(): Promise<{
 
     const adMapped: CasesAdCard[] = adRes.docs
       .map((doc, index) => {
-        const image = mediaSrc(doc.image as MediaLike) || casesAdCards1440[index]?.image || "";
+        const image =
+          payloadMediaSrc(doc.image as PayloadMediaLike, PAYLOAD_CARD_1440_SIZES) ||
+          casesAdCards1440[index]?.image ||
+          "";
         if (!image) return null;
         const credits = (doc.credits as { line?: string }[] | undefined)
           ?.map((r) => r.line)
@@ -99,7 +84,7 @@ export async function getCasesForSite(): Promise<{
         const detailResultBullets = bulletsRaw
           ?.map((b) => b.line)
           .filter((x): x is string => Boolean(x));
-        const adVideoUrl = mediaSrc(doc.detailVideo as MediaLike);
+        const adVideoUrl = payloadMediaSrc(doc.detailVideo as PayloadMediaLike);
         const card: CasesAdCard = {
           id: String(doc.id),
           image,

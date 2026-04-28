@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: "Performance & Delivery"
 last_shipped: v1.1.2
-status: phase-14-complete-awaiting-deploy-smoke
-stopped_at: Phase 14 complete locally; deploy smoke for cache headers still pending
-last_updated: "2026-04-28T16:30:00.000Z"
-last_activity: 2026-04-28 -- Phase 14 static cache headers implemented and verified locally
+status: phase-15-complete
+stopped_at: Phase 15 complete locally; next is Phase 16 Bundle & Fonts or deploy media regenerate
+last_updated: "2026-04-28T17:12:00.000Z"
+last_activity: 2026-04-28 -- Phase 15 Payload Media variants and render audit complete locally
 progress:
   total_phases: 7
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 13
-  completed_plans: 4
-  percent: 31
+  completed_plans: 6
+  percent: 46
 ---
 
 # Project State
@@ -22,17 +22,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.2 — Performance & Delivery (Phase 14 complete locally; next Phase 15 or deploy PSI/cache smoke)
+**Current focus:** v1.2 — Performance & Delivery (Phase 15 complete locally; next Phase 16 or deploy media regenerate)
 
 ## Current Position
 
 Last shipped: **v1.1.2** (2026-04-28)
 Active milestone: **v1.2 — Performance & Delivery**
-Phase: 14 complete locally — Cache & Delivery Layer
-Next: deploy smoke for PERF-04, then Phase 15 — Payload Media Optimization
-Last activity: 2026-04-28 -- `headers()` for `/assets/:path*` implemented and verified locally
+Phase: 15 complete locally — Payload Media Optimization
+Next: Phase 16 — Bundle & Fonts, or deploy step `PAYLOAD_REGENERATE_MEDIA_APPLY=1 pnpm payload:media:regenerate`
+Last activity: 2026-04-28 -- Payload image variants, regenerate command, and render source audit completed
 
-Progress: 4/13 plans complete (Phase 13 + Phase 14). `/public/assets` is now 26 MB after Phase 13 final cleanup.
+Progress: 6/13 plans complete (Phase 13 + Phase 14 + Phase 15). `/public/assets` is now 26 MB after Phase 13 final cleanup.
 
 ## Performance Metrics
 

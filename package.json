@@ -24,6 +24,7 @@
     "build": "next build",
     "start": "next start",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "payload:media:regenerate": "node --no-warnings scripts/regenerate-payload-media-sizes.ts",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "postinstall": "node scripts/ensure-env-local.mjs",

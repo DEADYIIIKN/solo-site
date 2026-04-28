@@ -67,8 +67,8 @@
 **Depends on:** Nothing structural (изолировано от static media). Идёт после Phase 13/14 чтобы не конкурировать за LCP оптимизации.
 
 **Plans:**
-- [ ] PLAN.md `15-01-payload-media-imagesizes` — PERF-10: `imageSizes` config в `src/cms/collections/media.ts` (`card-360`, `card-768`, `card-1440`, `hero-1440`), formatOptions AVIF/WebP, regenerate-command для существующих uploads
-- [ ] PLAN.md `15-02-payload-renders-next-image-audit` — PERF-11: audit cases / secrets-posts / future leads attachments — все через `next/image` с `sizes` атрибутом, 0 raw `<img>` для Payload media
+- [x] PLAN.md `15-01-payload-media-imagesizes` — PERF-10: `imageSizes` config в `src/cms/collections/media.ts` (`card-360`, `card-768`, `card-1440`, `hero-1440`), formatOptions AVIF/WebP, regenerate-command для существующих uploads
+- [x] PLAN.md `15-02-payload-renders-next-image-audit` — PERF-11: audit cases / secrets-posts / future leads attachments — все через `next/image` с `sizes` атрибутом, 0 raw `<img>` для Payload media
 
 **Success criteria:**
 1. Upload в Payload Admin генерирует AVIF + WebP в 4+ размерах автоматически
