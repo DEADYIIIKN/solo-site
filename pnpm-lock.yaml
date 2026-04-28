@@ -46,6 +46,9 @@ importers:
       dotenv:
         specifier: ^17.4.1
         version: 17.4.1
+      drizzle-kit:
+        specifier: 0.31.7
+        version: 0.31.7
       graphql:
         specifier: ^16.13.2
         version: 16.13.2

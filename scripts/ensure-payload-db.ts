@@ -59,19 +59,49 @@ async function main(): Promise<void> {
     return;
   }
   console.warn(
-    `[ensure-payload-db] missing tables: ${missing.join(", ")} — running pushDevSchema`,
+    `[ensure-payload-db] missing tables: ${missing.join(", ")} — running drizzle pushSQLiteSchema`,
   );
   process.env.PAYLOAD_FORCE_DRIZZLE_PUSH = "true";
 
-  const [{ pushDevSchema }, { getPayload }, { default: config }] = await Promise.all([
-    import("@payloadcms/drizzle"),
+  const [{ getPayload }, { default: config }, drizzleKit] = await Promise.all([
     import("payload"),
     import("../src/payload.config.ts"),
+    import("drizzle-kit/api"),
   ]);
 
   const payload = await getPayload({ config });
   try {
-    await pushDevSchema(payload.db as unknown as DrizzleAdapter);
+    /**
+     * Прямой вызов drizzle-kit pushSQLiteSchema вместо Payload's pushDevSchema —
+     * последний использует `prompts` для confirmation на warnings, что в
+     * non-TTY container hangs/cancels (и schema не пушится).
+     * Здесь мы всегда auto-accept warnings и вызываем apply().
+     */
+    const adapter = payload.db as unknown as DrizzleAdapter & {
+      schema: Record<string, unknown>;
+      drizzle: unknown;
+    };
+    const { apply, hasDataLoss, warnings, statementsToExecute } =
+      await drizzleKit.pushSQLiteSchema(
+        adapter.schema,
+        adapter.drizzle as Parameters<typeof drizzleKit.pushSQLiteSchema>[1],
+      );
+
+    if (warnings.length > 0) {
+      console.warn(
+        `[ensure-payload-db] drizzle warnings (auto-accepting): ${warnings.join("; ")}`,
+      );
+    }
+    if (hasDataLoss) {
+      console.warn(
+        `[ensure-payload-db] WARNING: hasDataLoss=true — продолжаем т.к. цель добавить новые таблицы`,
+      );
+    }
+    console.log(
+      `[ensure-payload-db] выполняем ${statementsToExecute.length} SQL statements`,
+    );
+    await apply();
+    console.log(`[ensure-payload-db] schema push успешно применён`);
   } finally {
     if (typeof payload.destroy === "function") {
       await payload.destroy();
