@@ -1,12 +1,12 @@
 ---
 gsd_state_version: 1.0
-milestone: none-active
-milestone_name: ""
+milestone: v1.2
+milestone_name: "Performance & Delivery"
 last_shipped: v1.1.2
-status: milestone-shipped
-stopped_at: v1.1.2 shipped + archived. Awaiting /gsd-new-milestone for next cycle.
-last_updated: "2026-04-28T00:00:00.000Z"
-last_activity: 2026-04-28 -- v1.1.2 merged + archived to milestones/
+status: defining-roadmap
+stopped_at: REQUIREMENTS.md написан, ROADMAP.md ещё нет — нужен gsd-roadmapper
+last_updated: "2026-04-28T11:00:00.000Z"
+last_activity: 2026-04-28 -- v1.2 milestone started, audit baseline зафиксирован
 progress:
   total_phases: 0
   completed_phases: 0
@@ -22,16 +22,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** Между milestone'ами — ждёт `/gsd-new-milestone`
+**Current focus:** v1.2 — Performance & Delivery (scope зафиксирован, нужен ROADMAP.md)
 
 ## Current Position
 
 Last shipped: **v1.1.2** (2026-04-28)
-Phase: — (no active milestone)
-Next: `/gsd-new-milestone` — определить scope v1.2 (potential: Performance / SEO / Trust / etc.)
-Last activity: 2026-04-28 -- v1.1.2 merged + archived
+Active milestone: **v1.2 — Performance & Delivery**
+Phase: — (defining roadmap)
+Next: `gsd-roadmapper` → разбить 13 PERF/A11Y/SEO requirements на phases
+Last activity: 2026-04-28 -- audit baseline (см. .planning/research/AUDIT-PSI.md)
 
-Progress: idle (between milestones)
+Progress: 0/13 requirements (defining roadmap)
 
 ## Performance Metrics
 

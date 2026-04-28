@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import { SiteNavLink } from "@/shared/ui/site-nav-link";
@@ -104,12 +105,13 @@ export function Footer768({
                   key={post.id}
                 >
                   <div className="relative h-[184px] w-full overflow-hidden rounded-[12px]">
-                    <img
+                    <Image
                       alt=""
-                      className="absolute inset-0 size-full object-cover"
-                      height={184}
+                      className="object-cover"
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 480px"
                       src={post.image}
-                      width={328}
                     />
                   </div>
                   <p className="m-0 ml-[20px] w-[288px] font-bold lowercase leading-[0.9] tracking-[0.24px] text-[16px] text-white">

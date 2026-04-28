@@ -25,22 +25,38 @@
 
 См. [milestones/v1.1.2-ROADMAP.md](milestones/v1.1.2-ROADMAP.md), [milestones/v1.0-ROADMAP.md](milestones/v1.0-ROADMAP.md).
 
-## Current Milestone: v1.1.2 — Growth & Ops
+## Current Milestone: v1.2 — Performance & Delivery
 
-**Goal:** Дать пользователю канал подписки на TG (lead nurturing) + базовые admin-инструменты для работы с лидами.
+**Goal:** Lighthouse Performance **90+ на всех брейкпоинтах** (mobile / tablet / desktop) для `/` и `/privacy`. Mobile LCP < 2.5s, desktop LCP < 1.0s. Снизить вес mobile home с 3.8 MB до < 1.2 MB. Все статические и Payload-uploaded медиа автоматически отдаются в AVIF/WebP с правильным размером per-device.
 
-**Target features:**
-- **TG-01** — Pop-up уведомление о TG-канале, появляется через 60s активности на сайте (sessionStorage dismiss, dismissable). Per-breakpoint dismiss модалка по дизайну Figma (783:9762 / 9750 / 9729 / 9708 / 9687)
-- **TG-02** — TG channel URL через env var `NEXT_PUBLIC_TG_CHANNEL_URL` (значение от пользователя)
-- **ADMIN-01** — Custom columns в Payload admin для leads list view (source, date, forwarded, contactMethod)
-- **ADMIN-02** — Filter / sort в leads admin (по дате, по source, по forwarded status)
-- **ADMIN-03** — CSV export — кнопка в leads list, скачивает all/filtered
+**Target features (по результатам аудита 2026-04-28, см. `.planning/research/AUDIT-PSI.md`):**
 
-**Out of scope для v1.1.2 (email уведомления решаются через n8n flow):**
-- Email-уведомления при новом лиде (n8n берёт на себя)
-- REFAC-02/03/04 (отложены — нет forcing function, см. v1.1 discuss)
-- Footer blog secrets + consultation badge — отдельная feature-фаза с дизайном
-- Cases 1440 gap (D-17), team 360 tagline wrap — accepted design decisions
+**P0 — Performance (highest ROI):**
+- **PERF-01** Footer blog cards (3 × 900KB JPG) → next/image AVIF — экономия ~2.2 MB
+- **PERF-02** Hero / team / business-goals PNG (3.2MB×3 копий) → next/image AVIF — экономия ~80%
+- **PERF-03** Hero LCP < 2.5s mobile / < 1.0s desktop (priority + responsive srcset)
+- **PERF-04** Кэш-хедеры на static `/assets/*` — `max-age=0` → `immutable max-age=31536000`
+- **PERF-05** Cleanup duplicate media в `/public/assets` (~10–20 MB в репе)
+
+**P0.5 — Payload media optimization:**
+- **PERF-10** Payload Media collection `imageSizes` config — server-side resize on upload (AVIF/WebP per breakpoint)
+- **PERF-11** Audit все Payload-media рендеры → next/image с правильным `sizes` атрибутом
+
+**P1 — Optimization:**
+- **PERF-06** Шрифты TTF → woff2 + RU/EN subsetting — 680 KB → ~340 KB
+- **PERF-07** Bundle: убрать unused JS 86 KB через @next/bundle-analyzer
+- **PERF-08** Console errors `ERR_CONNECTION_FAILED` (3 шт) — найти и починить
+- **PERF-09** bts-ozon.mp4 (57 MB) — lazy + poster-кадр; optionally вынести на внешний хостинг
+
+**P2 — A11y / SEO hygiene:**
+- **A11Y-01** Контраст `text-[#9c9c9c]` 10–11px — повысить до WCAG AA 4.5:1
+- **SEO-01** `/privacy` — canonical link + проверка `is-crawlable=true`
+
+**Out of scope для v1.2:**
+- Sentry / error tracking — отдельный milestone "Reliability"
+- Yandex Metrica / Google Analytics — отдельный milestone "Analytics"
+- Apple/Android specific media (HEIC) — preview AVIF покроет 95% кейсов
+- Custom CDN — Traefik + immutable cache достаточно для текущей нагрузки
 
 ## Backlog Candidates (for future milestones)
 
@@ -92,4 +108,4 @@
 This document evolves at phase transitions and milestone boundaries. Last evolved at v1.0 completion (2026-04-27).
 
 ---
-*Last updated: 2026-04-27 — milestone v1.0 shipped*
+*Last updated: 2026-04-28 — milestone v1.2 started (Performance & Delivery)*

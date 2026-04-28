@@ -1,3 +1,8 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+
 import {
   firstScreenAssets,
   firstScreenContent
@@ -10,6 +15,9 @@ type FirstScreenHero1024Props = {
 };
 
 export function FirstScreenHero1024({ onConsultationCtaClick }: FirstScreenHero1024Props) {
+  // Poster JPG отдаётся как LCP element до момента готовности видео — закрывается onCanPlay.
+  const [videoReady, setVideoReady] = useState(false);
+
   return (
     <div className="absolute inset-0 overflow-visible">
       {/* image: 604,446 380x214 r12 */}
@@ -17,6 +25,17 @@ export function FirstScreenHero1024({ onConsultationCtaClick }: FirstScreenHero1
         className="absolute left-[604px] top-[446px] z-10 h-[214px] w-[380px] overflow-clip rounded-[12px]"
         data-showreel-source="1024"
       >
+        {!videoReady ? (
+          <Image
+            alt=""
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            fetchPriority="high"
+            fill
+            priority
+            sizes="380px"
+            src={firstScreenAssets.heroImage}
+          />
+        ) : null}
         {firstScreenAssets.heroVideoPreview ? (
           <video
             aria-label="BTS Ozon"
@@ -24,7 +43,9 @@ export function FirstScreenHero1024({ onConsultationCtaClick }: FirstScreenHero1
             className="pointer-events-none absolute inset-0 h-full w-full object-cover"
             loop
             muted
+            onCanPlay={() => setVideoReady(true)}
             playsInline
+            poster={firstScreenAssets.heroImage}
             preload="auto"
             src={firstScreenAssets.heroVideoPreview}
           />

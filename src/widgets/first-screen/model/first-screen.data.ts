@@ -37,7 +37,7 @@ export const firstScreenAssets = {
   firstScreen1440: {
     grid: "/assets/figma/9656-first-screen-1440/rectangle173.png",
     logo: "/assets/figma/9656-first-screen-1440/logo.svg",
-    heroImage: "/assets/figma/9656-first-screen-1440/hero-image.png",
+    heroImage: "/assets/figma/9656-first-screen-1440/hero-image.jpg",
     geo: "/assets/figma/9656-first-screen-1440/geo.svg"
   },
   navbar: {
@@ -76,6 +76,6 @@ export const firstScreenAssets = {
   ctaFloatingDotRing: "/assets/figma/10005-cta-button/cta-dotring.svg",
   ctaFloatingTextPath: "/assets/figma/10005-cta-button/cta-text.svg",
   heroVideoPreview: showreelVideoSrc,
-  heroImage: "/assets/figma/9003-hero-screen-1024/hero-image.png",
+  heroImage: "/assets/figma/9656-first-screen-1440/hero-image.jpg",
   geoMark: "/assets/figma/9010-hero-geo-block-1024/geo-mark.svg"
 } as const;
