@@ -97,7 +97,7 @@ export function LevelsUnified1024() {
         )}
         style={{ transitionDelay: `${whenBarDone(0)}ms` }}
       >
-        <p className="m-0 text-[14px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[0].label}</p>
+        <p className="m-0 text-[14px] font-medium leading-[0.9] text-[#5e524d]">{levels[0].label}</p>
         <p className="m-0 max-w-[256px] text-[20px] font-bold leading-none lowercase text-[#0d0300]">
           {levels[0].title}
         </p>
@@ -109,7 +109,7 @@ export function LevelsUnified1024() {
         )}
         style={{ transitionDelay: `${whenBarDone(1)}ms` }}
       >
-        <p className="m-0 text-[14px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[1].label}</p>
+        <p className="m-0 text-[14px] font-medium leading-[0.9] text-[#5e524d]">{levels[1].label}</p>
         <p className="m-0 max-w-[224px] text-[20px] font-bold leading-none lowercase text-[#0d0300]">
           {levels[1].title}
         </p>
@@ -121,7 +121,7 @@ export function LevelsUnified1024() {
         )}
         style={{ transitionDelay: `${whenBarDone(2)}ms` }}
       >
-        <p className="m-0 text-[14px] font-medium leading-[0.9] text-[#9c9c9c]">{levels[2].label}</p>
+        <p className="m-0 text-[14px] font-medium leading-[0.9] text-[#5e524d]">{levels[2].label}</p>
         <p className="m-0 max-w-[263px] text-[20px] font-bold leading-none lowercase text-[#0d0300]">
           {levels[2].title}
         </p>

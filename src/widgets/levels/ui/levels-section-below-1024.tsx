@@ -62,7 +62,7 @@ function Levels768() {
             <LevelsGradientBar height={400} opacityPct={70} width={139} />
           </div>
           <div className="absolute left-[86px] top-[69px] z-[6] flex flex-col gap-[7px]">
-            <p className="m-0 text-[12px] font-medium leading-[0.9] text-[#9c9c9c]">
+            <p className="m-0 text-[12px] font-medium leading-[0.9] text-[#5e524d]">
               {levels[0].label}
             </p>
             <p className="m-0 max-w-[242px] text-[20px] font-bold leading-none lowercase text-[#0d0300]">
@@ -70,7 +70,7 @@ function Levels768() {
             </p>
           </div>
           <div className="absolute left-[258px] top-[193px] z-[6] flex flex-col gap-[7px]">
-            <p className="m-0 text-[12px] font-medium leading-[0.9] text-[#9c9c9c]">
+            <p className="m-0 text-[12px] font-medium leading-[0.9] text-[#5e524d]">
               {levels[1].label}
             </p>
             <p className="m-0 max-w-[201px] text-[20px] font-bold leading-none lowercase text-[#0d0300]">
@@ -78,7 +78,7 @@ function Levels768() {
             </p>
           </div>
           <div className="absolute left-[431px] top-[316px] z-[6] flex flex-col gap-[7px]">
-            <p className="m-0 text-[12px] font-medium leading-[0.9] text-[#9c9c9c]">
+            <p className="m-0 text-[12px] font-medium leading-[0.9] text-[#5e524d]">
               {levels[2].label}
             </p>
             <p className="m-0 max-w-[225px] text-[20px] font-bold leading-none lowercase text-[#0d0300]">
@@ -116,19 +116,19 @@ function Levels480() {
           <div className="absolute left-[325px] top-0 z-[3]">
             <LevelsGradientBar height={300} opacityPct={70} width={107} />
           </div>
-          <p className="absolute left-0 top-[82px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">
+          <p className="absolute left-0 top-[82px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#5e524d]">
             {levels[0].label}
           </p>
           <p className="absolute left-0 top-[98px] z-[6] m-0 max-w-[181px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
             {levels[0].title}
           </p>
-          <p className="absolute left-[112px] top-[175px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">
+          <p className="absolute left-[112px] top-[175px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#5e524d]">
             {levels[1].label}
           </p>
           <p className="absolute left-[112px] top-[191px] z-[6] m-0 max-w-[164px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
             {levels[1].title}
           </p>
-          <p className="absolute left-[224px] top-[267px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#9c9c9c]">
+          <p className="absolute left-[224px] top-[267px] z-[6] m-0 text-[11px] font-medium leading-[0.9] text-[#5e524d]">
             {levels[2].label}
           </p>
           <p className="absolute left-[224px] top-[283px] z-[6] m-0 max-w-[172px] text-[16px] font-bold leading-none lowercase text-[#0d0300]">
@@ -166,7 +166,7 @@ function Levels360() {
             <LevelsGradientBar height={260} opacityPct={70} width={81} />
           </div>
           <div className="absolute left-0 top-[73px] z-[6] flex flex-col gap-[7px]">
-            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">
+            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#5e524d]">
               {levels[0].label}
             </p>
             <p className="m-0 max-w-[159px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">
@@ -174,7 +174,7 @@ function Levels360() {
             </p>
           </div>
           <div className="absolute left-[86px] top-[153px] z-[6] flex flex-col gap-[7px]">
-            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">
+            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#5e524d]">
               {levels[1].label}
             </p>
             <p className="m-0 max-w-[143px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">
@@ -182,7 +182,7 @@ function Levels360() {
             </p>
           </div>
           <div className="absolute left-[172px] top-[233px] z-[6] flex flex-col gap-[7px]">
-            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#9c9c9c]">
+            <p className="m-0 text-[10px] font-medium leading-[0.9] text-[#5e524d]">
               {levels[2].label}
             </p>
             <p className="m-0 max-w-[149px] text-[14px] font-bold leading-none lowercase text-[#0d0300]">

@@ -162,7 +162,7 @@ export function Footer360({
           {/* Phone & Email */}
           <div className="flex flex-col items-center gap-[20px]">
             <div className="flex flex-col items-center gap-[8px]">
-              <p className="m-0 font-normal leading-[1.2] text-[11px] text-[#9c9c9c]">
+              <p className="m-0 font-normal leading-[1.2] text-[11px] text-[#c8c3bf]">
                 {footerContent.phoneSubtitle}
               </p>
               <a
@@ -210,13 +210,13 @@ export function Footer360({
 
           {/* Legal + Privacy stacked centered */}
           <div className="flex flex-col items-center gap-[24px] text-center">
-            <p className="m-0 font-normal leading-[1.2] text-[11px] text-[#9c9c9c]">
+            <p className="m-0 font-normal leading-[1.2] text-[11px] text-[#c8c3bf]">
               {footerContent.legal}
             </p>
             <a
               className="font-normal leading-[1.2] text-[11px] no-underline transition-opacity hover:opacity-70"
               href="/privacy"
-              style={{ color: "#9c9c9c" }}
+              style={{ color: "#c8c3bf" }}
             >
               {footerContent.privacy}
             </a>

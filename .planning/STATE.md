@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: "Performance & Delivery"
 last_shipped: v1.1.2
-status: phase-17-complete
-stopped_at: Phase 17 complete locally; next is Phase 18 a11y and SEO hygiene
-last_updated: "2026-04-29T00:54:00.000+03:00"
-last_activity: 2026-04-29 -- Phase 17 local showreel video lazy loading complete locally
+status: phase-18-complete
+stopped_at: Phase 18 complete locally; next is Phase 19 verification
+last_updated: "2026-04-29T01:02:00.000+03:00"
+last_activity: 2026-04-29 -- Phase 18 a11y contrast and privacy SEO complete locally
 progress:
   total_phases: 7
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 13
-  completed_plans: 9
-  percent: 69
+  completed_plans: 10
+  percent: 77
 ---
 
 # Project State
@@ -22,23 +22,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.2 — Performance & Delivery (Phase 18 next: a11y and SEO hygiene)
+**Current focus:** v1.2 — Performance & Delivery (Phase 19 next: final verification)
 
 ## Current Position
 
 Last shipped: **v1.1.2** (2026-04-28)
 Active milestone: **v1.2 — Performance & Delivery**
-Phase: 17 complete locally — Video Lazy Loading
-Next: 18-01 A11y contrast / privacy canonical
-Last activity: 2026-04-29 -- Local showreel video restored and lazy-loaded; mobile initial load makes 0 video requests
+Phase: 18 complete locally — A11y & SEO Hygiene
+Next: 19-01 PSI rerun baseline
+Last activity: 2026-04-29 -- AA-safe grey foregrounds, privacy canonical/index/follow, sitemap privacy entry
 
-Progress: 9/13 plans complete (Phase 13 + Phase 14 + Phase 15 + Phase 16 + Phase 17). `/public/assets` was 26 MB after Phase 13; Phase 17 restored the local 56 MB showreel video by product requirement, protected by lazy loading.
+Progress: 10/13 plans complete (Phase 13 + Phase 14 + Phase 15 + Phase 16 + Phase 17 + Phase 18). `/public/assets` was 26 MB after Phase 13; Phase 17 restored the local 56 MB showreel video by product requirement, protected by lazy loading.
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 9
+- Total plans completed: 10
 - Average duration: —
 - Total execution time: 0 hours
 

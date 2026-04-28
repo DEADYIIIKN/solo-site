@@ -166,7 +166,7 @@ export function Footer768({
             {/* Phone & Email */}
             <div className="flex flex-col gap-[31px]">
               <div className="flex flex-col gap-[20px]">
-                <p className="m-0 font-normal leading-[1.2] text-[14px] text-[#9c9c9c]">
+                <p className="m-0 font-normal leading-[1.2] text-[14px] text-[#c8c3bf]">
                   {footerContent.phoneSubtitle}
                 </p>
                 <a
@@ -215,13 +215,13 @@ export function Footer768({
 
           {/* Row 3 — Legal + Privacy */}
           <div className="mt-[120px] flex items-start justify-between">
-            <p className="m-0 font-normal leading-[1.2] text-[14px] text-[#9c9c9c]">
+            <p className="m-0 font-normal leading-[1.2] text-[14px] text-[#c8c3bf]">
               {footerContent.legal}
             </p>
             <a
               className="font-normal leading-[1.2] text-[14px] no-underline transition-opacity hover:opacity-70"
               href="/privacy"
-              style={{ color: "#9c9c9c" }}
+              style={{ color: "#c8c3bf" }}
             >
               {footerContent.privacy}
             </a>

@@ -31,8 +31,8 @@
 
 ### A11y / SEO (P2)
 
-- [ ] **A11Y-01**: Серый текст `text-[#9c9c9c]` на тёмном фоне (10-11px кнопки/метки) приведён к WCAG AA contrast 4.5:1. Lighthouse a11y score 96 → 100 на mobile home.
-- [ ] **SEO-01**: `/privacy` имеет `<link rel="canonical">`. `is-crawlable=true` (если страница должна индексироваться) ИЛИ явный `noindex` декларирован в metadata API. Lighthouse SEO 61 → 95.
+- [x] **A11Y-01**: Серый foreground text в footer/privacy/levels приведён к WCAG AA contrast 4.5:1. Lighthouse a11y score final confirmation — Phase 19.
+- [x] **SEO-01**: `/privacy` имеет `<link rel="canonical">`, `index, follow` и sitemap entry. Lighthouse SEO final confirmation — Phase 19.
 
 ### Verification (cross-cutting)
 
@@ -70,8 +70,8 @@
 | PERF-07 | Phase 16 — Bundle & Fonts | Complete locally; final PSI in Phase 19 |
 | PERF-08 | Phase 16 — Bundle & Fonts | Complete locally; final Lighthouse console audit in Phase 19 |
 | PERF-09 | Phase 17 — Video Lazy Loading | Complete locally |
-| A11Y-01 | Phase 18 — A11y & SEO Hygiene | Pending |
-| SEO-01 | Phase 18 — A11y & SEO Hygiene | Pending |
+| A11Y-01 | Phase 18 — A11y & SEO Hygiene | Complete locally; final Lighthouse in Phase 19 |
+| SEO-01 | Phase 18 — A11y & SEO Hygiene | Complete locally; final Lighthouse in Phase 19 |
 | VERIFY-01 | Phase 19 — Verification | Pending |
 | VERIFY-02 | Phase 19 — Verification | Pending |
 

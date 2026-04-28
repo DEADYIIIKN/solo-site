@@ -12,7 +12,10 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Политика конфиденциальности",
   description: "Политика обработки персональных данных SOLO Продакшн",
-  robots: { index: false, follow: false },
+  alternates: {
+    canonical: "/privacy",
+  },
+  robots: { index: true, follow: true },
 };
 
 const PLACEHOLDER = `Политика конфиденциальности
@@ -67,7 +70,7 @@ export default async function PrivacyPage() {
       <div className="bg-[#0d0300] min-h-screen">
         <div className="mx-auto max-w-[800px] px-6 py-[80px] pb-[120px]">
           <a
-            className="mb-[40px] inline-block text-[14px] font-normal leading-[1.5] text-[#9c9c9c] no-underline transition-opacity hover:opacity-70"
+            className="mb-[40px] inline-block text-[14px] font-normal leading-[1.5] text-[#c8c3bf] no-underline transition-opacity hover:opacity-70"
             href="/"
           >
             ← На главную

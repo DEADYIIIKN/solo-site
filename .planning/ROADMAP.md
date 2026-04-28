@@ -119,7 +119,7 @@
 
 ---
 
-### Phase 18: A11y & SEO Hygiene (P2)
+### Phase 18: A11y & SEO Hygiene (P2) ✅
 
 **Goal:** Закрыть последние gap-ы Lighthouse — серый текст до WCAG AA 4.5:1, `/privacy` canonical + crawl decision.
 
@@ -128,11 +128,11 @@
 **Depends on:** Nothing
 
 **Plans:**
-- [ ] PLAN.md `18-01-a11y-contrast-seo-canonical` — A11Y-01 + SEO-01: повысить контраст `text-[#9c9c9c]` 10-11px до AA 4.5:1 (новый dark-grey shade в Tailwind config), `/privacy` metadata API → canonical link + `is-crawlable=true` (или явный `noindex` если deferred)
+- [x] PLAN.md `18-01-a11y-contrast-seo-canonical` — A11Y-01 + SEO-01: AA-safe grey foregrounds, `/privacy` canonical + `index, follow`, sitemap entry
 
 **Success criteria:**
-1. Lighthouse a11y score на mobile home: 96 → 100
-2. Lighthouse SEO на `/privacy`: 61 → 95+
+1. Lighthouse a11y score на mobile home: 96 → 100 — final PSI confirmation in Phase 19
+2. Lighthouse SEO на `/privacy`: 61 → 95+ — final PSI confirmation in Phase 19
 3. `<link rel="canonical" href="https://demo.soloproduction.pro/privacy">` присутствует в `<head>`
 4. Visual regression: серый текст читается на тёмном фоне (manual sverka 360+1440)
 
