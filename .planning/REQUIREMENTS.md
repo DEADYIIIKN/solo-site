@@ -11,11 +11,11 @@
 
 ### Performance — Static Media (P0)
 
-- [ ] **PERF-01**: Footer blog cards рендерятся через `next/image` с AVIF и lazy-loading. Текущий вес 2.4 MB (3 файла) → ожидаемый ~250 KB. LCP не блокируется.
-- [ ] **PERF-02**: Hero / team / business-goals / showreel PNG-photos конвертированы в JPG исходники + рендерятся через `next/image` (AVIF). Дубликаты per-breakpoint удалены — `next/image` отдаёт responsive srcset из одного исходника.
-- [ ] **PERF-03**: Hero image на главной — `priority` prop + явный `sizes`. Mobile LCP < 2.5s, desktop LCP < 1.0s (измеряется PSI).
-- [ ] **PERF-04**: Static `/assets/*` отдаются с `Cache-Control: public, max-age=31536000, immutable`. Решение: либо `headers()` в next.config, либо Traefik labels. Repeat-visit FCP < 0.5s.
-- [ ] **PERF-05**: Cleanup: удалены дубликаты медиа в `/public/assets/figma/footer-1440/`, `/public/assets/figma/9050-...`, `/public/assets/blog/...`. Total `/public/assets` < 60 MB.
+- [x] **PERF-01**: Footer blog cards рендерятся через `next/image` с AVIF и lazy-loading. Текущий вес 2.4 MB (3 файла) → ожидаемый ~250 KB. LCP не блокируется.
+- [x] **PERF-02**: Hero / team / business-goals / showreel PNG-photos конвертированы в JPG исходники + рендерятся через `next/image` (AVIF). Дубликаты per-breakpoint удалены — `next/image` отдаёт responsive srcset из одного исходника.
+- [x] **PERF-03**: Hero image на главной — `priority` prop + явный `sizes`. Mobile LCP < 2.5s, desktop LCP < 1.0s (измеряется PSI).
+- [x] **PERF-04**: Static `/assets/*` отдаются с `Cache-Control: public, max-age=31536000, immutable`. Решение: либо `headers()` в next.config, либо Traefik labels. Repeat-visit FCP < 0.5s.
+- [x] **PERF-05**: Cleanup: удалены дубликаты медиа в `/public/assets/figma/footer-1440/`, `/public/assets/figma/9050-...`, `/public/assets/blog/...`. Total `/public/assets` < 60 MB.
 
 ### Performance — Payload Media (P0.5)
 
@@ -59,11 +59,11 @@
 
 | REQ-ID | Phase | Status |
 |---|---|---|
-| PERF-01 | Phase 13 — Static Media Optimization | Pending |
-| PERF-02 | Phase 13 — Static Media Optimization | Pending |
-| PERF-03 | Phase 13 — Static Media Optimization | Pending |
-| PERF-05 | Phase 13 — Static Media Optimization | Pending |
-| PERF-04 | Phase 14 — Cache & Delivery Layer | Pending |
+| PERF-01 | Phase 13 — Static Media Optimization | Complete |
+| PERF-02 | Phase 13 — Static Media Optimization | Complete |
+| PERF-03 | Phase 13 — Static Media Optimization | Complete locally; final PSI in Phase 19 |
+| PERF-05 | Phase 13 — Static Media Optimization | Complete |
+| PERF-04 | Phase 14 — Cache & Delivery Layer | Complete locally; demo smoke pending deploy |
 | PERF-10 | Phase 15 — Payload Media Optimization | Pending |
 | PERF-11 | Phase 15 — Payload Media Optimization | Pending |
 | PERF-06 | Phase 16 — Bundle & Fonts | Pending |

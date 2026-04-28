@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: "Performance & Delivery"
 last_shipped: v1.1.2
-status: defining-roadmap
-stopped_at: REQUIREMENTS.md написан, ROADMAP.md ещё нет — нужен gsd-roadmapper
-last_updated: "2026-04-28T11:00:00.000Z"
-last_activity: 2026-04-28 -- v1.2 milestone started, audit baseline зафиксирован
+status: phase-14-complete-awaiting-deploy-smoke
+stopped_at: Phase 14 complete locally; deploy smoke for cache headers still pending
+last_updated: "2026-04-28T16:30:00.000Z"
+last_activity: 2026-04-28 -- Phase 14 static cache headers implemented and verified locally
 progress:
-  total_phases: 0
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_phases: 7
+  completed_phases: 2
+  total_plans: 13
+  completed_plans: 4
+  percent: 31
 ---
 
 # Project State
@@ -22,17 +22,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.2 — Performance & Delivery (scope зафиксирован, нужен ROADMAP.md)
+**Current focus:** v1.2 — Performance & Delivery (Phase 14 complete locally; next Phase 15 or deploy PSI/cache smoke)
 
 ## Current Position
 
 Last shipped: **v1.1.2** (2026-04-28)
 Active milestone: **v1.2 — Performance & Delivery**
-Phase: — (defining roadmap)
-Next: `gsd-roadmapper` → разбить 13 PERF/A11Y/SEO requirements на phases
-Last activity: 2026-04-28 -- audit baseline (см. .planning/research/AUDIT-PSI.md)
+Phase: 14 complete locally — Cache & Delivery Layer
+Next: deploy smoke for PERF-04, then Phase 15 — Payload Media Optimization
+Last activity: 2026-04-28 -- `headers()` for `/assets/:path*` implemented and verified locally
 
-Progress: 0/13 requirements (defining roadmap)
+Progress: 4/13 plans complete (Phase 13 + Phase 14). `/public/assets` is now 26 MB after Phase 13 final cleanup.
 
 ## Performance Metrics
 

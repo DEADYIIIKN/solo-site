@@ -15,7 +15,7 @@
 
 ---
 
-### Phase 13: Static Media Optimization (P0)
+### Phase 13: Static Media Optimization (P0) ✅
 
 **Goal:** Вытащить из mobile home ~2.4 MB blog-card JPG + ~6 MB PNG-photo дублей через `next/image` (AVIF + responsive srcset). Самая большая ROI в milestone.
 
@@ -24,9 +24,9 @@
 **Depends on:** Nothing (первая фаза milestone)
 
 **Plans:**
-- [ ] PLAN.md `13-01-footer-blog-cards-next-image` — PERF-01: 3× footer blog-cards (2.4 MB) → next/image AVIF + lazy
-- [ ] PLAN.md `13-02-hero-team-business-goals-next-image` — PERF-02 + PERF-03: hero/team/business-goals/showreel PNG → JPG-source + next/image (priority на hero, sizes по брейкпоинтам)
-- [ ] PLAN.md `13-03-cleanup-duplicate-assets` — PERF-05: dedup `figma/footer-1440/` × `9050-...` × `blog/...`, удалить per-breakpoint PNG копии (rectangle75, hero-image, team), `/public/assets` < 60 MB
+- [x] PLAN.md `13-01-footer-blog-cards-next-image` — PERF-01: 3× footer blog-cards (2.4 MB) → next/image AVIF + lazy
+- [x] PLAN.md `13-02-hero-team-business-goals-next-image` — PERF-02 + PERF-03: hero/team/business-goals/showreel PNG → JPG-source + next/image (priority на hero, sizes по брейкпоинтам)
+- [x] PLAN.md `13-03-cleanup-duplicate-assets` — PERF-05: dedup `figma/footer-1440/` × `9050-...` × `blog/...`, удалить per-breakpoint PNG копии (rectangle75, hero-image, team), удалить bundled video fallback; `/public/assets` 26 MB
 
 **Success criteria:**
 1. Mobile home Image bytes < 800 KB (было 2810 KB)
@@ -39,7 +39,7 @@
 
 ---
 
-### Phase 14: Cache & Delivery Layer (P0)
+### Phase 14: Cache & Delivery Layer (P0) ✅
 
 **Goal:** Static `/assets/*` отдаются с `immutable max-age=31536000` чтобы next/image-оптимизированные ответы и raw-fallback кешировались год. Repeat-visit FCP < 0.5s.
 
@@ -48,11 +48,11 @@
 **Depends on:** Phase 13 (immutable должен срабатывать на оптимизированных URL — fingerprinted via next/image query — иначе ломаем deploy invalidation)
 
 **Plans:**
-- [ ] PLAN.md `14-01-static-cache-headers` — PERF-04: либо `headers()` в `next.config.ts` для `/assets/:path*`, либо Traefik labels в `docker-compose.yml`. Документировать выбор + smoke-проверка `curl -I` на демо.
+- [x] PLAN.md `14-01-static-cache-headers` — PERF-04: `headers()` в `next.config.ts` для `/assets/:path*`; local production smoke confirms immutable cache, demo smoke pending deploy.
 
 **Success criteria:**
 1. `curl -I https://demo.soloproduction.pro/assets/...` возвращает `cache-control: public, max-age=31536000, immutable`
-2. `_next/image` оптимизированные ответы кешируются (max-age=60+ → CDN-friendly)
+2. `_next/image` оптимизированные ответы кешируются (fresh local smoke: `max-age=31536000` → CDN-friendly)
 3. Repeat-visit FCP на mobile home < 0.5s (PSI repeat-view)
 4. Deploy инвалидирует кеш через изменение пути (next/image query) или Traefik label rotate — не оставляет stale assets
 
