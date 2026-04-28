@@ -49,25 +49,13 @@ function getHeroImages(layout: ViewportLayout): string[] {
   ];
 }
 
-function getHeroVideos(layout: ViewportLayout): string[] {
-  if (layout === "1024" || layout === "1440") {
-    return [firstScreenAssets.heroVideoPreview];
-  }
-
-  return [];
-}
-
 export function getCriticalSiteLoadAssets(layout: ViewportLayout): SiteLoadAsset[] {
   const images = [...getNavbarImages(layout), ...getHeroImages(layout)].map((src) => ({
     kind: "image" as const,
     src,
   }));
 
-  const videos = getHeroVideos(layout)
-    .filter(Boolean)
-    .map((src) => ({ kind: "video" as const, src }));
-
-  return uniqueAssets([...images, ...videos]);
+  return uniqueAssets(images);
 }
 
 export function getCriticalSiteLoadAssetsForViewport(width: number): SiteLoadAsset[] {

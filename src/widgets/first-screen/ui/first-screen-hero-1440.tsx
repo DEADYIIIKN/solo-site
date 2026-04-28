@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import {
@@ -17,6 +17,17 @@ type FirstScreenHero1440Props = {
 export function FirstScreenHero1440({ onConsultationCtaClick }: FirstScreenHero1440Props) {
   // Poster JPG отдаётся как LCP element до момента готовности видео — закрывается onCanPlay.
   const [videoReady, setVideoReady] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    if (!firstScreenAssets.heroVideoPreview) return;
+    const media = window.matchMedia("(min-width: 1440px)");
+    const update = () => setShouldLoadVideo(media.matches);
+
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   return (
     <>
@@ -46,8 +57,8 @@ export function FirstScreenHero1440({ onConsultationCtaClick }: FirstScreenHero1
               onCanPlay={() => setVideoReady(true)}
               playsInline
               poster={firstScreenAssets.firstScreen1440.heroImage}
-              preload="auto"
-              src={firstScreenAssets.heroVideoPreview}
+              preload="none"
+              src={shouldLoadVideo ? firstScreenAssets.heroVideoPreview : undefined}
             />
           ) : (
             <div

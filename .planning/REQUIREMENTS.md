@@ -15,7 +15,7 @@
 - [x] **PERF-02**: Hero / team / business-goals / showreel PNG-photos конвертированы в JPG исходники + рендерятся через `next/image` (AVIF). Дубликаты per-breakpoint удалены — `next/image` отдаёт responsive srcset из одного исходника.
 - [x] **PERF-03**: Hero image на главной — `priority` prop + явный `sizes`. Mobile LCP < 2.5s, desktop LCP < 1.0s (измеряется PSI).
 - [x] **PERF-04**: Static `/assets/*` отдаются с `Cache-Control: public, max-age=31536000, immutable`. Решение: либо `headers()` в next.config, либо Traefik labels. Repeat-visit FCP < 0.5s.
-- [x] **PERF-05**: Cleanup: удалены дубликаты медиа в `/public/assets/figma/footer-1440/`, `/public/assets/figma/9050-...`, `/public/assets/blog/...`. Total `/public/assets` < 60 MB.
+- [x] **PERF-05**: Cleanup: удалены дубликаты медиа в `/public/assets/figma/footer-1440/`, `/public/assets/figma/9050-...`, `/public/assets/blog/...`. Phase 13 довела `/public/assets` до 26 MB; Phase 17 вернула локальный video по продукт-требованию, поэтому общий inventory снова выше 60 MB, но initial page weight защищён lazy-load.
 
 ### Performance — Payload Media (P0.5)
 
@@ -27,7 +27,7 @@
 - [x] **PERF-06**: Шрифты переведены с TTF на woff2 + RU/EN subsetting через `next/font/local`. Total fonts weight 680 KB → ≤ 350 KB. Нет визуальной регрессии (Cyrillic + Latin рендерятся как раньше).
 - [x] **PERF-07**: `@next/bundle-analyzer` интегрирован. Unused JS уменьшен локально через dynamic imports тяжёлых модалок (consultation, tg-popup); финальное PSI-подтверждение < 30 KB — Phase 19.
 - [x] **PERF-08**: 3× `ERR_CONNECTION_FAILED` в console на главной — локальный production smoke чист. Console на mobile home: 0 errors / 0 failed requests; LH audit confirmation — Phase 19.
-- [ ] **PERF-09**: `bts-ozon.mp4` (57 MB) грузится lazy с poster-изображением. На мобайле не предзагружается. Если нет UX-loss — рассмотреть external host (Mux / Cloudinary / TG-channel embed).
+- [x] **PERF-09**: Локальный `bts-ozon.mp4` грузится lazy. На мобайле не предзагружается при initial pageload; начинает запрашиваться после scroll toward showreel. External host не используется в v1.2 по продукт-требованию.
 
 ### A11y / SEO (P2)
 
@@ -69,7 +69,7 @@
 | PERF-06 | Phase 16 — Bundle & Fonts | Complete locally |
 | PERF-07 | Phase 16 — Bundle & Fonts | Complete locally; final PSI in Phase 19 |
 | PERF-08 | Phase 16 — Bundle & Fonts | Complete locally; final Lighthouse console audit in Phase 19 |
-| PERF-09 | Phase 17 — Video Lazy Loading | Pending |
+| PERF-09 | Phase 17 — Video Lazy Loading | Complete locally |
 | A11Y-01 | Phase 18 — A11y & SEO Hygiene | Pending |
 | SEO-01 | Phase 18 — A11y & SEO Hygiene | Pending |
 | VERIFY-01 | Phase 19 — Verification | Pending |

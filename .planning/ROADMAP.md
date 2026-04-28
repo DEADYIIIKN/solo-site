@@ -98,22 +98,22 @@
 
 ---
 
-### Phase 17: Video Lazy Loading (P1)
+### Phase 17: Video Lazy Loading (P1) ✅
 
-**Goal:** `bts-ozon.mp4` (57 MB) не предзагружается на mobile, грузится lazy с poster-кадром. Возможный вынос на внешний хостинг — решение принимается в плане после оценки UX trade-off.
+**Goal:** Локальный `bts-ozon.mp4` не предзагружается на mobile, грузится lazy после scroll/interaction. Внешний хостинг не используется в v1.2: видео должно оставаться локальным.
 
 **Requirements covered:** PERF-09
 
 **Depends on:** Nothing (изолировано). Можно параллельно с Phase 16.
 
 **Plans:**
-- [ ] PLAN.md `17-01-video-lazy-poster` — PERF-09: poster-кадр (extract from mp4 как AVIF), `preload="none"` на mobile, IntersectionObserver-trigger или click-to-play. Отдельным sub-task: оценка external host (Mux/Cloudinary/TG embed) — go/no-go решение.
+- [x] PLAN.md `17-01-video-lazy-poster` — PERF-09: локальный `/assets/video/bts-ozon.mp4`, `preload="none"`, no initial mobile request, load after scroll + intersection
 
 **Success criteria:**
 1. На mobile home `bts-ozon.mp4` НЕ грузится при initial pageload (Network tab — 0 bytes)
-2. Виден poster-кадр (AVIF) в месте видео до взаимодействия
+2. Виден placeholder/poster в месте видео до взаимодействия
 3. Клик/scroll-into-view → видео начинает грузиться
-4. Решение про external host задокументировано (либо реализовано, либо deferred с rationale)
+4. Решение про external host задокументировано: не используется, локальное видео является продуктовым требованием
 
 **UI hint:** yes
 
@@ -162,6 +162,16 @@
 ---
 
 ## Backlog
+
+### Phase 999.2: video-format-optimization — next-version backlog
+
+**Goal:** В следующей версии уменьшить вес локального showreel video без изменения Phase 17 lazy-load поведения.
+**Requirements:** TBD next version
+**Plans:** 0 plans
+
+Plans:
+- [ ] Re-encode `public/assets/video/bts-ozon.mp4` to smaller web MP4 (H.264, no audio if unused, constrained resolution/bitrate, `faststart`)
+- [ ] Evaluate optional WebM/AV1 secondary source, keeping MP4/H.264 as compatibility fallback
 
 ### Phase 999.1: carousel-services-arrows — extend e2e when carousel appears (BACKLOG)
 

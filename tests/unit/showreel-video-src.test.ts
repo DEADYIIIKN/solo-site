@@ -16,12 +16,12 @@ describe("showreel video source", () => {
     }
   });
 
-  it("does not fall back to a bundled public video when env is unset", async () => {
+  it("uses the bundled local video when env is unset", async () => {
     delete process.env.NEXT_PUBLIC_SHOWREEL_VIDEO;
 
     const { showreelVideoSrc } = await loadShowreelData();
 
-    expect(showreelVideoSrc).toBe("");
+    expect(showreelVideoSrc).toBe("/assets/video/bts-ozon.mp4");
   });
 
   it("uses NEXT_PUBLIC_SHOWREEL_VIDEO when provided", async () => {

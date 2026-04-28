@@ -27,6 +27,7 @@ function easeInOutCubic(t: number): number {
 
 export function ShowreelMorphOverlay() {
   const overlayRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const frameRef = useRef<number | null>(null);
   const lastSourceRef = useRef<HTMLElement | null>(null);
   const lastTargetRef = useRef<HTMLElement | null>(null);
@@ -104,6 +105,14 @@ export function ShowreelMorphOverlay() {
         targetProgressRef.current = 0;
         currentProgressRef.current = 0;
         return;
+      }
+
+      if (showreelAssets.video && currentProgressRef.current > 0.02) {
+        const video = videoRef.current;
+        if (video && !video.currentSrc && !video.src) {
+          video.src = showreelAssets.video;
+          video.load();
+        }
       }
 
       const sourceRect = source.getBoundingClientRect();
@@ -216,8 +225,8 @@ export function ShowreelMorphOverlay() {
           loop
           muted
           playsInline
-          preload="auto"
-          src={showreelAssets.video}
+          preload="none"
+          ref={videoRef}
         />
       ) : (
         <div aria-hidden className="h-full w-full bg-[#1a1410]" />
