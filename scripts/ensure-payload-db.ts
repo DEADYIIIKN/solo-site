@@ -9,16 +9,37 @@
 import { DatabaseSync } from "node:sqlite";
 import type { DrizzleAdapter } from "@payloadcms/drizzle";
 
-function hasUsersTable(): boolean {
+/**
+ * Список всех Payload Collection slugs которые должны существовать как
+ * SQLite таблицы. Расширять при добавлении новых Collections.
+ *
+ * Если ХОТЬ ОДНА таблица отсутствует — запускаем pushDevSchema (idempotent).
+ * Это ловит migrations добавления новых collections (Phase 8 leads, etc.).
+ */
+const EXPECTED_TABLES = [
+  "users",
+  "media",
+  "cases_advertising",
+  "cases_vertical",
+  "secrets_posts",
+  "leads",
+];
+
+function getMissingTables(): string[] {
   const url = process.env.DATABASE_URL?.trim();
-  if (!url?.startsWith("file:")) return false;
+  if (!url?.startsWith("file:")) return [];
   const dbPath = url.slice("file:".length);
   const database = new DatabaseSync(dbPath);
   try {
-    const row = database
-      .prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'users' LIMIT 1")
-      .get() as { name?: string } | undefined;
-    return row?.name === "users";
+    const stmt = database.prepare(
+      "SELECT name FROM sqlite_master WHERE type = 'table' AND name = ? LIMIT 1",
+    );
+    const missing: string[] = [];
+    for (const table of EXPECTED_TABLES) {
+      const row = stmt.get(table) as { name?: string } | undefined;
+      if (row?.name !== table) missing.push(table);
+    }
+    return missing;
   } finally {
     database.close();
   }
@@ -33,9 +54,13 @@ async function main(): Promise<void> {
   if (!shouldEnsureSchema()) {
     return;
   }
-  if (hasUsersTable()) {
+  const missing = getMissingTables();
+  if (missing.length === 0) {
     return;
   }
+  console.warn(
+    `[ensure-payload-db] missing tables: ${missing.join(", ")} — running pushDevSchema`,
+  );
   process.env.PAYLOAD_FORCE_DRIZZLE_PUSH = "true";
 
   const [{ pushDevSchema }, { getPayload }, { default: config }] = await Promise.all([
