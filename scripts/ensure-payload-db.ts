@@ -6,8 +6,77 @@
  * Run with: `pnpm exec node --experimental-strip-types scripts/ensure-payload-db.ts`
  * Do not use `tsx` here — it breaks `@next/env` when Payload loads.
  */
+import { appendFileSync, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 import { DatabaseSync } from "node:sqlite";
 import type { DrizzleAdapter } from "@payloadcms/drizzle";
+
+/**
+ * Дублирующий лог в файл рядом с БД — CI deploy log обрезает stdout
+ * после ~2s, post-mortem без SSH невозможен.
+ */
+function logFilePath(): string | null {
+  const url = process.env.DATABASE_URL?.trim();
+  if (!url?.startsWith("file:")) return null;
+  const dbPath = url.slice("file:".length);
+  return `${dirname(dbPath)}/ensure-payload-db.log`;
+}
+
+function log(line: string): void {
+  const stamped = `[${new Date().toISOString()}] ${line}`;
+  console.log(stamped);
+  const lp = logFilePath();
+  if (lp) {
+    try {
+      mkdirSync(dirname(lp), { recursive: true });
+      appendFileSync(lp, stamped + "\n");
+    } catch {
+      /* best-effort */
+    }
+  }
+}
+
+/**
+ * Last-resort fallback DDL для критичных таблиц если drizzle-kit push
+ * не отработал. Сгенерировано из локальной payload.db (Phase 12).
+ * Только idempotent CREATE IF NOT EXISTS / ALTER ADD COLUMN.
+ */
+const FALLBACK_DDL: string[] = [
+  `CREATE TABLE IF NOT EXISTS leads (
+    id integer PRIMARY KEY NOT NULL,
+    name text NOT NULL,
+    phone text NOT NULL,
+    message text,
+    contact_method text DEFAULT 'call' NOT NULL,
+    consent integer DEFAULT 0 NOT NULL,
+    source text,
+    forwarded_to_webhook integer DEFAULT 0,
+    webhook_error text,
+    user_ip text,
+    updated_at text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+    created_at text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL
+  )`,
+  `CREATE INDEX IF NOT EXISTS leads_updated_at_idx ON leads (updated_at)`,
+  `CREATE INDEX IF NOT EXISTS leads_created_at_idx ON leads (created_at)`,
+];
+
+const FALLBACK_RELS_COLUMNS: Array<{ table: string; column: string; ddl: string }> = [
+  {
+    table: "payload_locked_documents_rels",
+    column: "leads_id",
+    ddl: "ALTER TABLE payload_locked_documents_rels ADD COLUMN leads_id integer REFERENCES leads(id) ON DELETE CASCADE",
+  },
+  {
+    table: "payload_preferences_rels",
+    column: "leads_id",
+    ddl: "ALTER TABLE payload_preferences_rels ADD COLUMN leads_id integer REFERENCES leads(id) ON DELETE CASCADE",
+  },
+];
+
+const FALLBACK_RELS_INDEXES: string[] = [
+  `CREATE INDEX IF NOT EXISTS payload_locked_documents_rels_leads_id_idx ON payload_locked_documents_rels (leads_id)`,
+  `CREATE INDEX IF NOT EXISTS payload_preferences_rels_leads_id_idx ON payload_preferences_rels (leads_id)`,
+];
 
 /**
  * Список всех Payload Collection slugs которые должны существовать как
@@ -68,62 +137,123 @@ function shouldEnsureSchema(): boolean {
   return process.env.NODE_ENV === "production";
 }
 
+function applyFallbackDDL(): { tableCreated: boolean; columnsAdded: string[] } {
+  const url = process.env.DATABASE_URL?.trim();
+  if (!url?.startsWith("file:")) return { tableCreated: false, columnsAdded: [] };
+  const dbPath = url.slice("file:".length);
+  const db = new DatabaseSync(dbPath);
+  const columnsAdded: string[] = [];
+  let tableCreated = false;
+  try {
+    const before = db
+      .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='leads'")
+      .get() as { name?: string } | undefined;
+    for (const stmt of FALLBACK_DDL) db.exec(stmt);
+    const after = db
+      .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='leads'")
+      .get() as { name?: string } | undefined;
+    tableCreated = !before?.name && after?.name === "leads";
+
+    for (const { table, column, ddl } of FALLBACK_RELS_COLUMNS) {
+      const tableExists = db
+        .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name=?")
+        .get(table) as { name?: string } | undefined;
+      if (!tableExists?.name) continue;
+      const cols = db.prepare(`PRAGMA table_info(${table})`).all() as { name: string }[];
+      if (!cols.some((c) => c.name === column)) {
+        db.exec(ddl);
+        columnsAdded.push(`${table}.${column}`);
+      }
+    }
+    for (const idx of FALLBACK_RELS_INDEXES) {
+      try {
+        db.exec(idx);
+      } catch (e) {
+        log(`[ensure-payload-db] fallback index skipped: ${(e as Error).message}`);
+      }
+    }
+  } finally {
+    db.close();
+  }
+  return { tableCreated, columnsAdded };
+}
+
 async function main(): Promise<void> {
   if (!shouldEnsureSchema()) {
     return;
   }
   const missing = getMissingTables();
   if (missing.length === 0) {
+    log(`[ensure-payload-db] all expected tables/columns present — skip`);
     return;
   }
-  console.warn(
-    `[ensure-payload-db] missing tables: ${missing.join(", ")} — running drizzle pushSQLiteSchema`,
+  log(
+    `[ensure-payload-db] missing: ${missing.join(", ")} — пробуем drizzle pushSQLiteSchema`,
   );
   process.env.PAYLOAD_FORCE_DRIZZLE_PUSH = "true";
 
-  const [{ getPayload }, { default: config }, drizzleKit] = await Promise.all([
-    import("payload"),
-    import("../src/payload.config.ts"),
-    import("drizzle-kit/api"),
-  ]);
-
-  const payload = await getPayload({ config });
+  let drizzleOk = false;
   try {
-    /**
-     * Прямой вызов drizzle-kit pushSQLiteSchema вместо Payload's pushDevSchema —
-     * последний использует `prompts` для confirmation на warnings, что в
-     * non-TTY container hangs/cancels (и schema не пушится).
-     * Здесь мы всегда auto-accept warnings и вызываем apply().
-     */
-    const adapter = payload.db as unknown as DrizzleAdapter & {
-      schema: Record<string, unknown>;
-      drizzle: unknown;
-    };
-    const { apply, hasDataLoss, warnings, statementsToExecute } =
-      await drizzleKit.pushSQLiteSchema(
-        adapter.schema,
-        adapter.drizzle as Parameters<typeof drizzleKit.pushSQLiteSchema>[1],
-      );
+    const [{ getPayload }, { default: config }, drizzleKit] = await Promise.all([
+      import("payload"),
+      import("../src/payload.config.ts"),
+      import("drizzle-kit/api"),
+    ]);
 
-    if (warnings.length > 0) {
-      console.warn(
-        `[ensure-payload-db] drizzle warnings (auto-accepting): ${warnings.join("; ")}`,
-      );
+    const payload = await getPayload({ config });
+    try {
+      const adapter = payload.db as unknown as DrizzleAdapter & {
+        schema: Record<string, unknown>;
+        drizzle: unknown;
+      };
+      const { apply, hasDataLoss, warnings, statementsToExecute } =
+        await drizzleKit.pushSQLiteSchema(
+          adapter.schema,
+          adapter.drizzle as Parameters<typeof drizzleKit.pushSQLiteSchema>[1],
+        );
+
+      if (warnings.length > 0) {
+        log(`[ensure-payload-db] drizzle warnings (auto-accept): ${warnings.join("; ")}`);
+      }
+      if (hasDataLoss) {
+        log(`[ensure-payload-db] WARNING hasDataLoss=true — продолжаем`);
+      }
+      log(`[ensure-payload-db] drizzle statementsToExecute=${statementsToExecute.length}`);
+      for (const s of statementsToExecute.slice(0, 20)) {
+        log(`[ensure-payload-db]   SQL: ${s.replace(/\s+/g, " ").slice(0, 200)}`);
+      }
+      await apply();
+      log(`[ensure-payload-db] drizzle apply() OK`);
+      drizzleOk = true;
+    } finally {
+      if (typeof payload.destroy === "function") {
+        await payload.destroy();
+      }
     }
-    if (hasDataLoss) {
-      console.warn(
-        `[ensure-payload-db] WARNING: hasDataLoss=true — продолжаем т.к. цель добавить новые таблицы`,
-      );
-    }
-    console.log(
-      `[ensure-payload-db] выполняем ${statementsToExecute.length} SQL statements`,
-    );
-    await apply();
-    console.log(`[ensure-payload-db] schema push успешно применён`);
-  } finally {
-    if (typeof payload.destroy === "function") {
-      await payload.destroy();
-    }
+  } catch (err) {
+    log(`[ensure-payload-db] drizzle path FAILED: ${(err as Error).message}`);
+  }
+
+  // Re-check after drizzle attempt — если что-то ещё missing, врубаем raw fallback.
+  const stillMissing = getMissingTables();
+  if (stillMissing.length === 0) {
+    log(`[ensure-payload-db] post-drizzle: всё на месте (drizzleOk=${drizzleOk})`);
+    return;
+  }
+  log(
+    `[ensure-payload-db] post-drizzle still missing: ${stillMissing.join(", ")} — запускаю raw-SQL fallback`,
+  );
+  const result = applyFallbackDDL();
+  log(
+    `[ensure-payload-db] fallback: leads_table_created=${result.tableCreated}, columns_added=[${result.columnsAdded.join(", ")}]`,
+  );
+
+  const finalMissing = getMissingTables();
+  if (finalMissing.length === 0) {
+    log(`[ensure-payload-db] fallback closed all gaps — OK`);
+  } else {
+    log(`[ensure-payload-db] FATAL: still missing after fallback: ${finalMissing.join(", ")}`);
+    process.exit(1);
   }
 }
 
