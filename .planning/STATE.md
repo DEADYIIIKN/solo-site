@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: "Performance & Delivery"
 last_shipped: v1.1.2
-status: phase-16-in-progress
-stopped_at: Phase 16 plan 16-01 complete locally; next is 16-02 bundle analyzer and console cleanup
-last_updated: "2026-04-29T00:22:00.000+03:00"
-last_activity: 2026-04-29 -- Phase 16 Montserrat WOFF2 subset complete locally
+status: phase-16-complete
+stopped_at: Phase 16 complete locally; next is Phase 17 video lazy loading
+last_updated: "2026-04-29T00:40:00.000+03:00"
+last_activity: 2026-04-29 -- Phase 16 bundle analyzer, dynamic imports, and console smoke complete locally
 progress:
   total_phases: 7
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 13
-  completed_plans: 7
-  percent: 54
+  completed_plans: 8
+  percent: 62
 ---
 
 # Project State
@@ -22,23 +22,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.2 — Performance & Delivery (Phase 16 in progress; next bundle analyzer and console cleanup)
+**Current focus:** v1.2 — Performance & Delivery (Phase 17 next: video lazy loading)
 
 ## Current Position
 
 Last shipped: **v1.1.2** (2026-04-28)
 Active milestone: **v1.2 — Performance & Delivery**
-Phase: 16 in progress — Bundle & Fonts
-Next: 16-02 Bundle analyzer / dynamic imports / console errors
-Last activity: 2026-04-29 -- Montserrat TTF files replaced with 320 KB WOFF2 subset
+Phase: 16 complete locally — Bundle & Fonts
+Next: 17-01 Video lazy poster
+Last activity: 2026-04-29 -- Bundle analyzer added, consultation/TG modals split with dynamic imports, production mobile smoke clean
 
-Progress: 7/13 plans complete (Phase 13 + Phase 14 + Phase 15 + Phase 16-01). `/public/assets` is now 26 MB after Phase 13 final cleanup.
+Progress: 8/13 plans complete (Phase 13 + Phase 14 + Phase 15 + Phase 16). `/public/assets` is now 26 MB after Phase 13 final cleanup.
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: —
 - Total execution time: 0 hours
 

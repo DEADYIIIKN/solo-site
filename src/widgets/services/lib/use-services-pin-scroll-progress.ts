@@ -38,7 +38,7 @@ export function servicesPinViewportAllowsPin(viewport: ServicesPinViewport = "14
   return Math.max(iw, cw, vv ?? 0) >= 1440;
 }
 
-/** Совпадает с `hidden`/`min-[…]:block` у ServicesSection1024 / 1440 — не крутить pin у скрытой вёрстки. */
+/** Совпадает с visibility-классами ServicesSection1024 / 1440 — не крутить pin у скрытой вёрстки. */
 export function isServicesLayoutActiveForPin(viewport: ServicesPinViewport): boolean {
   if (typeof window === "undefined") return false;
   if (viewport === "1440") {

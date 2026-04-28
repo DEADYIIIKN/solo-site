@@ -1,12 +1,21 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import type { Dispatch, SetStateAction } from "react";
 
 import type {
   FirstScreenConsultationFormState,
   FirstScreenConsultationModalTitleVariant,
 } from "@/widgets/first-screen/model/first-screen-consultation-form-state";
-import { ConsultationModal } from "@/widgets/first-screen/ui/consultation-modal";
+import type { ConsultationModalProps } from "@/widgets/first-screen/ui/consultation-modal";
+
+const ConsultationModal = dynamic<ConsultationModalProps>(
+  () =>
+    import("@/widgets/first-screen/ui/consultation-modal").then((module) => ({
+      default: module.ConsultationModal,
+    })),
+  { ssr: false },
+);
 
 type FirstScreenConsultationModal1024Props = {
   open: boolean;

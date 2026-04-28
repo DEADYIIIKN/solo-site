@@ -1,9 +1,14 @@
 import type { NextConfig } from "next";
+import bundleAnalyzer from "@next/bundle-analyzer";
 import { withPayload } from "@payloadcms/next/withPayload";
 import {
   NEXT_IMAGE_MINIMUM_CACHE_TTL_SECONDS,
   staticAssetHeaders,
 } from "./src/shared/config/cache-headers";
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -21,4 +26,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPayload(nextConfig);
+export default withBundleAnalyzer(withPayload(nextConfig));

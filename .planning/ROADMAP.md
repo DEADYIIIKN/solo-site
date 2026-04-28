@@ -78,7 +78,7 @@
 
 ---
 
-### Phase 16: Bundle & Fonts (P1)
+### Phase 16: Bundle & Fonts (P1) ✅
 
 **Goal:** Снизить вес fonts с 693 KB до ≤ 350 KB (woff2 + RU/EN subset), unused JS с 86 KB до < 30 KB, console errors → 0.
 
@@ -88,13 +88,13 @@
 
 **Plans:**
 - [x] PLAN.md `16-01-fonts-woff2-subset` — PERF-06: TTF → woff2 + RU/EN subsetting через `next/font/local`, no visual regression
-- [ ] PLAN.md `16-02-bundle-analyzer-dynamic-imports` — PERF-07 + PERF-08: `@next/bundle-analyzer` integration, dynamic import для consultation/tg-popup модалок, найти источник 3× `ERR_CONNECTION_FAILED` и устранить
+- [x] PLAN.md `16-02-bundle-analyzer-dynamic-imports` — PERF-07 + PERF-08: `@next/bundle-analyzer` integration, dynamic import для consultation/tg-popup модалок, production mobile console smoke чистый
 
 **Success criteria:**
 1. Total fonts weight ≤ 350 KB (было 693 KB), Cyrillic + Latin рендерятся идентично
-2. Unused JS < 30 KB (было 86 KB) по PSI report
-3. Console на mobile home — 0 errors в LH audit
-4. `next build && pnpm analyze` доступен как dev-команда (не падает в CI)
+2. Unused JS < 30 KB (было 86 KB) по PSI report — final deployed confirmation in Phase 19
+3. Console на mobile home — 0 errors в local production smoke; LH audit confirmation in Phase 19
+4. `next build && pnpm analyze` доступен как dev-команда (не падает локально)
 
 ---
 

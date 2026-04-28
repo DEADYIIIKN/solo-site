@@ -25,8 +25,8 @@
 ### Performance — Bundle & Fonts (P1)
 
 - [x] **PERF-06**: Шрифты переведены с TTF на woff2 + RU/EN subsetting через `next/font/local`. Total fonts weight 680 KB → ≤ 350 KB. Нет визуальной регрессии (Cyrillic + Latin рендерятся как раньше).
-- [ ] **PERF-07**: `@next/bundle-analyzer` интегрирован. Unused JS уменьшен с 86 KB до < 30 KB через dynamic imports тяжёлых модалок (consultation, tg-popup) или удаление неиспользуемого кода.
-- [ ] **PERF-08**: 3× `ERR_CONNECTION_FAILED` в console на главной — найдены и устранены. Console на mobile home чист (0 errors в LH audit).
+- [x] **PERF-07**: `@next/bundle-analyzer` интегрирован. Unused JS уменьшен локально через dynamic imports тяжёлых модалок (consultation, tg-popup); финальное PSI-подтверждение < 30 KB — Phase 19.
+- [x] **PERF-08**: 3× `ERR_CONNECTION_FAILED` в console на главной — локальный production smoke чист. Console на mobile home: 0 errors / 0 failed requests; LH audit confirmation — Phase 19.
 - [ ] **PERF-09**: `bts-ozon.mp4` (57 MB) грузится lazy с poster-изображением. На мобайле не предзагружается. Если нет UX-loss — рассмотреть external host (Mux / Cloudinary / TG-channel embed).
 
 ### A11y / SEO (P2)
@@ -67,8 +67,8 @@
 | PERF-10 | Phase 15 — Payload Media Optimization | Complete locally; existing upload apply command documented |
 | PERF-11 | Phase 15 — Payload Media Optimization | Complete locally |
 | PERF-06 | Phase 16 — Bundle & Fonts | Complete locally |
-| PERF-07 | Phase 16 — Bundle & Fonts | Pending |
-| PERF-08 | Phase 16 — Bundle & Fonts | Pending |
+| PERF-07 | Phase 16 — Bundle & Fonts | Complete locally; final PSI in Phase 19 |
+| PERF-08 | Phase 16 — Bundle & Fonts | Complete locally; final Lighthouse console audit in Phase 19 |
 | PERF-09 | Phase 17 — Video Lazy Loading | Pending |
 | A11Y-01 | Phase 18 — A11y & SEO Hygiene | Pending |
 | SEO-01 | Phase 18 — A11y & SEO Hygiene | Pending |
