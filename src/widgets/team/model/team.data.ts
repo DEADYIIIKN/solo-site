@@ -1,5 +1,5 @@
 export const teamSectionAssets = {
-  teamPhoto: "/assets/figma/9656-team-what-we-do-1440/team.png",
+  teamPhoto: "/assets/figma/9656-team-what-we-do-1440/team.jpg",
 } as const;
 
 /** Порядок колонок как в макете: 5+, 3+, 177, 30+ */
