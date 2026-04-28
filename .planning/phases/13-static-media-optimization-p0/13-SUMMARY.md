@@ -1,10 +1,10 @@
 # Phase 13 — Static Media Optimization (P0) SUMMARY
 
-**Status:** ✅ Complete (9 commits на main, awaiting deploy)
+**Status:** ✅ Complete (awaiting deploy)
 **Started:** 2026-04-28
 **Completed:** 2026-04-28
 **Plans:** 3/3 (10 tasks total)
-**Requirements covered:** PERF-01 ✓ · PERF-02 ✓ · PERF-03 ✓ (re-architected) · PERF-05 ✓ (partial)
+**Requirements covered:** PERF-01 ✓ · PERF-02 ✓ · PERF-03 ✓ (re-architected) · PERF-05 ✓
 
 ## Что сделано
 
@@ -23,13 +23,14 @@
   - `<video poster={...} onCanPlay={() => setVideoReady(true)}>` swap
   - Реальный LCP element = JPG poster (49 KB), video грузится фоном
 - Hero implemented только на 1440 + 1024 (на 768/480/360 нет video container'а в layout'е)
-- Commits: `b46247e`, `c0a2099`
+- Commits: `b46247e`, `c0a2099`, `d56edf5`
 
 ### 13-03 Cleanup (PERF-05)
-- 16 dead-файлов удалены, **−31 MB на диске** (139 MB → 108 MB)
-- Hero × 3 / team / business-goals × 3 / showreel / 8969-traffic-image / footer dups × 6 / one-shot script
-- Target plan'а `<60 MB` не достигнут — оставшиеся 108 MB это уникальные файлы; нужен отдельный grep-audit dead-uniques (deferred)
-- Commits: `bf0f742`, `901378e`, `d483a8e`, `ea838d5`, `4d6b3b1`
+- Initial cleanup: 16 dead-файлов удалены, **−31 MB на диске** (139 MB → 108 MB)
+- Final cleanup: duplicate/dead blog, case-modal, production-card, footer-v2 and bundled video assets removed
+- `/public/assets`: **108 MB → 26 MB** after final cleanup, target `<60 MB` achieved
+- `bts-ozon.mp4` removed from bundled public assets; showreel video is now env-only via `NEXT_PUBLIC_SHOWREEL_VIDEO`, with existing placeholder fallback when unset
+- Commits: `bf0f742`, `901378e`, `d483a8e`, `ea838d5`, `4d6b3b1`, plus final cleanup commit
 
 ## Architectural pivots (vs initial plan)
 
@@ -42,11 +43,19 @@
 3. **scripts/convert-png-to-jpg.mjs создан и удалён в одной фазе**
    One-shot скрипт; результат закоммичен; скрипт удалён (T05 от 13-03) чтобы не засорять repo.
 
+4. **Showreel video removed from bundled assets**
+   `/public/assets <60 MB` was impossible while `public/assets/video/bts-ozon.mp4` stayed in repo (56 MB alone). The code already supported `NEXT_PUBLIC_SHOWREEL_VIDEO`; final cleanup makes the default empty and keeps the placeholder fallback. Production should set `NEXT_PUBLIC_SHOWREEL_VIDEO` to a CDN/object-storage URL when video is required.
+
 ## Verification
 
 - `pnpm exec tsc --noEmit -p tsconfig.json` — clean ✓
-- `pnpm exec next lint` — clean (pre-existing privacy/page.tsx error не входит в scope)
-- Curl AVIF (production demo): **deferred to post-deploy** (local dev падает на pre-existing globals.css ошибке)
+- `pnpm build` — clean ✓
+- `pnpm exec vitest run tests/unit/showreel-video-src.test.ts` — clean ✓
+- `du -sm public/assets public/assets/figma` — `26 MB / 26 MB` ✓
+- grep for removed public asset paths in `src tests` — no matches ✓
+- Build fix included: Tailwind 4 source scan limited to `src/` via `src/app/globals.css`, preventing markdown `bg-[url(...)]` examples from breaking webpack (`8a397be`)
+- Hero 1024 follow-up included: `HeroVideoPoster` client subcomponent keeps the 1024 hero component server-rendered where possible (`d56edf5`)
+- Curl AVIF (production demo): **deferred to post-deploy**
 
 ## Expected metrics impact
 
@@ -56,7 +65,7 @@ Pre-phase baseline (mobile home, PSI):
 Expected post-deploy (без Phase 14 cache headers):
 - Perf: **80–88** (target 90+ требует Phase 14 immutable cache на repeat visits)
 - LCP: **3.0–3.5s** (target <2.5s достигается полностью только с phase 14)
-- Page weight: **~1500 KB** (footer 2.5MB → 131KB + hero/team/business-goals fix)
+- Page weight: **~1500 KB or lower when `NEXT_PUBLIC_SHOWREEL_VIDEO` is unset** (footer 2.5MB → 131KB + hero/team/business-goals fix; bundled 57MB video removed)
 
 ## Deferred to Phase 14
 
@@ -68,9 +77,13 @@ Expected post-deploy (без Phase 14 cache headers):
 **Source edits:**
 - `src/widgets/footer/ui/footer-{360,480,768,1024,1440}.tsx`
 - `src/widgets/first-screen/ui/first-screen-hero-{1024,1440}.tsx`
+- `src/widgets/first-screen/ui/first-screen-hero-video-poster.tsx`
+- `src/app/globals.css`
 - `src/widgets/first-screen/model/first-screen.data.ts`
 - `src/widgets/team/model/team.data.ts`
 - `src/widgets/business-goals/model/business-goals.data.ts`
+- `src/widgets/showreel/model/showreel.data.ts`
+- `tests/unit/showreel-video-src.test.ts`
 
 **New JPG sources:**
 - `public/assets/figma/9656-first-screen-1440/hero-image.jpg`
@@ -85,6 +98,14 @@ Expected post-deploy (без Phase 14 cache headers):
 - 1× `image.jpg` (8969-what-we-do-card-traffic-image-1024)
 - 6× footer-card duplicates (figma/9050-..., figma/9052-..., blog/...)
 - 1× `scripts/convert-png-to-jpg.mjs`
+
+**Final cleanup deleted additionally:**
+- `/public/assets/blog/**` (unused duplicate blog/footer export tree)
+- duplicate production-card assets (`10547/11323/11947-business-goals-*/image.png`, `8977-.../image.jpg`)
+- duplicate ad-case/modal frame assets (`12029-card-ad-case-768/image21.png`, `7098/7148/7197/7246.../frame873.png`, `cases-1440/ad-01.jpg`, `12001-cases-768/image22.png`)
+- unused `11872-benefit-card-team-432/image.png`
+- unused `footer-1440/footer-1440-v2.png`
+- bundled `public/assets/video/bts-ozon.mp4` (video now external/env-only)
 
 ## Next
 
