@@ -3,16 +3,16 @@ gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: "Performance & Delivery"
 last_shipped: v1.1.2
-status: phase-15-complete
-stopped_at: Phase 15 complete locally; next is Phase 16 Bundle & Fonts or deploy media regenerate
-last_updated: "2026-04-28T17:12:00.000Z"
-last_activity: 2026-04-28 -- Phase 15 Payload Media variants and render audit complete locally
+status: phase-16-in-progress
+stopped_at: Phase 16 plan 16-01 complete locally; next is 16-02 bundle analyzer and console cleanup
+last_updated: "2026-04-29T00:22:00.000+03:00"
+last_activity: 2026-04-29 -- Phase 16 Montserrat WOFF2 subset complete locally
 progress:
   total_phases: 7
   completed_phases: 3
   total_plans: 13
-  completed_plans: 6
-  percent: 46
+  completed_plans: 7
+  percent: 54
 ---
 
 # Project State
@@ -22,17 +22,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.2 — Performance & Delivery (Phase 15 complete locally; next Phase 16 or deploy media regenerate)
+**Current focus:** v1.2 — Performance & Delivery (Phase 16 in progress; next bundle analyzer and console cleanup)
 
 ## Current Position
 
 Last shipped: **v1.1.2** (2026-04-28)
 Active milestone: **v1.2 — Performance & Delivery**
-Phase: 15 complete locally — Payload Media Optimization
-Next: Phase 16 — Bundle & Fonts, or deploy step `PAYLOAD_REGENERATE_MEDIA_APPLY=1 pnpm payload:media:regenerate`
-Last activity: 2026-04-28 -- Payload image variants, regenerate command, and render source audit completed
+Phase: 16 in progress — Bundle & Fonts
+Next: 16-02 Bundle analyzer / dynamic imports / console errors
+Last activity: 2026-04-29 -- Montserrat TTF files replaced with 320 KB WOFF2 subset
 
-Progress: 6/13 plans complete (Phase 13 + Phase 14 + Phase 15). `/public/assets` is now 26 MB after Phase 13 final cleanup.
+Progress: 7/13 plans complete (Phase 13 + Phase 14 + Phase 15 + Phase 16-01). `/public/assets` is now 26 MB after Phase 13 final cleanup.
 
 ## Performance Metrics
 

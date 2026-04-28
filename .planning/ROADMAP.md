@@ -87,7 +87,7 @@
 **Depends on:** Phase 13 (LCP исправлен — теперь fonts/JS становятся следующим bottleneck)
 
 **Plans:**
-- [ ] PLAN.md `16-01-fonts-woff2-subset` — PERF-06: TTF → woff2 + RU/EN subsetting через `next/font/local`, no visual regression
+- [x] PLAN.md `16-01-fonts-woff2-subset` — PERF-06: TTF → woff2 + RU/EN subsetting через `next/font/local`, no visual regression
 - [ ] PLAN.md `16-02-bundle-analyzer-dynamic-imports` — PERF-07 + PERF-08: `@next/bundle-analyzer` integration, dynamic import для consultation/tg-popup модалок, найти источник 3× `ERR_CONNECTION_FAILED` и устранить
 
 **Success criteria:**
