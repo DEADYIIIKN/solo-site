@@ -34,11 +34,6 @@ function mediaSrc(m: MediaLike): string {
   return "";
 }
 
-function preferStaticCaseImage(image: string, fallback: string): string {
-  if (!image) return fallback;
-  return image.startsWith("/api/media/file/") ? fallback : image;
-}
-
 /**
  * Данные кейсов для главной: из Payload, при ошибке или пустых коллекциях — статический fallback.
  */
@@ -66,10 +61,7 @@ export async function getCasesForSite(): Promise<{
 
     const verticalMapped: CasesVerticalCard[] = verticalRes.docs
       .map((doc, index) => {
-        const image = preferStaticCaseImage(
-          mediaSrc(doc.image as MediaLike),
-          casesVerticalCards1440[index]?.image ?? "",
-        );
+        const image = mediaSrc(doc.image as MediaLike) || casesVerticalCards1440[index]?.image || "";
         if (!image) return null;
         const titleLines = String(doc.title ?? "")
           .split("\n")
@@ -97,10 +89,7 @@ export async function getCasesForSite(): Promise<{
 
     const adMapped: CasesAdCard[] = adRes.docs
       .map((doc, index) => {
-        const image = preferStaticCaseImage(
-          mediaSrc(doc.image as MediaLike),
-          casesAdCards1440[index]?.image ?? "",
-        );
+        const image = mediaSrc(doc.image as MediaLike) || casesAdCards1440[index]?.image || "";
         if (!image) return null;
         const credits = (doc.credits as { line?: string }[] | undefined)
           ?.map((r) => r.line)

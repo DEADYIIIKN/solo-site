@@ -13,8 +13,7 @@ import type { DrizzleAdapter } from "@payloadcms/drizzle";
  * Список всех Payload Collection slugs которые должны существовать как
  * SQLite таблицы. Расширять при добавлении новых Collections.
  *
- * Если ХОТЬ ОДНА таблица отсутствует — запускаем pushDevSchema (idempotent).
- * Это ловит migrations добавления новых collections (Phase 8 leads, etc.).
+ * Если ХОТЬ ОДНА таблица или колонка отсутствует — запускаем pushDevSchema (idempotent).
  */
 const EXPECTED_TABLES = [
   "users",
@@ -25,19 +24,38 @@ const EXPECTED_TABLES = [
   "leads",
 ];
 
+/**
+ * Колонки которые должны существовать в конкретных таблицах.
+ * Добавлять при добавлении новых Collections — они добавляют FK-колонки в rels-таблицы.
+ */
+const EXPECTED_COLUMNS: Array<{ table: string; column: string }> = [
+  { table: "payload_locked_documents_rels", column: "leads_id" },
+  { table: "payload_preferences_rels", column: "leads_id" },
+];
+
 function getMissingTables(): string[] {
   const url = process.env.DATABASE_URL?.trim();
   if (!url?.startsWith("file:")) return [];
   const dbPath = url.slice("file:".length);
   const database = new DatabaseSync(dbPath);
   try {
-    const stmt = database.prepare(
+    const tableStmt = database.prepare(
       "SELECT name FROM sqlite_master WHERE type = 'table' AND name = ? LIMIT 1",
     );
     const missing: string[] = [];
     for (const table of EXPECTED_TABLES) {
-      const row = stmt.get(table) as { name?: string } | undefined;
+      const row = tableStmt.get(table) as { name?: string } | undefined;
       if (row?.name !== table) missing.push(table);
+    }
+    for (const { table, column } of EXPECTED_COLUMNS) {
+      const tableExists = (tableStmt.get(table) as { name?: string } | undefined)?.name === table;
+      if (!tableExists) continue;
+      const cols = database
+        .prepare(`PRAGMA table_info(${table})`)
+        .all() as { name: string }[];
+      if (!cols.some((c) => c.name === column)) {
+        missing.push(`${table}.${column}`);
+      }
     }
     return missing;
   } finally {
