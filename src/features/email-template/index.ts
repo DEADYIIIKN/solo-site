@@ -51,6 +51,10 @@ function escapeAttr(value: string): string {
   return escapeHtml(value).replaceAll("'", "&#39;");
 }
 
+function renderTextNode(value: string): string {
+  return escapeHtml(value).replace(/\r\n|\r|\n/g, "<br />");
+}
+
 function absoluteUrl(siteUrl: string, value: string): string {
   if (/^https?:\/\//i.test(value)) return value;
   if (value.startsWith("//")) return `https:${value}`;
@@ -81,12 +85,16 @@ function renderInlineNodes(nodes: LexicalNode[] | undefined, siteUrl: string): s
   return nodes
     .map((node) => {
       if (node.type === "text") {
-        let text = escapeHtml(node.text ?? "");
+        let text = renderTextNode(node.text ?? "");
         const format = node.format ?? 0;
         if (format & 1) text = `<strong>${text}</strong>`;
         if (format & 2) text = `<em>${text}</em>`;
         if (format & 8) text = `<u>${text}</u>`;
         return text;
+      }
+
+      if (node.type === "linebreak") {
+        return "<br />";
       }
 
       const children = renderInlineNodes(node.children, siteUrl);

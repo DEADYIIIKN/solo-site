@@ -35,6 +35,17 @@ export const EmailTemplates: CollectionConfig = {
       },
     },
     {
+      name: "templateActions",
+      type: "ui",
+      label: "Макет письма",
+      admin: {
+        position: "sidebar",
+        components: {
+          Field: "@/cms/components/email-template-actions#EmailTemplateActions",
+        },
+      },
+    },
+    {
       name: "subject",
       type: "text",
       required: true,
@@ -77,6 +88,16 @@ export const EmailTemplates: CollectionConfig = {
               type: "text",
               defaultValue: "/#lead-form-section",
               label: "Ссылка кнопки",
+            },
+            {
+              name: "templatePreview",
+              type: "ui",
+              label: "Превью письма",
+              admin: {
+                components: {
+                  Field: "@/cms/components/email-template-preview#EmailTemplatePreview",
+                },
+              },
             },
           ],
         },

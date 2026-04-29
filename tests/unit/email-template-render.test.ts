@@ -96,4 +96,46 @@ describe("renderEmailHtml", () => {
     expect(html).toContain("<em> italic</em>");
     expect(html).not.toContain("<script>alert(1)</script>");
   });
+
+  it("preserves manual line breaks inside rich text", () => {
+    const html = renderEmailHtml({
+      ...baseInput,
+      body: {
+        root: {
+          type: "root",
+          children: [
+            {
+              type: "paragraph",
+              children: [{ type: "text", text: "Первая строка\nВторая строка" }],
+            },
+          ],
+        },
+      },
+    });
+
+    expect(html).toContain("Первая строка<br />Вторая строка");
+  });
+
+  it("renders lexical linebreak nodes as email-safe br tags", () => {
+    const html = renderEmailHtml({
+      ...baseInput,
+      body: {
+        root: {
+          type: "root",
+          children: [
+            {
+              type: "paragraph",
+              children: [
+                { type: "text", text: "Первая строка" },
+                { type: "linebreak" },
+                { type: "text", text: "Вторая строка" },
+              ],
+            },
+          ],
+        },
+      },
+    });
+
+    expect(html).toContain("Первая строка<br />Вторая строка");
+  });
 });
