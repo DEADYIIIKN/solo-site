@@ -174,6 +174,7 @@ function VerticalCard({
         )}
         fill
         sizes="283px"
+        unoptimized
         src={image}
       />
       <div
@@ -251,6 +252,7 @@ function AdCard({
         )}
         fill
         sizes="575px"
+        unoptimized
         src={image}
       />
       <div

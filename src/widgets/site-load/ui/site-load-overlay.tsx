@@ -6,10 +6,10 @@ import { cn } from "@/shared/lib/utils";
 import { getCriticalSiteLoadAssetsForViewport } from "@/widgets/site-load/model/site-load-critical-assets";
 
 /* ── timing ─────────────────────────────────────────────── */
-const ANIM_MIN_MS = 2800;
-const HOLD_MS     = 500;
-const EXIT_DUR_MS = 600;
-const PRELOAD_TIMEOUT_MS = 4500;
+const ANIM_MIN_MS = 1900;
+const HOLD_MS     = 150;
+const EXIT_DUR_MS = 350;
+const PRELOAD_TIMEOUT_MS = 1500;
 
 /* ── geometry — все единицы в px (SVG user units при 1:1) ── */
 // Pill & Camera: viewBox width = 113.143 (full unit including triangle)

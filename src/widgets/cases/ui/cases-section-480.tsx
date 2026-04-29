@@ -98,6 +98,7 @@ function VerticalCard480({
         )}
         fill
         sizes={`${VERT_CARD_W}px`}
+        unoptimized
         src={image}
       />
       <div
@@ -175,6 +176,7 @@ function AdCard480({
         )}
         fill
         sizes={`${AD_CARD_W}px`}
+        unoptimized
         src={image}
       />
       <div

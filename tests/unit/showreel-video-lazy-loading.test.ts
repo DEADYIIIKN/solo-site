@@ -22,6 +22,18 @@ describe("showreel video lazy loading", () => {
     }
   });
 
+  it("keeps decorative hero assets out of blocking site-load preloads", () => {
+    for (const width of [360, 480, 768, 1024, 1440]) {
+      const assets = getCriticalSiteLoadAssetsForViewport(width);
+
+      expect(assets, `critical assets at ${width}px`).toHaveLength(1);
+      expect(assets[0]?.kind).toBe("image");
+      expect(assets[0]?.src).not.toContain("cta");
+      expect(assets[0]?.src).not.toContain("ellipse");
+      expect(assets[0]?.src).not.toContain("vector");
+    }
+  });
+
   it("does not render showreel video src before intersection gate opens", () => {
     const showreelSource = fs.readFileSync(
       path.join(root, "src/widgets/showreel/ui/showreel.tsx"),

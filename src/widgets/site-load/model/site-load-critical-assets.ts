@@ -32,25 +32,8 @@ function getNavbarImages(layout: ViewportLayout): string[] {
   }
 }
 
-function getHeroImages(layout: ViewportLayout): string[] {
-  if (layout === "360") {
-    return [
-      firstScreenAssets.cta360,
-      firstScreenAssets.geo360Ellipse110,
-      firstScreenAssets.geo360Ellipse113,
-    ];
-  }
-
-  return [
-    firstScreenAssets.ctaOuter,
-    firstScreenAssets.ctaGlow,
-    firstScreenAssets.ctaDotRing,
-    firstScreenAssets.ctaTextPath,
-  ];
-}
-
 export function getCriticalSiteLoadAssets(layout: ViewportLayout): SiteLoadAsset[] {
-  const images = [...getNavbarImages(layout), ...getHeroImages(layout)].map((src) => ({
+  const images = getNavbarImages(layout).map((src) => ({
     kind: "image" as const,
     src,
   }));
