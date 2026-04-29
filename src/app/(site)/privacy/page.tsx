@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getPayload } from "payload";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
@@ -69,12 +70,12 @@ export default async function PrivacyPage() {
     <main className="app-main">
       <div className="bg-[#0d0300] min-h-screen">
         <div className="mx-auto max-w-[800px] px-6 py-[80px] pb-[120px]">
-          <a
+          <Link
             className="mb-[40px] inline-block text-[14px] font-normal leading-[1.5] text-[#c8c3bf] no-underline transition-opacity hover:opacity-70"
             href="/"
           >
             ← На главную
-          </a>
+          </Link>
 
           {hasContent(richTextContent) ? (
             <div className="prose prose-invert max-w-none text-white opacity-90 text-[16px] font-normal leading-[1.6]">

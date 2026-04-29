@@ -78,6 +78,26 @@ const FALLBACK_RELS_INDEXES: string[] = [
   `CREATE INDEX IF NOT EXISTS payload_preferences_rels_leads_id_idx ON payload_preferences_rels (leads_id)`,
 ];
 
+const MEDIA_IMAGE_SIZE_NAMES = [
+  "card_360_avif",
+  "card_360_webp",
+  "card_768_avif",
+  "card_768_webp",
+  "card_1440_avif",
+  "card_1440_webp",
+  "hero_1440_avif",
+  "hero_1440_webp",
+] as const;
+
+const MEDIA_IMAGE_SIZE_FIELDS = [
+  { suffix: "url", type: "text" },
+  { suffix: "width", type: "numeric" },
+  { suffix: "height", type: "numeric" },
+  { suffix: "mime_type", type: "text" },
+  { suffix: "filesize", type: "numeric" },
+  { suffix: "filename", type: "text" },
+] as const;
+
 /**
  * Список всех Payload Collection slugs которые должны существовать как
  * SQLite таблицы. Расширять при добавлении новых Collections.
@@ -100,6 +120,14 @@ const EXPECTED_TABLES = [
 const EXPECTED_COLUMNS: Array<{ table: string; column: string }> = [
   { table: "payload_locked_documents_rels", column: "leads_id" },
   { table: "payload_preferences_rels", column: "leads_id" },
+  { table: "media", column: "sizes_card_360_avif_url" },
+  { table: "media", column: "sizes_card_360_webp_url" },
+  { table: "media", column: "sizes_card_768_avif_url" },
+  { table: "media", column: "sizes_card_768_webp_url" },
+  { table: "media", column: "sizes_card_1440_avif_url" },
+  { table: "media", column: "sizes_card_1440_webp_url" },
+  { table: "media", column: "sizes_hero_1440_avif_url" },
+  { table: "media", column: "sizes_hero_1440_webp_url" },
 ];
 
 function getMissingTables(): string[] {
@@ -137,6 +165,10 @@ function shouldEnsureSchema(): boolean {
   return process.env.NODE_ENV === "production";
 }
 
+function quoteIdent(identifier: string): string {
+  return `"${identifier.replaceAll('"', '""')}"`;
+}
+
 function applyFallbackDDL(): { tableCreated: boolean; columnsAdded: string[] } {
   const url = process.env.DATABASE_URL?.trim();
   if (!url?.startsWith("file:")) return { tableCreated: false, columnsAdded: [] };
@@ -170,6 +202,37 @@ function applyFallbackDDL(): { tableCreated: boolean; columnsAdded: string[] } {
         db.exec(idx);
       } catch (e) {
         log(`[ensure-payload-db] fallback index skipped: ${(e as Error).message}`);
+      }
+    }
+
+    const mediaTableExists = db
+      .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='media'")
+      .get() as { name?: string } | undefined;
+    if (mediaTableExists?.name) {
+      const mediaCols = new Set(
+        (db.prepare("PRAGMA table_info(media)").all() as { name: string }[]).map((c) => c.name),
+      );
+      for (const size of MEDIA_IMAGE_SIZE_NAMES) {
+        for (const field of MEDIA_IMAGE_SIZE_FIELDS) {
+          const column = `sizes_${size}_${field.suffix}`;
+          if (!mediaCols.has(column)) {
+            db.exec(`ALTER TABLE media ADD COLUMN ${quoteIdent(column)} ${field.type}`);
+            mediaCols.add(column);
+            columnsAdded.push(`media.${column}`);
+          }
+        }
+      }
+
+      for (const size of MEDIA_IMAGE_SIZE_NAMES) {
+        const column = `sizes_${size}_filename`;
+        const indexName = `media_sizes_${size}_sizes_${size}_filename_idx`;
+        try {
+          db.exec(
+            `CREATE INDEX IF NOT EXISTS ${quoteIdent(indexName)} ON media (${quoteIdent(column)})`,
+          );
+        } catch (e) {
+          log(`[ensure-payload-db] fallback media index skipped: ${(e as Error).message}`);
+        }
       }
     }
   } finally {
