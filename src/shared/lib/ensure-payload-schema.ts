@@ -17,6 +17,9 @@ const EXPECTED_COLUMNS: Array<{ table: string; column: string }> = [
   { table: "media", column: "sizes_hero_1440_webp_url" },
   { table: "payload_locked_documents_rels", column: "leads_id" },
   { table: "payload_preferences_rels", column: "leads_id" },
+  { table: "email_templates", column: "slug" },
+  { table: "payload_locked_documents_rels", column: "email_templates_id" },
+  { table: "payload_preferences_rels", column: "email_templates_id" },
 ];
 
 async function hasExpectedSchema(): Promise<boolean> {

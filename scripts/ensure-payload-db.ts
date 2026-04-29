@@ -58,6 +58,34 @@ const FALLBACK_DDL: string[] = [
   )`,
   `CREATE INDEX IF NOT EXISTS leads_updated_at_idx ON leads (updated_at)`,
   `CREATE INDEX IF NOT EXISTS leads_created_at_idx ON leads (created_at)`,
+  `CREATE TABLE IF NOT EXISTS email_templates (
+    id integer PRIMARY KEY NOT NULL,
+    title text NOT NULL,
+    slug text NOT NULL,
+    subject text NOT NULL,
+    preheader text,
+    headline text NOT NULL,
+    body text NOT NULL,
+    button_text text DEFAULT 'Оставить заявку',
+    button_url text DEFAULT '/#lead-form-section',
+    header_logo_id integer REFERENCES media(id) ON DELETE SET NULL,
+    hero_image_id integer REFERENCES media(id) ON DELETE SET NULL,
+    footer_logo_id integer REFERENCES media(id) ON DELETE SET NULL,
+    footer_site_label text DEFAULT 'наш сайт',
+    footer_site_url text DEFAULT '/',
+    footer_email text DEFAULT 'info@soloproduction.pro',
+    footer_phone text DEFAULT '+7 968 973 11-68',
+    footer_telegram_label text DEFAULT '@mskfosage',
+    footer_telegram_url text DEFAULT 'https://t.me/mskfosage',
+    updated_at text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL,
+    created_at text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')) NOT NULL
+  )`,
+  `CREATE UNIQUE INDEX IF NOT EXISTS email_templates_slug_idx ON email_templates (slug)`,
+  `CREATE INDEX IF NOT EXISTS email_templates_updated_at_idx ON email_templates (updated_at)`,
+  `CREATE INDEX IF NOT EXISTS email_templates_created_at_idx ON email_templates (created_at)`,
+  `CREATE INDEX IF NOT EXISTS email_templates_header_logo_idx ON email_templates (header_logo_id)`,
+  `CREATE INDEX IF NOT EXISTS email_templates_hero_image_idx ON email_templates (hero_image_id)`,
+  `CREATE INDEX IF NOT EXISTS email_templates_footer_logo_idx ON email_templates (footer_logo_id)`,
 ];
 
 const FALLBACK_RELS_COLUMNS: Array<{ table: string; column: string; ddl: string }> = [
@@ -71,11 +99,23 @@ const FALLBACK_RELS_COLUMNS: Array<{ table: string; column: string; ddl: string 
     column: "leads_id",
     ddl: "ALTER TABLE payload_preferences_rels ADD COLUMN leads_id integer REFERENCES leads(id) ON DELETE CASCADE",
   },
+  {
+    table: "payload_locked_documents_rels",
+    column: "email_templates_id",
+    ddl: "ALTER TABLE payload_locked_documents_rels ADD COLUMN email_templates_id integer REFERENCES email_templates(id) ON DELETE CASCADE",
+  },
+  {
+    table: "payload_preferences_rels",
+    column: "email_templates_id",
+    ddl: "ALTER TABLE payload_preferences_rels ADD COLUMN email_templates_id integer REFERENCES email_templates(id) ON DELETE CASCADE",
+  },
 ];
 
 const FALLBACK_RELS_INDEXES: string[] = [
   `CREATE INDEX IF NOT EXISTS payload_locked_documents_rels_leads_id_idx ON payload_locked_documents_rels (leads_id)`,
   `CREATE INDEX IF NOT EXISTS payload_preferences_rels_leads_id_idx ON payload_preferences_rels (leads_id)`,
+  `CREATE INDEX IF NOT EXISTS payload_locked_documents_rels_email_templates_id_idx ON payload_locked_documents_rels (email_templates_id)`,
+  `CREATE INDEX IF NOT EXISTS payload_preferences_rels_email_templates_id_idx ON payload_preferences_rels (email_templates_id)`,
 ];
 
 const MEDIA_IMAGE_SIZE_NAMES = [
@@ -111,6 +151,7 @@ const EXPECTED_TABLES = [
   "cases_vertical",
   "secrets_posts",
   "leads",
+  "email_templates",
 ];
 
 /**
@@ -120,6 +161,8 @@ const EXPECTED_TABLES = [
 const EXPECTED_COLUMNS: Array<{ table: string; column: string }> = [
   { table: "payload_locked_documents_rels", column: "leads_id" },
   { table: "payload_preferences_rels", column: "leads_id" },
+  { table: "payload_locked_documents_rels", column: "email_templates_id" },
+  { table: "payload_preferences_rels", column: "email_templates_id" },
   { table: "media", column: "sizes_card_360_avif_url" },
   { table: "media", column: "sizes_card_360_webp_url" },
   { table: "media", column: "sizes_card_768_avif_url" },
