@@ -6,17 +6,15 @@ import { useState } from "react";
 import { useLivePreview } from "@payloadcms/live-preview-react";
 
 import { publicSiteUrl } from "@/shared/config/public-site-url";
+import {
+  PAYLOAD_CARD_1440_SIZES,
+  payloadMediaSrc,
+  type PayloadMediaLike,
+} from "@/shared/lib/payload-media";
 import { CasesAdDetailModal } from "@/widgets/cases/ui/cases-ad-detail-modal";
 import type { CasesAdCard } from "@/widgets/cases/model/cases.data";
 
 /* ─── helpers ─────────────────────────────────────────────────── */
-
-type MediaLike = { url?: string | null } | string | number | null | undefined;
-
-function mediaSrc(m: MediaLike): string {
-  if (m && typeof m === "object" && "url" in m && typeof m.url === "string") return m.url;
-  return "";
-}
 
 function mapDoc(doc: Record<string, unknown>): CasesAdCard {
   const credits = (doc.credits as { line?: string }[] | undefined)
@@ -27,10 +25,10 @@ function mapDoc(doc: Record<string, unknown>): CasesAdCard {
     ?.map((b) => b.line)
     .filter((x): x is string => Boolean(x));
   const closing = typeof doc.detailResultClosing === "string" ? doc.detailResultClosing : undefined;
-  const adV = mediaSrc(doc.detailVideo as MediaLike);
+  const adV = payloadMediaSrc(doc.detailVideo as PayloadMediaLike);
   return {
     id: String(doc.id ?? "preview"),
-    image: mediaSrc(doc.image as MediaLike),
+    image: payloadMediaSrc(doc.image as PayloadMediaLike, PAYLOAD_CARD_1440_SIZES),
     title: String(doc.title ?? ""),
     credits,
     detailTask: String(doc.detailTask ?? ""),
@@ -65,7 +63,6 @@ function AdCardPreview({
           fill
           sizes="575px"
           src={card.image}
-          unoptimized
         />
       )}
       <div

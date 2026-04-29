@@ -16,42 +16,42 @@ const montserrat = localFont({
   display: "swap",
   src: [
     {
-      path: "../../../public/fonts/montserrat/Montserrat-Regular.ttf",
+      path: "../../../public/fonts/montserrat/Montserrat-Regular.woff2",
       style: "normal",
       weight: "400"
     },
     {
-      path: "../../../public/fonts/montserrat/Montserrat-Medium.ttf",
+      path: "../../../public/fonts/montserrat/Montserrat-Medium.woff2",
       style: "normal",
       weight: "500"
     },
     {
-      path: "../../../public/fonts/montserrat/Montserrat-SemiBold.ttf",
+      path: "../../../public/fonts/montserrat/Montserrat-SemiBold.woff2",
       style: "normal",
       weight: "600"
     },
     {
-      path: "../../../public/fonts/montserrat/Montserrat-Bold.ttf",
+      path: "../../../public/fonts/montserrat/Montserrat-Bold.woff2",
       style: "normal",
       weight: "700"
     },
     {
-      path: "../../../public/fonts/montserrat/Montserrat-Italic.ttf",
+      path: "../../../public/fonts/montserrat/Montserrat-Italic.woff2",
       style: "italic",
       weight: "400"
     },
     {
-      path: "../../../public/fonts/montserrat/Montserrat-MediumItalic.ttf",
+      path: "../../../public/fonts/montserrat/Montserrat-MediumItalic.woff2",
       style: "italic",
       weight: "500"
     },
     {
-      path: "../../../public/fonts/montserrat/Montserrat-SemiBoldItalic.ttf",
+      path: "../../../public/fonts/montserrat/Montserrat-SemiBoldItalic.woff2",
       style: "italic",
       weight: "600"
     },
     {
-      path: "../../../public/fonts/montserrat/Montserrat-BoldItalic.ttf",
+      path: "../../../public/fonts/montserrat/Montserrat-BoldItalic.woff2",
       style: "italic",
       weight: "700"
     }

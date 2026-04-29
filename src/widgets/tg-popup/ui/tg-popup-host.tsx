@@ -18,15 +18,24 @@
  * sessionStorage.
  */
 
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 
 import { useActivityTimer } from "@/shared/lib/use-activity-timer";
 import { useViewportLayout } from "@/shared/lib/use-viewport-layout";
 
-import { TgPopup } from "./tg-popup";
+import type { TgPopupProps } from "./tg-popup";
 import type { TgPopupVariant } from "./tg-popup-variants";
 
 const STORAGE_KEY = "tg-popup-dismissed";
+
+const TgPopup = dynamic<TgPopupProps>(
+  () =>
+    import("./tg-popup").then((module) => ({
+      default: module.TgPopup,
+    })),
+  { ssr: false },
+);
 
 /**
  * Возвращает timer duration в ms.

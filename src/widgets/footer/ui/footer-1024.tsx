@@ -174,7 +174,7 @@ export function Footer1024({
           {/* Row 2, Col 1 — Phone & Email */}
           <div className="flex flex-col gap-[30px] self-start">
             <div className="flex flex-col gap-[20px]">
-              <p className="m-0 font-normal leading-[1.2] text-[16px] text-[#9c9c9c]">
+              <p className="m-0 font-normal leading-[1.2] text-[16px] text-[#c8c3bf]">
                 {footerContent.phoneSubtitle}
               </p>
               <a
@@ -221,7 +221,7 @@ export function Footer1024({
           </div>
 
           {/* Row 3, Col 1 — Legal */}
-          <p className="m-0 self-start font-normal leading-[1.2] text-[14px] text-[#9c9c9c]">
+          <p className="m-0 self-start font-normal leading-[1.2] text-[14px] text-[#c8c3bf]">
             {footerContent.legal}
           </p>
 
@@ -229,7 +229,7 @@ export function Footer1024({
           <a
             className="self-start font-normal leading-[1.2] text-[14px] no-underline transition-opacity hover:opacity-70"
             href="/privacy"
-            style={{ color: "#9c9c9c" }}
+            style={{ color: "#c8c3bf" }}
           >
             {footerContent.privacy}
           </a>

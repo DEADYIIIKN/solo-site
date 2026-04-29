@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const externalBaseURL = process.env.E2E_BASE_URL;
+
 /**
  * Playwright config — Phase 6 Wave 2 (TEST-02 cross-browser).
  *
@@ -25,7 +27,7 @@ export default defineConfig({
   timeout: 60_000,
   expect: { timeout: 5_000 },
   use: {
-    baseURL: process.env.E2E_BASE_URL ?? "http://localhost:3100",
+    baseURL: externalBaseURL ?? "http://localhost:3100",
     trace: "on-first-retry",
     video: "retain-on-failure",
     screenshot: "only-on-failure",
@@ -46,20 +48,22 @@ export default defineConfig({
       use: { ...devices["iPhone 13"] },
     },
   ],
-  webServer: {
-    /**
-     * Поднимаем dev на :3100, чтобы не конфликтовать с локальным dev (:3000).
-     * Включаем reuseExistingServer — если предыдущий запуск оставил сервер, его переиспользуем.
-     *
-     * TG-popup TRIGGER_MS — production default 60s. tg-popup.spec.ts override
-     * через `window.__TG_TEST_TRIGGER_MS__` (page.addInitScript) — только в
-     * том spec, чтобы popup не появлялся в других тестах за их runtime.
-     */
-    command: "pnpm exec next dev --turbopack -p 3100 -H 0.0.0.0",
-    url: "http://localhost:3100",
-    reuseExistingServer: !process.env.CI,
-    timeout: 180_000,
-    stdout: "ignore",
-    stderr: "pipe",
-  },
+  webServer: externalBaseURL
+    ? undefined
+    : {
+        /**
+         * Поднимаем dev на :3100, чтобы не конфликтовать с локальным dev (:3000).
+         * Включаем reuseExistingServer — если предыдущий запуск оставил сервер, его переиспользуем.
+         *
+         * TG-popup TRIGGER_MS — production default 60s. tg-popup.spec.ts override
+         * через `window.__TG_TEST_TRIGGER_MS__` (page.addInitScript) — только в
+         * том spec, чтобы popup не появлялся в других тестах за их runtime.
+         */
+        command: "pnpm exec next dev --turbopack -p 3100 -H 0.0.0.0",
+        url: "http://localhost:3100",
+        reuseExistingServer: !process.env.CI,
+        timeout: 180_000,
+        stdout: "ignore",
+        stderr: "pipe",
+      },
 });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 type Props = {
@@ -18,6 +18,17 @@ type Props = {
  */
 export function FirstScreenHeroVideoPoster({ posterSrc, videoSrc, ariaLabel, sizes }: Props) {
   const [videoReady, setVideoReady] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    if (!videoSrc) return;
+    const media = window.matchMedia("(min-width: 1024px)");
+    const update = () => setShouldLoadVideo(media.matches);
+
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, [videoSrc]);
 
   return (
     <>
@@ -42,8 +53,8 @@ export function FirstScreenHeroVideoPoster({ posterSrc, videoSrc, ariaLabel, siz
           onCanPlay={() => setVideoReady(true)}
           playsInline
           poster={posterSrc}
-          preload="auto"
-          src={videoSrc}
+          preload="none"
+          src={shouldLoadVideo ? videoSrc : undefined}
         />
       ) : (
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-[#1a1410]" />

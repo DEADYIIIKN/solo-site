@@ -6,18 +6,16 @@ import { useState } from "react";
 import { useLivePreview } from "@payloadcms/live-preview-react";
 
 import { publicSiteUrl } from "@/shared/config/public-site-url";
+import {
+  PAYLOAD_CARD_768_SIZES,
+  payloadMediaSrc,
+  type PayloadMediaLike,
+} from "@/shared/lib/payload-media";
 import { CasesVerticalDetailModal } from "@/widgets/cases/ui/cases-vertical-detail-modal";
 import { cases1440Assets } from "@/widgets/cases/model/cases.data";
 import type { CasesVerticalCard } from "@/widgets/cases/model/cases.data";
 
 /* ─── helpers ─────────────────────────────────────────────────── */
-
-type MediaLike = { url?: string | null } | string | number | null | undefined;
-
-function mediaSrc(m: MediaLike): string {
-  if (m && typeof m === "object" && "url" in m && typeof m.url === "string") return m.url;
-  return "";
-}
 
 function mapDoc(doc: Record<string, unknown>): CasesVerticalCard {
   const titleLines = String(doc.title ?? "")
@@ -27,10 +25,10 @@ function mapDoc(doc: Record<string, unknown>): CasesVerticalCard {
   const credits = (doc.credits as { line?: string }[] | undefined)
     ?.map((r) => r.line)
     .filter((x): x is string => Boolean(x)) ?? [];
-  const vUrl = mediaSrc(doc.detailVideo as MediaLike);
+  const vUrl = payloadMediaSrc(doc.detailVideo as PayloadMediaLike);
   return {
     id: String(doc.id ?? "preview"),
-    image: mediaSrc(doc.image as MediaLike),
+    image: payloadMediaSrc(doc.image as PayloadMediaLike, PAYLOAD_CARD_768_SIZES),
     titleLines,
     views: String(doc.views ?? ""),
     credits,
@@ -65,7 +63,6 @@ function CardPreview({
           fill
           sizes="283px"
           src={card.image}
-          unoptimized
         />
       )}
       <div
