@@ -64,7 +64,7 @@ export function EmailTemplatePreview() {
             padding: "1rem",
           }}
         >
-          Сохрани письмо и укажи slug, чтобы увидеть превью.
+          Сохрани письмо, чтобы увидеть превью.
         </div>
       )}
     </div>

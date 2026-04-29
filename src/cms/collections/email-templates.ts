@@ -1,5 +1,59 @@
 import type { CollectionConfig } from "payload";
 
+const SOLO_SITE_URL = "https://soloproduction.pro/";
+const SOLO_LEAD_FORM_URL = "https://soloproduction.pro/#lead-form-section";
+
+function slugifyEmailSubject(value: string): string {
+  const translit: Record<string, string> = {
+    а: "a",
+    б: "b",
+    в: "v",
+    г: "g",
+    д: "d",
+    е: "e",
+    ё: "e",
+    ж: "zh",
+    з: "z",
+    и: "i",
+    й: "y",
+    к: "k",
+    л: "l",
+    м: "m",
+    н: "n",
+    о: "o",
+    п: "p",
+    р: "r",
+    с: "s",
+    т: "t",
+    у: "u",
+    ф: "f",
+    х: "h",
+    ц: "c",
+    ч: "ch",
+    ш: "sh",
+    щ: "sch",
+    ъ: "",
+    ы: "y",
+    ь: "",
+    э: "e",
+    ю: "yu",
+    я: "ya",
+  };
+
+  const slug = value
+    .trim()
+    .toLowerCase()
+    .split("")
+    .map((char) => translit[char] ?? char)
+    .join("")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80)
+    .replace(/-+$/g, "");
+
+  return slug || `email-${Date.now()}`;
+}
+
 export const EmailTemplates: CollectionConfig = {
   slug: "email-templates",
   labels: {
@@ -7,14 +61,64 @@ export const EmailTemplates: CollectionConfig = {
     plural: "Письма",
   },
   admin: {
-    useAsTitle: "title",
+    useAsTitle: "subject",
     group: "Письма",
-    defaultColumns: ["title", "slug", "subject", "updatedAt"],
+    defaultColumns: ["subject", "slug", "updatedAt"],
     description:
       "Макеты писем для рассылок. Публичный HTML доступен по /email/<slug>, изображения подставляются абсолютными ссылками.",
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    beforeValidate: [
+      async ({ data, operation, originalDoc, req }) => {
+        if (!data) return data;
+
+        const subject =
+          typeof data.subject === "string" && data.subject.trim()
+            ? data.subject.trim()
+            : typeof originalDoc?.subject === "string"
+              ? originalDoc.subject
+              : "";
+
+        data.title = subject;
+        data.buttonUrl = SOLO_LEAD_FORM_URL;
+        data.footerSiteUrl = SOLO_SITE_URL;
+
+        if (!subject) return data;
+
+        const baseSlug = slugifyEmailSubject(subject);
+        let nextSlug = baseSlug;
+        let suffix = 2;
+
+        while (true) {
+          const existing = await req.payload.find({
+            collection: "email-templates",
+            where: {
+              slug: {
+                equals: nextSlug,
+              },
+            },
+            depth: 0,
+            limit: 1,
+            overrideAccess: true,
+            req,
+          });
+
+          const match = existing.docs[0];
+          if (!match || (operation === "update" && String(match.id) === String(originalDoc?.id))) {
+            break;
+          }
+
+          nextSlug = `${baseSlug}-${suffix}`;
+          suffix += 1;
+        }
+
+        data.slug = nextSlug;
+        return data;
+      },
+    ],
   },
   fields: [
     {
@@ -22,6 +126,9 @@ export const EmailTemplates: CollectionConfig = {
       type: "text",
       required: true,
       label: "Название в админке",
+      admin: {
+        hidden: true,
+      },
     },
     {
       name: "slug",
@@ -31,7 +138,8 @@ export const EmailTemplates: CollectionConfig = {
       label: "Slug письма",
       admin: {
         position: "sidebar",
-        description: "URL письма: /email/<slug>",
+        readOnly: true,
+        description: "Генерируется автоматически из темы письма. URL письма: /email/<slug>",
       },
     },
     {
@@ -86,8 +194,11 @@ export const EmailTemplates: CollectionConfig = {
             {
               name: "buttonUrl",
               type: "text",
-              defaultValue: "/#lead-form-section",
+              defaultValue: SOLO_LEAD_FORM_URL,
               label: "Ссылка кнопки",
+              admin: {
+                readOnly: true,
+              },
             },
             {
               name: "templatePreview",
@@ -141,8 +252,11 @@ export const EmailTemplates: CollectionConfig = {
             {
               name: "footerSiteUrl",
               type: "text",
-              defaultValue: "/",
+              defaultValue: SOLO_SITE_URL,
               label: "Ссылка на сайт",
+              admin: {
+                readOnly: true,
+              },
             },
             {
               name: "footerEmail",

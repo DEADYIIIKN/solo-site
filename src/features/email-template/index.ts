@@ -43,6 +43,8 @@ export type EmailTemplateRenderInput = {
 const EMAIL_IMAGE_SIZES = ["card-768-webp", "card-360-webp", "card-768-avif", "card-360-avif"];
 const EMAIL_HERO_SIZES = ["card-768-webp", "card-1440-webp", "card-768-avif", "card-1440-avif"];
 const EMAIL_LOGO_SIZES = ["card-360-webp", "card-360-avif"];
+const SOLO_SITE_URL = "https://soloproduction.pro/";
+const SOLO_LEAD_FORM_URL = "https://soloproduction.pro/#lead-form-section";
 
 function escapeHtml(value: string): string {
   return value
@@ -145,9 +147,9 @@ export function renderEmailHtml(input: EmailTemplateRenderInput): string {
   const footerLogo = emailMediaUrl(input.footerLogo, siteUrl, EMAIL_LOGO_SIZES);
   const heroImage = emailMediaUrl(input.heroImage, siteUrl, EMAIL_HERO_SIZES);
   const buttonText = text(input.buttonText, "Оставить заявку");
-  const buttonUrl = absoluteUrl(siteUrl, text(input.buttonUrl, "/#lead-form-section"));
+  const buttonUrl = SOLO_LEAD_FORM_URL;
   const footerSiteLabel = text(input.footerSiteLabel, "наш сайт");
-  const footerSiteUrl = absoluteUrl(siteUrl, text(input.footerSiteUrl, "/"));
+  const footerSiteUrl = SOLO_SITE_URL;
   const footerEmail = text(input.footerEmail, "info@soloproduction.pro");
   const footerPhone = text(input.footerPhone, "+7 968 973 11-68");
   const footerTelegramLabel = text(input.footerTelegramLabel, "@mskfosage");

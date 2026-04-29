@@ -67,7 +67,7 @@ describe("renderEmailHtml", () => {
     expect(html).toContain("Короткий прехедер");
     expect(html).toContain("https://demo.example.com/api/media/file/hero-768.webp");
     expect(html).toContain("https://demo.example.com/api/media/file/logo-header.webp");
-    expect(html).toContain("https://demo.example.com/#lead-form-section");
+    expect(html).toContain("https://soloproduction.pro/#lead-form-section");
     expect(html).not.toContain("hero-768.avif");
   });
 
