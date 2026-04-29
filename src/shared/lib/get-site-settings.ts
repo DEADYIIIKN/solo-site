@@ -9,6 +9,7 @@ export type SiteSettingsData = {
   showCases: boolean;
   showServices: boolean;
   showLevels: boolean;
+  tgChannelUrl: string;
 };
 
 const DEFAULTS: SiteSettingsData = {
@@ -19,7 +20,12 @@ const DEFAULTS: SiteSettingsData = {
   showCases: true,
   showServices: true,
   showLevels: true,
+  tgChannelUrl: "https://t.me/soloproductionpro",
 };
+
+function text(value: unknown, fallback: string): string {
+  return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
 
 /**
  * Возвращает настройки видимости секций из Payload Global.
@@ -41,6 +47,7 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
       showCases: Boolean((raw as Record<string, unknown>).showCases ?? DEFAULTS.showCases),
       showServices: Boolean((raw as Record<string, unknown>).showServices ?? DEFAULTS.showServices),
       showLevels: Boolean((raw as Record<string, unknown>).showLevels ?? DEFAULTS.showLevels),
+      tgChannelUrl: text((raw as Record<string, unknown>).tgChannelUrl, DEFAULTS.tgChannelUrl),
     };
   } catch {
     return DEFAULTS;

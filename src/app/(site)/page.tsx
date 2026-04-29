@@ -68,7 +68,11 @@ export default async function HomePage() {
       {settings.showServices && <ServicesSection />}
       {settings.showLevels && <LevelsSection />}
       <LeadFormSection />
-      <FooterSection showNews={settings.showNews} showSecrets={settings.showSecrets} />
+      <FooterSection
+        showNews={settings.showNews}
+        showSecrets={settings.showSecrets}
+        tgChannelUrl={settings.tgChannelUrl}
+      />
     </main>
   );
 }

@@ -18,6 +18,7 @@ const EXPECTED_COLUMNS: Array<{ table: string; column: string }> = [
   { table: "payload_locked_documents_rels", column: "leads_id" },
   { table: "payload_preferences_rels", column: "leads_id" },
   { table: "email_templates", column: "slug" },
+  { table: "site_settings", column: "tg_channel_url" },
   { table: "payload_locked_documents_rels", column: "email_templates_id" },
   { table: "payload_preferences_rels", column: "email_templates_id" },
 ];

@@ -23,9 +23,11 @@ const MAX_SLIDE = 1;
 export function Footer1024({
   showSecrets = true,
   showNews = true,
+  tgChannelUrl = footerContent.tgChannelUrl,
 }: {
   showSecrets?: boolean;
   showNews?: boolean;
+  tgChannelUrl?: string;
 }) {
   const [slideIndex, setSlideIndex] = useState(0);
   const navLinks = getFooterNavLinks(showNews);
@@ -202,7 +204,7 @@ export function Footer1024({
             </p>
             <a
               className="flex h-[60px] w-[250px] shrink-0 items-center overflow-hidden rounded-[50px] bg-white px-[5px] no-underline transition-opacity hover:opacity-90"
-              href={process.env.NEXT_PUBLIC_TG_CHANNEL_URL ?? "https://t.me/soloproduction"}
+              href={tgChannelUrl}
               rel="noopener noreferrer"
               target="_blank"
             >

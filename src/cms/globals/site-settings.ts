@@ -9,7 +9,7 @@ export const SiteSettings: GlobalConfig = {
   label: "Настройки сайта",
   admin: {
     group: "Настройки",
-    description: "Управление видимостью секций на главной странице",
+    description: "Управление видимостью секций и ссылками сайта",
   },
   access: {
     read: () => true,
@@ -97,6 +97,25 @@ export const SiteSettings: GlobalConfig = {
               },
             },
           ],
+        },
+      ],
+    },
+    {
+      type: "collapsible",
+      label: "Ссылки",
+      admin: {
+        initCollapsed: false,
+        description: "Ссылки, которые используются в общих блоках сайта",
+      },
+      fields: [
+        {
+          name: "tgChannelUrl",
+          type: "text",
+          defaultValue: "https://t.me/soloproductionpro",
+          label: "Telegram-канал в футере",
+          admin: {
+            description: "Полная ссылка на канал, например https://t.me/soloproductionpro",
+          },
         },
       ],
     },

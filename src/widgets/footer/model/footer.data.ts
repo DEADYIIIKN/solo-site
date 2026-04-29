@@ -55,6 +55,7 @@ export const footerContent = {
   email: "info@soloproduction.pro",
   tgDescription: "Процессы, инсайды и жизнь агенства — в нашем канале",
   tgCta: "перейти в канал",
+  tgChannelUrl: "https://t.me/soloproductionpro",
   legal: "ИП Лопатина Софья Андреевна  |  ИНН 422195627616",
   privacy: "Политика конфиденциальности",
 } as const;

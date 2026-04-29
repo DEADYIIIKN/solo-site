@@ -10,9 +10,10 @@ import { Footer1440 } from "@/widgets/footer/ui/footer-1440";
 type FooterSectionProps = {
   showSecrets: boolean;
   showNews: boolean;
+  tgChannelUrl: string;
 };
 
-export function FooterSection({ showSecrets, showNews }: FooterSectionProps) {
+export function FooterSection({ showSecrets, showNews, tgChannelUrl }: FooterSectionProps) {
   const layout = useViewportLayout();
 
   if (!layout) {
@@ -21,11 +22,11 @@ export function FooterSection({ showSecrets, showNews }: FooterSectionProps) {
 
   return (
     <div className="bg-[#0d0300]" id="footer-section">
-      {layout === "360" ? <Footer360 showNews={showNews} showSecrets={showSecrets} /> : null}
-      {layout === "480" ? <Footer480 showNews={showNews} showSecrets={showSecrets} /> : null}
-      {layout === "768" ? <Footer768 showNews={showNews} showSecrets={showSecrets} /> : null}
-      {layout === "1024" ? <Footer1024 showNews={showNews} showSecrets={showSecrets} /> : null}
-      {layout === "1440" ? <Footer1440 showNews={showNews} showSecrets={showSecrets} /> : null}
+      {layout === "360" ? <Footer360 showNews={showNews} showSecrets={showSecrets} tgChannelUrl={tgChannelUrl} /> : null}
+      {layout === "480" ? <Footer480 showNews={showNews} showSecrets={showSecrets} tgChannelUrl={tgChannelUrl} /> : null}
+      {layout === "768" ? <Footer768 showNews={showNews} showSecrets={showSecrets} tgChannelUrl={tgChannelUrl} /> : null}
+      {layout === "1024" ? <Footer1024 showNews={showNews} showSecrets={showSecrets} tgChannelUrl={tgChannelUrl} /> : null}
+      {layout === "1440" ? <Footer1440 showNews={showNews} showSecrets={showSecrets} tgChannelUrl={tgChannelUrl} /> : null}
     </div>
   );
 }

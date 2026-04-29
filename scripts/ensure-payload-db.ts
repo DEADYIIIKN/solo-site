@@ -171,6 +171,7 @@ const EXPECTED_COLUMNS: Array<{ table: string; column: string }> = [
   { table: "media", column: "sizes_card_1440_webp_url" },
   { table: "media", column: "sizes_hero_1440_avif_url" },
   { table: "media", column: "sizes_hero_1440_webp_url" },
+  { table: "site_settings", column: "tg_channel_url" },
 ];
 
 function getMissingTables(): string[] {
@@ -276,6 +277,21 @@ function applyFallbackDDL(): { tableCreated: boolean; columnsAdded: string[] } {
         } catch (e) {
           log(`[ensure-payload-db] fallback media index skipped: ${(e as Error).message}`);
         }
+      }
+    }
+
+    const siteSettingsTableExists = db
+      .prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='site_settings'")
+      .get() as { name?: string } | undefined;
+    if (siteSettingsTableExists?.name) {
+      const siteSettingsCols = new Set(
+        (db.prepare("PRAGMA table_info(site_settings)").all() as { name: string }[]).map(
+          (c) => c.name,
+        ),
+      );
+      if (!siteSettingsCols.has("tg_channel_url")) {
+        db.exec("ALTER TABLE site_settings ADD COLUMN tg_channel_url text DEFAULT 'https://t.me/soloproductionpro'");
+        columnsAdded.push("site_settings.tg_channel_url");
       }
     }
   } finally {

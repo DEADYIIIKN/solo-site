@@ -5,6 +5,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import config from "@payload-config";
 
+import { getSiteSettings } from "@/shared/lib/get-site-settings";
 import { FooterSection } from "@/widgets/footer";
 
 /** Обновление с CMS без полной пересборки. */
@@ -54,6 +55,7 @@ function hasContent(data: SerializedEditorState | null): data is SerializedEdito
 export default async function PrivacyPage() {
   // Fetch Payload CMS content; fall back to static placeholder on any error.
   let richTextContent: SerializedEditorState | null = null;
+  const settings = await getSiteSettings();
   try {
     const payload = await getPayload({ config });
     const raw = await payload.findGlobal({
@@ -93,7 +95,11 @@ export default async function PrivacyPage() {
           )}
         </div>
       </div>
-      <FooterSection showNews={false} showSecrets={false} />
+      <FooterSection
+        showNews={false}
+        showSecrets={false}
+        tgChannelUrl={settings.tgChannelUrl}
+      />
     </main>
   );
 }
