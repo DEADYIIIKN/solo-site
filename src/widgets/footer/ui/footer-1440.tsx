@@ -112,6 +112,7 @@ export function Footer1440({
                       fill
                       loading="lazy"
                       sizes="(max-width: 1024px) 50vw, 480px"
+                      unoptimized
                       src={post.image}
                     />
                   </div>

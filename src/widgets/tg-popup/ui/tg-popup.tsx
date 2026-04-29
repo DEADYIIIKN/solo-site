@@ -370,7 +370,7 @@ export function TgPopup({
                     <img
                       alt=""
                       className="absolute inset-0 h-full w-full object-cover object-top"
-                      src="/assets/figma/tg-popup/phone-content.jpg"
+                      src="/assets/figma/optimized/tg-phone-content.avif"
                       style={{ maxWidth: "none" }}
                     />
                   </div>
@@ -403,7 +403,7 @@ export function TgPopup({
                       <img
                         alt=""
                         className="absolute"
-                        src="/assets/figma/tg-popup/phone-frame.png"
+                        src="/assets/figma/optimized/tg-phone-frame.avif"
                         style={{
                           width: p.frameImgWidth,
                           height: p.frameImgHeight,

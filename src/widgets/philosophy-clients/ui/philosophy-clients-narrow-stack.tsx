@@ -303,6 +303,7 @@ export function PhilosophyNarrowCardStack({ size }: { size: NarrowSize }) {
               fill
               loading="lazy"
               sizes="(max-width: 479px) 439px, 571px"
+              unoptimized
               src={philosophyClients1440Assets.teamPhoto}
             />
           </div>

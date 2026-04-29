@@ -111,6 +111,7 @@ export function Footer768({
                       fill
                       loading="lazy"
                       sizes="(max-width: 768px) 100vw, 480px"
+                      unoptimized
                       src={post.image}
                     />
                   </div>

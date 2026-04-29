@@ -53,6 +53,7 @@ export function TeamSectionPhoto({
             fill
             loading="lazy"
             sizes="(max-width: 479px) 387px, (max-width: 767px) 440px, 520px"
+            unoptimized
             src={teamSectionAssets.teamPhoto}
           />
         </div>
@@ -64,6 +65,7 @@ export function TeamSectionPhoto({
           fill
           loading="lazy"
           sizes="(max-width: 1023px) 100vw, 50vw"
+          unoptimized
           src={teamSectionAssets.teamPhoto}
         />
       )}

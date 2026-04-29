@@ -1,6 +1,6 @@
 /** Figma 783:9294 — «6 Философия, клиенты», брейкпоинт 1440 */
 export const philosophyClients1440Assets = {
-  teamPhoto: "/assets/figma/7830-philosophy-clients-1440/team-card.jpg",
+  teamPhoto: "/assets/figma/optimized/philosophy-team-card.avif",
   patternGrid: "/assets/figma/7830-philosophy-clients-1440/pattern-grid.svg",
 } as const;
 

@@ -618,6 +618,7 @@ function MobileBusinessGoals({
                       fill
                       loading={index === activeIndex ? "eager" : "lazy"}
                       sizes={`${config.cardWidths[index]}px`}
+                      unoptimized
                       src={imageSources[index]}
                       style={{ objectPosition: "center top" }}
                     />
@@ -629,6 +630,7 @@ function MobileBusinessGoals({
                       fill
                       loading={index === activeIndex ? "eager" : "lazy"}
                       sizes={`${config.cardWidths[index]}px`}
+                      unoptimized
                       src={imageSources[index]}
                       style={{ objectPosition: "center 38%" }}
                     />
@@ -640,6 +642,7 @@ function MobileBusinessGoals({
                       fill
                       loading={index === activeIndex ? "eager" : "lazy"}
                       sizes={`${config.cardWidths[index]}px`}
+                      unoptimized
                       src={imageSources[index]}
                       style={{ objectPosition: "center 22%" }}
                     />
@@ -651,6 +654,7 @@ function MobileBusinessGoals({
                       fill
                       loading={index === activeIndex ? "eager" : "lazy"}
                       sizes={`${config.cardWidths[index]}px`}
+                      unoptimized
                       src={imageSources[index]}
                       style={{ objectPosition: "center 40%" }}
                     />

@@ -3,9 +3,9 @@ import { firstScreenAssets, firstScreenNavLinks } from "@/widgets/first-screen/m
 export const footerAssets = {
   backgroundGrid: firstScreenAssets.backgroundGrid,
   logo: "/assets/figma/footer-1440/logo.svg",
-  blogCard1: "/assets/figma/footer-1440/blog-card-1.jpg",
-  blogCard2: "/assets/figma/footer-1440/blog-card-2.jpg",
-  blogCard3: "/assets/figma/footer-1440/blog-card-3.jpg",
+  blogCard1: "/assets/figma/optimized/footer-blog-card-1.avif",
+  blogCard2: "/assets/figma/optimized/footer-blog-card-2.avif",
+  blogCard3: "/assets/figma/optimized/footer-blog-card-3.avif",
   tgIcon: "/assets/figma/footer-1440/tg-icon.svg",
   arrowPrev: "/assets/figma/9274-arrow-1440/icon-arrow-right.svg",
   arrowNext: "/assets/figma/9274-arrow-1440/icon-arrow-left.svg",
@@ -22,7 +22,7 @@ export function getFooterNavLinks(showNews: boolean) {
 export const footerBlogPosts = [
   {
     id: 1,
-    image: "/assets/figma/footer-1440/blog-card-1.jpg",
+    image: "/assets/figma/optimized/footer-blog-card-1.avif",
     titleParts: [
       { text: "Фраза ", italic: false },
       { text: "из детства, ", italic: true },
@@ -31,7 +31,7 @@ export const footerBlogPosts = [
   },
   {
     id: 2,
-    image: "/assets/figma/footer-1440/blog-card-2.jpg",
+    image: "/assets/figma/optimized/footer-blog-card-2.avif",
     titleParts: [
       { text: "почему ", italic: false },
       { text: "важен бриф", italic: true },
@@ -40,7 +40,7 @@ export const footerBlogPosts = [
   },
   {
     id: 3,
-    image: "/assets/figma/footer-1440/blog-card-3.jpg",
+    image: "/assets/figma/optimized/footer-blog-card-3.avif",
     titleParts: [
       { text: "обновляем", italic: true },
       { text: " фирменный стиль", italic: false },

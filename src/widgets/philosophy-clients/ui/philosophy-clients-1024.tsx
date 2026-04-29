@@ -274,6 +274,7 @@ export function PhilosophyClients1024() {
                       fill
                       loading="lazy"
                       sizes="571px"
+                      unoptimized
                       src={philosophyClients1440Assets.teamPhoto}
                     />
                   </div>

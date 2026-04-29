@@ -260,6 +260,7 @@ export function PhilosophyClients1440() {
               fill
               loading="lazy"
               sizes="823px"
+              unoptimized
               src={philosophyClients1440Assets.teamPhoto}
             />
           </div>

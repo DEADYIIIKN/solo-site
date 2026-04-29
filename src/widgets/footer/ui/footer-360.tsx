@@ -111,6 +111,7 @@ export function Footer360({
                       fill
                       loading="lazy"
                       sizes="100vw"
+                      unoptimized
                       src={post.image}
                     />
                   </div>

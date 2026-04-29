@@ -3,17 +3,17 @@
  * Figma 783:9268 — рекламные кейсы: изображения с нод 783:9276 / I783:9282 / I783:9283.
  */
 const CASES_VERTICAL_IMG = {
-  callebaut: "/assets/figma/cases-1440/vertical/callebaut.jpg",
-  titoPov: "/assets/figma/cases-1440/vertical/tito-pov.jpg",
-  titoDetstvo: "/assets/figma/cases-1440/vertical/tito-detstvo.jpg",
-  badGallery: "/assets/figma/cases-1440/vertical/bad-gallery.jpg",
-  ogBuda: "/assets/figma/cases-1440/vertical/og-buda.jpg",
+  callebaut: "/assets/figma/cases-1440/optimized/vertical-callebaut.avif",
+  titoPov: "/assets/figma/cases-1440/optimized/vertical-tito-pov.avif",
+  titoDetstvo: "/assets/figma/cases-1440/optimized/vertical-tito-detstvo.avif",
+  badGallery: "/assets/figma/cases-1440/optimized/vertical-bad-gallery.avif",
+  ogBuda: "/assets/figma/cases-1440/optimized/vertical-og-buda.avif",
 } as const;
 
 const CASES_AD_IMG = {
-  trsMotors1: "/assets/figma/cases-1440/advertising/trs-motors-1.jpg",
-  trsMotors2: "/assets/figma/cases-1440/advertising/trs-motors-2.jpg",
-  gloryPartners: "/assets/figma/cases-1440/advertising/glory-partners.jpg",
+  trsMotors1: "/assets/figma/cases-1440/optimized/ad-trs-motors-1.avif",
+  trsMotors2: "/assets/figma/cases-1440/optimized/ad-trs-motors-2.avif",
+  gloryPartners: "/assets/figma/cases-1440/optimized/ad-glory-partners.avif",
 } as const;
 
 export const cases1440Assets = {
