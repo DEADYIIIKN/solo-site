@@ -6,6 +6,11 @@ type LexicalNode = {
   format?: number;
   tag?: string;
   url?: string;
+  fields?: {
+    url?: string;
+    newTab?: boolean;
+    linkType?: string;
+  };
   children?: LexicalNode[];
 };
 
@@ -98,8 +103,9 @@ function renderInlineNodes(nodes: LexicalNode[] | undefined, siteUrl: string): s
       }
 
       const children = renderInlineNodes(node.children, siteUrl);
-      if (node.type === "link" && node.url) {
-        const href = absoluteUrl(siteUrl, node.url);
+      const linkUrl = node.url ?? node.fields?.url;
+      if (node.type === "link" && linkUrl) {
+        const href = absoluteUrl(siteUrl, linkUrl);
         return `<a href="${escapeAttr(href)}" target="_blank" rel="noopener noreferrer" style="color:#ff5c00; font-weight:500; text-decoration:underline;">${children}</a>`;
       }
 

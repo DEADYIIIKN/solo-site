@@ -138,4 +138,36 @@ describe("renderEmailHtml", () => {
 
     expect(html).toContain("Первая строка<br />Вторая строка");
   });
+
+  it("renders payload lexical links stored in fields.url", () => {
+    const html = renderEmailHtml({
+      ...baseInput,
+      body: {
+        root: {
+          type: "root",
+          children: [
+            {
+              type: "paragraph",
+              children: [
+                { type: "text", text: "Ссылка: " },
+                {
+                  type: "link",
+                  fields: {
+                    url: "https://soloproduction.pro/",
+                    newTab: true,
+                    linkType: "custom",
+                  },
+                  children: [{ type: "text", text: "наш сайт", format: 8 }],
+                },
+              ],
+            },
+          ],
+        },
+      },
+    });
+
+    expect(html).toContain(
+      '<a href="https://soloproduction.pro/" target="_blank" rel="noopener noreferrer" style="color:#ff5c00; font-weight:500; text-decoration:underline;"><u>наш сайт</u></a>'
+    );
+  });
 });
