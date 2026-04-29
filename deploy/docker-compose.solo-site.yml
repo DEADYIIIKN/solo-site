@@ -77,7 +77,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: n8n_n8n_beget-network
-      traefik.http.routers.solo-site-prod.rule: Host(`soloproduction.pro`)
+      traefik.http.routers.solo-site-prod.rule: Host(`soloproduction.pro`) || Host(`www.soloproduction.pro`)
       traefik.http.routers.solo-site-prod.tls: "true"
       traefik.http.routers.solo-site-prod.entrypoints: web,websecure
       traefik.http.routers.solo-site-prod.tls.certresolver: mytlschallenge
