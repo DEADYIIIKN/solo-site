@@ -312,6 +312,22 @@ async function main(): Promise<void> {
   log(
     `[ensure-payload-db] missing: ${missing.join(", ")} — пробуем drizzle pushSQLiteSchema`,
   );
+
+  // Закрываем простые additive gaps raw SQL до drizzle: drizzle-kit может спросить
+  // интерактивно "create or rename column" и зависнуть в Docker entrypoint.
+  const preDrizzleFallback = applyFallbackDDL();
+  if (preDrizzleFallback.columnsAdded.length > 0 || preDrizzleFallback.tableCreated) {
+    log(
+      `[ensure-payload-db] pre-drizzle fallback: leads_table_created=${preDrizzleFallback.tableCreated}, columns_added=[${preDrizzleFallback.columnsAdded.join(", ")}]`,
+    );
+    const afterPreDrizzle = getMissingTables();
+    if (afterPreDrizzle.length === 0) {
+      log(`[ensure-payload-db] pre-drizzle fallback closed all gaps — OK`);
+      return;
+    }
+    log(`[ensure-payload-db] pre-drizzle still missing: ${afterPreDrizzle.join(", ")}`);
+  }
+
   process.env.PAYLOAD_FORCE_DRIZZLE_PUSH = "true";
 
   let drizzleOk = false;
