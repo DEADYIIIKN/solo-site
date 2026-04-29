@@ -36,7 +36,7 @@
 
 ### Verification (cross-cutting)
 
-- [x] **VERIFY-01**: PSI audit attempted после всех фаз, но API quota-blocked (`429 RESOURCE_EXHAUSTED`). Local production verification recorded in `.planning/research/AUDIT-PSI-v1.2-final.md`; official PSI remains external deploy/quota gate.
+- [x] **VERIFY-01**: PSI audit запущен с API key после всех фаз. Official PSI сейчас измеряет stale demo deploy; local production verification recorded in `.planning/research/AUDIT-PSI-v1.2-final.md`; final official confirmation remains deploy gate.
 - [x] **VERIFY-02**: E2E тест `tests/e2e/perf-smoke.spec.ts` падает если initial mobile weight > 1.5 MB или local MP4 грузится на initial mobile view.
 
 ---
@@ -72,7 +72,7 @@
 | PERF-09 | Phase 17 — Video Lazy Loading | Complete locally |
 | A11Y-01 | Phase 18 — A11y & SEO Hygiene | Complete locally; final Lighthouse in Phase 19 |
 | SEO-01 | Phase 18 — A11y & SEO Hygiene | Complete locally; final Lighthouse in Phase 19 |
-| VERIFY-01 | Phase 19 — Verification | Complete locally; official PSI blocked by API quota |
+| VERIFY-01 | Phase 19 — Verification | Complete locally; official PSI ran, demo deploy is stale |
 | VERIFY-02 | Phase 19 — Verification | Complete locally |
 
 **Coverage:** 15/15 requirements mapped (13 v1 features + 2 verify) ✓

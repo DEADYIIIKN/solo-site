@@ -4,9 +4,9 @@ milestone: v1.2
 milestone_name: "Performance & Delivery"
 last_shipped: v1.1.2
 status: v1.2-local-verification-complete
-stopped_at: v1.2 complete locally; official PSI rerun remains external quota/deploy gate
-last_updated: "2026-04-29T01:25:00.000+03:00"
-last_activity: 2026-04-29 -- Phase 19 local verification and perf-smoke regression guard complete
+stopped_at: v1.2 complete locally; official PSI rerun with key shows demo deploy is stale
+last_updated: "2026-04-29T12:15:00.000+03:00"
+last_activity: 2026-04-29 -- Official PSI run with API key recorded; demo deploy mismatch documented
 progress:
   total_phases: 7
   completed_phases: 7
@@ -22,15 +22,15 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.2 — Performance & Delivery local verification complete; official PSI rerun pending quota/deploy
+**Current focus:** v1.2 — Performance & Delivery local verification complete; deploy current branch then rerun official PSI
 
 ## Current Position
 
 Last shipped: **v1.1.2** (2026-04-28)
 Active milestone: **v1.2 — Performance & Delivery**
 Phase: 19 complete locally — Verification
-Next: Deploy current branch and rerun official PageSpeed Insights when quota is available
-Last activity: 2026-04-29 -- Local production verification recorded; perf-smoke e2e guard added
+Next: Deploy current branch and rerun official PageSpeed Insights
+Last activity: 2026-04-29 -- Official PSI run with API key shows current demo deploy is stale; local branch fixes are not deployed
 
 Progress: 12/13 plans complete locally. All implementation phases are complete; only official PSI score confirmation remains blocked externally.
 

@@ -149,13 +149,13 @@
 **Depends on:** ALL предыдущие фазы (13-18) завершены
 
 **Plans:**
-- [x] PLAN.md `19-01-psi-rerun-baseline` — VERIFY-01: PSI attempted; API quota-blocked, local production verification recorded in `.planning/research/AUDIT-PSI-v1.2-final.md`
+- [x] PLAN.md `19-01-psi-rerun-baseline` — VERIFY-01: PSI run with API key; current demo deploy is stale, local production verification recorded in `.planning/research/AUDIT-PSI-v1.2-final.md`
 - [x] PLAN.md `19-02-perf-smoke-e2e` — VERIFY-02: `tests/e2e/perf-smoke.spec.ts` fails if mobile initial weight > 1.5 MB or local MP4 loads initially
 
 **Success criteria:**
-1. Mobile `/` Perf ≥ 90, LCP < 2.5s, weight < 1.2 MB — official PSI blocked by quota; local transfer 901 KB
-2. Desktop `/` Perf ≥ 95, LCP < 1.0s — official PSI blocked by quota
-3. Mobile/Desktop `/privacy` Perf ≥ 90, SEO ≥ 95 — official PSI blocked by quota; local SEO metadata verified
+1. Mobile `/` Perf ≥ 90, LCP < 2.5s, weight < 1.2 MB — official PSI current demo: Perf 55, LCP 6.3s; local transfer 901 KB
+2. Desktop `/` Perf ≥ 95, LCP < 1.0s — official PSI current demo: Perf 64, LCP 1.5s
+3. Mobile/Desktop `/privacy` Perf ≥ 90, SEO ≥ 95 — official PSI current demo is stale (`noindex`, wrong canonical); local SEO metadata verified
 4. `pnpm test:e2e:perf` passes
 5. AUDIT-PSI-v1.2-final.md фиксирует local verification + external PSI blocker
 
