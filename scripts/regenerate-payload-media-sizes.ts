@@ -11,13 +11,24 @@ import fs from "node:fs";
 import path from "node:path";
 
 import dotenv from "dotenv";
+import sharp from "sharp";
 
 type MediaDoc = {
   id: number | string;
   alt?: null | string;
   filename?: null | string;
   mimeType?: null | string;
+  sizes?: null | Record<string, { url?: null | string } | null>;
 };
+
+function hasGeneratedImageSizes(doc: MediaDoc): boolean {
+  return Boolean(
+    doc.sizes?.["card-360-avif"]?.url ||
+      doc.sizes?.["card-360-webp"]?.url ||
+      doc.sizes?.["card-768-avif"]?.url ||
+      doc.sizes?.["card-768-webp"]?.url,
+  );
+}
 
 async function main(): Promise<void> {
   dotenv.config({ path: ".env.local" });
@@ -37,6 +48,10 @@ async function main(): Promise<void> {
   const payload = await getPayload({ config });
   const uploadDir = process.env.PAYLOAD_UPLOAD_DIR || "media";
   const apply = process.env.PAYLOAD_REGENERATE_MEDIA_APPLY === "1";
+  const force = process.env.PAYLOAD_REGENERATE_MEDIA_FORCE === "1";
+
+  sharp.concurrency(1);
+  sharp.cache(false);
 
   try {
     const result = await payload.find({
@@ -57,6 +72,11 @@ async function main(): Promise<void> {
       }
 
       if (!doc.filename) {
+        skipped += 1;
+        continue;
+      }
+
+      if (!force && hasGeneratedImageSizes(doc)) {
         skipped += 1;
         continue;
       }
