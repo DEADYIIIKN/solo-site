@@ -239,7 +239,7 @@ function AccordionCard({
         >
           <img
             alt=""
-            className="absolute top-0 h-full max-w-none"
+            className="absolute top-0 h-full max-w-none object-cover"
             src={imageSrc}
             style={{
               height: "100%",
