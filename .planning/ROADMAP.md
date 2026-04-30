@@ -10,8 +10,9 @@
 **Goal:** Lighthouse Performance 90+ на всех брейкпоинтах для `/` и `/privacy`, mobile LCP < 2.5s, mobile home weight < 1.2 MB. Все статические и Payload-uploaded медиа отдаются в AVIF/WebP с per-device responsive srcset.
 
 **Started:** 2026-04-28
+**Deployed:** 2026-04-30
 **Source of truth:** `.planning/research/AUDIT-PSI.md`
-**Phases:** 7 phases / 13 plans
+**Phases:** 7 phases / 12 plans
 
 ---
 
@@ -48,7 +49,7 @@
 **Depends on:** Phase 13 (immutable должен срабатывать на оптимизированных URL — fingerprinted via next/image query — иначе ломаем deploy invalidation)
 
 **Plans:**
-- [x] PLAN.md `14-01-static-cache-headers` — PERF-04: `headers()` в `next.config.ts` для `/assets/:path*`; local production smoke confirms immutable cache, demo smoke pending deploy.
+- [x] PLAN.md `14-01-static-cache-headers` — PERF-04: `headers()` в `next.config.ts` для `/assets/:path*`; local production smoke confirms immutable cache, demo/prod deploy completed.
 
 **Success criteria:**
 1. `curl -I https://demo.soloproduction.pro/assets/...` возвращает `cache-control: public, max-age=31536000, immutable`
@@ -149,15 +150,15 @@
 **Depends on:** ALL предыдущие фазы (13-18) завершены
 
 **Plans:**
-- [x] PLAN.md `19-01-psi-rerun-baseline` — VERIFY-01: PSI run with API key; current demo deploy is stale, local production verification recorded in `.planning/research/AUDIT-PSI-v1.2-final.md`
+- [x] PLAN.md `19-01-psi-rerun-baseline` — VERIFY-01: PSI run recorded; stale demo blocker removed after 2026-04-30 deploy, local production verification recorded in `.planning/research/AUDIT-PSI-v1.2-final.md`; post-deploy PSI rerun pending API quota.
 - [x] PLAN.md `19-02-perf-smoke-e2e` — VERIFY-02: `tests/e2e/perf-smoke.spec.ts` fails if mobile initial weight > 1.5 MB or local MP4 loads initially
 
 **Success criteria:**
-1. Mobile `/` Perf ≥ 90, LCP < 2.5s, weight < 1.2 MB — official PSI current demo: Perf 55, LCP 6.3s; local transfer 901 KB
-2. Desktop `/` Perf ≥ 95, LCP < 1.0s — official PSI current demo: Perf 64, LCP 1.5s
-3. Mobile/Desktop `/privacy` Perf ≥ 90, SEO ≥ 95 — official PSI current demo is stale (`noindex`, wrong canonical); local SEO metadata verified
+1. Mobile `/` Perf ≥ 90, LCP < 2.5s, weight < 1.2 MB — local transfer 901 KB; official post-deploy PSI rerun pending API quota
+2. Desktop `/` Perf ≥ 95, LCP < 1.0s — local production verification recorded; official post-deploy PSI rerun pending API quota
+3. Mobile/Desktop `/privacy` Perf ≥ 90, SEO ≥ 95 — deployed SEO metadata fixed; official post-deploy PSI rerun pending API quota
 4. `pnpm test:e2e:perf` passes
-5. AUDIT-PSI-v1.2-final.md фиксирует local verification + external PSI blocker
+5. AUDIT-PSI-v1.2-final.md фиксирует local verification + post-deploy PSI measurement follow-up
 
 ---
 

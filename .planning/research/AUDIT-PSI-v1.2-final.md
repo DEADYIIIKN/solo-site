@@ -9,15 +9,14 @@
 
 PageSpeed Insights API was rerun with an API key on 2026-04-29.
 
-Important: the current `demo.soloproduction.pro` deployment is not the same as this local branch. Evidence:
+Post-deploy update, 2026-04-30:
 
-- Demo `/privacy` HTML still contains `<meta name="robots" content="noindex, nofollow"/>`.
-- Demo `/privacy` HTML canonical still points to `https://demo.soloproduction.pro`.
-- Local production verification for this branch shows `/privacy` canonical `https://demo.soloproduction.pro/privacy` and `index, follow`.
+- The stale demo blocker recorded on 2026-04-29 has been removed: the current code was deployed to demo/prod and both containers were verified healthy.
+- GitHub Actions deploy completed successfully.
+- A post-deploy PageSpeed Insights rerun was attempted on 2026-04-30, but Google returned API quota 429 before fresh scores were produced.
+- The 2026-04-29 PSI numbers below are therefore retained as historical pre-deploy evidence and should not be treated as current deployed scores.
 
-Therefore the official PSI numbers below describe the currently deployed demo, not the latest local branch commits.
-
-## Official PSI Results — Current Demo Deploy
+## Official PSI Results — Historical Pre-Deploy Demo Snapshot
 
 | Page | Strategy | Perf | A11y | BP | SEO | LCP | TBT | FCP | SI | Total Bytes | Console | Crawlable | Canonical |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|
@@ -87,14 +86,13 @@ Both passed in this phase.
 | `/privacy` canonical | missing | present | Fixed locally |
 | Console errors | 3× failed resources | 0 on mobile `/` and `/privacy` | Fixed locally |
 
-## Remaining External Gate
+## Post-Deploy Measurement Follow-Up
 
-Phase 19 local verification is complete, but official PSI target confirmation remains a deploy gate:
+Phase 19 implementation, deployment, and local verification are complete. Official PSI target confirmation remains a measurement follow-up:
 
-1. Deploy current branch to demo.
-2. Rerun PageSpeed Insights for:
+1. Rerun PageSpeed Insights for:
    - `https://demo.soloproduction.pro/` mobile
    - `https://demo.soloproduction.pro/` desktop
    - `https://demo.soloproduction.pro/privacy` mobile
    - `https://demo.soloproduction.pro/privacy` desktop
-3. Update this file with official PSI scores from the updated demo deploy.
+2. Update this file with official PSI scores from the updated demo deploy.

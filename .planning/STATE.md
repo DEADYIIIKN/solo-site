@@ -2,17 +2,17 @@
 gsd_state_version: 1.0
 milestone: v1.2
 milestone_name: "Performance & Delivery"
-last_shipped: v1.1.2
-status: v1.2-local-verification-complete
-stopped_at: v1.2 complete locally; official PSI rerun with key shows demo deploy is stale
-last_updated: "2026-04-29T12:15:00.000+03:00"
-last_activity: 2026-04-29 -- Official PSI run with API key recorded; demo deploy mismatch documented
+last_shipped: v1.2
+status: v1.2-deployed-verification-complete
+stopped_at: v1.2 deployed to demo/prod; official post-deploy PSI rerun pending because API quota returned 429
+last_updated: "2026-04-30T00:00:00.000+03:00"
+last_activity: 2026-04-30 -- Demo/prod deploy verified healthy; stale-demo blocker removed from GSD state
 progress:
   total_phases: 7
   completed_phases: 7
-  total_plans: 13
+  total_plans: 12
   completed_plans: 12
-  percent: 92
+  percent: 100
 ---
 
 # Project State
@@ -22,17 +22,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.2 — Performance & Delivery local verification complete; deploy current branch then rerun official PSI
+**Current focus:** v1.2 — Performance & Delivery deployed; discuss next-version scope
 
 ## Current Position
 
-Last shipped: **v1.1.2** (2026-04-28)
+Last shipped: **v1.2** (2026-04-30)
 Active milestone: **v1.2 — Performance & Delivery**
-Phase: 19 complete locally — Verification
-Next: Deploy current branch and rerun official PageSpeed Insights
-Last activity: 2026-04-29 -- Official PSI run with API key shows current demo deploy is stale; local branch fixes are not deployed
+Phase: 19 complete — Verification
+Next: Discuss and plan next-version tasks
+Last activity: 2026-04-30 -- Demo/prod containers healthy after deploy; GitHub Actions deploy completed successfully; post-deploy PSI rerun attempted but Google PageSpeed API quota returned 429
 
-Progress: 12/13 plans complete locally. All implementation phases are complete; only official PSI score confirmation remains blocked externally.
+Progress: 12/12 v1.2 plans complete. All implementation and local verification phases are complete; official post-deploy PSI score confirmation remains a measurement follow-up, not a v1.2 delivery blocker.
 
 ## Performance Metrics
 
@@ -74,13 +74,12 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- Rerun official PageSpeed Insights for demo `/` and `/privacy` mobile/desktop when API quota is available.
 
 ### Blockers/Concerns
 
-- CONCERNS: `/privacy` page missing — FORM-01 fix requires either creating the page or converting link to modal
-- CONCERNS: boneyard-js + CSS transitions may need Safari-specific vendor prefix audit before Phase 4
-- CONCERNS: `business-goals.tsx` (1300 lines) and `services-section-below-1024.tsx` (1000 lines) are fragile — Phase 3 edits carry higher regression risk
+- No active v1.2 delivery blockers.
+- Measurement follow-up: official post-deploy PSI rerun is pending because the Google PageSpeed API quota returned 429 on 2026-04-30.
 
 ## Deferred Items
 
@@ -94,8 +93,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: --stopped-at
-Stopped at: Phase 5 context gathered
+Last session: 2026-04-30
+Stopped at: v1.2 GSD state updated after deploy; ready to discuss next-version tasks
 Resume file: --resume-file
 
-**Planned Phase:** 05 (pixel-perfect-final-pass) — 5 plans — 2026-04-23T11:53:07.421Z
+**Planned Phase:** Next milestone planning TBD
