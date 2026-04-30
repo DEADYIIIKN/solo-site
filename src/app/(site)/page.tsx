@@ -19,13 +19,13 @@ import { getSiteSettings } from "@/shared/lib/get-site-settings";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Видеопродакшн для брендов и рекламы",
+  title: siteConfig.defaultTitle,
   description: siteConfig.description,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Видеопродакшн для брендов и рекламы",
+    title: siteConfig.defaultTitle,
     description: siteConfig.ogDescription,
     url: "/",
     images: [
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Видеопродакшн для брендов и рекламы",
+    title: siteConfig.defaultTitle,
     description: siteConfig.ogDescription,
     images: [siteConfig.ogImage],
   },

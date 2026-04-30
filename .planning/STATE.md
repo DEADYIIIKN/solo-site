@@ -1,18 +1,18 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.2
-milestone_name: "Performance & Delivery"
-last_shipped: v1.1.2
-status: v1.2-local-verification-complete
-stopped_at: v1.2 complete locally; official PSI rerun with key shows demo deploy is stale
-last_updated: "2026-04-29T12:15:00.000+03:00"
-last_activity: 2026-04-29 -- Official PSI run with API key recorded; demo deploy mismatch documented
+milestone: v1.3
+milestone_name: "SEO & Analytics Production Gate"
+last_shipped: v1.2
+status: v1.3-phase-20-complete-local
+stopped_at: Phase 20 implemented locally; next run full verification and deploy
+last_updated: "2026-04-30T00:00:00.000+03:00"
+last_activity: 2026-04-30 -- Started v1.3; implemented production domain consolidation, SEO settings, and Yandex Metrika settings
 progress:
-  total_phases: 7
-  completed_phases: 7
-  total_plans: 13
-  completed_plans: 12
-  percent: 92
+  total_phases: 4
+  completed_phases: 1
+  total_plans: 4
+  completed_plans: 1
+  percent: 25
 ---
 
 # Project State
@@ -22,17 +22,17 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-22)
 
 **Core value:** Сайт должен одинаково работать в Chrome и Safari, корректно выглядеть по всем брейкпоинтам и не ломаться — каждый баг стоит доверия клиента.
-**Current focus:** v1.2 — Performance & Delivery local verification complete; deploy current branch then rerun official PSI
+**Current focus:** v1.3 — SEO & Analytics Production Gate
 
 ## Current Position
 
-Last shipped: **v1.1.2** (2026-04-28)
-Active milestone: **v1.2 — Performance & Delivery**
-Phase: 19 complete locally — Verification
-Next: Deploy current branch and rerun official PageSpeed Insights
-Last activity: 2026-04-29 -- Official PSI run with API key shows current demo deploy is stale; local branch fixes are not deployed
+Last shipped: **v1.2** (2026-04-30)
+Active milestone: **v1.3 — SEO & Analytics Production Gate**
+Phase: 20 complete locally — Domain Consolidation + SEO Settings
+Next: Run full verification, deploy, then Phase 21 structured SEO pass
+Last activity: 2026-04-30 -- `soloproduction.pro` selected as the only active production domain; Payload settings now include SEO and Yandex Metrika controls
 
-Progress: 12/13 plans complete locally. All implementation phases are complete; only official PSI score confirmation remains blocked externally.
+Progress: 1/4 plans complete locally. Phase 20 code is implemented; production deploy and smoke verification remain next.
 
 ## Performance Metrics
 
@@ -74,13 +74,14 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- Run full verification for Phase 20 (`typecheck`, unit, build, lint).
+- Deploy desired compose with one active `solo-site` production service for `soloproduction.pro`.
+- Decide whether `demo.soloproduction.pro` should remain unserved or become a 301 redirect later.
 
 ### Blockers/Concerns
 
-- CONCERNS: `/privacy` page missing — FORM-01 fix requires either creating the page or converting link to modal
-- CONCERNS: boneyard-js + CSS transitions may need Safari-specific vendor prefix audit before Phase 4
-- CONCERNS: `business-goals.tsx` (1300 lines) and `services-section-below-1024.tsx` (1000 lines) are fragile — Phase 3 edits carry higher regression risk
+- No active implementation blocker.
+- Production verification must confirm Traefik routes only the intended domain and that existing demo data volume is the desired production data source.
 
 ## Deferred Items
 
@@ -94,8 +95,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: --stopped-at
-Stopped at: Phase 5 context gathered
+Last session: 2026-04-30
+Stopped at: Phase 20 implemented locally
 Resume file: --resume-file
 
-**Planned Phase:** 05 (pixel-perfect-final-pass) — 5 plans — 2026-04-23T11:53:07.421Z
+**Planned Phase:** 21 (structured-seo-pass)

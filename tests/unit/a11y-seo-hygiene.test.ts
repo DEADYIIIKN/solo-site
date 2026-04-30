@@ -1,10 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
-import sitemap from "@/app/sitemap";
 import { publicSiteUrl } from "@/shared/config/public-site-url";
+
+vi.mock("@/shared/lib/get-site-settings", () => ({
+  getSiteSettings: async () => ({
+    productionBaseUrl: publicSiteUrl,
+    allowIndexing: true,
+  }),
+}));
 
 const root = process.cwd();
 
@@ -69,6 +75,7 @@ describe("Phase 18 a11y and SEO hygiene", () => {
 
     expect(privacySource).toContain('canonical: "/privacy"');
     expect(privacySource).toContain("robots: { index: true, follow: true }");
-    expect(sitemap().map((entry) => entry.url)).toContain(`${publicSiteUrl}/privacy`);
+    const { default: sitemap } = await import("@/app/sitemap");
+    expect((await sitemap()).map((entry) => entry.url)).toContain(`${publicSiteUrl}/privacy`);
   });
 });

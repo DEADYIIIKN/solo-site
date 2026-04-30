@@ -62,7 +62,7 @@
 
 **Hosting:**
 - VPS via Beget (SSH target configured via `secrets.DEMO_SSH_HOST/USER/KEY/PORT`)
-- Domain: `demo.soloproduction.pro` (Traefik `Host()` rule)
+- Domain: `soloproduction.pro` / `www.soloproduction.pro` (Traefik `Host()` rule)
 - TLS: Traefik Let's Encrypt (`mytlschallenge` cert resolver)
 
 **CI Pipeline:**
@@ -75,7 +75,7 @@
 - Concurrency group `solo-site-docker` (cancels in-progress on new push)
 
 **Manual deploy script:**
-- `scripts/deploy-demo.sh` — used by both CI and manual deploys
+- `scripts/deploy-demo.sh` — used by both CI and manual deploys; name is legacy, desired runtime is production `soloproduction.pro`
 
 ## Webhooks & Callbacks
 

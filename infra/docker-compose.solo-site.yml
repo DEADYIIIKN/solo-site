@@ -13,6 +13,8 @@ services:
       NODE_ENV: production
       PORT: 3000
       HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_SITE_URL: https://soloproduction.pro
+      PAYLOAD_PUBLIC_SERVER_URL: https://soloproduction.pro
       PAYLOAD_UPLOAD_DIR: /data/media
     volumes:
       - solo_sqlite_data:/data
@@ -31,7 +33,7 @@ services:
     labels:
       traefik.enable: "true"
       traefik.docker.network: n8n_n8n_beget-network
-      traefik.http.routers.solo-site.rule: Host(`demo.soloproduction.pro`)
+      traefik.http.routers.solo-site.rule: Host(`soloproduction.pro`) || Host(`www.soloproduction.pro`)
       traefik.http.routers.solo-site.tls: "true"
       traefik.http.routers.solo-site.entrypoints: web,websecure
       traefik.http.routers.solo-site.tls.certresolver: mytlschallenge

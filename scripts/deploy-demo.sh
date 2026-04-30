@@ -4,17 +4,10 @@ set -euo pipefail
 STACK_DIR="/opt/beget/n8n"
 RUNTIME_COMPOSE="$STACK_DIR/docker-compose.solo-site.yml"
 ENV_FILE="$STACK_DIR/solo-site.env.production"
-PROD_ENV_FILE="$STACK_DIR/solo-site-prod.env.production"
 
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "Missing $ENV_FILE"
   echo "Create it from $STACK_DIR/solo-site.env.production.example first."
-  exit 1
-fi
-
-if [[ ! -f "$PROD_ENV_FILE" ]]; then
-  echo "Missing $PROD_ENV_FILE"
-  echo "Create it from $ENV_FILE and set NEXT_PUBLIC_SITE_URL/PAYLOAD_PUBLIC_SERVER_URL to https://soloproduction.pro."
   exit 1
 fi
 
@@ -31,22 +24,22 @@ echo "==> Pulling solo-site images"
 docker compose \
   --project-directory "$STACK_DIR" \
   -f "$RUNTIME_COMPOSE" \
-  pull solo-site solo-site-prod
+  pull solo-site
 
 echo "==> Starting solo-site containers"
 docker compose \
   --project-directory "$STACK_DIR" \
   -f "$RUNTIME_COMPOSE" \
-  up -d solo-site solo-site-prod
+  up -d --remove-orphans solo-site
 
 echo "==> Container status"
 docker compose \
   --project-directory "$STACK_DIR" \
   -f "$RUNTIME_COMPOSE" \
-  ps solo-site solo-site-prod
+  ps solo-site
 
 echo "==> Recent logs"
 docker compose \
   --project-directory "$STACK_DIR" \
   -f "$RUNTIME_COMPOSE" \
-  logs --tail=60 solo-site solo-site-prod
+  logs --tail=60 solo-site

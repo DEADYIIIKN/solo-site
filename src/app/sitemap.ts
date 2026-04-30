@@ -1,17 +1,23 @@
 import type { MetadataRoute } from "next";
 
 import { publicSiteUrl } from "@/shared/config/public-site-url";
+import { getSiteSettings } from "@/shared/lib/get-site-settings";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 60;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const settings = await getSiteSettings();
+  const baseUrl = settings.productionBaseUrl || publicSiteUrl;
+
   return [
     {
-      url: publicSiteUrl,
+      url: baseUrl,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${publicSiteUrl}/privacy`,
+      url: `${baseUrl}/privacy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.3,

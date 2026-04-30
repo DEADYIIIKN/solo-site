@@ -1,6 +1,9 @@
 import { getPayload } from "payload";
 import config from "@payload-config";
 
+import { normalizeSiteUrl, publicSiteUrl } from "@/shared/config/public-site-url";
+import { siteConfig } from "@/shared/config/site";
+
 export type SiteSettingsData = {
   showSecrets: boolean;
   showShowreel: boolean;
@@ -10,6 +13,19 @@ export type SiteSettingsData = {
   showServices: boolean;
   showLevels: boolean;
   tgChannelUrl: string;
+  productionBaseUrl: string;
+  allowIndexing: boolean;
+  seoTitle: string;
+  seoDescription: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImageUrl: string;
+  yandexMetrikaEnabled: boolean;
+  yandexMetrikaId: string;
+  yandexMetrikaWebvisor: boolean;
+  yandexMetrikaClickmap: boolean;
+  yandexMetrikaTrackLinks: boolean;
+  yandexMetrikaAccurateTrackBounce: boolean;
 };
 
 const DEFAULTS: SiteSettingsData = {
@@ -21,10 +37,27 @@ const DEFAULTS: SiteSettingsData = {
   showServices: true,
   showLevels: true,
   tgChannelUrl: "https://t.me/soloproductionpro",
+  productionBaseUrl: publicSiteUrl,
+  allowIndexing: true,
+  seoTitle: siteConfig.defaultTitle,
+  seoDescription: siteConfig.description,
+  ogTitle: `${siteConfig.name} Продакшн`,
+  ogDescription: siteConfig.ogDescription,
+  ogImageUrl: siteConfig.ogImage,
+  yandexMetrikaEnabled: false,
+  yandexMetrikaId: "",
+  yandexMetrikaWebvisor: true,
+  yandexMetrikaClickmap: true,
+  yandexMetrikaTrackLinks: true,
+  yandexMetrikaAccurateTrackBounce: true,
 };
 
 function text(value: unknown, fallback: string): string {
   return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
+
+function siteUrl(value: unknown, fallback: string): string {
+  return normalizeSiteUrl(typeof value === "string" ? value : undefined) ?? fallback;
 }
 
 /**
@@ -48,6 +81,30 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
       showServices: Boolean((raw as Record<string, unknown>).showServices ?? DEFAULTS.showServices),
       showLevels: Boolean((raw as Record<string, unknown>).showLevels ?? DEFAULTS.showLevels),
       tgChannelUrl: text((raw as Record<string, unknown>).tgChannelUrl, DEFAULTS.tgChannelUrl),
+      productionBaseUrl: siteUrl((raw as Record<string, unknown>).productionBaseUrl, DEFAULTS.productionBaseUrl),
+      allowIndexing: Boolean((raw as Record<string, unknown>).allowIndexing ?? DEFAULTS.allowIndexing),
+      seoTitle: text((raw as Record<string, unknown>).seoTitle, DEFAULTS.seoTitle),
+      seoDescription: text((raw as Record<string, unknown>).seoDescription, DEFAULTS.seoDescription),
+      ogTitle: text((raw as Record<string, unknown>).ogTitle, DEFAULTS.ogTitle),
+      ogDescription: text((raw as Record<string, unknown>).ogDescription, DEFAULTS.ogDescription),
+      ogImageUrl: text((raw as Record<string, unknown>).ogImageUrl, DEFAULTS.ogImageUrl),
+      yandexMetrikaEnabled: Boolean(
+        (raw as Record<string, unknown>).yandexMetrikaEnabled ?? DEFAULTS.yandexMetrikaEnabled,
+      ),
+      yandexMetrikaId: text((raw as Record<string, unknown>).yandexMetrikaId, DEFAULTS.yandexMetrikaId),
+      yandexMetrikaWebvisor: Boolean(
+        (raw as Record<string, unknown>).yandexMetrikaWebvisor ?? DEFAULTS.yandexMetrikaWebvisor,
+      ),
+      yandexMetrikaClickmap: Boolean(
+        (raw as Record<string, unknown>).yandexMetrikaClickmap ?? DEFAULTS.yandexMetrikaClickmap,
+      ),
+      yandexMetrikaTrackLinks: Boolean(
+        (raw as Record<string, unknown>).yandexMetrikaTrackLinks ?? DEFAULTS.yandexMetrikaTrackLinks,
+      ),
+      yandexMetrikaAccurateTrackBounce: Boolean(
+        (raw as Record<string, unknown>).yandexMetrikaAccurateTrackBounce ??
+          DEFAULTS.yandexMetrikaAccurateTrackBounce,
+      ),
     };
   } catch {
     return DEFAULTS;

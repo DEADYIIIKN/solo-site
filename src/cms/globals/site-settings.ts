@@ -119,5 +119,160 @@ export const SiteSettings: GlobalConfig = {
         },
       ],
     },
+    {
+      type: "collapsible",
+      label: "SEO и аналитика",
+      admin: {
+        initCollapsed: false,
+        description: "Production-домен, индексация, базовые meta-теги и Яндекс Метрика",
+      },
+      fields: [
+        {
+          type: "row",
+          fields: [
+            {
+              name: "productionBaseUrl",
+              type: "text",
+              defaultValue: "https://soloproduction.pro",
+              label: "Production URL",
+              admin: {
+                description: "Основной публичный домен без слеша в конце",
+                width: "50%",
+              },
+            },
+            {
+              name: "allowIndexing",
+              type: "checkbox",
+              defaultValue: true,
+              label: "Разрешить индексацию",
+              admin: {
+                description: "Если выключить, robots/meta будут noindex/nofollow",
+                width: "50%",
+              },
+            },
+          ],
+        },
+        {
+          type: "row",
+          fields: [
+            {
+              name: "seoTitle",
+              type: "text",
+              defaultValue: "Видеопродакшн для брендов и рекламы",
+              label: "SEO title главной",
+              admin: {
+                width: "50%",
+              },
+            },
+            {
+              name: "seoDescription",
+              type: "textarea",
+              defaultValue:
+                "СОЛО Продакшн: видеопродакшн для брендов, рекламы и соцсетей. Стратегия, креатив, съёмка и контент, который решает бизнес-задачи.",
+              label: "SEO description",
+              admin: {
+                width: "50%",
+              },
+            },
+          ],
+        },
+        {
+          type: "row",
+          fields: [
+            {
+              name: "ogTitle",
+              type: "text",
+              defaultValue: "СОЛО Продакшн",
+              label: "Open Graph title",
+              admin: {
+                width: "50%",
+              },
+            },
+            {
+              name: "ogDescription",
+              type: "textarea",
+              defaultValue:
+                "Создаём рекламу и видеоконтент для брендов: соцсети, performance, имиджевые ролики и контент-системы под результат.",
+              label: "Open Graph description",
+              admin: {
+                width: "50%",
+              },
+            },
+          ],
+        },
+        {
+          name: "ogImageUrl",
+          type: "text",
+          defaultValue: "/favicon.png",
+          label: "Open Graph image URL",
+          admin: {
+            description: "Можно указать абсолютный URL или путь внутри сайта",
+          },
+        },
+        {
+          type: "row",
+          fields: [
+            {
+              name: "yandexMetrikaEnabled",
+              type: "checkbox",
+              defaultValue: false,
+              label: "Включить Яндекс Метрику",
+              admin: {
+                width: "50%",
+              },
+            },
+            {
+              name: "yandexMetrikaId",
+              type: "text",
+              label: "ID счетчика Яндекс Метрики",
+              admin: {
+                width: "50%",
+              },
+            },
+          ],
+        },
+        {
+          type: "row",
+          fields: [
+            {
+              name: "yandexMetrikaWebvisor",
+              type: "checkbox",
+              defaultValue: true,
+              label: "Вебвизор",
+              admin: {
+                width: "25%",
+              },
+            },
+            {
+              name: "yandexMetrikaClickmap",
+              type: "checkbox",
+              defaultValue: true,
+              label: "Карта кликов",
+              admin: {
+                width: "25%",
+              },
+            },
+            {
+              name: "yandexMetrikaTrackLinks",
+              type: "checkbox",
+              defaultValue: true,
+              label: "Внешние ссылки",
+              admin: {
+                width: "25%",
+              },
+            },
+            {
+              name: "yandexMetrikaAccurateTrackBounce",
+              type: "checkbox",
+              defaultValue: true,
+              label: "Точный bounce",
+              admin: {
+                width: "25%",
+              },
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

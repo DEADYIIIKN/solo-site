@@ -172,6 +172,19 @@ const EXPECTED_COLUMNS: Array<{ table: string; column: string }> = [
   { table: "media", column: "sizes_hero_1440_avif_url" },
   { table: "media", column: "sizes_hero_1440_webp_url" },
   { table: "site_settings", column: "tg_channel_url" },
+  { table: "site_settings", column: "production_base_url" },
+  { table: "site_settings", column: "allow_indexing" },
+  { table: "site_settings", column: "seo_title" },
+  { table: "site_settings", column: "seo_description" },
+  { table: "site_settings", column: "og_title" },
+  { table: "site_settings", column: "og_description" },
+  { table: "site_settings", column: "og_image_url" },
+  { table: "site_settings", column: "yandex_metrika_enabled" },
+  { table: "site_settings", column: "yandex_metrika_id" },
+  { table: "site_settings", column: "yandex_metrika_webvisor" },
+  { table: "site_settings", column: "yandex_metrika_clickmap" },
+  { table: "site_settings", column: "yandex_metrika_track_links" },
+  { table: "site_settings", column: "yandex_metrika_accurate_track_bounce" },
 ];
 
 function getMissingTables(): string[] {
@@ -289,9 +302,70 @@ function applyFallbackDDL(): { tableCreated: boolean; columnsAdded: string[] } {
           (c) => c.name,
         ),
       );
-      if (!siteSettingsCols.has("tg_channel_url")) {
-        db.exec("ALTER TABLE site_settings ADD COLUMN tg_channel_url text DEFAULT 'https://t.me/soloproductionpro'");
-        columnsAdded.push("site_settings.tg_channel_url");
+      const siteSettingsColumns: Array<{ name: string; ddl: string }> = [
+        {
+          name: "tg_channel_url",
+          ddl: "ALTER TABLE site_settings ADD COLUMN tg_channel_url text DEFAULT 'https://t.me/soloproductionpro'",
+        },
+        {
+          name: "production_base_url",
+          ddl: "ALTER TABLE site_settings ADD COLUMN production_base_url text DEFAULT 'https://soloproduction.pro'",
+        },
+        {
+          name: "allow_indexing",
+          ddl: "ALTER TABLE site_settings ADD COLUMN allow_indexing integer DEFAULT 1",
+        },
+        {
+          name: "seo_title",
+          ddl: "ALTER TABLE site_settings ADD COLUMN seo_title text DEFAULT 'Видеопродакшн для брендов и рекламы'",
+        },
+        {
+          name: "seo_description",
+          ddl: "ALTER TABLE site_settings ADD COLUMN seo_description text DEFAULT 'СОЛО Продакшн: видеопродакшн для брендов, рекламы и соцсетей. Стратегия, креатив, съёмка и контент, который решает бизнес-задачи.'",
+        },
+        {
+          name: "og_title",
+          ddl: "ALTER TABLE site_settings ADD COLUMN og_title text DEFAULT 'СОЛО Продакшн'",
+        },
+        {
+          name: "og_description",
+          ddl: "ALTER TABLE site_settings ADD COLUMN og_description text DEFAULT 'Создаём рекламу и видеоконтент для брендов: соцсети, performance, имиджевые ролики и контент-системы под результат.'",
+        },
+        {
+          name: "og_image_url",
+          ddl: "ALTER TABLE site_settings ADD COLUMN og_image_url text DEFAULT '/favicon.png'",
+        },
+        {
+          name: "yandex_metrika_enabled",
+          ddl: "ALTER TABLE site_settings ADD COLUMN yandex_metrika_enabled integer DEFAULT 0",
+        },
+        {
+          name: "yandex_metrika_id",
+          ddl: "ALTER TABLE site_settings ADD COLUMN yandex_metrika_id text",
+        },
+        {
+          name: "yandex_metrika_webvisor",
+          ddl: "ALTER TABLE site_settings ADD COLUMN yandex_metrika_webvisor integer DEFAULT 1",
+        },
+        {
+          name: "yandex_metrika_clickmap",
+          ddl: "ALTER TABLE site_settings ADD COLUMN yandex_metrika_clickmap integer DEFAULT 1",
+        },
+        {
+          name: "yandex_metrika_track_links",
+          ddl: "ALTER TABLE site_settings ADD COLUMN yandex_metrika_track_links integer DEFAULT 1",
+        },
+        {
+          name: "yandex_metrika_accurate_track_bounce",
+          ddl: "ALTER TABLE site_settings ADD COLUMN yandex_metrika_accurate_track_bounce integer DEFAULT 1",
+        },
+      ];
+      for (const { name, ddl } of siteSettingsColumns) {
+        if (!siteSettingsCols.has(name)) {
+          db.exec(ddl);
+          siteSettingsCols.add(name);
+          columnsAdded.push(`site_settings.${name}`);
+        }
       }
     }
   } finally {
