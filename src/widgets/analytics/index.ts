@@ -1,1 +1,1 @@
-export { YandexMetrika } from "./yandex-metrika";
+export { YandexMetrikaHead, YandexMetrikaNoScript } from "./yandex-metrika";

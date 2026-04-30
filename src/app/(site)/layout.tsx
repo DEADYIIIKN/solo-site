@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import { publicSiteUrl } from "@/shared/config/public-site-url";
 import { siteConfig } from "@/shared/config/site";
 import { getSiteSettings } from "@/shared/lib/get-site-settings";
-import { YandexMetrika } from "@/widgets/analytics";
+import { YandexMetrikaHead, YandexMetrikaNoScript } from "@/widgets/analytics";
 import { SiteLoadOverlay } from "@/widgets/site-load";
 import { TgPopupHost } from "@/widgets/tg-popup";
 
@@ -119,12 +119,15 @@ export default async function SiteLayout({
 
   return (
     <html dir="ltr" lang="ru">
+      <head>
+        <YandexMetrikaHead settings={settings} />
+      </head>
       <body className={`${montserrat.variable} ${montserrat.className} page-shell`}>
         <SiteMotionConfig>
           {children}
           <SiteLoadOverlay />
           <TgPopupHost />
-          <YandexMetrika settings={settings} />
+          <YandexMetrikaNoScript settings={settings} />
         </SiteMotionConfig>
       </body>
     </html>
