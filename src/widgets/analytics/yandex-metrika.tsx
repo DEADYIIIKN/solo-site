@@ -17,26 +17,29 @@ export function YandexMetrika({ settings }: YandexMetrikaProps) {
   if (!shouldRenderMetrika(settings)) return null;
 
   const counterId = Number(settings.yandexMetrikaId);
-  const options = JSON.stringify({
-    clickmap: settings.yandexMetrikaClickmap,
-    trackLinks: settings.yandexMetrikaTrackLinks,
-    accurateTrackBounce: settings.yandexMetrikaAccurateTrackBounce,
-    webvisor: settings.yandexMetrikaWebvisor,
-  });
+  const tagUrl = `https://mc.yandex.ru/metrika/tag.js?id=${counterId}`;
 
   return (
     <>
-      <Script id="yandex-metrika" strategy="afterInteractive">
+      <Script id="yandex-metrika" strategy="beforeInteractive" type="text/javascript">
         {`
           (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
-            for (var j=0; j<document.scripts.length; j++) {
-              if (document.scripts[j].src === r) return;
-            }
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-          ym(${counterId}, 'init', ${options});
+          })(window, document, 'script', '${tagUrl}', 'ym');
+
+          ym(${counterId}, 'init', {
+            ssr: true,
+            webvisor: ${settings.yandexMetrikaWebvisor},
+            clickmap: ${settings.yandexMetrikaClickmap},
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: ${settings.yandexMetrikaAccurateTrackBounce},
+            trackLinks: ${settings.yandexMetrikaTrackLinks}
+          });
         `}
       </Script>
       <noscript>
