@@ -60,6 +60,7 @@ export async function GET(_request: Request, context: RouteContext): Promise<Res
       "Content-Type": "text/html; charset=utf-8",
       "Content-Disposition": `attachment; filename="${safeFilename(slug)}"`,
       "Cache-Control": "no-store",
+      "X-Robots-Tag": "noindex, nofollow",
     },
   });
 }

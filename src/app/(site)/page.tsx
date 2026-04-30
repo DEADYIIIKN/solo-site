@@ -14,6 +14,7 @@ import { Showreel } from "@/widgets/showreel";
 import { TeamSection } from "@/widgets/team";
 import { siteConfig } from "@/shared/config/site";
 import { getSiteSettings } from "@/shared/lib/get-site-settings";
+import { getHomeStructuredData } from "@/shared/lib/site-structured-data";
 
 /** Обновление с CMS без полной пересборки. */
 export const revalidate = 60;
@@ -50,9 +51,14 @@ export default async function HomePage() {
     getCasesForSite(),
     getSiteSettings(),
   ]);
+  const structuredData = getHomeStructuredData(settings);
 
   return (
     <main className="app-main overflow-x-clip">
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        type="application/ld+json"
+      />
       {/* Без isolate/z-0: иначе stacking context первого блока оказывается под соседними секциями (sticky z-[40]) — навбар и fixed-модалки внутри блока не перекрывают страницу. */}
       <div className="relative overflow-x-clip bg-[#0d0300]">
         <DarkSurfaceGrid />

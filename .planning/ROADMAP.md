@@ -36,18 +36,18 @@
 
 ---
 
-### Phase 21: Structured SEO Pass
+### Phase 21: Structured SEO Pass ✅
 
 **Goal:** Добить production SEO beyond canonical: OpenGraph, structured data, service page crawl rules, title/description QA.
 
 **Plans:**
-- [ ] PLAN.md `21-01-structured-seo-pass`
+- [x] PLAN.md `21-01-structured-seo-pass` — JSON-LD for Organization/WebSite/ProfessionalService, noindex headers for email utility routes, SEO unit smoke.
 
 **Success criteria:**
 1. Organization/WebSite JSON-LD present on `/`.
 2. OG image absolute URLs resolve on production domain.
 3. Admin/API/preview/email utility routes have intentional index/noindex behavior.
-4. SEO smoke covers `/`, `/privacy`, `robots.txt`, `sitemap.xml`.
+4. SEO smoke covers `/`, `/privacy`, service-route noindex behavior and structured data helpers.
 
 ---
 

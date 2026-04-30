@@ -49,6 +49,7 @@ export async function GET(_request: Request, context: RouteContext): Promise<Res
     headers: {
       "Content-Type": "text/html; charset=utf-8",
       "Cache-Control": "no-store",
+      "X-Robots-Tag": "noindex, nofollow",
     },
   });
 }
