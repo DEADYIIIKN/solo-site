@@ -10,7 +10,7 @@ export const CasesVertical: CollectionConfig = {
   admin: {
     useAsTitle: "title",
     group: "Контент",
-    defaultColumns: ["image", "title", "updatedAt"],
+    defaultColumns: ["isVisible", "image", "title", "updatedAt"],
   },
   access: {
     read: () => true,
@@ -34,6 +34,19 @@ export const CasesVertical: CollectionConfig = {
       unique: true,
       admin: {
         hidden: true,
+      },
+    },
+    {
+      name: "isVisible",
+      type: "checkbox",
+      defaultValue: true,
+      label: "Показывать на сайте",
+      admin: {
+        components: {
+          Cell: "@/cms/components/case-visibility-cell#CaseVisibilityCell",
+        },
+        description: "Отключи, чтобы убрать кейс с главной страницы. Preview из админки остается доступным.",
+        position: "sidebar",
       },
     },
 

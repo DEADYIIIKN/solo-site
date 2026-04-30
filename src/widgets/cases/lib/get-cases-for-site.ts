@@ -13,6 +13,10 @@ import {
   casesVerticalCards1440,
 } from "@/widgets/cases/model/cases.data";
 
+const visibleCasesWhere = {
+  isVisible: { not_equals: false },
+};
+
 /**
  * Данные кейсов для главной: из Payload, при ошибке или пустых коллекциях — статический fallback.
  */
@@ -29,12 +33,14 @@ export async function getCasesForSite(): Promise<{
         depth: 1,
         limit: 100,
         sort: "_order",
+        where: visibleCasesWhere,
       }),
       payload.find({
         collection: "cases-advertising",
         depth: 1,
         limit: 100,
         sort: "_order",
+        where: visibleCasesWhere,
       }),
     ]);
 

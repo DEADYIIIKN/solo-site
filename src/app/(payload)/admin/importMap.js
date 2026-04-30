@@ -1,6 +1,7 @@
 import { ViewsInput as ViewsInput_3d785f1f832c5da366082bc2d53a979f } from '@/cms/components/views-input'
 import { InlineLineArrayField as InlineLineArrayField_abfb43623168d2a0a0bed0dd2a9ff0b0 } from '@/cms/components/inline-line-array-field'
 import { UploadWithQuickFileField as UploadWithQuickFileField_85c3b0aaa092156579955d947cbf16e4 } from '@/cms/components/upload-with-quick-file-field'
+import { CaseVisibilityCell as CaseVisibilityCell_5dd6d3416266b4a831639a2e38843a76 } from '@/cms/components/case-visibility-cell'
 import { EmailTemplateActions as EmailTemplateActions_39cbe31830a33d486d4e5cb33eef61d0 } from '@/cms/components/email-template-actions'
 import { EmailTemplatePreview as EmailTemplatePreview_198df4866052a4311be9dc49f6a8d37d } from '@/cms/components/email-template-preview'
 import { RscEntryLexicalCell as RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e } from '@payloadcms/richtext-lexical/rsc'
@@ -32,6 +33,7 @@ export const importMap = {
   "@/cms/components/views-input#ViewsInput": ViewsInput_3d785f1f832c5da366082bc2d53a979f,
   "@/cms/components/inline-line-array-field#InlineLineArrayField": InlineLineArrayField_abfb43623168d2a0a0bed0dd2a9ff0b0,
   "@/cms/components/upload-with-quick-file-field#UploadWithQuickFileField": UploadWithQuickFileField_85c3b0aaa092156579955d947cbf16e4,
+  "@/cms/components/case-visibility-cell#CaseVisibilityCell": CaseVisibilityCell_5dd6d3416266b4a831639a2e38843a76,
   "@/cms/components/email-template-actions#EmailTemplateActions": EmailTemplateActions_39cbe31830a33d486d4e5cb33eef61d0,
   "@/cms/components/email-template-preview#EmailTemplatePreview": EmailTemplatePreview_198df4866052a4311be9dc49f6a8d37d,
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
