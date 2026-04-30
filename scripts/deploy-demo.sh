@@ -30,7 +30,7 @@ echo "==> Starting solo-site containers"
 docker compose \
   --project-directory "$STACK_DIR" \
   -f "$RUNTIME_COMPOSE" \
-  up -d --remove-orphans solo-site
+  up -d solo-site
 
 echo "==> Container status"
 docker compose \
