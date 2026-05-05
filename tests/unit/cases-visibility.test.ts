@@ -28,6 +28,11 @@ describe("cases visibility toggle", () => {
     }
   });
 
+  it("keeps the editable title column first so Payload list rows can open records", () => {
+    expect(verticalCollection).toContain('defaultColumns: ["title", "isVisible", "image", "updatedAt"]');
+    expect(advertisingCollection).toContain('defaultColumns: ["title", "isVisible", "image", "updatedAt"]');
+  });
+
   it("keeps hidden cases out of the public homepage query", () => {
     expect(getCasesForSite).toContain("where: visibleCasesWhere");
     expect(getCasesForSite).toContain('isVisible: { not_equals: false }');

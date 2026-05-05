@@ -10,7 +10,7 @@ export const CasesVertical: CollectionConfig = {
   admin: {
     useAsTitle: "title",
     group: "Контент",
-    defaultColumns: ["isVisible", "image", "title", "updatedAt"],
+    defaultColumns: ["title", "isVisible", "image", "updatedAt"],
   },
   access: {
     read: () => true,

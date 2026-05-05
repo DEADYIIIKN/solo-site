@@ -17,10 +17,7 @@ import {
   STRATEGY_BARS_432,
   strategyBarGradient,
 } from "@/widgets/philosophy-clients/model/philosophy-clients.data";
-import {
-  MARQUEE_GAP_360_PX,
-  PhilosophyClientsMarquee1024,
-} from "@/widgets/philosophy-clients/ui/philosophy-clients-marquee-1024";
+import { PhilosophyClientsMarquee1024 } from "@/widgets/philosophy-clients/ui/philosophy-clients-marquee-1024";
 
 type NarrowSize = "432" | "360";
 
