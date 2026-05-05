@@ -16,7 +16,7 @@ import config from "@payload-config";
 
 import { checkRateLimit } from "@/lib/leads/rate-limit";
 import { validateLeadInput } from "@/lib/leads/validation";
-import { forwardLeadToWebhook } from "@/lib/leads/forward-webhook";
+import { forwardLeadToWebhook, resolveLeadWebhookUrl } from "@/lib/leads/forward-webhook";
 
 function getClientIp(req: Request): string {
   const xff = req.headers.get("x-forwarded-for");
@@ -60,6 +60,7 @@ export async function POST(req: Request): Promise<Response> {
 
   // 3. Save to Payload Collection FIRST (FUNC-02 always-save per D2)
   let leadId: string | number;
+  let leadWebhookUrl: string | undefined;
   try {
     const payload = await getPayload({ config });
     const lead = await payload.create({
@@ -76,13 +77,26 @@ export async function POST(req: Request): Promise<Response> {
       },
     });
     leadId = lead.id;
+
+    try {
+      const siteSettings = await payload.findGlobal({
+        slug: "site-settings",
+        overrideAccess: true,
+      });
+      leadWebhookUrl = resolveLeadWebhookUrl(
+        (siteSettings as Record<string, unknown>).n8nWebhookUrl,
+      );
+    } catch (err) {
+      console.error("[leads] Failed to read n8n webhook URL from site settings", err);
+      leadWebhookUrl = resolveLeadWebhookUrl();
+    }
   } catch (err) {
     console.error("[leads] Failed to save lead to Collection", err);
     return Response.json({ ok: false, error: "server" }, { status: 500 });
   }
 
   // 4. Forward to n8n (best-effort — ошибка НЕ фейлит запрос, D4)
-  const fwd = await forwardLeadToWebhook(data);
+  const fwd = await forwardLeadToWebhook(data, { webhookUrl: leadWebhookUrl });
   try {
     const payload = await getPayload({ config });
     await payload.update({

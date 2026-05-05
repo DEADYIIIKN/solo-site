@@ -2,8 +2,8 @@
  * Forward валидной заявки в n8n webhook (FUNC-01).
  *
  * Поведение:
- * - URL берётся из process.env.N8N_WEBHOOK_URL. Если переменной нет —
- *   возвращаем `{ ok: false, error: "N8N_WEBHOOK_URL not configured" }`
+ * - URL берётся из настроек Payload, затем из process.env.N8N_WEBHOOK_URL.
+ *   Если URL нет — возвращаем `{ ok: false, error: "n8n webhook URL not configured" }`
  *   и логгируем warn один раз (через module-level флаг). НЕ throw — заявка
  *   уже сохранена в Collection (D2/D4).
  * - Timeout по умолчанию 10s через AbortController (T-08-05 mitigation).
@@ -19,19 +19,29 @@ export interface ForwardResult {
   error?: string;
 }
 
+function normalizeWebhookUrl(url: unknown): string | undefined {
+  if (typeof url !== "string") return undefined;
+  const trimmed = url.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+export function resolveLeadWebhookUrl(adminWebhookUrl?: unknown): string | undefined {
+  return normalizeWebhookUrl(adminWebhookUrl) ?? normalizeWebhookUrl(process.env.N8N_WEBHOOK_URL);
+}
+
 export async function forwardLeadToWebhook(
   data: LeadInput,
-  options: { timeoutMs?: number } = {},
+  options: { timeoutMs?: number; webhookUrl?: string } = {},
 ): Promise<ForwardResult> {
-  const url = process.env.N8N_WEBHOOK_URL;
+  const url = resolveLeadWebhookUrl(options.webhookUrl);
   if (!url) {
     if (!warnedMissingUrl) {
       console.warn(
-        "[leads] N8N_WEBHOOK_URL not configured — заявка сохранена только локально",
+        "[leads] n8n webhook URL not configured — заявка сохранена только локально",
       );
       warnedMissingUrl = true;
     }
-    return { ok: false, error: "N8N_WEBHOOK_URL not configured" };
+    return { ok: false, error: "n8n webhook URL not configured" };
   }
 
   const controller = new AbortController();

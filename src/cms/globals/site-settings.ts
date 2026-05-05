@@ -121,6 +121,24 @@ export const SiteSettings: GlobalConfig = {
     },
     {
       type: "collapsible",
+      label: "Интеграции",
+      admin: {
+        initCollapsed: false,
+        description: "Адреса внешних сервисов, которые сайт использует без редеплоя",
+      },
+      fields: [
+        {
+          name: "n8nWebhookUrl",
+          type: "text",
+          label: "URL вебхука n8n для заявок",
+          admin: {
+            description: "POST endpoint активного workflow. Если поле пустое, сайт использует N8N_WEBHOOK_URL из env.",
+          },
+        },
+      ],
+    },
+    {
+      type: "collapsible",
       label: "SEO и аналитика",
       admin: {
         initCollapsed: false,
