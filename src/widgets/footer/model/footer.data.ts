@@ -11,7 +11,7 @@ export const footerAssets = {
   arrowNext: "/assets/figma/9274-arrow-1440/icon-arrow-left.svg",
 } as const;
 
-export const footerNavItems = ["об агенстве", "кейсы", "услуги", "Новости"] as const;
+export const footerNavItems = ["об агентстве", "кейсы", "услуги", "Новости"] as const;
 
 export const footerNavLinks = firstScreenNavLinks.filter((item) => item.label !== "Контакты");
 
@@ -53,7 +53,7 @@ export const footerContent = {
   phone: "+7 968 973 11-68",
   phoneSubtitle: "(WhatsApp, Telegram)",
   email: "info@soloproduction.pro",
-  tgDescription: "Процессы, инсайды и жизнь агенства — в нашем канале",
+  tgDescription: "Процессы, инсайды и жизнь агентства — в нашем канале",
   tgCta: "перейти в канал",
   tgChannelUrl: "https://t.me/soloproductionpro",
   legal: "ИП Лопатина Софья Андреевна  |  ИНН 422195627616",

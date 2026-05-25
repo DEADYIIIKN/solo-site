@@ -1,7 +1,7 @@
 import { showreelVideoSrc } from "@/widgets/showreel/model/showreel.data";
 
 export const firstScreenNavItems = [
-  "об агенстве",
+  "об агентстве",
   "кейсы",
   "услуги",
   "Новости",
@@ -9,7 +9,7 @@ export const firstScreenNavItems = [
 ] as const;
 
 export const firstScreenNavLinks = [
-  { label: "об агенстве", href: "#what-we-do-section" },
+  { label: "об агентстве", href: "#what-we-do-section" },
   { label: "кейсы", href: "#cases-section" },
   { label: "услуги", href: "#services-section" },
   { label: "Новости", href: "/news" },
