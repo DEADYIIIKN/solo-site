@@ -260,13 +260,14 @@ function AccordionCard({
           {card.id}
         </p>
         <p
-          className={`pointer-events-none absolute left-1/2 z-20 m-0 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white ${is1024 ? "bottom-[20px]" : "bottom-[30px]"}`}
+          className="pointer-events-none absolute left-1/2 z-20 m-0 whitespace-nowrap text-[40px] font-bold lowercase leading-none tracking-[-0.4px] text-white"
           style={{
-            writingMode: "sideways-lr",
+            bottom: is1024 ? "0px" : "10px",
             opacity: active ? 0 : 1,
             transform: active
-              ? `translate3d(calc(-50% + ${verticalLabelOffsetPx}px),0,0)`
-              : "translate3d(-50%,0,0)",
+              ? `translate3d(${verticalLabelOffsetPx}px,0,0) rotate(-90deg)`
+              : "translate3d(0,0,0) rotate(-90deg)",
+            transformOrigin: "left center",
             transition: `opacity 180ms ease-out, transform 420ms ${premiumEase}`,
             willChange: "opacity,transform",
           }}
