@@ -206,7 +206,7 @@ export function PhilosophyClientsMarquee1024({ gapPx = 60 }: { gapPx?: number } 
     () => (
       <>
         <MarqueeImgSlot heightPx={24} src={d.group261} widthPx={139.136} />
-        <MarqueeImgSlot heightPx={50} src={d.image41} widthPx={99} />
+        <MarqueeImgSlot heightPx={36} src={d.image41} widthPx={229.787} />
         <div className="relative h-[24.001px] w-[266.443px] shrink-0 overflow-hidden">
           <img
             alt=""

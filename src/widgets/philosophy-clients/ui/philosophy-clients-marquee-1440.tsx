@@ -208,7 +208,7 @@ export function PhilosophyClientsMarquee1440() {
     () => (
       <>
         <MarqueeImgSlot heightPx={30} src={d.group261} widthPx={173.92} />
-        <MarqueeImgSlot heightPx={70} src={d.image41} widthPx={138.34} />
+        <MarqueeImgSlot heightPx={50} src={d.image41} widthPx={319.149} />
         <div className="relative h-[30px] w-[333.054px] shrink-0 overflow-hidden">
           <img
             alt=""
