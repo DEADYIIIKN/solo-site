@@ -39,6 +39,10 @@ export type CasesVerticalCard = {
   detailResult: string;
 };
 
+export function hasCaseViews(views?: string | null): boolean {
+  return Boolean(views?.trim());
+}
+
 export const casesVerticalCards1440: readonly CasesVerticalCard[] = [
   {
     id: "v1",

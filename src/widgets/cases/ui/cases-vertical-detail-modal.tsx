@@ -9,7 +9,7 @@ import { createPortal } from "react-dom";
 import { cn } from "@/shared/lib/utils";
 import { dispatchOpenConsultationModal } from "@/shared/lib/open-consultation-modal";
 import type { CasesVerticalCard } from "@/widgets/cases/model/cases.data";
-import { cases1440Assets } from "@/widgets/cases/model/cases.data";
+import { cases1440Assets, hasCaseViews } from "@/widgets/cases/model/cases.data";
 import { CaseModalVideoBlock } from "@/widgets/cases/ui/case-modal-video-block";
 
 const MODAL_MS = 320;
@@ -292,6 +292,8 @@ function ModalBodyDesktop({
   card: CasesVerticalCard;
   onOrderProject: () => void;
 }) {
+  const showViews = hasCaseViews(card.views);
+
   return (
     <div className="flex min-h-[510px] min-w-0 flex-1 flex-col justify-between text-[#0d0300]">
       <div className="flex flex-col gap-[30px]">
@@ -299,16 +301,18 @@ function ModalBodyDesktop({
           <p className="m-0 max-w-[380px] text-[34px] font-bold uppercase leading-[0.9]" id={titleId}>
             {modalTitle(card)}
           </p>
-          <div className="flex shrink-0 items-center gap-2">
-            <img
-              alt=""
-              className="h-[22px] w-[32px] object-contain brightness-0"
-              height="22"
-              src={cases1440Assets.viewsIcon}
-              width="32"
-            />
-            <p className="m-0 text-[34px] font-bold lowercase leading-[1.2]">{card.views}</p>
-          </div>
+          {showViews ? (
+            <div className="flex shrink-0 items-center gap-2">
+              <img
+                alt=""
+                className="h-[22px] w-[32px] object-contain brightness-0"
+                height="22"
+                src={cases1440Assets.viewsIcon}
+                width="32"
+              />
+              <p className="m-0 text-[34px] font-bold lowercase leading-[1.2]">{card.views}</p>
+            </div>
+          ) : null}
         </div>
         <div className="flex flex-wrap gap-x-[30px] gap-y-2 text-[16px] leading-[1.3]">
           {card.credits.map((line) => (
@@ -331,6 +335,8 @@ function ModalBodyTablet({
   card: CasesVerticalCard;
   onOrderProject: () => void;
 }) {
+  const showViews = hasCaseViews(card.views);
+
   return (
     <div className="flex min-h-0 min-w-0 flex-1 flex-col justify-between text-[#0d0300]">
       <div className="flex flex-col gap-6">
@@ -338,16 +344,18 @@ function ModalBodyTablet({
           <p className="m-0 max-w-[215px] text-[28px] font-bold uppercase leading-[0.9]" id={titleId}>
             {modalTitle(card)}
           </p>
-          <div className="flex shrink-0 items-center gap-2">
-            <img
-              alt=""
-              className="h-[14px] w-5 object-contain brightness-0"
-              height="14"
-              src={cases1440Assets.viewsIcon}
-              width="20"
-            />
-            <p className="m-0 text-[28px] font-bold lowercase leading-[1.2]">{card.views}</p>
-          </div>
+          {showViews ? (
+            <div className="flex shrink-0 items-center gap-2">
+              <img
+                alt=""
+                className="h-[14px] w-5 object-contain brightness-0"
+                height="14"
+                src={cases1440Assets.viewsIcon}
+                width="20"
+              />
+              <p className="m-0 text-[28px] font-bold lowercase leading-[1.2]">{card.views}</p>
+            </div>
+          ) : null}
         </div>
         <div className="flex flex-col gap-3 text-[14px] leading-[1.3]">
           {card.credits.map((line) => (
@@ -383,6 +391,7 @@ function ModalBodyMobile({
   const outerGap = size === "480" ? "gap-[36px]" : "gap-[24px]";
   const topGap = size === "480" ? "gap-6" : "gap-4";
   const taskGap = size === "480" ? "gap-[28px]" : "gap-[30px]";
+  const showViews = hasCaseViews(card.views);
 
   return (
     <div className={cn("flex w-full flex-col", outerGap)}>
@@ -394,17 +403,19 @@ function ModalBodyMobile({
           >
             {modalTitle(card)}
           </p>
-          <div className="flex shrink-0 items-center gap-2">
-            <img
-              alt=""
-              className="object-contain brightness-0"
-              height={iconH}
-              src={cases1440Assets.viewsIcon}
-              style={{ height: iconH, width: iconW }}
-              width={iconW}
-            />
-            <p className={cn("m-0 font-bold lowercase leading-[1.2]", viewsPx)}>{card.views}</p>
-          </div>
+          {showViews ? (
+            <div className="flex shrink-0 items-center gap-2">
+              <img
+                alt=""
+                className="object-contain brightness-0"
+                height={iconH}
+                src={cases1440Assets.viewsIcon}
+                style={{ height: iconH, width: iconW }}
+                width={iconW}
+              />
+              <p className={cn("m-0 font-bold lowercase leading-[1.2]", viewsPx)}>{card.views}</p>
+            </div>
+          ) : null}
         </div>
         <div className={cn("flex flex-col gap-3 leading-[1.3]", metaPx)}>
           {card.credits.map((line) => (

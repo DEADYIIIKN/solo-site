@@ -15,6 +15,7 @@ import {
   cases1440Copy,
   casesAdCards1440,
   casesVerticalCards1440,
+  hasCaseViews,
   type CasesSectionCardsProps,
 } from "@/widgets/cases/model/cases.data";
 import { CasesAdDetailModal } from "@/widgets/cases/ui/cases-ad-detail-modal";
@@ -148,6 +149,8 @@ function VerticalCard({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
+  const showViews = hasCaseViews(views);
+
   return (
     <motion.article
       className="group relative h-[510px] w-[283px] shrink-0 cursor-pointer overflow-hidden rounded-[12px] bg-[#0d0300]"
@@ -192,17 +195,19 @@ function VerticalCard({
             </p>
           ))}
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <img
-            alt=""
-            className="block h-[21px] w-[31px] max-h-[21px] max-w-[31px] shrink-0 object-contain"
-            height="21"
-            src={cases1440Assets.viewsIcon}
-            style={{ height: "21px", maxHeight: "21px", maxWidth: "31px", width: "31px" }}
-            width="31"
-          />
-          <p className="m-0 text-[40px] font-bold lowercase leading-[1.2]">{views}</p>
-        </div>
+        {showViews ? (
+          <div className="flex items-center justify-center gap-2">
+            <img
+              alt=""
+              className="block h-[21px] w-[31px] max-h-[21px] max-w-[31px] shrink-0 object-contain"
+              height="21"
+              src={cases1440Assets.viewsIcon}
+              style={{ height: "21px", maxHeight: "21px", maxWidth: "31px", width: "31px" }}
+              width="31"
+            />
+            <p className="m-0 text-[40px] font-bold lowercase leading-[1.2]">{views}</p>
+          </div>
+        ) : null}
         <div className="flex min-h-[37px] flex-col justify-end text-[14px] font-normal leading-[1.2]">
           {credits.map((line, i) => (
             <p className={cn("m-0", i < credits.length - 1 && "mb-[10px]")} key={line}>
