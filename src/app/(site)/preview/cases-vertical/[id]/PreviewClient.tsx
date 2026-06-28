@@ -12,7 +12,7 @@ import {
   type PayloadMediaLike,
 } from "@/shared/lib/payload-media";
 import { CasesVerticalDetailModal } from "@/widgets/cases/ui/cases-vertical-detail-modal";
-import { cases1440Assets } from "@/widgets/cases/model/cases.data";
+import { cases1440Assets, hasCaseViews } from "@/widgets/cases/model/cases.data";
 import type { CasesVerticalCard } from "@/widgets/cases/model/cases.data";
 
 /* ─── helpers ─────────────────────────────────────────────────── */
@@ -48,6 +48,8 @@ function CardPreview({
   card: CasesVerticalCard;
   onClick: () => void;
 }) {
+  const showViews = hasCaseViews(card.views);
+
   return (
     <button
       aria-label="Открыть модалку"
@@ -75,17 +77,19 @@ function CardPreview({
             <p className="m-0 leading-[0.9]" key={line}>{line}</p>
           ))}
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <Image
-            alt=""
-            className="block shrink-0 object-contain"
-            height={21}
-            src={cases1440Assets.viewsIcon}
-            unoptimized
-            width={31}
-          />
-          <p className="m-0 text-[40px] font-bold lowercase leading-[1.2]">{card.views}</p>
-        </div>
+        {showViews ? (
+          <div className="flex items-center justify-center gap-2">
+            <Image
+              alt=""
+              className="block shrink-0 object-contain"
+              height={21}
+              src={cases1440Assets.viewsIcon}
+              unoptimized
+              width={31}
+            />
+            <p className="m-0 text-[40px] font-bold lowercase leading-[1.2]">{card.views}</p>
+          </div>
+        ) : null}
         <div className="flex min-h-[37px] flex-col justify-end text-[14px] font-normal leading-[1.2]">
           {card.credits.map((line) => (
             <p className="m-0" key={line}>{line}</p>

@@ -15,6 +15,7 @@ import {
   cases1440Copy,
   casesAdCards1440,
   casesVerticalCards1440,
+  hasCaseViews,
   type CasesSectionCardsProps,
 } from "@/widgets/cases/model/cases.data";
 import { CasesAdDetailModal } from "@/widgets/cases/ui/cases-ad-detail-modal";
@@ -71,6 +72,8 @@ function VerticalCard360({
   overlayLight?: boolean;
   onOpenDetail?: () => void;
 }) {
+  const showViews = hasCaseViews(views);
+
   return (
     <motion.article
       className="group relative shrink-0 cursor-pointer overflow-hidden rounded-[4px] bg-[#0d0300]"
@@ -115,16 +118,18 @@ function VerticalCard360({
             </p>
           ))}
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <img
-            alt=""
-            className="block h-[14px] w-[20px] shrink-0 object-contain"
-            height="14"
-            src={cases1440Assets.viewsIcon}
-            width="20"
-          />
-          <p className="m-0 text-[30px] font-bold lowercase leading-[1.2]">{views}</p>
-        </div>
+        {showViews ? (
+          <div className="flex items-center justify-center gap-2">
+            <img
+              alt=""
+              className="block h-[14px] w-[20px] shrink-0 object-contain"
+              height="14"
+              src={cases1440Assets.viewsIcon}
+              width="20"
+            />
+            <p className="m-0 text-[30px] font-bold lowercase leading-[1.2]">{views}</p>
+          </div>
+        ) : null}
         <div className="flex min-h-[28px] flex-col justify-end text-[11px] font-normal leading-[1.2]">
           {credits.map((line, i) => (
             <p className={cn("m-0", i < credits.length - 1 && "mb-[6px]")} key={line}>
