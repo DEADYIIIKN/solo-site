@@ -63,6 +63,7 @@ const casesCardHoverEase = "duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]";
 /** Figma 783:8587 — вертикальная карточка 227×410, радиус 8px */
 function VerticalCard1024({
   image,
+  eager,
   titleLines,
   views,
   credits,
@@ -70,6 +71,7 @@ function VerticalCard1024({
   onOpenDetail,
 }: {
   image: string;
+  eager?: boolean;
   titleLines: readonly string[];
   views: string;
   credits: readonly string[];
@@ -99,6 +101,7 @@ function VerticalCard1024({
     >
       <Image
         alt=""
+        loading={eager ? "eager" : "lazy"}
         className={cn(
           "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
           casesCardHoverEase,
@@ -150,11 +153,13 @@ function VerticalCard1024({
 /** Figma 783:8576 — рекламная карточка 466×260 */
 function AdCard1024({
   image,
+  eager,
   title,
   credits,
   onOpenDetail,
 }: {
   image: string;
+  eager?: boolean;
   title: string;
   credits: readonly string[];
   onOpenDetail?: () => void;
@@ -180,6 +185,7 @@ function AdCard1024({
     >
       <Image
         alt=""
+        loading={eager ? "eager" : "lazy"}
         className={cn(
           "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
           casesCardHoverEase,
@@ -279,8 +285,9 @@ export function CasesSection1024({
               ref={vScroll.scrollRef}
               style={{ paddingLeft: "calc((100% - 944px) / 2 + 40px)", paddingRight: "40px" }}
             >
-              {verticalCards.map((c) => (
+              {verticalCards.map((c, index) => (
                 <VerticalCard1024
+                  eager={index < 3}
                   credits={c.credits}
                   image={c.image}
                   key={c.id}
@@ -325,8 +332,9 @@ export function CasesSection1024({
               ref={aScroll.scrollRef}
               style={{ paddingLeft: "calc((100% - 944px) / 2 + 40px)", paddingRight: "40px" }}
             >
-              {adCards.map((c) => (
+              {adCards.map((c, index) => (
                 <AdCard1024
+                  eager={index < 2}
                   credits={c.credits}
                   image={c.image}
                   key={c.id}

@@ -136,6 +136,7 @@ const casesCardHoverEase = "duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]";
 
 function VerticalCard({
   image,
+  eager,
   titleLines,
   views,
   credits,
@@ -143,6 +144,7 @@ function VerticalCard({
   onOpenDetail,
 }: {
   image: string;
+  eager?: boolean;
   titleLines: readonly string[];
   views: string;
   credits: readonly string[];
@@ -171,6 +173,7 @@ function VerticalCard({
     >
       <Image
         alt=""
+        loading={eager ? "eager" : "lazy"}
         className={cn(
           "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
           casesCardHoverEase,
@@ -222,11 +225,13 @@ function VerticalCard({
 
 function AdCard({
   image,
+  eager,
   title,
   credits,
   onOpenDetail,
 }: {
   image: string;
+  eager?: boolean;
   title: string;
   credits: readonly string[];
   onOpenDetail?: () => void;
@@ -251,6 +256,7 @@ function AdCard({
     >
       <Image
         alt=""
+        loading={eager ? "eager" : "lazy"}
         className={cn(
           "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
           casesCardHoverEase,
@@ -406,8 +412,9 @@ export function CasesSection1440({
               dir="ltr"
               ref={vScroll.scrollRef}
             >
-              {verticalCards.map((c) => (
+              {verticalCards.map((c, index) => (
                 <VerticalCard
+                  eager={index < 3}
                   credits={c.credits}
                   image={c.image}
                   key={c.id}
@@ -451,8 +458,9 @@ export function CasesSection1440({
               dir="ltr"
               ref={aScroll.scrollRef}
             >
-              {adCards.map((c) => (
+              {adCards.map((c, index) => (
                 <AdCard
+                  eager={index < 2}
                   credits={c.credits}
                   image={c.image}
                   key={c.id}

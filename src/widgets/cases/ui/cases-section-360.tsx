@@ -59,6 +59,7 @@ function CasesTitle28({
 
 function VerticalCard360({
   image,
+  eager,
   titleLines,
   views,
   credits,
@@ -66,6 +67,7 @@ function VerticalCard360({
   onOpenDetail,
 }: {
   image: string;
+  eager?: boolean;
   titleLines: readonly string[];
   views: string;
   credits: readonly string[];
@@ -95,6 +97,7 @@ function VerticalCard360({
     >
       <Image
         alt=""
+        loading={eager ? "eager" : "lazy"}
         className={cn(
           "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
           casesCardHoverEase,
@@ -145,11 +148,13 @@ function VerticalCard360({
 
 function AdCard360({
   image,
+  eager,
   title,
   credits,
   onOpenDetail,
 }: {
   image: string;
+  eager?: boolean;
   title: string;
   credits: readonly string[];
   onOpenDetail?: () => void;
@@ -175,6 +180,7 @@ function AdCard360({
     >
       <Image
         alt=""
+        loading={eager ? "eager" : "lazy"}
         className={cn(
           "absolute inset-0 h-full w-full object-cover grayscale transition-[filter] will-change-[filter] group-hover:grayscale-0",
           casesCardHoverEase,
@@ -261,8 +267,9 @@ export function CasesSection360({
               ref={vScroll.scrollRef}
               style={{ paddingLeft: "calc((100% - 328px) / 2 + 16px)", paddingRight: "16px" }}
             >
-              {verticalCards.map((c) => (
+              {verticalCards.map((c, index) => (
                 <VerticalCard360
+                  eager={index < 3}
                   credits={c.credits}
                   image={c.image}
                   key={c.id}
@@ -296,8 +303,9 @@ export function CasesSection360({
               ref={aScroll.scrollRef}
               style={{ paddingLeft: "calc((100% - 328px) / 2)", paddingRight: "16px" }}
             >
-              {adCards.map((c) => (
+              {adCards.map((c, index) => (
                 <AdCard360
+                  eager={index < 2}
                   credits={c.credits}
                   image={c.image}
                   key={c.id}
