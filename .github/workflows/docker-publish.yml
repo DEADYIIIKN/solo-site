@@ -51,13 +51,18 @@ jobs:
 
       - name: Save image artifact for SSH deploy
         run: |
-          docker save "${{ steps.meta.outputs.image }}:sha-${{ github.sha }}" | gzip > solo-site-image.tar.gz
+          docker create --name extract-solo "${{ steps.meta.outputs.image }}:sha-${{ github.sha }}"
+          mkdir -p solo-release/app/public/assets/video
+          docker cp extract-solo:/app/.next solo-release/app/.next
+          docker cp extract-solo:/app/src solo-release/app/src
+          docker cp extract-solo:/app/public/assets/video/bts-ozon-720p-v1.mp4 solo-release/app/public/assets/video/bts-ozon-720p-v1.mp4
+          tar -C solo-release -czf solo-site-release.tar.gz app
 
       - name: Upload image artifact
         uses: actions/upload-artifact@v4
         with:
-          name: solo-site-image
-          path: solo-site-image.tar.gz
+          name: solo-site-release
+          path: solo-site-release.tar.gz
           if-no-files-found: error
           retention-days: 1
 
