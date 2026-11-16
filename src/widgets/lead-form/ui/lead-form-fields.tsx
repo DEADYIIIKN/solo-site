@@ -159,6 +159,7 @@ export function LeadFormFields({
   /** Только поля: без шапки «Это бесплатно» и без внешней тёмной карточки (Figma 783:10315 / 783:10874). */
   embedInCard = false,
   source,
+  messagePlaceholder = "Если хотите, опишите задачу — так мы сможем подготовиться к разговору",
 }: {
   density: LeadFormFieldsDensity;
   contactLayout: "radio" | "pill";
@@ -169,6 +170,7 @@ export function LeadFormFields({
    * Примеры: "lead-form", "hero-cta", "header-cta", "services-cta", "consultation-modal".
    */
   source: string;
+  messagePlaceholder?: string;
 }) {
   const d = densityMap[density];
   const consentId = useId();
@@ -486,7 +488,7 @@ export function LeadFormFields({
             onChange={(e) =>
               setFormState((prev) => ({ ...prev, message: e.target.value }))
             }
-            placeholder="Если хотите, опишите задачу — так мы сможем подготовиться к разговору"
+            placeholder={messagePlaceholder}
             value={message}
           />
         </label>
