@@ -272,7 +272,11 @@ export function SiteNavLink({ href, onClick, ...props }: SiteNavLinkProps) {
     event.preventDefault();
 
     if (!scrollToHashTarget(href)) {
-      window.location.hash = href;
+      if (window.location.pathname.startsWith("/services/")) {
+        window.location.assign(`/${href}`);
+      } else {
+        window.location.hash = href;
+      }
     }
   }
 

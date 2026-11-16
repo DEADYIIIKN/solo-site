@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { BusinessGoals } from "@/widgets/business-goals";
 import { CasesSection } from "@/widgets/cases";
@@ -72,6 +73,13 @@ export default async function HomePage() {
         <CasesSection adCards={adCards} verticalCards={verticalCards} />
       )}
       {settings.showServices && <ServicesSection />}
+      <nav
+        aria-label="Страницы услуг"
+        className="flex flex-wrap justify-center gap-6 bg-[#0d0300] px-4 py-8 text-sm text-white underline"
+      >
+        <Link href="/services/vertical-video">Вертикальные видео</Link>
+        <Link href="/services/reklamnye-roliki">Рекламные ролики</Link>
+      </nav>
       {settings.showLevels && <LevelsSection />}
       <LeadFormSection />
       <FooterSection
